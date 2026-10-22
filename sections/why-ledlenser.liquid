@@ -1,0 +1,295 @@
+
+<style>
+  #why {
+    background: #0A0A0A;
+    color: #FFFFFF;
+  }
+
+  #why .why-container {
+    max-width: 1408px;
+    margin: 0 auto;
+    padding: 63px 24px 47px;
+  }
+
+  #why .why-intro {
+    max-width: 760px;
+  }
+
+  #why .why-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    color: #FF3B4A;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 15px;
+    line-height:18px;
+  }
+
+  #why .why-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 56px;
+    color:#fff;
+    line-height: 0.98;
+    margin: 10px 0 16px;
+  }
+
+  #why .why-description {
+    font-size: 18px;
+    line-height: 1.55;
+    color: #D0D0D0;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    margin: 0;
+  }
+
+  #why .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 44px;
+  }
+
+  #why .why-card {
+    background: #161616;
+    border: 1px solid #2E2E2E;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #why .why-media {
+    height: 204px;
+    background: #1F1F1F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #why .why-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #why .why-card-content {
+    padding: 24px 24px 74px;
+  }
+
+  #why .why-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 46px;
+    color: #FF3B4A;
+    line-height: 1;
+  }
+
+  #why .why-card-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 28px;
+    color:#fff;
+    margin: 8px 0;
+  }
+
+  #why .why-card-description {
+    margin: 0;
+    color: #D0D0D0;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  @media only screen and (max-width: 749px) {
+  #why .why-container {
+    padding: 40px 0px;
+}
+
+#why .why-heading {
+    font-size: 30px;
+}
+#why .why-card-title {
+    font-size: 24px;
+}
+#why .why-grid {
+    display: flex;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 0 20px;
+    scrollbar-width: none;
+}
+
+#why .why-intro {
+    padding: 0 20px;
+}
+
+#why .why-card {
+    min-width: 90%;
+}
+
+#why .why-card-content {
+    padding: 20px;
+}
+
+#why .why-number {
+    font-size: 30px;
+}
+
+#why .why-description {
+    font-size: 15px;
+}
+
+#why .why-card-description {
+    font-size: 15px;
+}}
+</style>
+
+<section id="why">
+  <div class="why-container">
+    <div class="why-intro">
+      <div class="why-eyebrow">
+        {{ section.settings.eyebrow }}
+      </div>
+
+      <h2 class="why-heading">
+        {{ section.settings.heading_line_1 }}<br>
+        {{ section.settings.heading_line_2 }}
+      </h2>
+
+      <p class="why-description">
+        {{ section.settings.intro_description }}
+      </p>
+    </div>
+
+    <div class="why-grid">
+      {% for block in section.blocks %}
+        <div class="why-card" {{ block.shopify_attributes }}>
+          <div class="why-media">
+            {% if block.settings.media_image != blank %}
+              <img
+                src="{{ block.settings.media_image | image_url: width: 800 }}"
+                alt="{{ block.settings.media_image.alt | escape }}"
+                width="{{ block.settings.media_image.width }}"
+                height="{{ block.settings.media_image.height }}"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+
+          <div class="why-card-content">
+            <div class="why-number">
+              {{ block.settings.number }}
+            </div>
+
+            <h3 class="why-card-title">
+              {{ block.settings.title }}
+            </h3>
+
+            <p class="why-card-description">
+              {{ block.settings.description }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Ledlenser",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Why Ledlenser"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading line 1",
+      "default": "Lumens get you noticed."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading line 2",
+      "default": "Control gets the job done."
+    },
+    {
+      "type": "textarea",
+      "id": "intro_description",
+      "label": "Intro description",
+      "default": "A bigger number on the box doesn't help if the beam is the wrong shape for the task. Here's what you're paying for."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "media_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Advanced Focus System"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Slide from a wide flood for close work to a long-throw spot for the tree line — one light, every distance. Most flashlights are fixed-beam."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Why Ledlenser",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "number": "01",
+            "title": "Advanced Focus System",
+            "description": "Slide from a wide flood for close work to a long-throw spot for the tree line — one light, every distance. Most flashlights are fixed-beam."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "number": "02",
+            "title": "One ring. Every mode.",
+            "description": "Twist to pick a mode, lock it for transport or open the USB-C port. No click-cycling through strobe in the dark."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "number": "03",
+            "title": "7 years. No questions.",
+            "description": "If it fails, we fix or replace it. IP68-sealed, drop-tested and built to run up to 80 hours on low (P7R)."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

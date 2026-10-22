@@ -1,0 +1,40 @@
+<div class="shipping-progress-wrapper">
+  <div class="shipping-progress-inner">
+    <span class="shipping-progress-message">
+      {{ section.settings.ship_msg }}
+    </span>
+
+    <div class="shipping-progress-bar">
+      <div style="{{ barStyle }}"></div>
+    </div>
+
+    <span class="shipping-progress-text">
+      {{ section.settings.shipping_text }}
+    </span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping Progress Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "ship_msg",
+      "label": "Shipping Message",
+      "default": "Your shipping message"
+    },
+    {
+      "type": "text",
+      "id": "shipping_text",
+      "label": "Shipping Text",
+      "default": "Ships in 1–2 business days"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping Progress Bar"
+    }
+  ]
+}
+{% endschema %}

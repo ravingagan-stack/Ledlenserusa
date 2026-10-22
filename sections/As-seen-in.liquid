@@ -1,0 +1,120 @@
+<section class="press-mentions">
+  <div class="press-mentions-inner">
+    <div class="press-mentions-item">
+      <div class="press-mentions-title">
+        {{ section.settings.publication_1 }}
+      </div>
+      <div class="press-mentions-text">
+        <a href="{{ section.settings.link_1 }}">{{ section.settings.text_1 }}</a>
+      </div>
+    </div>
+
+    <div class="press-mentions-item">
+      <div class="press-mentions-title">
+        {{ section.settings.publication_2 }}
+      </div>
+      <div class="press-mentions-text">
+       <a href="{{ section.settings.link_2 }}"> {{ section.settings.text_2 }}</a>
+      </div>
+    </div>
+
+    <div class="press-mentions-item">
+      <div class="press-mentions-title">
+        {{ section.settings.publication_3 }}
+      </div>
+      <div class="press-mentions-text">
+        <a href="{{ section.settings.link_3 }}">{{ section.settings.text_3 }}</a>
+      </div>
+    </div>
+
+    <div class="press-mentions-item">
+      <div class="press-mentions-title">
+        {{ section.settings.publication_4 }}
+      </div>
+      <div class="press-mentions-text">
+        <a href="{{ section.settings.link_4 }}">{{ section.settings.text_4 }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Press Mentions",
+  "settings": [
+    {
+      "type": "text",
+      "id": "publication_1",
+      "label": "Publication 1",
+      "default": "Outdoor Life"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text 1",
+      "default": "[Award or pull quote + product name, linked to article]"
+    },
+        {
+    "type":"url",
+    "id":"link_1",
+    "label":"Add Url"
+    },
+    {
+      "type": "text",
+      "id": "publication_2",
+      "label": "Publication 2",
+      "default": "Popular Mechanics"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text 2",
+      "default": "[Award or pull quote + product name, linked to article]"
+    },
+        {
+    "type":"url",
+    "id":"link_2",
+    "label":"Add Url"
+    },
+    {
+      "type": "text",
+      "id": "publication_3",
+      "label": "Publication 3",
+      "default": "Wired"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text 3",
+      "default": "[Award or pull quote + product name, linked to article]"
+    },
+        {
+    "type":"url",
+    "id":"link_3",
+    "label":"Add Url"
+    },
+    {
+      "type": "text",
+      "id": "publication_4",
+      "label": "Publication 4",
+      "default": "Travel + Leisure"
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "Text 4",
+      "default": "[Award or pull quote + product name, linked to article]"
+    },
+        {
+    "type":"url",
+    "id":"link_4",
+    "label":"Add Url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press Mentions"
+    }
+  ]
+}
+{% endschema %}

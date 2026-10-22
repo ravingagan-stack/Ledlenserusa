@@ -1,0 +1,219 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "collection-image-with-title",
+      "disabled": true,
+      "settings": {
+        "banner_height": "two-fifty-height",
+        "text_position": "middle-center",
+        "show_image": true,
+        "overlay_type": "disabled",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "subcollections": {
+      "type": "subcollections",
+      "disabled": true,
+      "settings": {
+        "subcollections": [
+          "dresses",
+          "tops",
+          "skirts",
+          "knitwear",
+          "jackets",
+          "linen-collection"
+        ],
+        "limit": 4,
+        "layout": "grid",
+        "image_source": "product",
+        "image_aspect_ratio": 1.2,
+        "overlay_type": "opacity",
+        "color_scheme": "scheme-7",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_divider_EMY8RJ": {
+      "type": "section-divider",
+      "disabled": true,
+      "name": "Divider",
+      "settings": {
+        "show_line": true,
+        "color_scheme": "",
+        "width": "wrapper--full-padded",
+        "padding_top": 4,
+        "padding_bottom": 0
+      }
+    },
+    "collection_hero_mHAhyy": {
+      "type": "Collection-hero",
+      "blocks": {
+        "trust_iBFEPg": {
+          "type": "trust",
+          "settings": {
+            "icon": "shield",
+            "text": "<strong>7-year warranty,</strong> no questions asked"
+          }
+        },
+        "trust_UCNxBB": {
+          "type": "trust",
+          "settings": {
+            "icon": "truck",
+            "text": "<strong>Ships in 1–2 days</strong> from the US"
+          }
+        },
+        "trust_Df9WKy": {
+          "type": "trust",
+          "settings": {
+            "icon": "headset",
+            "text": "<strong>Not sure?</strong> <a href=\"/pages/contact\">Ask an expert</a> or <a href=\"/pages/light-finder\">take the Light Finder</a>"
+          }
+        },
+        "pill_mVxBgD": {
+          "type": "pill",
+          "settings": {
+            "label": "All headlamps",
+            "link": "/collections/headlamps",
+            "active": true
+          }
+        },
+        "pill_tfecPy": {
+          "type": "pill",
+          "settings": {
+            "label": "Work & jobsite",
+            "link": "",
+            "active": false
+          }
+        },
+        "pill_JG9FYJ": {
+          "type": "pill",
+          "settings": {
+            "label": "Hiking & camping",
+            "link": "",
+            "active": false
+          }
+        },
+        "pill_KteiW4": {
+          "type": "pill",
+          "settings": {
+            "label": "Hands-free sensor",
+            "link": "",
+            "active": false
+          }
+        },
+        "pill_7TrpcL": {
+          "type": "pill",
+          "settings": {
+            "label": "Brightest",
+            "link": "",
+            "active": false
+          }
+        },
+        "pill_an3r9g": {
+          "type": "pill",
+          "settings": {
+            "label": "Under $100",
+            "link": "",
+            "active": false
+          }
+        },
+        "pill_yjFap3": {
+          "type": "pill",
+          "settings": {
+            "label": "Kits with powerbank",
+            "link": "",
+            "active": false
+          }
+        }
+      },
+      "block_order": [
+        "trust_iBFEPg",
+        "trust_UCNxBB",
+        "trust_Df9WKy",
+        "pill_mVxBgD",
+        "pill_tfecPy",
+        "pill_JG9FYJ",
+        "pill_KteiW4",
+        "pill_7TrpcL",
+        "pill_an3r9g",
+        "pill_yjFap3"
+      ],
+      "name": "Collection hero",
+      "settings": {
+        "load_fonts": true,
+        "show_breadcrumb": true,
+        "heading": "Headlamps",
+        "description": "<p>Rechargeable, focusable headlamps for the jobsite, the trail and the hunt. Specs are shown in feet and hours so you can compare at a glance.</p>",
+        "max_width": 1360,
+        "pills_spacing": 68,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "main": {
+      "type": "collection",
+      "blocks": {
+        "9ec5eccb-9ba9-46bd-aaab-f698f3b524da": {
+          "type": "promo",
+          "settings": {
+            "collection": "",
+            "promo_position": 6,
+            "width": "auto",
+            "title": "<p>Not sure which headlamp?</p>",
+            "heading_size": 140,
+            "heading_highlight_type": "highlight-color",
+            "highlight_color": "#ffffff",
+            "highlight_text_color": "#ffffff",
+            "content": "Answer 4 questions about how you'll\nuse it and we'll match you in about a\nminute.",
+            "text_size": 100,
+            "text_position": "bottom-left",
+            "layout": "stacked",
+            "overlay_type": "disabled",
+            "promo_bg_color": "#d3d3d3",
+            "show_text_background": false,
+            "bg_color": "#000000",
+            "text_color": "#ffffff",
+            "button_text": "Start the Light Finder",
+            "button_link": "",
+            "button_color": "btn--white",
+            "button_style": "btn--text",
+            "button_size": "btn--small"
+          }
+        }
+      },
+      "block_order": [
+        "9ec5eccb-9ba9-46bd-aaab-f698f3b524da"
+      ],
+      "settings": {
+        "show_breadcrumbs": false,
+        "products_per_page": 24,
+        "enable_sorting": true,
+        "enable_filters": true,
+        "filters_layout": "open",
+        "show_more": true,
+        "filter_mode": "default",
+        "color_scheme": "",
+        "padding_top": 28,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "subcollections",
+    "section_divider_EMY8RJ",
+    "collection_hero_mHAhyy",
+    "main"
+  ]
+}

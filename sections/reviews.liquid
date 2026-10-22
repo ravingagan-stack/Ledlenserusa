@@ -1,0 +1,344 @@
+{%- liquid
+  assign section_uid = 'ReviewsTrust-' | append: section.id
+-%}
+
+{%- style -%}
+  #{{ section_uid }} {
+    background: {{ section.settings.color_section_bg }};
+  }
+blockquote.rt__quote {
+    padding: 0;
+}
+   .rt__inner {
+    max-width: 1408px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+  }
+
+   .rt__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+   .rt__intro {
+    flex: 1 1 280px;
+  }
+
+   .rt__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 44px;
+    line-height: 1;
+    margin: 0 0 14px;
+  }
+
+   .rt__score {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 72px;
+    line-height: 1;
+  }
+
+   .rt__score-max {
+    font-size: 30px;
+    color: {{ section.settings.color_muted }};
+  }
+
+   .rt__count {
+    color: {{ section.settings.color_muted }};
+    font-size: 16px;
+    margin-top: 4px;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height:19px;
+  }
+
+   .rt__link {
+    display: inline-block;
+    margin-top: 16px;
+    font-weight: 600;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height:19px;
+    text-decoration:underline;
+  }
+
+   .rt__grid {
+    flex: 3 1 640px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+   .rt__card {
+    margin: 0;
+    background: {{ section.settings.color_card_bg }};
+    padding: 22px;
+    border-top: 3px solid {{ section.settings.color_accent }};
+  }
+
+   .rt__stars {
+    display: flex;
+    gap: 2px;
+  }
+
+   .rt__quote {
+    margin: 12px 0;
+    font-size: 17px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height:25.5px;
+  }
+
+   .rt__caption {
+    font-size: 14px;
+    color: {{ section.settings.color_muted }};
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height:17.5px;
+  }
+
+   .rt__who {
+    color: {{ section.settings.color_text }};
+  }
+
+  @media only screen and (max-width: 749px) {
+    .rt__inner {
+    padding: 50px 0px;
+}
+
+h2.rt__title {
+    font-size: 32px;
+}
+
+.rt__score {
+    font-size: 50px;
+}
+.rt__grid {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 0 20px;
+    scrollbar-width: none;
+}
+
+figure.rt__card {
+    min-width: 90%;
+}
+
+.rt__intro {
+    padding: 0 20px;
+}
+
+.rt__wrap {
+    gap: 25px;
+}
+  }
+
+{%- endstyle -%}
+
+<section id="{{ section_uid }}" class="rt">
+  <div class="rt__inner">
+    <div class="rt__wrap">
+      <div class="rt__intro">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="rt__title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.score != blank -%}
+          <div class="rt__score">{{ section.settings.score }}<span class="rt__score-max"> {{ section.settings.score_max }}</span></div>
+        {%- endif -%}
+        {%- if section.settings.count_text != blank -%}
+          <div class="rt__count">{{ section.settings.count_text }}</div>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}
+          <a href="{{ section.settings.link_url | default: '#' }}" class="rt__link">{{ section.settings.link_label }}</a>
+        {%- endif -%}
+      </div>
+
+      <div class="rt__grid">
+        {%- for block in section.blocks -%}
+          <figure class="rt__card" {{ block.shopify_attributes }}>
+            <div class="rt__stars" aria-label="5 out of 5 stars">
+              {%- for i in (1..5) -%}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ section.settings.color_accent }}" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"></path></svg>
+              {%- endfor -%}
+            </div>
+            <blockquote class="rt__quote">{{ block.settings.quote }}</blockquote>
+            <figcaption class="rt__caption"><b class="rt__who">{{ block.settings.name }}</b> · {{ section.settings.verified_label }} · {{ block.settings.product }}</figcaption>
+          </figure>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews trust",
+  "tag": "div",
+  "class": "section-reviews-trust",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted on the job and the trail"
+    },
+    {
+      "type": "text",
+      "id": "score",
+      "label": "Score",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "score_max",
+      "label": "Score max text",
+      "default": "/ 5"
+    },
+    {
+      "type": "text",
+      "id": "count_text",
+      "label": "Review count text",
+      "default": "From [X,XXX] verified buyers"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Read all reviews →"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "verified_label",
+      "label": "Verified label",
+      "default": "Verified buyer"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_section_bg",
+      "label": "Section background",
+      "default": "#F2F2F2"
+    },
+    {
+      "type": "color",
+      "id": "color_card_bg",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_accent",
+      "label": "Stars and card border",
+      "default": "#E30613"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Name text",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "color_muted",
+      "label": "Secondary text",
+      "default": "#4A4A4A"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "[Verified review quote]"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "[First name, initial]"
+        },
+        {
+          "type": "text",
+          "id": "product",
+          "label": "Product",
+          "default": "P7R"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews trust",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "quote": "[Verified review quote about beam focus]",
+            "name": "[First name, initial]",
+            "product": "MH10"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "[Verified review quote about runtime or durability]",
+            "name": "[First name, initial]",
+            "product": "H7R.2"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "[Verified review quote from a trade or duty user]",
+            "name": "[First name, initial]",
+            "product": "P7R"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

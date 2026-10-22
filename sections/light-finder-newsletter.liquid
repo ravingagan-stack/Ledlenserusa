@@ -1,0 +1,405 @@
+{%- liquid
+  assign section_uid = 'FinderNewsletter-' | append: section.id
+-%}
+
+{%- style -%}
+   #{{ section_uid }}{
+    background: {{ section.settings.color_section_bg }};
+    color: {{ section.settings.color_section_text }};
+  }
+
+   .fn__inner {
+    max-width: 1408px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: center;
+  }
+
+   .fn__finder {
+    flex: 1 1 420px;
+  }
+
+   .fn__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 52px;
+    line-height: 0.98;
+    margin: 0 0 12px;
+    color:#fff;
+  }
+
+   .fn__text {
+    font-size: 19px;
+    line-height: 1.5;
+    margin: 0 0 24px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height: 28.5px;
+  }
+
+   .fn__finder-btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 52px;
+    background: {{ section.settings.color_finder_btn_bg }};
+    color: {{ section.settings.color_finder_btn_text }};
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0 30px;
+  }
+
+   .fn__join {
+    flex: 1 1 420px;
+    background: {{ section.settings.color_box_bg }};
+    color: {{ section.settings.color_box_text }};
+    padding: 32px;
+  }
+
+   .fn__join-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+   .fn__join-text {
+    margin: 8px 0 18px;
+    color: {{ section.settings.color_muted }};
+    font-size: 15px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height: 18px;
+  }
+
+   .fn__form {
+    margin: 0;
+  }
+
+   .fn__label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height: 16px;
+  }
+
+   .fn__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+   .fn__input {
+    flex: 1 1 220px;
+    height: 50px;
+    border: 1.5px solid {{ section.settings.color_box_text }};
+    border-radius: 0;
+    padding: 0 14px;
+    font-size: 16px;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+
+   .fn__submit {
+    height: 50px;
+    background: {{ section.settings.color_submit_bg }};
+    color: {{ section.settings.color_submit_text }};
+    border: 0;
+    padding: 0 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius:0;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+
+   .fn__message {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+   .fn__message--success {
+    color: {{ section.settings.color_success }};
+  }
+
+   .fn__message--error {
+    margin-top: 10px;
+    color: {{ section.settings.color_error }};
+  }
+
+    @media (max-width: 749px) {
+      .fn__inner {
+    padding: 50px 20px;
+    gap: 30px;
+}
+
+h2.fn__title {
+    font-size: 36px;
+}
+
+p.fn__text {
+    font-size: 15px;
+    line-height: normal;
+}
+
+a.fn__finder-btn {
+    font-size: 16px;
+    min-height: 42px;
+    padding: 0 15px;
+}
+
+.fn__join {
+    padding: 20px;
+}
+    }
+{%- endstyle -%}
+
+<section id="{{ section_uid }}" class="fn">
+  <div id="finder" class="fn__inner">
+    <div class="fn__finder">
+      {%- if section.settings.finder_heading != blank -%}
+        <h2 class="fn__title">{{ section.settings.finder_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.finder_text != blank -%}
+        <p class="fn__text">{{ section.settings.finder_text }}</p>
+      {%- endif -%}
+      {%- if section.settings.finder_button_label != blank -%}
+        <a href="{{ section.settings.finder_button_url | default: '#' }}" class="fn__finder-btn">{{ section.settings.finder_button_label }}</a>
+      {%- endif -%}
+    </div>
+
+    <div id="join" class="fn__join">
+      {%- if section.settings.join_heading != blank -%}
+        <div class="fn__join-title">{{ section.settings.join_heading }}</div>
+      {%- endif -%}
+      {%- if section.settings.join_text != blank -%}
+        <p class="fn__join-text">{{ section.settings.join_text }}</p>
+      {%- endif -%}
+
+      {%- form 'customer', id: 'NewsletterForm-{{ section.id }}', class: 'fn__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+
+        {%- if form.posted_successfully? -%}
+          <p class="fn__message fn__message--success" role="status">{{ section.settings.success_message }}</p>
+        {%- else -%}
+          <label for="NewsletterEmail-{{ section.id }}" class="fn__label">{{ section.settings.email_label }}</label>
+          <div class="fn__row">
+            <input
+              id="NewsletterEmail-{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="fn__input"
+              value="{{ form.email }}"
+              placeholder="{{ section.settings.email_placeholder }}"
+              autocomplete="email"
+              autocapitalize="off"
+              spellcheck="false"
+              required
+              {% if form.errors %}aria-invalid="true" aria-describedby="NewsletterError-{{ section.id }}"{% endif %}
+            >
+            <button type="submit" class="fn__submit">{{ section.settings.submit_label }}</button>
+          </div>
+
+          {%- if form.errors -%}
+            <p id="NewsletterError-{{ section.id }}" class="fn__message fn__message--error" role="alert">{{ section.settings.error_message }}</p>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Finder and newsletter",
+  "tag": "div",
+  "class": "section-finder-newsletter",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Light Finder"
+    },
+    {
+      "type": "text",
+      "id": "finder_heading",
+      "label": "Heading",
+      "default": "Not sure which light?"
+    },
+    {
+      "type": "textarea",
+      "id": "finder_text",
+      "label": "Text",
+      "default": "Answer 4 quick questions about how you'll use it. We'll match you with the right beam, runtime and price."
+    },
+    {
+      "type": "text",
+      "id": "finder_button_label",
+      "label": "Button label",
+      "default": "Start the Light Finder"
+    },
+    {
+      "type": "url",
+      "id": "finder_button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "join_heading",
+      "label": "Heading",
+      "default": "Get 10% off your first light"
+    },
+    {
+      "type": "text",
+      "id": "join_text",
+      "label": "Text",
+      "default": "Plus launch alerts and gear guides. Unsubscribe anytime."
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "you@example.com"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Button label",
+      "default": "Claim 10% off"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing! Check your inbox for your 10% off code."
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Error message",
+      "default": "Please enter a valid email address."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_section_bg",
+      "label": "Section background",
+      "default": "#E30613"
+    },
+    {
+      "type": "color",
+      "id": "color_section_text",
+      "label": "Section text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_finder_btn_bg",
+      "label": "Finder button background",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "color_finder_btn_text",
+      "label": "Finder button text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_box_bg",
+      "label": "Newsletter box background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_box_text",
+      "label": "Newsletter box text and input border",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "color_muted",
+      "label": "Newsletter secondary text",
+      "default": "#4A4A4A"
+    },
+    {
+      "type": "color",
+      "id": "color_submit_bg",
+      "label": "Submit button background",
+      "default": "#E30613"
+    },
+    {
+      "type": "color",
+      "id": "color_submit_text",
+      "label": "Submit button text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_success",
+      "label": "Success message",
+      "default": "#1A7F37"
+    },
+    {
+      "type": "color",
+      "id": "color_error",
+      "label": "Error message",
+      "default": "#E30613"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Finder and newsletter"
+    }
+  ]
+}
+{% endschema %}

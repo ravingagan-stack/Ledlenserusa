@@ -1,0 +1,991 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_breadcrumb_fYj9nF": {
+      "type": "custom-breadcrumb",
+      "name": "Breadcrumb",
+      "settings": {
+        "home_label": "Home",
+        "separator": "/",
+        "alignment": "flex-start",
+        "font_size": 14,
+        "text_color": "#555555",
+        "link_color": "#111111",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "main": {
+      "type": "product",
+      "blocks": {
+        "custom_code_CQQcQt": {
+          "type": "custom_code",
+          "settings": {
+            "custom_code": "{% render 'pdp-rating' %}",
+            "padding_bottom": 20
+          }
+        },
+        "badges_XQekng": {
+          "type": "badges",
+          "settings": {
+            "show_sale_badge": true,
+            "show_custom_badge": true,
+            "show_preorder_badge": true,
+            "show_badges_over_gallery": true,
+            "padding_bottom": 20
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "subheading": "none",
+            "title_size": 125,
+            "padding_bottom": 0
+          }
+        },
+        "text_mdrRFx": {
+          "type": "text",
+          "settings": {
+            "title": "<p>{{ product.metafields.custom.custom_short_desc.value }}</p>",
+            "text_alignment": "left",
+            "padding_bottom": 20
+          }
+        },
+        "price_hGyfVQ": {
+          "type": "price",
+          "settings": {
+            "price_size": 100,
+            "bold_price": false,
+            "show_tax_information": true,
+            "show_shipping_policy": false,
+            "padding_bottom": 20
+          }
+        },
+        "spectifications_cXUth6": {
+          "type": "spectifications",
+          "settings": {
+            "heading": ""
+          }
+        },
+        "inventory_countdown": {
+          "type": "inventory_countdown",
+          "disabled": true,
+          "settings": {
+            "max_inventory": 8,
+            "hide_inventory_count": false,
+            "padding_bottom": 16
+          }
+        },
+        "divider_tKQ6nA": {
+          "type": "divider",
+          "disabled": true,
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 16
+          }
+        },
+        "icon_zCBf3k": {
+          "type": "icon",
+          "disabled": true,
+          "settings": {
+            "icon_name": "none",
+            "icon_color": "",
+            "icon_width": 20,
+            "icon_text": "Free shipping over $99",
+            "icon_desc": "",
+            "text_size": 70,
+            "width": "half",
+            "text_alignment": "left",
+            "bg_color": "rgba(0,0,0,0)",
+            "padding_bottom": 32
+          }
+        },
+        "icon_xjYgQg": {
+          "type": "icon",
+          "disabled": true,
+          "settings": {
+            "icon_name": "none",
+            "icon_color": "",
+            "icon_width": 20,
+            "icon_text": "Free shipping over $99",
+            "icon_desc": "",
+            "text_size": 70,
+            "width": "half",
+            "text_alignment": "left",
+            "bg_color": "rgba(0,0,0,0)",
+            "padding_bottom": 20
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "show_labels": true,
+            "show_quantity": true,
+            "key_features": true,
+            "show_payment_button": true,
+            "padding_bottom": 32
+          }
+        },
+        "timer_NUAphU": {
+          "type": "timer",
+          "disabled": true,
+          "settings": {
+            "end_date": "2026-1-30",
+            "end_time": "11:59",
+            "period": "am",
+            "end_message": "",
+            "digits_size": 65,
+            "heading": "Limited time offer",
+            "heading_size": 95,
+            "heading_style": "font-heading",
+            "text": "<p>Exclusive styles at 30% off, only for three days!</p>",
+            "text_size": 85,
+            "text_color": "#000000",
+            "bg_color": "#f7f6f4",
+            "text_align": "text-center",
+            "padding_bottom": 20
+          }
+        },
+        "fit_guide_kMrhyr": {
+          "type": "fit-guide",
+          "disabled": true,
+          "settings": {
+            "heading": "Fit",
+            "selected_segment": "4",
+            "left_label": "Small",
+            "middle_label": "True to size",
+            "right_label": "Large",
+            "fit_color": "",
+            "padding_bottom": 20
+          }
+        },
+        "icon_jjk8UW": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "clock",
+            "icon_color": "",
+            "icon_image": "shopify://shop_images/Component_3.png",
+            "icon_width": 20,
+            "icon_text": "",
+            "icon_desc": "<p><strong>In stock. </strong>Ships in 1–2 business days.</p>",
+            "text_size": 80,
+            "width": "full",
+            "text_alignment": "left",
+            "bg_color": "rgba(0,0,0,0)",
+            "padding_bottom": 0
+          }
+        },
+        "icon_fTycQw": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "truck",
+            "icon_color": "",
+            "icon_image": "shopify://shop_images/Component_3_1.png",
+            "icon_width": 20,
+            "icon_text": "",
+            "icon_desc": "<p>Free US shipping. Estimated arrival <strong>Oct 22 – Oct 27</strong></p>",
+            "text_size": 80,
+            "width": "full",
+            "text_alignment": "left",
+            "bg_color": "rgba(0,0,0,0)",
+            "padding_bottom": 0
+          }
+        },
+        "icon_row_48TRyU": {
+          "type": "icon_row",
+          "settings": {
+            "icon_name_1": "truck",
+            "icon_color_1": "",
+            "icon_image_1": "shopify://shop_images/Component_3_2.png",
+            "icon_width_1": 26,
+            "icon_text_1": "7-year warranty",
+            "icon_richtext_1": "No questions asked.How it works",
+            "icon_name_2": "recycle",
+            "icon_color_2": "",
+            "icon_image_2": "shopify://shop_images/Component_3_3.png",
+            "icon_width_2": 26,
+            "icon_text_2": "[30]-day returns",
+            "icon_richtext_2": "Unused items",
+            "icon_name_3": "lock",
+            "icon_color_3": "",
+            "icon_image_3": "shopify://shop_images/Component_3_4.png",
+            "icon_width_3": 26,
+            "icon_text_3": "Secure checkout",
+            "icon_richtext_3": "Shop Pay, Apple Pay,PayPal",
+            "icon_name_4": "use-by",
+            "icon_color_4": "",
+            "icon_image_4": "shopify://shop_images/Component_3_5.png",
+            "icon_width_4": 26,
+            "icon_text_4": "US-based experts",
+            "icon_richtext_4": "Phone and live chat",
+            "alignment": "left",
+            "bg_color": "#ffffff",
+            "padding_bottom": 20
+          }
+        },
+        "bd7f4049-bdbb-4f44-8fe0-806fd3d5066d": {
+          "type": "product_accordion",
+          "disabled": true,
+          "settings": {
+            "accordion_style": "collapsible",
+            "show_description": false,
+            "show_read_more": true,
+            "open_by_default": false,
+            "enable_full_width": false,
+            "tabs_bg_color": "",
+            "show_accordion_divider": true,
+            "line_thickness": "normal",
+            "accordion_heading": "Size and fit",
+            "heading_style": "font-body",
+            "accordion_text": "<p>Fits true to size. Measurements included in our <a href=\"https://palo-alto-theme-vibrant.myshopify.com/pages/size-chart\" title=\"Size chart full\">Size Chart</a></p>",
+            "accordion_page": "",
+            "padding_bottom": 0
+          }
+        },
+        "91779a1e-6481-4424-b896-fed67e53ffc2": {
+          "type": "product_accordion",
+          "disabled": true,
+          "settings": {
+            "accordion_style": "collapsible",
+            "show_description": false,
+            "show_read_more": true,
+            "open_by_default": false,
+            "enable_full_width": false,
+            "tabs_bg_color": "",
+            "show_accordion_divider": true,
+            "line_thickness": "normal",
+            "accordion_heading": "Care information",
+            "heading_style": "font-body",
+            "accordion_text": "<p>For best results, dry clean or hand wash with natural detergent. Machine wash on delicate. Lay flat to dry. </p>",
+            "accordion_page": "",
+            "padding_bottom": 0
+          }
+        },
+        "715a2d47-72f9-4058-ab53-ac703b859fb4": {
+          "type": "product_accordion",
+          "disabled": true,
+          "settings": {
+            "accordion_style": "collapsible",
+            "show_description": false,
+            "show_read_more": true,
+            "open_by_default": false,
+            "enable_full_width": false,
+            "tabs_bg_color": "",
+            "show_accordion_divider": true,
+            "line_thickness": "normal",
+            "accordion_heading": "Shipping and returns",
+            "heading_style": "font-body",
+            "accordion_text": "<p>Shipping</p><p>Orders can take 2-3 business days to process before shipping. As soon as your package has left our warehouse, you will receive a confirmation by email. <br/></p><p>Returns</p><p>﻿If for any reason you are unhappy with your purchase we offer returns for store credit within 7 days of delivery. If 7 days have passed since your purchase has been delivered, unfortunately, we are unable to offer you a credit or exchange.</p>",
+            "accordion_page": "",
+            "padding_bottom": 24
+          }
+        },
+        "upsell": {
+          "type": "upsell",
+          "disabled": true,
+          "settings": {
+            "product_list": [],
+            "padding_bottom": 0
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "enable_full_width": true,
+            "padding_bottom": 20
+          }
+        },
+        "icon_43VYJk": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "none",
+            "icon_color": "",
+            "icon_width": 20,
+            "icon_text": "",
+            "icon_desc": "<p>Buying for a crew or department? <a href=\"#\" title=\"#\"><span style=\"text-decoration:underline\">Get volume pricing from 5 units.</span></a> Military, LE, fire and EMS: &nbsp;<a href=\"#\" title=\"#\"><span style=\"text-decoration:underline\">verify for your discount</span></a></p>",
+            "text_size": 90,
+            "width": "full",
+            "text_alignment": "left",
+            "bg_color": "",
+            "padding_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "custom_code_CQQcQt",
+        "badges_XQekng",
+        "title",
+        "text_mdrRFx",
+        "price_hGyfVQ",
+        "spectifications_cXUth6",
+        "inventory_countdown",
+        "divider_tKQ6nA",
+        "icon_zCBf3k",
+        "icon_xjYgQg",
+        "form",
+        "timer_NUAphU",
+        "fit_guide_kMrhyr",
+        "icon_jjk8UW",
+        "icon_fTycQw",
+        "icon_row_48TRyU",
+        "bd7f4049-bdbb-4f44-8fe0-806fd3d5066d",
+        "91779a1e-6481-4424-b896-fed67e53ffc2",
+        "715a2d47-72f9-4058-ab53-ac703b859fb4",
+        "upsell",
+        "description",
+        "icon_43VYJk"
+      ],
+      "settings": {
+        "product_sticky_enable": true,
+        "variant_image_scroll": true,
+        "image_layout": "carousel",
+        "image_width": "standard",
+        "product_image_aspect_ratio": true,
+        "show_cart_bar": true,
+        "enable_zoom": true,
+        "enable_video_looping": true,
+        "color_scheme": "",
+        "width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 100
+      }
+    },
+    "why_ledlenser_mHenhq": {
+      "type": "why-ledlenser",
+      "blocks": {
+        "feature_CLFejP": {
+          "type": "feature",
+          "settings": {
+            "media_image": "shopify://shop_images/Background_2.png",
+            "number": "",
+            "title": "Focus in one move",
+            "description": "Slide the head to switch from a wide flood for close\nwork to a tight spot that reaches 1,050 ft. Most\nflashlights are fixed-beam."
+          }
+        },
+        "feature_dbXfp7": {
+          "type": "feature",
+          "settings": {
+            "media_image": "shopify://shop_images/Background_3.png",
+            "number": "",
+            "title": "One ring for every mode",
+            "description": "Twist the ring to choose the mode you want before\nyou switch on. No clicking through strobe in the dark."
+          }
+        },
+        "feature_mM9qfr": {
+          "type": "feature",
+          "settings": {
+            "media_image": "shopify://shop_images/Background_4.png",
+            "number": "",
+            "title": "Built to last 7 years",
+            "description": "IP68 sealed against dust and water and covered by a\n7-year, no-questions-asked warranty."
+          }
+        }
+      },
+      "block_order": [
+        "feature_CLFejP",
+        "feature_dbXfp7",
+        "feature_mM9qfr"
+      ],
+      "name": "Why Ledlenser",
+      "settings": {
+        "eyebrow": "",
+        "heading_line_1": "More than a lumen number",
+        "heading_line_2": "",
+        "intro_description": "Brightness gets you noticed. Control is what gets the job done. Here's what you\npay for with the P7R."
+      }
+    },
+    "specification_list_GAzDEz": {
+      "type": "specification-list",
+      "blocks": {
+        "specification_NWiFUa": {
+          "type": "specification",
+          "settings": {
+            "label": "Max output",
+            "metafield_key": "max_lumens",
+            "dynamic_source": ""
+          }
+        },
+        "specification_cxcmmy": {
+          "type": "specification",
+          "settings": {
+            "label": "Beam Distance",
+            "metafield_key": "beam_range",
+            "dynamic_source": ""
+          }
+        },
+        "specification_dGFQhz": {
+          "type": "specification",
+          "settings": {
+            "label": "Battery",
+            "metafield_key": "",
+            "dynamic_source": "{{ product.metafields.technical.BatteryCapacity.value }}"
+          }
+        },
+        "specification_XyV3w4": {
+          "type": "specification",
+          "settings": {
+            "label": "Runtime",
+            "metafield_key": "runtime_range",
+            "dynamic_source": ""
+          }
+        },
+        "specification_XRTNF4": {
+          "type": "specification",
+          "settings": {
+            "label": "Weight",
+            "metafield_key": "",
+            "dynamic_source": "{{ product.metafields.technical.Weight.value }}"
+          }
+        },
+        "specification_eRCyqG": {
+          "type": "specification",
+          "settings": {
+            "label": "Length",
+            "metafield_key": "",
+            "dynamic_source": "{{ product.metafields.technical.Length.value }}"
+          }
+        },
+        "specification_rb9KY8": {
+          "type": "specification",
+          "settings": {
+            "label": "Water and Dust",
+            "metafield_key": "",
+            "dynamic_source": "{{ product.metafields.custom.waterproof_value.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "specification_NWiFUa",
+        "specification_cxcmmy",
+        "specification_dGFQhz",
+        "specification_XyV3w4",
+        "specification_XRTNF4",
+        "specification_eRCyqG",
+        "specification_rb9KY8"
+      ],
+      "name": "Specification List",
+      "settings": {
+        "heading_left": "SPECIFICATIONS",
+        "subheading_left": "Measured to the ANSI/PLATO FL1 standard.",
+        "download_text": "<p><a href=\"https://cdn.shopify.com/s/files/1/0273/4987/6814/files/HF7R_Pro_Product_Datasheet_EN.pdf?v=1788927153\" title=\"https://cdn.shopify.com/s/files/1/0273/4987/6814/files/HF7R_Pro_Product_Datasheet_EN.pdf?v=1788927153\"><span style=\"text-decoration:underline\">Download the user guide (PDF)</span></a></p>",
+        "heading_right": "WHAT'S IN THE BOX"
+      }
+    },
+    "166716198631433af0": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_testimonials_abpgFU": {
+      "type": "section-testimonials",
+      "blocks": {
+        "testimonial_j8yE8J": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "enable_border": true,
+            "heading": "",
+            "text_size": 125,
+            "text": "<p>The fit is perfect and makes me feel confident every time I wear it.</p>",
+            "content_size": 100,
+            "customer_name": "Laila R.",
+            "subheading": "<p>Brooklyn, NY</p>"
+          }
+        },
+        "testimonial_XUMAQC": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "enable_border": true,
+            "heading": "",
+            "text_size": 125,
+            "text": "<p>Beautiful designs that are both stylish and timeless.</p>",
+            "content_size": 100,
+            "customer_name": "Samira Z.",
+            "subheading": "<p>Los Angeles, CA</p>"
+          }
+        },
+        "testimonial_fzeenU": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "enable_border": true,
+            "heading": "",
+            "text_size": 125,
+            "text": "<p>The fabric quality is incredible—soft yet durable.</p>",
+            "content_size": 100,
+            "customer_name": "Erikah L.",
+            "subheading": "<p>12 days ago</p>"
+          }
+        },
+        "testimonial_7GnEyn": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "enable_border": true,
+            "heading": "",
+            "text_size": 125,
+            "text": "<p>I always get compliments when I wear their pieces.</p>",
+            "content_size": 100,
+            "customer_name": "Sandy B.",
+            "subheading": "<p>Verified customer</p>"
+          }
+        },
+        "testimonial_pRTxxk": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "enable_border": true,
+            "heading": "",
+            "text_size": 125,
+            "text": "<p>Effortless style that works for day or night.</p>",
+            "content_size": 100,
+            "customer_name": "Tina D.",
+            "subheading": "<p>Verified customer</p>"
+          }
+        },
+        "testimonial_YFjG3E": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "enable_border": true,
+            "heading": "",
+            "text_size": 125,
+            "text": "<p>Comfortable clothes that still look polished.</p>",
+            "content_size": 100,
+            "customer_name": "Amelia Ngoy",
+            "subheading": "<p>Denver, CO</p>"
+          }
+        },
+        "testimonial_4XkV3V": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "enable_border": true,
+            "heading": "",
+            "text_size": 125,
+            "text": "<p>Truly flattering cuts for every body shape.</p>",
+            "content_size": 100,
+            "customer_name": "Gianna R.",
+            "subheading": "<p>Loyal Customer</p>"
+          }
+        },
+        "testimonial_PWYQfY": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "enable_border": true,
+            "heading": "",
+            "text_size": 125,
+            "text": "<p>My new go-to brand for chic, everyday outfits.</p>",
+            "content_size": 100,
+            "customer_name": "Keely L.",
+            "subheading": "<p>London, UK</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_j8yE8J",
+        "testimonial_XUMAQC",
+        "testimonial_fzeenU",
+        "testimonial_7GnEyn",
+        "testimonial_pRTxxk",
+        "testimonial_YFjG3E",
+        "testimonial_4XkV3V",
+        "testimonial_PWYQfY"
+      ],
+      "disabled": true,
+      "name": "Testimonials",
+      "settings": {
+        "subheading": "",
+        "subheading_size": 100,
+        "title": "Customer Reviews",
+        "heading_size": 100,
+        "text_alignment": "text-left",
+        "enable_autoplay": false,
+        "autoplay_speed": 100,
+        "direction": "ticker-ltr",
+        "color_scheme": "scheme-5",
+        "testimonial_block_color": "",
+        "star_color": "#e6caca",
+        "width": "wrapper--full-padded",
+        "slider_width": "wrapper--full-padded",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_columns_TBzVUw": {
+      "type": "section-columns",
+      "blocks": {
+        "text_block_NpBQj3": {
+          "type": "text_block",
+          "settings": {
+            "image_width": 100,
+            "title": "Sustainable & trendy",
+            "heading_size": 120,
+            "text": "<p>Our pieces are sustainably made, and designed to be a timeless piece in your wardrobe.</p>",
+            "text_size": 100,
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--text",
+            "button_size": "btn--small",
+            "video_link_popup": ""
+          }
+        },
+        "text_block_x7j3R3": {
+          "type": "text_block",
+          "settings": {
+            "image_width": 100,
+            "title": "Elevate your style",
+            "heading_size": 120,
+            "text": "<p>Made with natural materials, each item is comfortable and easily machine washable.</p>",
+            "text_size": 100,
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--text",
+            "button_size": "btn--small",
+            "video_link_popup": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_NpBQj3",
+        "text_block_x7j3R3"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "No need to sacrifice style for comfort.",
+        "heading_size": 140,
+        "layout_desktop": "carousel",
+        "align_text": "text-left",
+        "columns": 2,
+        "show_images": true,
+        "show_borders": false,
+        "layout_mobile": "stacked",
+        "columns_mobile": "1",
+        "equalize_height": true,
+        "desktop_aspect_ratio": 0.7,
+        "mobile_aspect_ratio": 1,
+        "color_scheme": "",
+        "color_borders": "#000000",
+        "width": "wrapper--full-padded",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "blocks": {
+        "related_fwJCXM": {
+          "type": "related",
+          "settings": {
+            "title": "You may also like",
+            "product_recommendations_limit": 3
+          }
+        },
+        "recent_UAzxeW": {
+          "type": "recent",
+          "settings": {
+            "title": "Recently viewed",
+            "product_recently_limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "related_fwJCXM",
+        "recent_UAzxeW"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_tabs": false,
+        "layout": "grid",
+        "products_per_row_on_desktop": 4,
+        "columns_mobile": "2",
+        "type_style": "font-heading",
+        "tab_heading_size": 135,
+        "color_scheme": "scheme-2",
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_icons_row_cKEWpK": {
+      "type": "section-icons-row",
+      "blocks": {
+        "text_KXVECB": {
+          "type": "text",
+          "settings": {
+            "icon_name": "none",
+            "title": "New customers get 15% off",
+            "text": "<p>on your first purchase</p>"
+          }
+        },
+        "text_bELHWq": {
+          "type": "text",
+          "settings": {
+            "icon_name": "none",
+            "title": "Free shipping",
+            "text": "<p>on orders over $100</p>"
+          }
+        },
+        "text_btzGpi": {
+          "type": "text",
+          "settings": {
+            "icon_name": "none",
+            "title": "ShopPay ",
+            "text": "<p>Buy now, pay later</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_KXVECB",
+        "text_bELHWq",
+        "text_btzGpi"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "alignment": "center",
+        "columns": 3,
+        "icons_width": 20,
+        "show_vertical_borders": true,
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "heading_size": 100,
+        "text_size": 90,
+        "color_scheme": "scheme-6",
+        "text_color": "#333333",
+        "box_color": "",
+        "color_border": "#333333",
+        "button_text": "",
+        "button_link": "",
+        "button_color": "btn--black",
+        "button_style": "btn--solid",
+        "button_size": "btn--small",
+        "layout_mobile": "grid",
+        "width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "compare_tiers_gj8VNf": {
+      "type": "compare-tiers",
+      "blocks": {
+        "row_fAxR3B": {
+          "type": "row",
+          "settings": {
+            "label": "Best for",
+            "value_1": "All-round: home, car, camp",
+            "value_2": "Daily professional use",
+            "value_3": "Maximum output"
+          }
+        },
+        "row_cC63fA": {
+          "type": "row",
+          "settings": {
+            "label": "Max output",
+            "value_1": "2,000 lumens",
+            "value_2": "2,000 lumens",
+            "value_3": "2,500 lumens"
+          }
+        },
+        "row_aTLrxD": {
+          "type": "row",
+          "settings": {
+            "label": "Max beam",
+            "value_1": "1,050 ft (320 m)",
+            "value_2": "1,050 ft (320 m)",
+            "value_3": "1,115 ft (340 m)"
+          }
+        },
+        "row_yYKeAx": {
+          "type": "row",
+          "settings": {
+            "label": "Longest runtime",
+            "value_1": "Up to 80 hr",
+            "value_2": "Up to 60 hr",
+            "value_3": "Up to 80 hr"
+          }
+        },
+        "row_PKEmXj": {
+          "type": "row",
+          "settings": {
+            "label": "What it adds",
+            "value_1": "Advanced Focus System, Mode Select Ring, IP68",
+            "value_2": "Pro upgrade",
+            "value_3": "Signature upgrade"
+          }
+        },
+        "row_MQymzA": {
+          "type": "row",
+          "settings": {
+            "label": "Warranty",
+            "value_1": "7 years, no questions",
+            "value_2": "7 years, no questions",
+            "value_3": "7 years, no questions"
+          }
+        }
+      },
+      "block_order": [
+        "row_fAxR3B",
+        "row_cC63fA",
+        "row_aTLrxD",
+        "row_yYKeAx",
+        "row_PKEmXj",
+        "row_MQymzA"
+      ],
+      "name": "Compare tiers",
+      "settings": {
+        "heading": "P7R, Pro or Signature?",
+        "subheading": "Same legendary body. Here's exactly what each step up adds.",
+        "link_label": "Compare any 3 lights →",
+        "link_url": "shopify://collections/the-p-series-redefined",
+        "tier_1_tag": "Most popular",
+        "tier_1_name": "P7R",
+        "tier_1_price": "$109.95",
+        "tier_1_url": "shopify://products/p7r-flashlight",
+        "tier_2_tag": "",
+        "tier_2_name": "P7R Pro",
+        "tier_2_price": "$139.99",
+        "tier_2_url": "shopify://products/p7r-pro",
+        "tier_3_tag": "Most powerful",
+        "tier_3_name": "P7R Signature",
+        "tier_3_price": "$189.99",
+        "tier_3_url": "shopify://products/p7r-signature-flashlight",
+        "highlighted_tier": "1",
+        "button_prefix": "Shop",
+        "color_accent": "#e30613",
+        "color_highlight_bg": "#fdeeee",
+        "color_button_bg": "#0a0a0a",
+        "color_button_text": "#ffffff",
+        "color_muted": "#4a4a4a",
+        "color_border": "#dadada",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "1792656446d9a3100d": {
+      "type": "apps",
+      "blocks": {
+        "stamped_reviews_main_widget_aTYXkg": {
+          "type": "shopify://apps/stamped-reviews/blocks/main-widget/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "animation": true,
+            "tags_exclude": "",
+            "tags_include": "",
+            "search": "",
+            "linkify": true,
+            "use_metafields": false,
+            "sku_tagtype": "sku"
+          }
+        }
+      },
+      "block_order": [
+        "stamped_reviews_main_widget_aTYXkg"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "section_accordions_with_images_yi8jVm": {
+      "type": "section-accordions-with-images",
+      "blocks": {
+        "text_UznQCT": {
+          "type": "text",
+          "settings": {
+            "title": "How long does it take to get my products?",
+            "text": "<p>Domestic shipping can take up to 5 business days.<br/><br/>Foreign shipping could take up to 14 business days.<br/><br/>Due to global supply chain challenges, shipping times could be longer than usual.</p>",
+            "icon_width": 25,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_HAFyMV": {
+          "type": "text",
+          "settings": {
+            "title": "Do you offer warranty for your products?",
+            "text": "<p>All our products are subject to quality control.<br/><br/>Our warranty provides a guarantee against manufacturer defects.<br/><br/>The guarantee covers any manufacturing, design, or material defect. Please notify us within 2 months of noticing any defects.<br/><br/>It does not cover blows, improper use, or other issues that are not attributable to a manufacturer defects.</p>",
+            "icon_width": 25,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_BV3Jkz": {
+          "type": "text",
+          "settings": {
+            "title": "Do you offer refunds?",
+            "text": "<p>Yes, we offer full and partial refunds.<br/><br/>Please enquire for more information about our Refund policy.</p>",
+            "icon_width": 25,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_q3R6g3": {
+          "type": "text",
+          "settings": {
+            "title": "What shipping methods do you offer?",
+            "text": "<p>We use all major carriers, and local courier partners. Use the shipping estimator in the cart to check your shipping rates.</p>",
+            "icon_width": 25,
+            "icon_position": "inline-left"
+          }
+        }
+      },
+      "block_order": [
+        "text_UznQCT",
+        "text_HAFyMV",
+        "text_BV3Jkz",
+        "text_q3R6g3"
+      ],
+      "name": "Accordions with Images",
+      "settings": {
+        "class": "accordian-text",
+        "layout": "one-column",
+        "show_accordion_divider": false,
+        "line_thickness": "normal",
+        "content_alignment": "text-center",
+        "subheading": "",
+        "title": "Questions, answered",
+        "heading_size": 120,
+        "text": "",
+        "type_style": "font-heading",
+        "tabs_bg_color": "#fafafa",
+        "color_scheme": "",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 72,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "custom_breadcrumb_fYj9nF",
+    "main",
+    "why_ledlenser_mHenhq",
+    "specification_list_GAzDEz",
+    "166716198631433af0",
+    "section_testimonials_abpgFU",
+    "section_columns_TBzVUw",
+    "related",
+    "section_icons_row_cKEWpK",
+    "compare_tiers_gj8VNf",
+    "1792656446d9a3100d",
+    "section_accordions_with_images_yi8jVm"
+  ]
+}

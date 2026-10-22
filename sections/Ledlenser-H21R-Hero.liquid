@@ -1,0 +1,406 @@
+
+<section id="ll-hero" class="ll-hero ll-video">
+  <div class="ll-hero-main">
+
+    <!-- LEFT CONTENT -->
+    <div class="ll-hero-content">
+      <div class="ll-hero-eyebrow">
+        <span class="ll-hero-eyebrow-dot"></span>
+        {{ section.settings.eyebrow | escape }}
+      </div>
+
+      <h1 class="ll-hero-title">
+        {{ section.settings.heading_line_1 | escape }}<br>
+        {{ section.settings.heading_line_2 | escape }}<br>
+        <span>{{ section.settings.heading_line_3 | escape }}</span>
+      </h1>
+
+      <p class="ll-hero-description">
+        {{ section.settings.description | escape }}
+      </p>
+
+      <div class="ll-hero-buttons">
+        <a
+          href="{{ section.settings.button_1_link | default: '/products/h21r-headlamp' }}"
+          class="ll-hero-button ll-hero-button-primary"
+        >
+          {{ section.settings.button_1_text | escape }}
+          <span aria-hidden="true">→</span>
+        </a>
+
+        {% if section.settings.show_button_2 %}
+          <a
+            href="{{ section.settings.button_2_link | default: '/products/h21r-headlamp' }}"
+            class="ll-hero-button ll-hero-button-secondary"
+          >
+            {{ section.settings.button_2_text | escape }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% if section.settings.finder_text != blank %}
+        <a
+          href="{{ section.settings.finder_link | default: '/products/h21r-headlamp' }}"
+          class="ll-hero-finder"
+        >
+          {{ section.settings.finder_text | escape }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT MEDIA: VIDEO OR IMAGE -->
+    <div class="ll-hero-visual">
+
+      {% if section.settings.visual_type == 'video' and section.settings.hero_video != blank %}
+
+        {{
+          section.settings.hero_video
+          | video_tag:
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true,
+            class: 'll-hero-media'
+        }}
+
+      {% elsif section.settings.visual_type == 'image' and section.settings.hero_image != blank %}
+
+        {{
+          section.settings.hero_image
+          | image_url: width: 1600
+          | image_tag:
+            class: 'll-hero-media',
+            loading: 'eager',
+            alt: section.settings.media_alt
+        }}
+
+      {% elsif section.settings.visual_type == 'video' and section.settings.hero_image != blank %}
+
+        {{
+          section.settings.hero_image
+          | image_url: width: 1600
+          | image_tag:
+            class: 'll-hero-media',
+            loading: 'eager',
+            alt: section.settings.media_alt
+        }}
+
+      {% else %}
+
+        <div class="ll-hero-media-placeholder">
+          <span>H21R</span>
+          <p>Select a banner video or image in the theme editor.</p>
+        </div>
+
+      {% endif %}
+
+      {% comment %} {% if section.settings.show_media_label %}
+        <div class="ll-media-label">
+          <span class="ll-media-label-dot"></span>
+          {{ section.settings.visual_label | escape }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_media_caption %}
+        <div class="ll-media-caption">
+          <span>{{ section.settings.media_caption | escape }}</span>
+        </div>
+      {% endif %} {% endcomment %}
+
+    </div>
+  </div>
+
+  <!-- BOTTOM PROOF BAR -->
+  <div class="ll-proof">
+    <div class="ll-proof-inner">
+      <div class="ll-proof-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+        <span><b>{{ section.settings.proof_1_bold }}</b> · {{ section.settings.proof_1_text }}</span>
+      </div>
+
+      <div class="ll-proof-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF3B4A" aria-hidden="true">
+          <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"></path>
+        </svg>
+        <span><b>{{ section.settings.proof_2_bold }}</b> · {{ section.settings.proof_2_text }}</span>
+      </div>
+
+      <div class="ll-proof-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"></path>
+          <circle cx="7" cy="18" r="1.6"></circle>
+          <circle cx="17" cy="18" r="1.6"></circle>
+        </svg>
+        <span><b>{{ section.settings.proof_3_bold }}</b> · {{ section.settings.proof_3_text }}</span>
+      </div>
+
+      <div class="ll-proof-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 12a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-6h4M4 13h4v6H6a2 2 0 0 1-2-2z"></path>
+        </svg>
+        <span><b>{{ section.settings.proof_4_bold }}</b> · {{ section.settings.proof_4_text }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.ll-hero-visual video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ll-video .ll-hero-visual {
+    flex: 1 1 520px;
+    min-width: 0;
+    height: auto;
+    background: #0A0A0A;
+    border: 1px solid #2A2A2A;
+    position: relative;
+    overflow: hidden;
+  }
+
+.ll-video .ll-hero-title {
+    font-family: Barlow Condensed, sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 66px;
+    line-height: .95;
+    margin: 14px 0 20px;
+    letter-spacing: .01em;
+    color: #fff;
+}
+.ll-video .ll-hero-content {
+    flex: 1 1 361px;
+    min-width: 0;
+}
+@media screen and (max-width: 749px) {
+.ll-video .ll-hero-title {
+    font-family: Barlow Condensed, sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 38px;
+    line-height: .95;
+    margin: 14px 0 20px;
+    letter-spacing: .01em;
+    color: #fff;
+}
+.ll-video .ll-hero-button {
+        font-size: 16px !important;
+        min-height: 42px !important;
+        height: 42px !important;
+    }
+}
+
+
+
+@media screen and (min-width: 977px) and (max-width: 1266px) {
+.ll-video .ll-hero-title {
+    font-size: 38px;
+    line-height: .95;
+    margin: 14px 0 20px;
+}
+.ll-video .ll-hero-description {
+    font-size: 17px;
+    line-height: 1.2;
+    color: #d0d0d0;
+    margin: 0 0 22px;
+}
+.ll-video .ll-hero-button {
+    padding: 11px 20px;
+    min-height: 42px;
+}
+}
+</style>
+
+{% schema %}
+{
+  "name": "Ledlenser H21R Hero",
+  "settings": [
+    {
+      "type": "select",
+      "id": "visual_type",
+      "label": "Right-side media type",
+      "options": [
+        { "value": "video", "label": "Video" },
+        { "value": "image", "label": "Image" }
+      ],
+      "default": "video"
+    },
+    {
+      "type": "video",
+      "id": "hero_video",
+      "label": "H21R banner video"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "H21R banner image"
+    },
+    {
+      "type": "text",
+      "id": "media_alt",
+      "label": "Image alt text",
+      "default": "Ledlenser H21R headlamp"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_media_label",
+      "label": "Show media label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "visual_label",
+      "label": "Media label",
+      "default": "H21R · Adaptive Lighting"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_media_caption",
+      "label": "Show media caption",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "media_caption",
+      "label": "Media caption",
+      "default": "The Light Adjusts. You Don't."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Introducing H21R"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading line 1",
+      "default": "The Light Adjusts."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading line 2",
+      "default": "You Don't."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_3",
+      "label": "Heading line 3",
+      "default": "Adaptive Lighting."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Meet the H21R. Discover advanced lighting technology designed to adapt to your surroundings, so you can focus on what matters."
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Primary button text",
+      "default": "Explore H21R"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_2",
+      "label": "Show secondary button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Secondary button text",
+      "default": "Discover Technology"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "finder_text",
+      "label": "Additional link text",
+      "default": "Discover the H21R difference →"
+    },
+    {
+      "type": "url",
+      "id": "finder_link",
+      "label": "Additional link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_proof_bar",
+      "label": "Show bottom proof bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "proof_1_bold",
+      "label": "Proof 1 bold text",
+      "default": "Adaptive Lighting"
+    },
+    {
+      "type": "text",
+      "id": "proof_1_text",
+      "label": "Proof 1 description",
+      "default": "Automatic adjustment"
+    },
+    {
+      "type": "text",
+      "id": "proof_2_bold",
+      "label": "Proof 2 bold text",
+      "default": "Powerful Output"
+    },
+    {
+      "type": "text",
+      "id": "proof_2_text",
+      "label": "Proof 2 description",
+      "default": "Built for demanding use"
+    },
+    {
+      "type": "text",
+      "id": "proof_3_bold",
+      "label": "Proof 3 bold text",
+      "default": "Long Runtime"
+    },
+    {
+      "type": "text",
+      "id": "proof_3_text",
+      "label": "Proof 3 description",
+      "default": "Ready for the journey"
+    },
+    {
+      "type": "text",
+      "id": "proof_4_bold",
+      "label": "Proof 4 bold text",
+      "default": "Built to Perform"
+    },
+    {
+      "type": "text",
+      "id": "proof_4_text",
+      "label": "Proof 4 description",
+      "default": "Engineered for adventure"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ledlenser H21R Hero"
+    }
+  ]
+}
+{% endschema %}

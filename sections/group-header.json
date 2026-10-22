@@ -1,0 +1,135 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-0": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Free shipping on orders over $100 <a href=\"/collections/all\" title=\"All products\"><strong>Shop now</strong></a></p>",
+            "text_color": "",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "icon_name": "none",
+            "icon_color": "",
+            "icon_width": 20,
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "1ad501f9-7292-42de-b05f-8fa8a1ccf5c0": {
+          "type": "text",
+          "settings": {
+            "text": "<p>New customers save 10% with code WELCOME10</p>",
+            "text_color": "",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "icon_name": "none",
+            "icon_color": "",
+            "icon_width": 20,
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        }
+      },
+      "block_order": [
+        "announcement-0",
+        "1ad501f9-7292-42de-b05f-8fa8a1ccf5c0"
+      ],
+      "disabled": true,
+      "settings": {
+        "width": "wrapper--full",
+        "layout": "slider",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "padding": 10,
+        "slider_speed": 14,
+        "show_arrows": false,
+        "marquee_speed": 100,
+        "direction": "ticker-ltr",
+        "text_caps": true,
+        "type_font": "space_mono_n4",
+        "text_size": 110,
+        "letter_spacing": 100,
+        "message_spacing": 30,
+        "color_scheme": "",
+        "color": "#000000",
+        "border_color": "#000000"
+      }
+    },
+    "announcementbar_y8exFE": {
+      "type": "announcementbar",
+      "name": "Custom Announcement Bar",
+      "settings": {
+        "first_highlight": "10% off",
+        "first_text": "your first light – join the list",
+        "first_link": "",
+        "second_text": "Free US shipping over $35",
+        "third_text": "Military, LE & EMS save [15]% – verify",
+        "third_link": "",
+        "fourth_text": "7-year warranty, no questions asked"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "width": "wrapper--full-padded",
+        "sticky_header": false,
+        "link_hover_effect": "dot",
+        "highlight_color": "#fff7f2",
+        "cont_link": "tel:904-694-3711",
+        "upr_text": "US experts",
+        "bottom_text": "904-694-3711",
+        "header_border": false,
+        "header_border_color": "",
+        "border_opacity": 50,
+        "logo_not_home": "shopify://shop_images/Link_-_Ledlenser_USA_home_1.png",
+        "logo_max_width": 170,
+        "main-menu": "new-menu",
+        "main_menu_secondary": "",
+        "show_images": false,
+        "image_aspect_ratio": 1.1,
+        "menu_alignment": "center",
+        "header_icons_as_text": false,
+        "show_locale_selector": false,
+        "show_locale_code": true,
+        "show_country_selector": false,
+        "show_country_name": false,
+        "show_country_flag": false,
+        "highlight_item": "Light Finder",
+        "enable_custom_badge": true,
+        "custom_badge_text": "",
+        "highlight_item_color": "#e30613",
+        "highlight_item_text_color": "#ffffff",
+        "header_transparent": false,
+        "header_gradient": false
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "announcementbar_y8exFE",
+    "header"
+  ]
+}

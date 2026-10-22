@@ -1,0 +1,432 @@
+{% comment %}
+  Section: Pro + Team
+  File: sections/pro-team.liquid
+{% endcomment %}
+
+<section
+  id="ProTeam-{{ section.id }}"
+  class="pro-team-section"
+>
+  <div class="pro-team-container">
+    <div class="pro-team-grid">
+      {% for block in section.blocks %}
+        <div
+          class="pro-team-card"
+          {{ block.shopify_attributes }}
+        >
+          {% if block.settings.eyebrow != blank %}
+            <div class="pro-team-eyebrow">
+              {{ block.settings.eyebrow | escape }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.heading != blank %}
+            <h3 class="pro-team-heading">
+              {{ block.settings.heading | escape }}
+            </h3>
+          {% endif %}
+
+          {% if block.settings.description != blank %}
+            <div class="pro-team-description">
+              {{ block.settings.description }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.button_label != blank %}
+            <a
+              class="pro-team-button"
+              {% if block.settings.button_link != blank %}
+                href="{{ block.settings.button_link }}"
+              {% else %}
+                role="link"
+                aria-disabled="true"
+              {% endif %}
+            >
+              {{ block.settings.button_label | escape }}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #ProTeam-{{ section.id }} {
+    --pt-background: {{ section.settings.background_color }};
+    --pt-card-background: {{ section.settings.card_background }};
+    --pt-heading-color: {{ section.settings.heading_color }};
+    --pt-text-color: {{ section.settings.text_color }};
+    --pt-accent-color: {{ section.settings.accent_color }};
+    --pt-button-background: {{ section.settings.button_background }};
+    --pt-button-text: {{ section.settings.button_text_color }};
+
+    background: var(--pt-background);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    width: 100%;
+  }
+
+  #ProTeam-{{ section.id }} *,
+  #ProTeam-{{ section.id }} *::before,
+  #ProTeam-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-container {
+    width: 100%;
+    max-width: 1408px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: {{ section.settings.card_gap }}px;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-card {
+    background: var(--pt-card-background);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-eyebrow {
+    margin: 0;
+    color: var(--pt-accent-color);
+    font-size: 10px;
+    line-height: 1.6;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-heading {
+    margin: 0;
+    color: var(--pt-heading-color);
+    font-weight: 800;
+    line-height: 1.05;
+    text-transform: uppercase;
+    font-family: Barlow Condensed;
+font-weight: 800;
+font-style: ExtraBold;
+font-size: 32px;
+leading-trim: NONE;
+line-height: 32px;
+letter-spacing: 0%;
+vertical-align: middle;
+text-transform: uppercase;
+
+    overflow-wrap: anywhere;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-description {
+    margin: 0;
+    color: var(--pt-text-color);
+    font-size: {{ section.settings.body_size }}px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-description p {
+    margin: 0;
+    font-family: Barlow;
+font-weight: 400;
+font-style: Regular;
+font-size: 16px;
+leading-trim: NONE;
+line-height: 24px;
+letter-spacing: 0%;
+vertical-align: middle;
+color:#4A4A4A;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    min-height: 48px;
+    margin-top: 3px;
+    padding: 14px 24px;
+    background: var(--pt-button-background);
+    color: var(--pt-button-text);
+    text-decoration: none;
+    border: 1px solid var(--pt-button-background);
+    border-radius: 0;
+font-family: Barlow Condensed;
+font-weight: 700;
+font-style: Bold;
+font-size: 17px;
+leading-trim: NONE;
+line-height: 20px;
+letter-spacing: 0.68px;
+vertical-align: middle;
+text-transform: uppercase;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s ease;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-button:hover {
+    opacity: 0.8;
+  }
+
+  #ProTeam-{{ section.id }} .pro-team-button:focus-visible {
+    outline: 2px solid var(--pt-accent-color);
+    outline-offset: 3px;
+  }
+
+  @media screen and (max-width: 749px) {
+    #ProTeam-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #ProTeam-{{ section.id }} .pro-team-container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    #ProTeam-{{ section.id }} .pro-team-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    #ProTeam-{{ section.id }} .pro-team-card {
+      padding: {{ section.settings.mobile_card_padding }}px;
+    }
+
+    #ProTeam-{{ section.id }} .pro-team-heading {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+    }
+
+    #ProTeam-{{ section.id }} .pro-team-description {
+      font-size: {{ section.settings.body_size }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pro Team",
+  "tag": "section",
+  "class": "section-pro-team",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container maximum width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Space between cards",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding",
+      "label": "Mobile card padding",
+      "min": 12,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile heading size",
+      "min": 20,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Description size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#FFF4E2"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#FFFEF2"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description color",
+      "default": "#6A6258"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Eyebrow accent color",
+      "default": "#E30613"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pro_offer",
+      "name": "Offer card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Small label",
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pro Team"
+    }
+  ]
+}
+{% endschema %}

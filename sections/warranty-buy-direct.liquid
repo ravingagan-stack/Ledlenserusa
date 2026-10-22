@@ -1,0 +1,318 @@
+{% comment %}
+  Warranty Steps + Why Buy Direct Section
+  Left column: numbered warranty steps (blocks)
+  Right column: black "Why buy direct" card with checkmark benefits (blocks)
+{% endcomment %}
+
+
+<section class="ll-warranty" aria-label="{{ section.settings.heading | default: 'Warranty' | escape }}">
+  <div class="ll-warranty__inner">
+
+    <!-- LEFT: Warranty steps -->
+    <div class="ll-warranty__left">
+      {% if section.settings.heading != blank %}
+        <h2 class="ll-warranty__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="ll-warranty__desc">{{ section.settings.description }}</p>
+      {% endif %}
+
+      <div class="ll-warranty__steps">
+        {%- assign step_counter = 0 -%}
+        {% for block in section.blocks %}
+          {%- if block.type == 'step' -%}
+            {%- assign step_counter = step_counter | plus: 1 -%}
+            <div class="ll-warranty__step" {{ block.shopify_attributes }}>
+              <div class="ll-warranty__step-num">
+                {% if block.settings.number != blank %}
+                  {{ block.settings.number }}
+                {% else %}
+                  {{ step_counter }}
+                {% endif %}
+              </div>
+              <div class="ll-warranty__step-title">{{ block.settings.title }}</div>
+              <div class="ll-warranty__step-body">{{ block.settings.body }}</div>
+            </div>
+          {%- endif -%}
+        {% endfor %}
+      </div>
+
+      {% if section.settings.link_text != blank %}
+        <a href="{{ section.settings.link_url | default: '#' }}" class="ll-warranty__link">
+          {{ section.settings.link_text }} &rarr;
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT: Why buy direct -->
+    <div class="ll-warranty__right">
+      {% if section.settings.card_heading != blank %}
+        <h3 class="ll-warranty__card-heading">{{ section.settings.card_heading }}</h3>
+      {% endif %}
+
+      <ul class="ll-warranty__list">
+        {% for block in section.blocks %}
+          {%- if block.type == 'benefit' -%}
+            <li class="ll-warranty__item" {{ block.shopify_attributes }}>
+              <svg class="ll-warranty__check" viewBox="0 0 24 24" fill="none"
+                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                   aria-hidden="true">
+                <path d="M5 12l5 5 9-10"></path>
+              </svg>
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {%- endif -%}
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ll-warranty {
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    font-family: 'Barlow', 'Helvetica Neue', sans-serif;
+  }
+  .ll-warranty * { box-sizing: border-box; }
+
+  .ll-warranty__inner {
+    max-width: 1408px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+
+  /* ---------- Left: Warranty steps ---------- */
+  .ll-warranty__left {
+    flex: 3 1 560px;
+    min-width: 0;
+  }
+
+  .ll-warranty__heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    margin: 0 0 8px;
+    color: {{ section.settings.text_color }};
+  }
+
+  .ll-warranty__desc {
+    margin: 0 0 24px;
+    color: {{ section.settings.muted_color }};
+    font-size: 16px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height: 19px;
+  }
+
+  .ll-warranty__steps {
+    display: grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .ll-warranty__step {
+    border-top: 3px solid {{ section.settings.text_color }};
+    padding-top: 14px;
+  }
+
+  .ll-warranty__step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    color: {{ section.settings.accent_color }};
+    line-height: 1;
+  }
+
+  .ll-warranty__step-title {
+    font-weight: 700;
+    font-size: 18px;
+    margin: 6px 0 4px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height: 24px;
+    color: {{ section.settings.text_color }};
+  }
+
+  .ll-warranty__step-body {
+    font-size: 15px;
+    color: {{ section.settings.muted_color }};
+    line-height: 22px;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+  }
+
+  .ll-warranty__link {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    color: {{ section.settings.text_color }};
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  .ll-warranty__link:hover { color: {{ section.settings.accent_color }}; }
+
+  /* ---------- Right: Why buy direct ---------- */
+  .ll-warranty__right {
+    flex: 2 1 340px;
+    min-width: 0;
+    background: {{ section.settings.card_bg }};
+    color: {{ section.settings.card_text }};
+    padding: 32px;
+  }
+
+  .ll-warranty__card-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 30px;
+    margin: 0 0 16px;
+    line-height: 1.05;
+    color: {{ section.settings.card_text }};
+  }
+
+  .ll-warranty__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .ll-warranty__item {
+    display: flex;
+    gap: 10px;
+    color: {{ section.settings.card_text }};
+    margin-bottom:0;
+  }
+  .ll-warranty__item span{
+  font-family: Barlow;
+font-weight: 400;
+font-style: Regular;
+font-size: 16px;
+leading-trim: NONE;
+line-height: 24px;
+letter-spacing: 0%;
+vertical-align: middle;
+}
+  .ll-warranty__check {
+    flex: none;
+    margin-top: 2px;
+    width: 20px;
+    height: 20px;
+    stroke: {{ section.settings.check_color }};
+  }
+
+  @media (max-width: 749px) {
+    .ll-warranty__inner { padding-left: 20px; padding-right: 20px; gap: 32px; padding-top:50px; padding-bottom:50px; }
+    .ll-warranty__heading { font-size: 32px; }
+    .ll-warranty__card-heading { font-size: 26px; }
+    .ll-warranty__right { padding: 24px; }
+  }
+   @media (max-width:450px) {
+    .ll-warranty__steps{display:flex;flex-direction:column;}
+  }
+</style>
+{% schema %}
+{
+  "name": "Warranty + Buy Direct",
+  "tag": "section",
+  "class": "section-warranty",
+  "settings": [
+    { "type": "header", "content": "Left — Warranty" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Bottom link text",
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Bottom link URL"
+    },
+
+    { "type": "header", "content": "Right — Why buy direct" },
+    {
+      "type": "text",
+      "id": "card_heading",
+      "label": "Card heading",
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "bg_color",     "label": "Section background", "default": "#F5F0EA" },
+    { "type": "color", "id": "text_color",   "label": "Section text",       "default": "#0A0A0A" },
+    { "type": "color", "id": "muted_color",  "label": "Muted text",         "default": "#4A4A4A" },
+    { "type": "color", "id": "accent_color", "label": "Step number color",  "default": "#E30613" },
+    { "type": "color", "id": "card_bg",      "label": "Card background",    "default": "#0A0A0A" },
+    { "type": "color", "id": "card_text",    "label": "Card text",          "default": "#FFFFFF" },
+    { "type": "color", "id": "check_color",  "label": "Checkmark color",    "default": "#FF3B4A" },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top",    "label": "Padding top",    "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Warranty step",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "info": "Leave blank to auto-number (1, 2, 3...)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description",
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit (Why buy direct)",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit text",
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warranty + Buy Direct"
+    }
+  ]
+}
+{% endschema %}

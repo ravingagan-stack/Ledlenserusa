@@ -1,0 +1,73 @@
+<div class="custom-announcement-bar">
+  <a href="{{ section.settings.first_link }}">
+    <span class="highlight">{{ section.settings.first_highlight }}</span>
+    {{ section.settings.first_text }}
+  </a>
+
+  <span class="separator" aria-hidden="true">|</span>
+
+  <span>{{ section.settings.second_text }}</span>
+
+  <span class="separator" aria-hidden="true">|</span>
+
+  <a href="{{ section.settings.third_link }}">
+    {{ section.settings.third_text }}
+  </a>
+
+  <span class="separator" aria-hidden="true">|</span>
+
+  <span>{{ section.settings.fourth_text }}</span>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "first_highlight",
+      "label": "First Highlight Text",
+      "default": "10% off"
+    },
+    {
+      "type": "text",
+      "id": "first_text",
+      "label": "First Announcement Text",
+      "default": "your first light – join the list"
+    },
+    {
+      "type": "url",
+      "id": "first_link",
+      "label": "First Announcement Link"
+    },
+    {
+      "type": "text",
+      "id": "second_text",
+      "label": "Second Announcement Text",
+      "default": "Free US shipping over $35"
+    },
+    {
+      "type": "text",
+      "id": "third_text",
+      "label": "Third Announcement Text",
+      "default": "Military, LE & EMS save [15]% – verify"
+    },
+    {
+      "type": "url",
+      "id": "third_link",
+      "label": "Third Announcement Link"
+    },
+    {
+      "type": "text",
+      "id": "fourth_text",
+      "label": "Fourth Announcement Text",
+      "default": "7-year warranty, no questions asked"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

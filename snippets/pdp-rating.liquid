@@ -1,0 +1,56 @@
+{%- comment -%}
+  Mockup-style gold-star rating summary shown under the title.
+  Reads product.metafields.reviews.rating (same metafield Stamped feeds and the
+  theme's rating.liquid uses), so it stays in sync with the Reviews widget.
+  Clicking it opens + scrolls to the Reviews accordion (#pdp-reviews-acc).
+  Rendered via a custom_code block right under pdp-key-specs. Renders nothing
+  when the product has no rating.
+{%- endcomment -%}
+
+{%- liquid
+  assign rating_value = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count
+  if rating_value != blank
+    assign reviews_rating = rating_value.rating | round: 1
+    assign scale_max = rating_value.scale_max | default: 5
+    assign percent = reviews_rating | times: 100.0 | divided_by: scale_max
+    if rating_count == 1
+      assign count_label = '1 review'
+    else
+      assign count_label = rating_count | append: ' reviews'
+    endif
+  endif
+-%}
+
+{%- if rating_value != blank -%}
+  <a class="pdp-rating" href="#pdp-reviews-acc" data-pdp-view-reviews aria-label="Rated {{ reviews_rating }} out of {{ scale_max }}{% if rating_count != blank %} from {{ count_label }}{% endif %}">
+    <span class="pdp-stars" style="--pdp-rating-pct: {{ percent }}%;" aria-hidden="true">
+      <span class="pdp-stars__row pdp-stars__row--empty">
+        {%- for i in (1..5) -%}<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </span>
+      <span class="pdp-stars__row pdp-stars__row--full">
+        {%- for i in (1..5) -%}<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endfor -%}
+      </span>
+    </span>
+    <span class="pdp-rating__num">{{ reviews_rating }}</span>
+    {%- if rating_count != blank -%}<span class="pdp-rating__count">{{ count_label }}</span>{%- endif -%}
+  </a>
+  <script>
+    (function () {
+      var link = document.querySelector('[data-pdp-view-reviews]');
+      if (!link || link.dataset.pdpReviewsReady) return;
+      link.dataset.pdpReviewsReady = '1';
+      link.addEventListener('click', function (e) {
+        var acc = document.getElementById('pdp-reviews-acc');
+        if (!acc) return;
+        e.preventDefault();
+        if (!acc.classList.contains('open')) {
+          acc.classList.add('open');
+          var head = acc.querySelector('.pdp-acc__head');
+          if (head) head.setAttribute('aria-expanded', 'true');
+        }
+        acc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    })();
+  </script>
+{%- endif -%}

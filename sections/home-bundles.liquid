@@ -1,0 +1,1104 @@
+{% comment %} 
+  Bundles & Kits Section
+  Dual source mode:
+    - "collection" → auto-pulls products from a chosen collection
+    - "manual"     → merchant adds individual products as blocks
+  Grid on desktop, horizontal scroll-snap slider on mobile.
+{% endcomment %}
+
+{%- liquid
+  assign mode = section.settings.source_mode
+  assign limit = section.settings.products_to_show
+-%}
+
+<style>
+  .ll-bundles {
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    font-family: 'Barlow', 'Helvetica Neue', sans-serif;
+  }
+  .ll-bundles * { box-sizing: border-box; }
+
+  .ll-bundles__inner {
+    max-width: 1408px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+  }
+
+  /* ---------- Header ---------- */
+  .ll-bundles__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .ll-bundles__heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: {{ section.settings.text_color }};
+  }
+
+  .ll-bundles__link {
+    font-weight: 600;
+    font-size: 16px;
+    color: {{ section.settings.text_color }};
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    white-space: nowrap;
+  }
+  .ll-bundles__link:hover { color: {{ section.settings.accent_color }}; }
+
+  .ll-bundles__sub {
+    margin: 0 0 24px;
+    color: {{ section.settings.muted_color }};
+    font-size: 16px;
+  }
+
+  /* ---------- Track ---------- */
+  .ll-bundles__track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  /* ---------- Card ---------- */
+  .ll-bundles__card {
+    text-decoration: none;
+    color: {{ section.settings.text_color }};
+    border: 1px solid {{ section.settings.border_color }};
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    align-items: center;
+    background: {{ section.settings.card_bg }};
+    transition: border-color .15s ease;
+  }
+  .ll-bundles__card:hover { border-color: {{ section.settings.accent_color }}; }
+
+  .ll-bundles__img {
+    width: 120px;
+    height: 120px;
+    flex: none;
+    background: {{ section.settings.img_bg }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .ll-bundles__img img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .ll-bundles__info { min-width: 0; }
+
+  .ll-bundles__badge {
+    display: inline-block;
+    background: {{ section.settings.accent_color }};
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    text-transform: uppercase;
+  }
+
+  .ll-bundles__name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 4px;
+    line-height: 1.05;
+  }
+
+  .ll-bundles__price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .ll-bundles__price-now {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+  }
+  .ll-bundles__price-was {
+    color: {{ section.settings.muted_color }};
+    font-size: 15px;
+  }
+
+  /* ---------- Empty state ---------- */
+  .ll-bundles__empty {
+    padding: 24px;
+    border: 1px dashed {{ section.settings.border_color }};
+    color: {{ section.settings.muted_color }};
+    font-size: 15px;
+    text-align: center;
+  }
+
+  /* ---------- Mobile slider ---------- */
+  @media (max-width: 749px) {
+    .ll-bundles__inner { padding-left: 16px; padding-right: 16px; }
+    .ll-bundles__heading { font-size: 32px; }
+
+    .ll-bundles__track {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 12px;
+      scrollbar-width: none;
+    }
+    .ll-bundles__inner {
+    padding: 40px 0px;
+}
+    .ll-bundles__track::-webkit-scrollbar { height: 4px; }
+    .ll-bundles__track::-webkit-scrollbar-thumb { background: {{ section.settings.border_color }}; }
+
+    .ll-bundles__card {
+      flex: 0 0 90%;
+    }
+    .ll-bundles__header {
+    padding: 0 20px;
+}
+
+p.ll-bundles__sub {
+    padding: 0 20px;
+}
+
+.ll-bundles__track {
+    padding: 0 20px;
+}
+a.ll-bundles__card {
+    padding: 10px;
+    gap: 10px;
+}
+
+.ll-bundles__img {
+    width: 60px;
+    height: 60px;
+}
+
+span.ll-bundles__badge {
+    font-size: 10px;
+}
+
+.ll-bundles__name {
+    font-size: 18px;
+}
+
+span.ll-bundles__price-now {
+    font-size: 18px;
+    line-height: normal;
+}
+  }
+</style>
+
+<section class="ll-bundles" aria-label="{{ section.settings.heading | default: 'Bundles and kits' | escape }}">
+  <div class="ll-bundles__inner">
+
+    <div class="ll-bundles__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="ll-bundles__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.view_all_link != blank %}
+        <a href="{{ section.settings.view_all_link }}" class="ll-bundles__link">
+          {{ section.settings.view_all_text }} &rarr;
+        </a>
+      {% endif %}
+    </div>
+
+    {% if section.settings.subheading != blank %}
+      <p class="ll-bundles__sub">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    <div class="ll-bundles__track" role="list">
+
+      {%- if mode == 'collection' -%}
+        {%- comment -%} COLLECTION MODE {%- endcomment -%}
+        {%- assign coll = collections[section.settings.collection] -%}
+
+        {%- if coll != blank and coll.products.size > 0 -%}
+          {%- for product in coll.products limit: limit -%}
+            <a href="{{ product.url }}" class="ll-bundles__card" role="listitem">
+              <div class="ll-bundles__img">
+                {% if product.featured_image %}
+                  {{
+                    product.featured_image
+                    | image_url: width: 400
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '200,400',
+                      sizes: '120px',
+                      alt: product.title | escape
+                  }}
+                {% endif %}
+              </div>
+
+              <div class="ll-bundles__info">
+                {%- if product.compare_at_price > product.price -%}
+                  {%- assign pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+                  <span class="ll-bundles__badge">Save {{ pct }}%</span>
+                {%- elsif section.settings.default_badge != blank -%}
+                  <span class="ll-bundles__badge">{{ section.settings.default_badge }}</span>
+                {%- endif -%}
+
+                <div class="ll-bundles__name">{{ product.title }}</div>
+
+                <div class="ll-bundles__price">
+                  <span class="ll-bundles__price-now">{{ product.price | money }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <s class="ll-bundles__price-was">{{ product.compare_at_price | money }}</s>
+                  {% endif %}
+                </div>
+              </div>
+            </a>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="ll-bundles__empty">
+            Select a collection in the section settings, or add products manually.
+          </div>
+        {%- endif -%}
+
+      {%- else -%}
+        {%- comment -%} MANUAL MODE — one block = one product {%- endcomment -%}
+        {%- assign has_any = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.product != blank -%}{%- assign has_any = true -%}{%- endif -%}
+        {%- endfor -%}
+
+        {%- if has_any -%}
+          {%- for block in section.blocks -%}
+            {%- assign product = block.settings.product -%}
+            {%- if product == blank -%}{%- continue -%}{%- endif -%}
+
+            <a
+              href="{{ product.url }}"
+              class="ll-bundles__card"
+              role="listitem"
+              {{ block.shopify_attributes }}
+            >
+              <div class="ll-bundles__img">
+                {% if product.featured_image %}
+                  {{
+                    product.featured_image
+                    | image_url: width: 400
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '200,400',
+                      sizes: '120px',
+                      alt: product.title | escape
+                  }}
+                {% endif %}
+              </div>
+
+              <div class="ll-bundles__info">
+                {%- if product.compare_at_price > product.price -%}
+                  {%- assign pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+                  <span class="ll-bundles__badge">Save {{ pct }}%</span>
+                {%- elsif section.settings.default_badge != blank -%}
+                  <span class="ll-bundles__badge">{{ section.settings.default_badge }}</span>
+                {%- endif -%}
+
+                <div class="ll-bundles__name">{{ product.title }}</div>
+
+                <div class="ll-bundles__price">
+                  <span class="ll-bundles__price-now">{{ product.price | money }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <s class="ll-bundles__price-was">{{ product.compare_at_price | money }}</s>
+                  {% endif %}
+                </div>
+              </div>
+            </a>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="ll-bundles__empty">
+            Add a product block, or switch source mode to "Collection".
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bundles & Kits",
+  "tag": "section",
+  "class": "section-bundles",
+  "settings": [
+    { "type": "header", "content": "Content source" },
+    {
+      "type": "select",
+      "id": "source_mode",
+      "label": "Show products from",
+      "options": [
+        { "value": "manual",     "label": "Manual — add each product as a block" },
+        { "value": "collection", "label": "Collection — auto-pull products" }
+      ],
+      "default": "manual",
+      "info": "Manual = pick products one by one. Collection = auto-pull from a chosen collection."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection (only used in Collection mode)"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Max products (Collection mode)",
+      "min": 2, "max": 24, "step": 1,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "default_badge",
+      "label": "Fallback badge (Collection mode)",
+      "info": "Shown when a product has no compare-at price."
+    },
+
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading",       "label": "Heading", },
+    { "type": "text", "id": "subheading",    "label": "Subheading"},
+    { "type": "text", "id": "view_all_text", "label": "View-all text" },
+    { "type": "url",  "id": "view_all_link", "label": "View-all link" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "bg_color",     "label": "Background",       "default": "#F5F0EA" },
+    { "type": "color", "id": "card_bg",      "label": "Card background",  "default": "#FFFFFF" },
+    { "type": "color", "id": "img_bg",       "label": "Image tile bg",    "default": "#EFE6DC" },
+    { "type": "color", "id": "border_color", "label": "Card border",      "default": "#DADADA" },
+    { "type": "color", "id": "text_color",   "label": "Text",             "default": "#0A0A0A" },
+    { "type": "color", "id": "muted_color",  "label": "Muted text",       "default": "#4A4A4A" },
+    { "type": "color", "id": "accent_color", "label": "Accent (badge)",   "default": "#E30613" },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top",    "label": "Padding top",    "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "product_item",
+      "name": "Product",
+      "limit": 24,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundles & Kits"
+    }
+  ]
+}
+{% endschema %}
+ {% comment %}
+  Bundles & Kits Section
+  Dual source mode:
+    - "collection" → auto-pulls products from a chosen collection
+    - "manual"     → merchant adds individual products as blocks
+  Uses Swiper.js carousel (same as Just Launched section).
+{% endcomment %}
+{% comment %} 
+{%- liquid
+  assign mode = section.settings.source_mode
+  assign limit = section.settings.products_to_show
+-%}
+
+<style>
+  .ll-bundles {
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    font-family: 'Barlow', 'Helvetica Neue', sans-serif;
+  }
+
+  .ll-bundles * {
+    box-sizing: border-box;
+  }
+
+  .ll-bundles__inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+  }
+
+  /* Header */
+  .ll-bundles__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .ll-bundles__heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: .01em;
+    margin: 0;
+    color: {{ section.settings.text_color }};
+  }
+
+  .ll-bundles__link {
+    font-weight: 600;
+    font-size: 16px;
+    color: {{ section.settings.text_color }};
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    white-space: nowrap;
+  }
+
+  .ll-bundles__link:hover {
+    color: {{ section.settings.accent_color }};
+  }
+
+  .ll-bundles__sub {
+    margin: 0 0 24px;
+    color: {{ section.settings.muted_color }};
+    font-size: 16px;
+  }
+
+  /* Slider */
+  .ll-bundles__slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ll-bundles__track.swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+
+  .ll-bundles__card.swiper-slide {
+    height: auto;
+    min-width: 0;
+    flex-shrink: 0;
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    align-items: center;
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.border_color }};
+    color: {{ section.settings.text_color }};
+    text-decoration: none;
+    transition: border-color .2s ease;
+  }
+
+  .ll-bundles__card:hover {
+    border-color: {{ section.settings.accent_color }};
+  }
+
+  /* Image */
+  .ll-bundles__img {
+    width: 120px;
+    height: 120px;
+    flex: none;
+    background: {{ section.settings.img_bg }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .ll-bundles__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Info */
+  .ll-bundles__info {
+    min-width: 0;
+  }
+
+  .ll-bundles__badge {
+    display: inline-block;
+    background: {{ section.settings.accent_color }};
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 3px 8px;
+    text-transform: uppercase;
+  }
+
+  .ll-bundles__name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 4px;
+    line-height: 1.05;
+  }
+
+  .ll-bundles__price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .ll-bundles__price-now {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+  }
+
+  .ll-bundles__price-was {
+    color: {{ section.settings.muted_color }};
+    font-size: 15px;
+  }
+
+  /* Arrows */
+  .ll-bundles__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid {{ section.settings.border_color }};
+    border-radius: 50%;
+    background: {{ section.settings.card_bg }};
+    color: {{ section.settings.text_color }};
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 26px;
+    line-height: 1;
+    transition: background .2s ease, color .2s ease, opacity .2s ease;
+  }
+
+  .ll-bundles__prev {
+    left: 10px;
+  }
+
+  .ll-bundles__next {
+    right: 10px;
+  }
+
+  .ll-bundles__arrow:hover:not(.swiper-button-disabled) {
+    background: {{ section.settings.accent_color }};
+    border-color: {{ section.settings.accent_color }};
+    color: #ffffff;
+  }
+
+  .ll-bundles__arrow.swiper-button-disabled {
+    opacity: .3;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .ll-bundles__arrow:after {
+    display: none !important;
+  }
+
+  /* Pagination */
+  .ll-bundles__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 22px;
+    min-height: 10px;
+  }
+
+  .ll-bundles__pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 50%;
+    background: {{ section.settings.border_color }};
+    opacity: 1;
+    margin: 0 !important;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+
+  .ll-bundles__pagination .swiper-pagination-bullet-active {
+    background: {{ section.settings.accent_color }};
+    transform: scale(1.25);
+  }
+
+  /* Empty state */
+  .ll-bundles__empty {
+    padding: 24px;
+    border: 1px dashed {{ section.settings.border_color }};
+    color: {{ section.settings.muted_color }};
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .ll-bundles__arrow[hidden] {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ll-bundles__inner {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .ll-bundles__heading {
+      font-size: 32px;
+    }
+
+    .ll-bundles__img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .ll-bundles__arrow {
+      width: 38px;
+      height: 38px;
+      font-size: 23px;
+    }
+
+    .ll-bundles__prev {
+      left: 8px;
+    }
+
+    .ll-bundles__next {
+      right: 8px;
+    }
+
+    .ll-bundles__pagination {
+      margin-top: 18px;
+    }
+  }
+</style>
+
+<section
+  id="ll-bundles-{{ section.id }}"
+  class="ll-bundles"
+  aria-label="{{ section.settings.heading | default: 'Bundles and kits' | escape }}"
+>
+  <div class="ll-bundles__inner">
+
+    <div class="ll-bundles__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="ll-bundles__heading">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.view_all_link != blank %}
+        <a
+          href="{{ section.settings.view_all_link }}"
+          class="ll-bundles__link"
+        >
+          {{ section.settings.view_all_text | default: 'View all' | escape }} &rarr;
+        </a>
+      {% endif %}
+    </div>
+
+    {% if section.settings.subheading != blank %}
+      <p class="ll-bundles__sub">{{ section.settings.subheading | escape }}</p>
+    {% endif %}
+
+    {%- if mode == 'collection' -%}
+      {%- comment -%} COLLECTION MODE {%- endcomment -%}
+      {%- assign coll = collections[section.settings.collection] -%}
+
+      {%- if coll != blank and coll.products.size > 0 -%}
+
+        <div class="ll-bundles__slider swiper">
+
+          <div class="ll-bundles__track swiper-wrapper" role="list">
+
+            {%- for product in coll.products limit: limit -%}
+
+              <a
+                href="{{ product.url }}"
+                class="ll-bundles__card swiper-slide"
+                role="listitem"
+              >
+                <div class="ll-bundles__img">
+                  {% if product.featured_image %}
+                    {{
+                      product.featured_image
+                      | image_url: width: 400
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '200,400',
+                        sizes: '120px',
+                        alt: product.title | escape
+                    }}
+                  {% endif %}
+                </div>
+
+                <div class="ll-bundles__info">
+                  {%- if product.compare_at_price > product.price -%}
+                    {%- assign pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+                    <span class="ll-bundles__badge">Save {{ pct }}%</span>
+                  {%- elsif section.settings.default_badge != blank -%}
+                    <span class="ll-bundles__badge">{{ section.settings.default_badge | escape }}</span>
+                  {%- endif -%}
+
+                  <div class="ll-bundles__name">{{ product.title | escape }}</div>
+
+                  <div class="ll-bundles__price">
+                    <span class="ll-bundles__price-now">{{ product.price | money }}</span>
+                    {% if product.compare_at_price > product.price %}
+                      <s class="ll-bundles__price-was">{{ product.compare_at_price | money }}</s>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+
+            {%- endfor -%}
+
+          </div>
+
+          <!-- Overlay navigation arrows -->
+          <button
+            type="button"
+            class="ll-bundles__arrow ll-bundles__prev"
+            aria-label="Previous products"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="ll-bundles__arrow ll-bundles__next"
+            aria-label="Next products"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+        </div>
+
+        <!-- Pagination dots -->
+        <div
+          class="ll-bundles__pagination"
+          aria-label="Product slider pagination"
+        ></div>
+
+      {%- else -%}
+        <div class="ll-bundles__empty">
+          Select a collection in the section settings, or add products manually.
+        </div>
+      {%- endif -%}
+
+    {%- else -%}
+      {%- comment -%} MANUAL MODE — one block = one product {%- endcomment -%}
+      {%- assign has_any = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.settings.product != blank -%}{%- assign has_any = true -%}{%- endif -%}
+      {%- endfor -%}
+
+      {%- if has_any -%}
+
+        <div class="ll-bundles__slider swiper">
+
+          <div class="ll-bundles__track swiper-wrapper" role="list">
+
+            {%- for block in section.blocks -%}
+              {%- assign product = block.settings.product -%}
+              {%- if product == blank -%}{%- continue -%}{%- endif -%}
+
+              <a
+                href="{{ product.url }}"
+                class="ll-bundles__card swiper-slide"
+                role="listitem"
+                {{ block.shopify_attributes }}
+              >
+                <div class="ll-bundles__img">
+                  {% if product.featured_image %}
+                    {{
+                      product.featured_image
+                      | image_url: width: 400
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '200,400',
+                        sizes: '120px',
+                        alt: product.title | escape
+                    }}
+                  {% endif %}
+                </div>
+
+                <div class="ll-bundles__info">
+                  {%- if product.compare_at_price > product.price -%}
+                    {%- assign pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+                    <span class="ll-bundles__badge">Save {{ pct }}%</span>
+                  {%- elsif section.settings.default_badge != blank -%}
+                    <span class="ll-bundles__badge">{{ section.settings.default_badge | escape }}</span>
+                  {%- endif -%}
+
+                  <div class="ll-bundles__name">{{ product.title | escape }}</div>
+
+                  <div class="ll-bundles__price">
+                    <span class="ll-bundles__price-now">{{ product.price | money }}</span>
+                    {% if product.compare_at_price > product.price %}
+                      <s class="ll-bundles__price-was">{{ product.compare_at_price | money }}</s>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+
+            {%- endfor -%}
+
+          </div>
+
+          <!-- Overlay navigation arrows -->
+          <button
+            type="button"
+            class="ll-bundles__arrow ll-bundles__prev"
+            aria-label="Previous products"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="ll-bundles__arrow ll-bundles__next"
+            aria-label="Next products"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+        </div>
+
+        <!-- Pagination dots -->
+        <div
+          class="ll-bundles__pagination"
+          aria-label="Product slider pagination"
+        ></div>
+
+      {%- else -%}
+        <div class="ll-bundles__empty">
+          Add a product block, or switch source mode to "Collection".
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var sectionId = 'll-bundles-{{ section.id }}';
+
+  function initBundlesSlider() {
+    var root = document.getElementById(sectionId);
+
+    if (!root) return;
+
+    var slider = root.querySelector('.ll-bundles__slider');
+
+    if (!slider || slider.swiper) return;
+
+    if (typeof window.Swiper === 'undefined') {
+      console.warn(
+        'Swiper.js is not loaded. Check the CDN script in theme.liquid.'
+      );
+      return;
+    }
+
+    var slides = slider.querySelectorAll('.swiper-slide');
+
+    if (!slides.length) return;
+
+    var prevButton = slider.querySelector('.ll-bundles__prev');
+    var nextButton = slider.querySelector('.ll-bundles__next');
+    var pagination = root.querySelector('.ll-bundles__pagination');
+
+    new window.Swiper(slider, {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 16,
+      speed: 450,
+      loop: false,
+      watchOverflow: true,
+      grabCursor: true,
+      observer: true,
+      observeParents: true,
+
+      navigation: {
+        prevEl: prevButton,
+        nextEl: nextButton
+      },
+
+      {% comment %} pagination: {
+        el: pagination,
+        clickable: true
+      }, {% endcomment %}
+
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+          spaceBetween: 16
+        },
+        750: {
+          slidesPerView: 2,
+          slidesPerGroup: 1,
+          spaceBetween: 16
+        },
+        950: {
+          slidesPerView: 3,
+          slidesPerGroup: 1,
+          spaceBetween: 16
+        }
+      },
+
+      on: {
+        init: function () {
+          updateNavigation(this);
+        },
+        resize: function () {
+          updateNavigation(this);
+        },
+        breakpoint: function () {
+          updateNavigation(this);
+        }
+      }
+    });
+
+    function updateNavigation(swiper) {
+      var visibleCount = Number(swiper.params.slidesPerView) || 1;
+      var hideArrows = swiper.slides.length <= visibleCount;
+
+      if (prevButton) prevButton.hidden = hideArrows;
+      if (nextButton) nextButton.hidden = hideArrows;
+      if (pagination) pagination.hidden = hideArrows;
+    }
+  }
+
+  function startSlider() {
+    initBundlesSlider();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startSlider);
+  } else {
+    startSlider();
+  }
+
+  document.addEventListener('shopify:section:load', function (event) {
+    if (
+      event.detail &&
+      event.detail.sectionId === '{{ section.id }}'
+    ) {
+      initBundlesSlider();
+    }
+  });
+})();
+</script>
+{% schema %}
+{
+  "name": "Bundles & Kits",
+  "tag": "section",
+  "class": "section-bundles",
+  "settings": [
+    { "type": "header", "content": "Content source" },
+    {
+      "type": "select",
+      "id": "source_mode",
+      "label": "Show products from",
+      "options": [
+        { "value": "manual",     "label": "Manual — add each product as a block" },
+        { "value": "collection", "label": "Collection — auto-pull products" }
+      ],
+      "default": "manual",
+      "info": "Manual = pick products one by one. Collection = auto-pull from a chosen collection."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection (only used in Collection mode)"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Max products (Collection mode)",
+      "min": 2, "max": 24, "step": 1,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "default_badge",
+      "label": "Fallback badge (Collection mode)",
+      "info": "Shown when a product has no compare-at price."
+    },
+
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading",       "label": "Heading", },
+    { "type": "text", "id": "subheading",    "label": "Subheading"},
+    { "type": "text", "id": "view_all_text", "label": "View-all text" },
+    { "type": "url",  "id": "view_all_link", "label": "View-all link" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "bg_color",     "label": "Background",       "default": "#F5F0EA" },
+    { "type": "color", "id": "card_bg",      "label": "Card background",  "default": "#FFFFFF" },
+    { "type": "color", "id": "img_bg",       "label": "Image tile bg",    "default": "#EFE6DC" },
+    { "type": "color", "id": "border_color", "label": "Card border",      "default": "#DADADA" },
+    { "type": "color", "id": "text_color",   "label": "Text",             "default": "#0A0A0A" },
+    { "type": "color", "id": "muted_color",  "label": "Muted text",       "default": "#4A4A4A" },
+    { "type": "color", "id": "accent_color", "label": "Accent (badge)",   "default": "#E30613" },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top",    "label": "Padding top",    "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "product_item",
+      "name": "Product",
+      "limit": 24,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundles & Kits"
+    }
+  ]
+}
+{% endschema %} {% endcomment %}

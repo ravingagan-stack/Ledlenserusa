@@ -1,0 +1,233 @@
+{%- comment -%}
+  Breadcrumb section
+  - Product with custom.breadcrumb (list of collections) filled:
+      Home / Collection 1 / Collection 2 / Product title
+  - Product without metafield:
+      Home / (collection you came from, if any) / Product title
+  - Also works on collection, page, blog, article, search, cart pages.
+{%- endcomment -%}
+
+{%- liquid
+  assign bc_collections = blank
+  if product and product.metafields.custom.breadcrumb != blank
+    assign bc_collections = product.metafields.custom.breadcrumb.value
+  endif
+
+  assign show_bc = true
+  if request.page_type == 'index'
+    assign show_bc = false
+  endif
+-%}
+
+{%- if show_bc -%}
+<style>
+.shopify-section-header {
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.breadcrumb.page-width {
+    max-width: var(--site-width);
+    padding: 60px 76.5px 0 !important;
+    margin: 0 auto;
+}
+
+.breadcrumb.page-width li a {
+    font-family: Barlow;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 21px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-decoration: underline !important;
+    text-decoration-style: solid;
+    text-decoration-offset: 0%;
+    text-decoration-thickness: 1px;
+    text-decoration-skip-ink: auto;
+    color: #4A4A4A !important;
+}
+
+.breadcrumb.page-width ol {
+    gap: 5px !important;
+}
+
+.breadcrumb.page-width li {
+    gap: 5px !important;
+}
+
+.breadcrumb.page-width li + li::before {
+    font-family: Barlow;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 21px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    opacity: 1 !important;
+    color: #4A4A4A !important;
+    text-decoration: none !important;
+}
+
+.breadcrumb.page-width [aria-current="page"] {
+    font-family: Barlow;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 21px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #4A4A4A !important;
+    opacity: 1 !important;
+}
+.breadcrumb.page-width ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: {{ section.settings.alignment }};
+  }
+.breadcrumb.page-width li {
+    display: flex;
+    align-items: center;
+  }
+.breadcrumb.page-width li + li::before {
+    content: "{{ section.settings.separator }}";
+  }
+.breadcrumb.page-width a {
+    color: {{ section.settings.link_color }};
+    text-decoration: none;
+  }
+.breadcrumb.page-width a:hover {
+    text-decoration: underline;
+  }
+
+</style>
+
+<nav id="Breadcrumb-{{ section.id }}" class="breadcrumb page-width" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ routes.root_url }}">{{ section.settings.home_label }}</a></li>
+
+    {%- case request.page_type -%}
+
+      {%- when 'product' -%}
+        {%- if bc_collections != blank -%}
+          {%- for c in bc_collections -%}
+            <li><a href="{{ c.url }}">{{ c.title }}</a></li>
+          {%- endfor -%}
+        {%- elsif collection -%}
+          <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+        {%- endif -%}
+        <li aria-current="page">{{ product.title }}</li>
+
+      {%- when 'collection' -%}
+        {%- if current_tags -%}
+          <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+          <li aria-current="page">{{ current_tags | join: ' + ' }}</li>
+        {%- else -%}
+          <li aria-current="page">{{ collection.title }}</li>
+        {%- endif -%}
+
+      {%- when 'list-collections' -%}
+        <li aria-current="page">Collections</li>
+
+      {%- when 'page' -%}
+        <li aria-current="page">{{ page.title }}</li>
+
+      {%- when 'blog' -%}
+        <li aria-current="page">{{ blog.title }}</li>
+
+      {%- when 'article' -%}
+        <li><a href="{{ blog.url }}">{{ blog.title }}</a></li>
+        <li aria-current="page">{{ article.title }}</li>
+
+      {%- when 'search' -%}
+        <li aria-current="page">Search</li>
+
+      {%- when 'cart' -%}
+        <li aria-current="page">Cart</li>
+
+      {%- else -%}
+        <li aria-current="page">{{ page_title }}</li>
+    {%- endcase -%}
+  </ol>
+</nav>
+
+{%- comment -%} Breadcrumb schema for Google (SEO) {%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+  {%- assign pos = 1 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": {{ section.settings.home_label | json }},
+          "item": {{ shop.url | json }}
+        },
+        {%- if bc_collections != blank -%}
+          {%- for c in bc_collections -%}
+            {%- assign pos = pos | plus: 1 -%}
+            {
+              "@type": "ListItem",
+              "position": {{ pos }},
+              "name": {{ c.title | json }},
+              "item": {{ shop.url | append: c.url | json }}
+            },
+          {%- endfor -%}
+        {%- elsif collection -%}
+          {%- assign pos = pos | plus: 1 -%}
+          {
+            "@type": "ListItem",
+            "position": {{ pos }},
+            "name": {{ collection.title | json }},
+            "item": {{ shop.url | append: collection.url | json }}
+          },
+        {%- endif -%}
+        {%- assign pos = pos | plus: 1 -%}
+        {
+          "@type": "ListItem",
+          "position": {{ pos }},
+          "name": {{ product.title | json }},
+          "item": {{ shop.url | append: product.url | json }}
+        }
+      ]
+    }
+  </script>
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Breadcrumb",
+  "tag": "section",
+  "class": "section-breadcrumb",
+  "settings": [
+    { "type": "text", "id": "home_label", "label": "Home label", "default": "Home" },
+    { "type": "text", "id": "separator", "label": "Separator", "default": "/" },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-start"
+    },
+    { "type": "range", "id": "font_size", "label": "Font size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14 },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#555555" },
+    { "type": "color", "id": "link_color", "label": "Link color", "default": "#111111" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 12 }
+  ],
+  "presets": [{ "name": "Breadcrumb" }]
+}
+{% endschema %}

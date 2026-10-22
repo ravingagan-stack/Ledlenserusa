@@ -1,0 +1,60 @@
+{%- comment -%}
+  Text-based payment methods list
+{%- endcomment -%}
+
+{%- unless shop.enabled_payment_types == empty -%}
+  <span class="payment-types-text">
+    {%- for type in shop.enabled_payment_types -%}
+      {%- liquid
+        case type
+          when 'shopify_pay'
+            assign label = 'Shop Pay'
+          when 'shop_pay'
+            assign label = 'Shop Pay'
+          when 'shop_pay_installments'
+            assign label = 'Shop Pay Installments'
+          when 'apple_pay'
+            assign label = 'Apple Pay'
+          when 'google_pay'
+            assign label = 'Google Pay'
+          when 'paypal'
+            assign label = 'PayPal'
+          when 'amazon_pay'
+            assign label = 'Amazon Pay'
+          when 'visa'
+            assign label = 'Visa'
+          when 'master'
+            assign label = 'Mastercard'
+          when 'mastercard'
+            assign label = 'Mastercard'
+          when 'american_express'
+            assign label = 'Amex'
+          when 'amex'
+            assign label = 'Amex'
+          when 'discover'
+            assign label = 'Discover'
+          when 'diners_club'
+            assign label = 'Diners Club'
+          when 'jcb'
+            assign label = 'JCB'
+          when 'unionpay'
+            assign label = 'UnionPay'
+          when 'elo'
+            assign label = 'Elo'
+          when 'maestro'
+            assign label = 'Maestro'
+          when 'meta'
+            assign label = 'Meta Pay'
+          when 'shopify_installments'
+            assign label = 'Shop Pay Installments'
+          else
+            assign label = type | replace: '_', ' ' | capitalize
+        endcase
+      -%}
+      {{- label -}}
+      {%- unless forloop.last -%}
+        <span class="payment-types-text__sep"> · </span>
+      {%- endunless -%}
+    {%- endfor -%}
+  </span>
+{%- endunless -%}

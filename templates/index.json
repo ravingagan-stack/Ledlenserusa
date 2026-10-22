@@ -1,0 +1,770 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_icons_row_XkUjJw": {
+      "type": "section-icons-row",
+      "blocks": {
+        "text_ARyBRr": {
+          "type": "text",
+          "settings": {
+            "icon_name": "none",
+            "title": "New customers get 15% off",
+            "text": "<p>on your first purchase</p>"
+          }
+        },
+        "text_QbMbcA": {
+          "type": "text",
+          "settings": {
+            "icon_name": "none",
+            "title": "Free shipping",
+            "text": "<p>on orders over $100</p>"
+          }
+        },
+        "text_iDKgwe": {
+          "type": "text",
+          "settings": {
+            "icon_name": "none",
+            "title": "ShopPay",
+            "text": "<p>Buy now, pay later</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_ARyBRr",
+        "text_QbMbcA",
+        "text_iDKgwe"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "alignment": "center",
+        "columns": 3,
+        "icons_width": 20,
+        "show_vertical_borders": true,
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "heading_size": 110,
+        "text_size": 90,
+        "color_scheme": "scheme-6",
+        "text_color": "#333333",
+        "box_color": "",
+        "color_border": "#333333",
+        "button_text": "",
+        "button_link": "",
+        "button_color": "btn--black",
+        "button_style": "btn--solid",
+        "button_size": "btn--small",
+        "layout_mobile": "grid",
+        "width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "shipping_progress_hNFBeY": {
+      "type": "shipping-progress",
+      "name": "Shipping Progress Bar",
+      "settings": {
+        "ship_msg": "Free US shipping on orders over $35.",
+        "shipping_text": "Ships in 1–2 business days"
+      }
+    },
+    "ledlenser_h21_r_hero_4yRMYh": {
+      "type": "Ledlenser-H21R-Hero",
+      "name": "Ledlenser H21R Hero",
+      "settings": {
+        "visual_type": "video",
+        "hero_video": "shopify://files/videos/9c82ed740a234d5d81e99beba3bc9b71.HD-1080p-7.2Mbps-95574164.mp4",
+        "media_alt": "Ledlenser H21R headlamp",
+        "show_media_label": true,
+        "visual_label": "H21R · Adaptive Lighting",
+        "show_media_caption": true,
+        "media_caption": "The Light Adjusts. You Don't.",
+        "eyebrow": "Introducing H21R",
+        "heading_line_1": "The Light Adjusts.",
+        "heading_line_2": "You Don't.",
+        "heading_line_3": "Adaptive Lighting.",
+        "description": "Meet the H21R. Experience advanced lighting technology designed to adapt to your surroundings, so you can focus on what matters.",
+        "button_1_text": "Explore H21R",
+        "button_1_link": "",
+        "show_button_2": false,
+        "button_2_text": "Discover Technology",
+        "button_2_link": "",
+        "finder_text": "",
+        "finder_link": "",
+        "show_proof_bar": true,
+        "proof_1_bold": "7-year warranty",
+        "proof_1_text": "no questions asked",
+        "proof_2_bold": "4.8 average",
+        "proof_2_text": "4,272 verified reviews",
+        "proof_3_bold": "Ships in 1–2 days ",
+        "proof_3_text": "from the US",
+        "proof_4_bold": "US-based experts",
+        "proof_4_text": "call or chat"
+      }
+    },
+    "as_seen_in_UFP4mJ": {
+      "type": "As-seen-in",
+      "name": "Press Mentions",
+      "settings": {
+        "publication_1": "Outdoor Life",
+        "text_1": "NEW | H21R Black Headlamp",
+        "link_1": "shopify://products/h21r-headlamp",
+        "publication_2": "Popular Mechanics",
+        "text_2": "P7R Flashlight",
+        "link_2": "shopify://products/p7r-flashlight",
+        "publication_3": "Wired",
+        "text_3": "H14R.2 Headlamp",
+        "link_3": "shopify://products/h14r-2-headlamp",
+        "publication_4": "Travel + Leisure",
+        "text_4": "NEW | H9R Black Headlamp",
+        "link_4": "shopify://products/h9r-pro-headlamp"
+      }
+    },
+    "shop_by_need_DpteeY": {
+      "type": "Shop-by-need",
+      "blocks": {
+        "need_TC7aiC": {
+          "type": "need",
+          "settings": {
+            "card_image": "shopify://shop_images/0085ea5b878810497eabd044adc9f98293e2398e.jpg",
+            "img_text": "",
+            "title": "Work & Jobsite",
+            "sub": "Hands-free, hard-hat ready",
+            "pick": "iH8R",
+            "card_link": "shopify://collections/work-lights"
+          }
+        },
+        "need_yrzfmQ": {
+          "type": "need",
+          "settings": {
+            "card_image": "shopify://shop_images/e1013eca1496166200270a0838385f842efabe39.jpg",
+            "img_text": "",
+            "title": "Hunting",
+            "sub": "Red & green light, long throw",
+            "pick": "HF8R Core RGB",
+            "card_link": "shopify://collections/hunting"
+          }
+        },
+        "need_4m3GMq": {
+          "type": "need",
+          "settings": {
+            "card_image": "shopify://shop_images/33c82b1c4b5bf6bae1b29b625b001770cafe4eef.jpg",
+            "img_text": "",
+            "title": "Camping & Trail",
+            "sub": "Light, long runtime",
+            "pick": "MH10",
+            "card_link": "shopify://collections/camping-1"
+          }
+        },
+        "need_VULWwV": {
+          "type": "need",
+          "settings": {
+            "card_image": "shopify://shop_images/9576d3e8a1179901eed8d48d940a1b038ab529e2.jpg",
+            "img_text": "",
+            "title": "Home & Car",
+            "sub": "Glovebox and drawer ready",
+            "pick": "Top pick: P5R →",
+            "card_link": "shopify://collections/hf-series"
+          }
+        },
+        "need_9xtaPh": {
+          "type": "need",
+          "settings": {
+            "card_image": "shopify://shop_images/6cdfc9e7c4a3e78c697597a3d74e518bcbcb3430.jpg",
+            "img_text": "",
+            "title": "Tactical & Duty",
+            "sub": "Instant on, built tough",
+            "pick": "TAC6R",
+            "card_link": "shopify://collections/tactical-flashlights"
+          }
+        },
+        "need_ciPVGh": {
+          "type": "need",
+          "settings": {
+            "card_image": "shopify://shop_images/d96dc850751458d2fe81ace529253948755c5252.jpg",
+            "img_text": "",
+            "title": "Gifts under $75",
+            "sub": "Pocket lights and kids",
+            "pick": "P4R",
+            "card_link": "shopify://collections/gift-cards"
+          }
+        }
+      },
+      "block_order": [
+        "need_TC7aiC",
+        "need_yrzfmQ",
+        "need_4m3GMq",
+        "need_VULWwV",
+        "need_9xtaPh",
+        "need_ciPVGh"
+      ],
+      "name": "Light Needs",
+      "settings": {
+        "heading": "What do you need light for?",
+        "quiz_text": "Take the Light Finder quiz →",
+        "quiz_link": "",
+        "pick_label": "Top pick:"
+      }
+    },
+    "new_launches_kxiQVV": {
+      "type": "new-launches",
+      "name": "New Launched",
+      "settings": {
+        "collection": "hf-series-headlamps",
+        "products_to_show": 4,
+        "preorder_text": "",
+        "new_text": "",
+        "default_status": "Pre-order",
+        "heading": "Just launched: new H & HF Series",
+        "view_all_text": "Shop HF-Series",
+        "view_all_link": "shopify://collections/hf-series-headlamps",
+        "bg_color": "#ffffff",
+        "card_bg": "#ffffff",
+        "img_bg": "#ededed",
+        "border_color": "#dadada",
+        "text_color": "#0a0a0a",
+        "muted_color": "#4a4a4a",
+        "accent_color": "#e30613",
+        "accent_dark": "#b8000f",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "ledlenser_hero_88XQab": {
+      "type": "Ledlenser-Hero",
+      "name": "Ledlenser Hero",
+      "settings": {
+        "eyebrow": "Engineered in Germany since 2000",
+        "heading_line_1": "Flood to spot.",
+        "heading_line_2": "One hand.",
+        "heading_line_3": "Zero guesswork.",
+        "description": "Rechargeable focusable flashlights and headlamps for the jobsite, the trail and the hunt — backed by a 7-year, no-questions-asked warranty.",
+        "button_1_text": "Shop Headlamps",
+        "button_1_link": "shopify://collections/h-series-headlamps",
+        "button_2_text": "Shop Flashlights",
+        "button_2_link": "shopify://collections/flashlights",
+        "finder_text": "Not sure which light? Find yours in 60 seconds →",
+        "finder_link": "",
+        "visual_label": "Advanced Focus System · P7R",
+        "flood_heading": "Flood",
+        "flood_description": "Wide, even light for close work",
+        "spot_heading": "Spot",
+        "spot_description": "Throws up to 1,050 ft (320 m)",
+        "step_1": "Flood",
+        "step_2": "One-hand slide",
+        "step_3": "Spot",
+        "proof_1_bold": "7-year warranty",
+        "proof_1_text": "no questions asked",
+        "proof_2_bold": "4.8 average",
+        "proof_2_text": "4,272 verified reviews",
+        "proof_3_bold": "Ships in 1–2 days",
+        "proof_3_text": "from the US",
+        "proof_4_bold": "US-based experts",
+        "proof_4_text": "call or chat"
+      }
+    },
+    "why_ledlenser_FPwQ3X": {
+      "type": "why-ledlenser",
+      "blocks": {
+        "feature_8nGfpM": {
+          "type": "feature",
+          "settings": {
+            "media_image": "shopify://shop_images/Background.png",
+            "number": "01",
+            "title": "ADVANCED FOCUS SYSTEM",
+            "description": "Slide from a wide flood for close work to a long-throw spot for the tree line — one light, every distance. Most flashlights are fixed-beam."
+          }
+        },
+        "feature_xTgkWw": {
+          "type": "feature",
+          "settings": {
+            "media_image": "shopify://shop_images/Background_be9626e6-d06a-4fe8-84cb-212e6b42c478.png",
+            "number": "02",
+            "title": "ONE RING. EVERY MODE.",
+            "description": "Twist to pick a mode, lock it for transport or open the USB-C port. No click-cycling through strobe in the dark."
+          }
+        },
+        "feature_8XJp7X": {
+          "type": "feature",
+          "settings": {
+            "media_image": "shopify://shop_images/Background_1.png",
+            "number": "03",
+            "title": "7 YEARS. NO QUESTIONS.",
+            "description": "If it fails, we fix or replace it. IP68-sealed, drop-tested and built to run up to 80 hours on low (P7R)."
+          }
+        }
+      },
+      "block_order": [
+        "feature_8nGfpM",
+        "feature_xTgkWw",
+        "feature_8XJp7X"
+      ],
+      "name": "Why Ledlenser",
+      "settings": {
+        "eyebrow": "WHY LEDLENSER",
+        "heading_line_1": "Lumens get you noticed.",
+        "heading_line_2": "Control gets the job done.",
+        "intro_description": "A bigger number on the box doesn't help if the beam is the wrong shape for the task. Here's what you're paying for."
+      }
+    },
+    "compare_tiers_Km464V": {
+      "type": "compare-tiers",
+      "blocks": {
+        "row_GxUnxC": {
+          "type": "row",
+          "settings": {
+            "label": "Best for",
+            "value_1": "All-round: home, car, camp",
+            "value_2": "Daily professional use",
+            "value_3": "Maximum output"
+          }
+        },
+        "row_ihYdYf": {
+          "type": "row",
+          "settings": {
+            "label": "Max output",
+            "value_1": "2,000 lumens",
+            "value_2": "2,000 lumens",
+            "value_3": "2,500 lumens"
+          }
+        },
+        "row_mtQaAJ": {
+          "type": "row",
+          "settings": {
+            "label": "Max beam",
+            "value_1": "1,050 ft (320 m)",
+            "value_2": "1,050 ft (320 m)",
+            "value_3": "1,115 ft (340 m)"
+          }
+        },
+        "row_EWqjXy": {
+          "type": "row",
+          "settings": {
+            "label": "Longest runtime",
+            "value_1": "Up to 80 hr",
+            "value_2": "Up to 60 hr",
+            "value_3": "Up to 80 hr"
+          }
+        },
+        "row_T4hyq7": {
+          "type": "row",
+          "settings": {
+            "label": "What it adds",
+            "value_1": "Advanced Focus System, Mode Select Ring, IP68",
+            "value_2": "Pro upgrade",
+            "value_3": "Signature upgrade"
+          }
+        },
+        "row_WeYP8f": {
+          "type": "row",
+          "settings": {
+            "label": "Warranty",
+            "value_1": "7 years, no questions",
+            "value_2": "7 years, no questions",
+            "value_3": "7 years, no questions"
+          }
+        }
+      },
+      "block_order": [
+        "row_GxUnxC",
+        "row_ihYdYf",
+        "row_mtQaAJ",
+        "row_EWqjXy",
+        "row_T4hyq7",
+        "row_WeYP8f"
+      ],
+      "name": "Compare tiers",
+      "settings": {
+        "heading": "P7R, Pro or Signature?",
+        "subheading": "Same legendary body. Here's exactly what each step up adds.",
+        "link_label": "Compare any 3 lights →",
+        "link_url": "shopify://collections/the-p-series-redefined",
+        "tier_1_tag": "Most popular",
+        "tier_1_name": "P7R",
+        "tier_1_price": "$109.95",
+        "tier_1_url": "shopify://products/p7r-flashlight",
+        "tier_2_tag": "",
+        "tier_2_name": "P7R Pro",
+        "tier_2_price": "$139.99",
+        "tier_2_url": "shopify://products/p7r-pro",
+        "tier_3_tag": "Most powerful",
+        "tier_3_name": "P7R Signature",
+        "tier_3_price": "$189.99",
+        "tier_3_url": "shopify://products/p7r-signature-flashlight",
+        "highlighted_tier": "1",
+        "button_prefix": "Shop",
+        "color_accent": "#e30613",
+        "color_highlight_bg": "#fdeeee",
+        "color_button_bg": "#0a0a0a",
+        "color_button_text": "#ffffff",
+        "color_muted": "#4a4a4a",
+        "color_border": "#dadada",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "reviews_aamXhd": {
+      "type": "reviews",
+      "blocks": {
+        "review_tCbBPE": {
+          "type": "review",
+          "settings": {
+            "quote": "This headlamp was perfect for a night hike and was comfortable.",
+            "name": "Allison",
+            "product": "MH10 Headlamp"
+          }
+        },
+        "review_t7DxMM": {
+          "type": "review",
+          "settings": {
+            "quote": "Fantastic Lamp with superb factory back up and customer service.",
+            "name": "Paul C",
+            "product": "P7R Flashlight"
+          }
+        },
+        "review_Grq7bw": {
+          "type": "review",
+          "settings": {
+            "quote": "Amazing lighting technology I love these lights. Bought 3 as gifts these past holidays",
+            "name": "Elliot T",
+            "product": "MH8 Outdoor Headlamp"
+          }
+        },
+        "review_F3NEYx": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "quote": "Ran it on low for three nights straight on a backpacking trip and still had charge left. Lightweight enough I forgot it was on my head.",
+            "name": "[First name, initial]",
+            "product": "P7R"
+          }
+        }
+      },
+      "block_order": [
+        "review_tCbBPE",
+        "review_t7DxMM",
+        "review_Grq7bw",
+        "review_F3NEYx"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "heading": "Trusted on the job and the trail",
+        "score": "4.8",
+        "score_max": "/ 5",
+        "count_text": "From [4,409] verified buyers",
+        "link_label": "Read all reviews →",
+        "link_url": "",
+        "verified_label": "Verified buyer",
+        "color_section_bg": "#f2f2f2",
+        "color_card_bg": "#ffffff",
+        "color_accent": "#e30613",
+        "color_text": "#0a0a0a",
+        "color_muted": "#4a4a4a",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "home_bundles_R9ppRd": {
+      "type": "home-bundles",
+      "blocks": {
+        "product_item_nGFeqL": {
+          "type": "product_item",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_item_hxEMnm": {
+          "type": "product_item",
+          "settings": {
+            "product": "h19r-core-headlamp-and-flex10-powerbank"
+          }
+        },
+        "product_item_zkHp4d": {
+          "type": "product_item",
+          "settings": {
+            "product": "h15r-core-headlamp-and-flex10-powerbank"
+          }
+        },
+        "product_item_fqLmzR": {
+          "type": "product_item",
+          "settings": {
+            "product": "mh10-headlamp-and-flex3-powerbank-1"
+          }
+        },
+        "product_item_QBL4T4": {
+          "type": "product_item",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_item_nGFeqL",
+        "product_item_hxEMnm",
+        "product_item_zkHp4d",
+        "product_item_fqLmzR",
+        "product_item_QBL4T4"
+      ],
+      "name": "Bundles & Kits",
+      "settings": {
+        "source_mode": "manual",
+        "collection": "all-items",
+        "products_to_show": 10,
+        "default_badge": "savw 22%",
+        "heading": "Kits that never run dry",
+        "subheading": "Headlamp + Flex powerbank. Charge in the field and save versus buying separately.",
+        "view_all_text": "Shop all bundles & kits",
+        "view_all_link": "shopify://collections",
+        "bg_color": "#ffffff",
+        "card_bg": "#ffffff",
+        "img_bg": "#efe6dc",
+        "border_color": "#dadada",
+        "text_color": "#0a0a0a",
+        "muted_color": "#4a4a4a",
+        "accent_color": "#e30613",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "light_finder_newsletter_dcwCqR": {
+      "type": "light-finder-newsletter",
+      "name": "Light Finder + Email",
+      "settings": {
+        "finder_heading": "Not sure which light?",
+        "finder_text": "Answer 4 quick questions about how you'll use it. We'll match you with the right beam, runtime and price.",
+        "finder_button_label": "Start the Light Finder",
+        "finder_button_url": "",
+        "join_heading": "Get 10% off your first light",
+        "join_text": "Plus launch alerts and gear guides. Unsubscribe anytime.",
+        "email_label": "Email address",
+        "email_placeholder": "you@example.com",
+        "submit_label": "Claim 10% off",
+        "success_message": "Thanks for subscribing! Check your inbox for your 10% off code.",
+        "error_message": "Please enter a valid email address.",
+        "color_section_bg": "#e30613",
+        "color_section_text": "#ffffff",
+        "color_finder_btn_bg": "#0a0a0a",
+        "color_finder_btn_text": "#ffffff",
+        "color_box_bg": "#ffffff",
+        "color_box_text": "#0a0a0a",
+        "color_muted": "#4a4a4a",
+        "color_submit_bg": "#e30613",
+        "color_submit_text": "#ffffff",
+        "color_success": "#1a7f37",
+        "color_error": "#e30613",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "warranty_buy_direct_njaFgm": {
+      "type": "warranty-buy-direct",
+      "blocks": {
+        "step_V87RAf": {
+          "type": "step",
+          "settings": {
+            "number": "1",
+            "title": "Register in 30 seconds",
+            "body": "Right here on ledlenserusa.com — no\ntrip to another site."
+          }
+        },
+        "step_dWhaea": {
+          "type": "step",
+          "settings": {
+            "number": "2",
+            "title": "Tell us what happened",
+            "body": "Call, chat or submit a claim. No\nquestions asked."
+          }
+        },
+        "step_CYaKYy": {
+          "type": "step",
+          "settings": {
+            "number": "3",
+            "title": "We repair or replace",
+            "body": "Handled by our US service team."
+          }
+        },
+        "benefit_c77Deb": {
+          "type": "benefit",
+          "settings": {
+            "text": "Guaranteed authentic, straight from Ledlenser"
+          }
+        },
+        "benefit_crwhbi": {
+          "type": "benefit",
+          "settings": {
+            "text": "Warranty auto-registered with your order"
+          }
+        },
+        "benefit_d8KYr7": {
+          "type": "benefit",
+          "settings": {
+            "text": "Laser engraving on select lights"
+          }
+        },
+        "benefit_aKqfx7": {
+          "type": "benefit",
+          "settings": {
+            "text": "Early access to new launches"
+          }
+        },
+        "benefit_wLKQ8H": {
+          "type": "benefit",
+          "settings": {
+            "text": "US experts by phone and live chat"
+          }
+        }
+      },
+      "block_order": [
+        "step_V87RAf",
+        "step_dWhaea",
+        "step_CYaKYy",
+        "benefit_c77Deb",
+        "benefit_crwhbi",
+        "benefit_d8KYr7",
+        "benefit_aKqfx7",
+        "benefit_wLKQ8H"
+      ],
+      "name": "Warranty + Buy Direct",
+      "settings": {
+        "heading": "The 7-year warranty, in 3 steps",
+        "description": "No receipts hunt, no interrogation. Just a working light.",
+        "link_text": "Register your light",
+        "link_url": "",
+        "card_heading": "Why buy direct",
+        "bg_color": "#ffffff",
+        "text_color": "#0a0a0a",
+        "muted_color": "#4a4a4a",
+        "accent_color": "#e30613",
+        "card_bg": "#0a0a0a",
+        "card_text": "#ffffff",
+        "check_color": "#ff3b4a",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "pro_team_mTiVaN": {
+      "type": "pro-team",
+      "blocks": {
+        "pro_offer_E8kth8": {
+          "type": "pro_offer",
+          "settings": {
+            "eyebrow": "Military · Law enforcement · Fire · EMS",
+            "heading": "Save [15]% on every order",
+            "description": "<p>Verify once in under a minute and your discount applies automatically at checkout — TAC-Series included.</p>",
+            "button_label": "Verify my service",
+            "button_link": ""
+          }
+        },
+        "pro_offer_frMJAr": {
+          "type": "pro_offer",
+          "settings": {
+            "eyebrow": "Trades · Fleets · Departments",
+            "heading": "Outfitting a team?",
+            "description": "<p>Volume pricing from 5 units, engraving with your crew or unit name, and one point of contact.</p>",
+            "button_label": "Get a team quote",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "pro_offer_E8kth8",
+        "pro_offer_frMJAr"
+      ],
+      "name": "Pro Team",
+      "settings": {
+        "container_width": 1200,
+        "card_gap": 12,
+        "card_padding": 18,
+        "mobile_card_padding": 20,
+        "heading_size": 24,
+        "mobile_heading_size": 26,
+        "body_size": 12,
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24,
+        "background_color": "#f2f2f2",
+        "card_background": "#ffffff",
+        "heading_color": "#0a0a0a",
+        "text_color": "#6a6258",
+        "accent_color": "#e30613",
+        "button_background": "#0a0a0a",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "best_sellers_iHcG7x": {
+      "type": "Best-sellers",
+      "name": "Best sellers",
+      "settings": {
+        "heading": "Best sellers",
+        "subheading": "Ranked by verified reviews. In stock and ready to ship.",
+        "link_label": "Shop all best sellers →",
+        "link_url": "",
+        "collection": "best-sellers",
+        "product_list": [
+          "mh10",
+          "h7-2r-headlamp",
+          "h7r-core",
+          "mt10-outdoor-series",
+          "af4r-work"
+        ],
+        "products_limit": 4,
+        "badge_metafield": "custom.badge",
+        "sale_badge": "Sale",
+        "default_badge": "",
+        "show_rating": true,
+        "reviews_label": "reviews",
+        "use_metafield": "custom.use_case",
+        "spec_1_label": "Max",
+        "spec_1_metafield": "custom.max_lumens",
+        "spec_2_label": "Beam",
+        "spec_2_metafield": "custom.beam_range",
+        "spec_3_label": "Runtime",
+        "spec_3_metafield": "custom.runtime_range",
+        "chip_metafield": "custom.chip",
+        "button_label": "Quick add",
+        "sold_out_label": "Sold out",
+        "details_label": "View details",
+        "color_button_bg": "#e30613",
+        "color_button_text": "#ffffff",
+        "color_badge_bg": "#0a0a0a",
+        "color_badge_text": "#ffffff",
+        "color_chip": "#0a0a0a",
+        "color_muted": "#4a4a4a",
+        "color_placeholder_text": "#6a6a6a",
+        "color_border": "#dadada",
+        "color_card_bg": "#ffffff",
+        "color_media_bg": "#ededed",
+        "color_spec_bg": "#f2f2f2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "section_icons_row_XkUjJw",
+    "shipping_progress_hNFBeY",
+    "ledlenser_h21_r_hero_4yRMYh",
+    "as_seen_in_UFP4mJ",
+    "shop_by_need_DpteeY",
+    "new_launches_kxiQVV",
+    "ledlenser_hero_88XQab",
+    "why_ledlenser_FPwQ3X",
+    "compare_tiers_Km464V",
+    "reviews_aamXhd",
+    "home_bundles_R9ppRd",
+    "light_finder_newsletter_dcwCqR",
+    "warranty_buy_direct_njaFgm",
+    "pro_team_mTiVaN",
+    "best_sellers_iHcG7x"
+  ]
+}

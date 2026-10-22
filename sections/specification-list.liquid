@@ -1,0 +1,340 @@
+<div class="custom-specs-wrapper">
+  
+  <!-- ================= LEFT COLUMN ================= -->
+  <div class="specs-column">
+    {% if section.settings.heading_left != blank %}
+      <h2 class="specs-heading">{{ section.settings.heading_left }}</h2>
+    {% endif %}
+    
+    {% if section.settings.subheading_left != blank %}
+      <p class="specs-subtitle">{{ section.settings.subheading_left }}</p>
+    {% endif %}
+
+    <div class="specs-list">
+      {% for block in section.blocks %}
+        {% if block.type == 'specification' %}
+          {% comment %} Check if metafield exists before rendering the row {% endcomment %}
+          {% assign spec_value = product.metafields.custom[block.settings.metafield_key] %}
+          
+          {% if spec_value != blank %}
+            <div class="spec-row" {{ block.shopify_attributes }}>
+              <span class="spec-label">{{ block.settings.label }}</span>
+              <span class="spec-value">{{ spec_value }}</span>
+            </div>
+            {% else %}
+                {% assign spec_value = block.settings.dynamic_source %} 
+                {% if spec_value != blank %}
+                    <div class="spec-row" {{ block.shopify_attributes }}>
+                        <span class="spec-label">{{ block.settings.label }}</span>
+                        <span class="spec-value">{{ spec_value }}</span>
+                    </div>
+                {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+{% if product.metafields.custom.user_guide != blank %}
+  {% assign file_url = product.metafields.custom.user_guide | file_url %}
+  {% assign file_url_clean = file_url | split: '?' | first %}
+  <div class="specs-download">
+    <a href="https:{{ file_url_clean }}?download=1"
+       class="tech-download-btn"
+       rel="noopener">
+      <span>{{ section.settings.download_text }}</span>
+    </a>
+  </div>
+{% endif %}
+  </div>
+
+  <!-- ================= RIGHT COLUMN ================= -->
+    {% assign box_items = product.metafields.custom.specification_box.value %}
+{%if box_items != blank %}
+  <div class="box-column">
+    {% if section.settings.heading_right != blank %}
+      <h2 class="specs-heading">{{ section.settings.heading_right }}</h2>
+    {% endif %}
+    
+    <div class="box-list">
+      
+        {% for item in box_items %}
+          <div class="box-item">
+            {{ item }}
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+</div>
+
+<style>
+  /* Main Wrapper: Uses Grid to force Left and Right layout */
+  .custom-specs-wrapper {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr; /* Left side is slightly wider (60% / 40%) */
+    gap: 40px; /* Space between left and right columns */
+    max-width: 1320px;
+    margin: 0 auto;
+    font-family: sans-serif;
+    color: #222;
+    align-items: start;
+    padding: 72px 24px;
+  }
+
+  .specs-heading {
+    margin: 0;
+    font-family: Barlow Condensed;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0.32px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color:#0A0A0A;
+  }
+
+  .specs-subtitle {
+    margin: 9px 0 28px;
+    font-family: Barlow;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 25.5px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #4A4A4A;
+  }
+
+  /* Left Column Table Styles */
+  .specs-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .spec-row {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+    border-bottom: 1px solid #DADADA;
+  }
+
+  .spec-label {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .specs-download {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  .specs-download a {
+    color: #222;
+    text-decoration: underline;
+  }
+
+  /* Right Column List Styles */
+  .box-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px; /* Aligns first box item with the first spec row */
+  }
+
+  .box-item {
+    padding: 12px 14px;
+    background: var(--color-grey-95, #F2F2F2);
+    font-family: Barlow;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 24px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #0A0A0A;
+  }
+span.spec-label {
+    width: 42%;
+    padding: 12px 10px;
+    font-family: Barlow;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 24px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #4A4A4A;
+}
+
+span.spec-value {
+    width: 55%;
+    padding: 12px 10px;
+    font-family: Barlow;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 24px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #0A0A0A;
+}
+
+.spec-row {
+    gap: 0;
+}
+
+.specs-download {
+    margin-top: 9px;
+}
+
+.specs-download p {
+    margin: 0;
+    font-family: Barlow;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 13px;
+    leading-trim: NONE;
+    line-height: 19.5px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-offset: 0%;
+    text-decoration-thickness: 1px;
+    text-decoration-skip-ink: auto;
+}
+  /* Mobile Responsive: Stack them on top of each other */
+  @media (max-width: 768px) {
+    .custom-specs-wrapper {
+      grid-template-columns: 1fr; /* 1 column on mobile */
+      gap: 40px;
+    }
+    
+    .spec-row {
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .spec-value {
+      text-align: left;
+      color: #555;
+    }
+    
+    .box-list {
+      margin-top: 0; /* Reset margin on mobile */
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Specification List",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Column (Specs)"
+    },
+    {
+      "type": "text",
+      "id": "heading_left",
+      "label": "Heading",
+    },
+    {
+      "type": "text",
+      "id": "subheading_left",
+      "label": "Sub-heading",
+    },
+    {
+      "type": "text",
+      "id": "download_text",
+      "label": "Download Text",
+    },
+    {
+      "type": "header",
+      "content": "Right Column (Box Contents)"
+    },
+    {
+      "type": "text",
+      "id": "heading_right",
+      "label": "Heading",
+      "default": "WHAT'S IN THE BOX"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "specification",
+      "name": "Specification Row (Left)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Max output"
+        },
+        {
+          "type": "text",
+          "id": "metafield_key",
+          "label": "Metafield Key (custom namespace)",
+          "info": "Enter the key only (e.g., 'max_output'). Do NOT include 'custom.'",
+          "default": "max_output"
+        },
+        {
+          "type": "text",
+          "id": "dynamic_source",
+          "label": "Dynamic Added Metafield Key",
+          "info": "Add Dynamic Source to it",
+        }
+      ]
+    },
+    {
+      "type": "box_item",
+      "name": "Box Item (Right)",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Specification List",
+    }
+  ]
+}
+{% endschema %}
+<script>
+  async function forceDownload(e, url) {
+    e.preventDefault();
+     e.stopPropagation();
+    url = url.trim();
+
+    try {
+      // Fetch the file as a Blob
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      // Get the filename from the URL
+      const fileName = url.split('/').pop().split('?')[0];
+
+      // Create a temporary link
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+
+      // Cleanup
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    } catch (err) {
+      console.error('Download failed:', err);
+      alert('Unable to download file.');
+    }
+  }
+
+  // Attach to dynamically added links
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('.tech-download-btn')) {
+      forceDownload(e, e.target.href);
+    }
+  });
+</script>

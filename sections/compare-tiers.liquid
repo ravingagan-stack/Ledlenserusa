@@ -1,0 +1,530 @@
+{%- liquid
+  assign section_uid = 'CompareTiers-' | append: section.id
+  assign active_col = section.settings.highlighted_tier | minus: 1
+-%}
+
+{%- style -%}
+    #{{ section_uid }} {
+    max-width: 1408px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+  }
+
+   .ct__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+   .ct__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 44px;
+    line-height: 1;
+    margin: 0;
+  }
+
+   .ct__link {
+    font-weight: 600;
+    font-size: 16px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+    line-height: 20px;
+    text-decoration: underline;
+    color: #0a0a0a;
+  }
+
+   .ct__subtitle {
+    margin: 0 0 8px;
+    color: {{ section.settings.color_muted }};
+    font-size: 16px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+        line-height:19px;
+  }
+
+   .ct__scroll {
+    overflow-x: auto;
+  }
+
+   .ct__grid {
+    display: grid;
+    grid-template-columns: 200px repeat(3, minmax(220px, 1fr));
+    min-width: 860px;
+    border-top: 1px solid {{ section.settings.color_border }};
+    padding-top:21px;
+  }
+
+   .ct__corner {
+    padding: 18px 16px;
+  }
+
+   .ct__head {
+    display: block;
+    width: 100%;
+    border-radius:0;
+    padding: 18px 16px;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-top: 3px solid transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+   .ct__tag {
+    display: block;
+    font-size: 12px;
+    line-height:14px;
+    font-family: Barlow;
+font-weight: 700;
+font-style: Bold;
+font-size: 12px;
+leading-trim: NONE;
+line-height: 100%;
+letter-spacing: 0.96px;
+vertical-align: middle;
+text-transform: uppercase;
+
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: {{ section.settings.color_accent }};
+    min-height: 16px;
+  }
+
+   .ct__name {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    text-transform: uppercase;
+    line-height:36px;
+  }
+
+   .ct__price {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height:26px;
+    margin-top: 2px;
+  }
+
+   .ct__label {
+    padding: 14px 16px;
+    border-top: 1px solid {{ section.settings.color_border }};
+    font-size: 13px;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+        line-height:16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: {{ section.settings.color_muted }};
+  }
+
+   .ct__cell {
+    padding: 14px 16px;
+    border-top: 1px solid {{ section.settings.color_border }};
+    font-size: 15px;
+    color:#0A0A0A;
+        font-family: Barlow, Helvetica Neue, sans-serif;
+        font-family: Barlow;
+font-weight: 600;
+font-style: SemiBold;
+font-size: 16px;
+leading-trim: NONE;
+line-height: 19px;
+letter-spacing: 0%;
+vertical-align: middle;
+
+  }
+
+   .ct__foot-spacer {
+    padding: 16px;
+  }
+
+   .ct__foot {
+    padding: 16px;
+  }
+
+   .ct__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    background: {{ section.settings.color_button_bg }};
+    color: {{ section.settings.color_button_text }};
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Highlighted column */
+   .ct__grid[data-active="0"] [data-col="0"],
+   .ct__grid[data-active="1"] [data-col="1"],
+   .ct__grid[data-active="2"] [data-col="2"] {
+    background: {{ section.settings.color_highlight_bg }};
+  }
+
+   .ct__head[aria-pressed="true"] {
+    border-top-color: {{ section.settings.color_accent }};
+  }
+
+  @media only screen and (max-width: 749px) {
+      #{{ section_uid }} {
+            padding: 50px 20px;
+      }
+      h2.ct__title {
+    font-size: 30px;
+}
+
+.ct__header {
+    margin-bottom: 14px;
+}
+.ct__grid {
+    display: grid;
+    grid-template-columns: 154px repeat(3, minmax(154px, 1fr));
+    min-width: 860px;
+    border-top: 1px solid #dadada;
+    padding-top: 21px;
+}
+.ct__label {
+    padding: 14px 10px;
+}
+span.ct__name {
+    font-size: 24px;
+    line-height: normal;
+}
+    }
+{%- endstyle -%}
+
+<section id="{{ section_uid }}" class="ct">
+  <div class="ct__header">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ct__title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.link_label != blank -%}
+      <a href="{{ section.settings.link_url | default: '#' }}" class="ct__link">{{ section.settings.link_label }}</a>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.subheading != blank -%}
+    <p class="ct__subtitle">{{ section.settings.subheading }}</p>
+  {%- endif -%}
+
+  <div class="ct__scroll">
+    <div class="ct__grid" data-active="{{ active_col }}">
+      <div class="ct__corner"></div>
+
+      {%- for i in (1..3) -%}
+        {%- liquid
+          assign col = i | minus: 1
+          assign tag_key = 'tier_' | append: i | append: '_tag'
+          assign name_key = 'tier_' | append: i | append: '_name'
+          assign price_key = 'tier_' | append: i | append: '_price'
+        -%}
+        <button
+          type="button"
+          class="ct__head"
+          data-col="{{ col }}"
+          aria-pressed="{% if col == active_col %}true{% else %}false{% endif %}"
+        >
+          <span class="ct__tag">{{ section.settings[tag_key] }}</span>
+          <span class="ct__name">{{ section.settings[name_key] }}</span>
+          <span class="ct__price">{{ section.settings[price_key] }}</span>
+        </button>
+      {%- endfor -%}
+
+      {%- for block in section.blocks -%}
+        <div class="ct__label" {{ block.shopify_attributes }}>{{ block.settings.label }}</div>
+        <div class="ct__cell" data-col="0">{{ block.settings.value_1 }}</div>
+        <div class="ct__cell" data-col="1">{{ block.settings.value_2 }}</div>
+        <div class="ct__cell" data-col="2">{{ block.settings.value_3 }}</div>
+      {%- endfor -%}
+
+      <div class="ct__foot-spacer"></div>
+
+      {%- for i in (1..3) -%}
+        {%- liquid
+          assign col = i | minus: 1
+          assign name_key = 'tier_' | append: i | append: '_name'
+          assign url_key = 'tier_' | append: i | append: '_url'
+          assign tier_url = section.settings[url_key] | default: '#'
+        -%}
+        <div class="ct__foot" data-col="{{ col }}">
+          <a href="{{ tier_url }}" class="ct__btn">{{ section.settings.button_prefix }}&nbsp;{{ section.settings[name_key] }}</a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var root = document.getElementById('{{ section_uid }}');
+    if (!root) return;
+    var grid = root.querySelector('.ct__grid');
+    var heads = root.querySelectorAll('.ct__head');
+
+    heads.forEach(function (head) {
+      head.addEventListener('click', function () {
+        var col = head.getAttribute('data-col');
+        grid.setAttribute('data-active', col);
+        heads.forEach(function (h) {
+          h.setAttribute('aria-pressed', h === head ? 'true' : 'false');
+        });
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Compare tiers",
+  "tag": "div",
+  "class": "section-compare-tiers",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "P7R, Pro or Signature?"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Same legendary body. Here's exactly what each step up adds."
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Compare any 3 lights →"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Tier 1"
+    },
+    {
+      "type": "text",
+      "id": "tier_1_tag",
+      "label": "Tag",
+      "default": "Most popular"
+    },
+    {
+      "type": "text",
+      "id": "tier_1_name",
+      "label": "Name",
+      "default": "P7R"
+    },
+    {
+      "type": "text",
+      "id": "tier_1_price",
+      "label": "Price",
+      "default": "$139.95"
+    },
+    {
+      "type": "url",
+      "id": "tier_1_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tier 2"
+    },
+    {
+      "type": "text",
+      "id": "tier_2_tag",
+      "label": "Tag"
+    },
+    {
+      "type": "text",
+      "id": "tier_2_name",
+      "label": "Name",
+      "default": "P7R Pro"
+    },
+    {
+      "type": "text",
+      "id": "tier_2_price",
+      "label": "Price",
+      "default": "$159.95"
+    },
+    {
+      "type": "url",
+      "id": "tier_2_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tier 3"
+    },
+    {
+      "type": "text",
+      "id": "tier_3_tag",
+      "label": "Tag",
+      "default": "Most powerful"
+    },
+    {
+      "type": "text",
+      "id": "tier_3_name",
+      "label": "Name",
+      "default": "P7R Signature"
+    },
+    {
+      "type": "text",
+      "id": "tier_3_price",
+      "label": "Price",
+      "default": "$200.00"
+    },
+    {
+      "type": "url",
+      "id": "tier_3_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Table"
+    },
+    {
+      "type": "select",
+      "id": "highlighted_tier",
+      "label": "Highlighted tier on load",
+      "options": [
+        { "value": "1", "label": "Tier 1" },
+        { "value": "2", "label": "Tier 2" },
+        { "value": "3", "label": "Tier 3" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "text",
+      "id": "button_prefix",
+      "label": "Button text prefix",
+      "default": "Shop"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_accent",
+      "label": "Tag and highlight accent",
+      "default": "#E30613"
+    },
+    {
+      "type": "color",
+      "id": "color_highlight_bg",
+      "label": "Highlighted column background",
+      "default": "#FDEEEE"
+    },
+    {
+      "type": "color",
+      "id": "color_button_bg",
+      "label": "Button background",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "color_button_text",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_muted",
+      "label": "Secondary text",
+      "default": "#4A4A4A"
+    },
+    {
+      "type": "color",
+      "id": "color_border",
+      "label": "Border",
+      "default": "#DADADA"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Feature"
+        },
+        {
+          "type": "text",
+          "id": "value_1",
+          "label": "Tier 1 value"
+        },
+        {
+          "type": "text",
+          "id": "value_2",
+          "label": "Tier 2 value"
+        },
+        {
+          "type": "text",
+          "id": "value_3",
+          "label": "Tier 3 value"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Compare tiers",
+      "blocks": [
+        {"type": "row", "settings": {"label": "Best for", "value_1": "All-round: home, car, camp", "value_2": "Daily professional use", "value_3": "Maximum output"}},
+        {"type": "row", "settings": {"label": "Max output", "value_1": "2,000 lumens", "value_2": "2,000 lumens", "value_3": "2,500 lumens"}},
+        {"type": "row", "settings": {"label": "Max beam", "value_1": "1,050 ft (320 m)", "value_2": "1,050 ft (320 m)", "value_3": "1,115 ft (340 m)"}},
+        {"type": "row", "settings": {"label": "Longest runtime", "value_1": "Up to 80 hr", "value_2": "Up to 60 hr", "value_3": "Up to 80 hr"}},
+        {"type": "row", "settings": {"label": "What it adds", "value_1": "Advanced Focus System, Mode Select Ring, IP68", "value_2": "[Pro upgrade – confirm with product team]", "value_3": "[Signature upgrade – confirm with product team]"}},
+        {"type": "row", "settings": {"label": "Warranty", "value_1": "7 years, no questions", "value_2": "7 years, no questions", "value_3": "7 years, no questions"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

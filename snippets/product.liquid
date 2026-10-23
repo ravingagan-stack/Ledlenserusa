@@ -405,6 +405,7 @@
         {%- assign animation_order = animation_order | plus: 1 -%}
       {% endif %}
     >
+      <div class="pro--ner-con">
       <div class="product-gallery__media-slider{% if product.media.size == 1 %} product-gallery__media-slider--single{% elsif media_slider_static %} product-gallery__media-slider--static{% endif %}" data-product-single-media-slider>
         {%- if product.media.size > 0 -%}
           {%- comment -%} Show Featured media first {%- endcomment -%}
@@ -504,6 +505,7 @@
 
         <script src="{{ 'zoom.js' | asset_url }}" defer="defer"></script>
       {%- endif -%}
+    </div>
     </div>
   {%- else -%}
     {%- comment -%} Onboarding product media {%- endcomment -%}
@@ -1260,6 +1262,18 @@
                   hide_inventory_count: block.settings.hide_inventory_count
                 -%}
               </div>
+              {%- when 'model_selector' -%}
+                {%- capture animation_attributes -%}
+                  {%- if animations_enabled -%}
+                    data-aos="hero" data-aos-anchor="{{ animation_anchor }}" data-aos-order="{{ animation_order }}"
+                    {%- assign animation_order = animation_order | plus: 1 -%}
+                  {%- endif -%}
+                {%- endcapture -%}
+                {%- render 'product-model-selector',
+                  product: product,
+                  block: block,
+                  animation_attributes: animation_attributes
+                -%}
               {%- when 'spectifications' -%}
               <div class="product__specs">
                 {%- assign spec_labels = 'Max output|Beam distance|Longest runtime|Waterproof' | split: '|' -%}
@@ -2038,7 +2052,7 @@ color:#0A0A0A;
     margin-bottom: 22px;
 }
 .product__specs .bs-card__spec {
-    background: #F2F2F2;
+    background: #Fff;
     padding: 12px 10px;
     display: flex;
     flex-direction: column;

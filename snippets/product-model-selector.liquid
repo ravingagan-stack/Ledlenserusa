@@ -1,0 +1,164 @@
+{%- comment -%}
+  Model selector ("Choose your model") for the main product section.
+  Models come from product.metafields.custom.compare_models (Product, list).
+  Each model card reads that product's own metafields:
+    custom.model_name       Single line text (falls back to product title)
+    custom.model_highlight  Single line text, e.g. "2,000 lm · up to 80 hr"
+    custom.best_for         Single line text, e.g. "Home, car, camping and everyday carry"
+
+  Accepts:
+  - product: {Object} Current product (required)
+  - block: {Object} Section block (required)
+  - animation_attributes: {String} Optional
+{%- endcomment -%}
+
+{%- liquid
+  assign models = product.metafields.custom.compare_models.value
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+
+{%- if models != blank and models.size > 1 -%}
+  {%- style -%}
+    .mdl {
+      --mdl-bg: {{ block.settings.color_bg }};
+      --mdl-text: {{ block.settings.color_text }};
+      --mdl-muted: {{ block.settings.color_muted }};
+      --mdl-line: {{ block.settings.color_border }};
+      --mdl-accent: {{ block.settings.color_accent }};
+      --mdl-tint: {{ block.settings.color_tint }};
+      font-family: Barlow, Helvetica Neue, sans-serif;
+      color: var(--mdl-text);
+    }
+    .mdl__label {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 10px;
+      font-weight: 700;
+      font-size: 15px;
+      color:#0a0a0a;
+    }
+    .mdl__label span {
+    font-weight: 800;
+}
+    .mdl__label a {
+      font-weight: 600;
+      font-size: 14px;
+      color: #0a0a0a;
+      text-decoration: underline;
+    }
+    .mdl__label a:hover { color: var(--mdl-accent); }
+    .mdl__grid {
+      display: grid;
+      grid-template-columns: repeat({{ models.size | at_most: 4 }}, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .mdl__card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px;
+      border: 2px solid var(--mdl-line);
+      background: var(--mdl-bg);
+      color: var(--mdl-text);
+      text-decoration: none;
+      text-align: left;
+    }
+    .mdl__card:hover { border-color: var(--mdl-muted); color: var(--mdl-text); }
+    .mdl__card[aria-current="true"] {
+      border-color: var(--mdl-accent);
+      background: var(--mdl-tint);
+    }
+    .mdl__card:focus-visible { outline: 3px solid var(--mdl-accent); outline-offset: 2px; }
+    .mdl__img {
+      aspect-ratio: 4 / 3;
+      margin-bottom: 4px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .mdl__img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .mdl__name {
+      font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .mdl__price { font-weight: 700; font-size: 15px; }
+    .mdl__price s { margin-left: 4px; font-weight: 400; font-size: 13px; color: var(--mdl-muted); }
+    .mdl__desc { font-size: 13px; line-height: 1.3; color: var(--mdl-muted); }
+    .mdl__note {     margin: 8px 0 24px;
+    font-size: 14px;
+    color: #0a0a0a;}
+    .mdl__note b { color: #0a0a0a; }
+    @media (max-width: 600px) {
+      .mdl__grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        /* margin: 0 -16px; */
+        padding: 0 16px 4px;
+        scrollbar-width:none;
+      }
+      .mdl__card { flex: 0 0 46%; scroll-snap-align: start; }
+    }
+  {%- endstyle -%}
+
+  <div
+    class="product__block mdl"
+    style="--PBB: {{ block.settings.padding_bottom }}px;"
+    {{ animation_attributes }}
+    {{ block.shopify_attributes }}
+  >
+    <div class="mdl__label" id="ModelLabel-{{ block.id }}">
+      <span>{{ block.settings.label }}</span>
+      {%- if block.settings.link_label != blank -%}
+        <a href="{{ block.settings.link_url | default: '#upgrade' }}">{{ block.settings.link_label }}</a>
+      {%- endif -%}
+    </div>
+
+    <nav class="mdl__grid" aria-labelledby="ModelLabel-{{ block.id }}">
+      {%- for model in models -%}
+        {%- liquid
+          assign m_variant = model.selected_or_first_available_variant
+          assign m_name = model.metafields.custom.model_name.value | default: model.title
+          assign is_current = false
+          if model.id == product.id
+            assign is_current = true
+          endif
+        -%}
+        <a
+          class="mdl__card"
+          href="{{ model.url }}"
+          {% if is_current %}aria-current="true"{% endif %}
+        >
+          <span class="mdl__img">
+            {%- if model.featured_media -%}
+              {{ model.featured_media.preview_image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200, 300, 400', sizes: '(max-width: 600px) 46vw, 180px', alt: m_name }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag }}
+            {%- endif -%}
+          </span>
+          <span class="mdl__name">{{ m_name }}</span>
+          <span class="mdl__price">
+            {{- m_variant.price | money -}}
+            {%- if m_variant.compare_at_price > m_variant.price -%}
+              <s>{{ m_variant.compare_at_price | money }}</s>
+            {%- endif -%}
+          </span>
+          {%- if model.metafields.custom.model_highlight != blank -%}
+            <span class="mdl__desc">{{ model.metafields.custom.model_highlight.value }}</span>
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    </nav>
+
+    <p class="mdl__note">
+      Selected: <b>{{ product.title }}</b>, {{ current_variant.price | money }}.
+      {%- if product.metafields.custom.best_for != blank %}
+        Best for {{ product.metafields.custom.best_for.value | downcase }}.
+      {%- endif -%}
+    </p>
+  </div>
+{%- endif -%}

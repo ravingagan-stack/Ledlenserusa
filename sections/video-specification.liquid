@@ -1,0 +1,387 @@
+{%- comment -%}
+  Video specification ("See the focus in action")
+  Data priority: product metafields (namespace "custom") -> section settings / blocks.
+
+  Product metafields used:
+    custom.focus_heading      Single line text
+    custom.focus_description  Multi-line text
+    custom.focus_video        File (Videos)
+    custom.focus_video_poster File (Images)
+    custom.focus_steps_title  Single line text (List of values)
+    custom.focus_steps_text   Multi-line text (List of values) - matched to titles by position
+{%- endcomment -%}
+
+{%- liquid
+  assign section_uid = 'VideoSpec-' | append: section.id
+  assign mf = product.metafields.custom
+
+  assign heading = mf.focus_heading.value | default: section.settings.heading
+  if mf.focus_description != blank
+    assign description = mf.focus_description.value | escape | newline_to_br
+  else
+    assign description = section.settings.description
+  endif
+
+  assign poster = mf.focus_video_poster.value | default: section.settings.video_poster
+
+  assign mf_video = mf.focus_video.value
+  if mf_video.media_type != 'video'
+    assign mf_video = nil
+  endif
+
+  assign mf_step_titles = mf.focus_steps_title.value
+  assign mf_step_texts = mf.focus_steps_text.value
+  assign has_mf_steps = false
+  if mf_step_titles != blank and mf_step_titles.size > 0
+    assign has_mf_steps = true
+  endif
+
+  assign show_section = false
+  if has_mf_steps or section.blocks.size > 0
+    assign show_section = true
+  elsif mf_video or section.settings.video != blank or section.settings.video_url != blank or poster != blank
+    assign show_section = true
+  endif
+-%}
+
+{%- if show_section -%}
+{%- style -%}
+
+.shopify-section.section-video-spec{
+    background: #0a0a0a;
+}
+  #{{ section_uid }} {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 70px 24px 70px;
+    background: #0a0a0a;
+  }
+
+  #{{ section_uid }} .vs__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 44px;
+    line-height: 1;
+    margin: 0 0 12px;
+    color: #fff;
+  }
+
+  #{{ section_uid }} .vs__desc {
+    max-width: 620px;
+    margin: 0 0 32px;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #C8C8C8;
+  }
+
+  #{{ section_uid }} .vs__desc p { margin: 0; }
+
+  #{{ section_uid }} .vs__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  #{{ section_uid }} .vs__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: {{ section.settings.color_box }};
+    overflow: hidden;
+  }
+
+  #{{ section_uid }} .vs__media video,
+  #{{ section_uid }} .vs__media iframe,
+  #{{ section_uid }} .vs__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+  }
+
+  #{{ section_uid }} .video-empty {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    text-align: center;
+    color: #fff;
+  }
+
+  #{{ section_uid }} .video-empty__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 26px;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  #{{ section_uid }} .video-empty__text {
+    max-width: 720px;
+    margin: 0;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    font-size: 15px;
+    line-height: 24px;
+    color: #c9c9c9;
+  }
+
+  #{{ section_uid }} .video-empty__btn {
+    display: inline-block;
+    padding: 14px 24px;
+    background: {{ section.settings.color_accent }};
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: .02em;
+    text-decoration: none;
+  }
+
+  #{{ section_uid }} .vs__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  #{{ section_uid }} .vs__step {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 12px;
+  }
+
+  #{{ section_uid }} .vs__num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 1;
+    color: {{ section.settings.color_number }};
+  }
+
+  #{{ section_uid }} .vs__step-title {
+    margin: 0 0 4px;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+  }
+
+  #{{ section_uid }} .vs__step-text {
+    margin: 0;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    font-size: 15px;
+    line-height: 24px;
+    color: #C8C8C8  ;
+  }
+
+  @media (max-width: 989px) {
+    #{{ section_uid }} .vs__grid { grid-template-columns: 1fr; }
+    #{{ section_uid }} .vs__steps { padding-left: 0; }
+  }
+
+  @media (max-width: 749px) {
+    #{{ section_uid }} { padding-left: 16px; padding-right: 16px; }
+    #{{ section_uid }} .vs__title { font-size: 32px; }
+    #{{ section_uid }} .vs__media { aspect-ratio: 4 / 3; }
+    #{{ section_uid }} .video-empty__title { font-size: 22px; }
+    #{{ section_uid }} .video-empty__text { font-size: 14px; line-height: 21px; }
+  }
+{%- endstyle -%}
+
+<section id="{{ section_uid }}" class="video-spec">
+  {%- if heading != blank -%}
+    <h2 class="vs__title">{{ heading }}</h2>
+  {%- endif -%}
+  {%- if description != blank -%}
+    <div class="vs__desc">{{ description }}</div>
+  {%- endif -%}
+
+  <div class="vs__grid">
+    <div class="vs__media">
+      {%- if mf_video -%}
+        {{ mf_video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: section.settings.show_controls, preload: 'metadata', image_size: '1600x' }}
+      {%- elsif section.settings.video != blank -%}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: section.settings.show_controls, preload: 'metadata', image_size: '1600x' }}
+      {%- elsif section.settings.video_url != blank -%}
+        {%- if section.settings.video_url.type == 'youtube' -%}
+          <iframe
+            src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url.id }}&playsinline=1&rel=0"
+            title="{{ heading | escape }}"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        {%- else -%}
+          <iframe
+            src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1&muted=1&loop=1&background=1"
+            title="{{ heading | escape }}"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        {%- endif -%}
+      {%- elsif poster != blank -%}
+        {{ poster | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1600', alt: heading }}
+      {%- else -%}
+        <div class="video-empty">
+          {%- if section.settings.empty_title != blank -%}
+            <h3 class="video-empty__title">{{ section.settings.empty_title }}</h3>
+          {%- endif -%}
+          {%- if section.settings.empty_text != blank -%}
+            <p class="video-empty__text">{{ section.settings.empty_text }}</p>
+          {%- endif -%}
+          {%- if section.settings.empty_button_label != blank -%}
+            <a class="video-empty__btn" href="{{ section.settings.empty_button_link | default: '#' }}">
+              {{- section.settings.empty_button_label -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <ol class="vs__steps">
+      {%- if has_mf_steps -%}
+        {%- for step_title in mf_step_titles -%}
+          {%- assign step_text = mf_step_texts[forloop.index0] -%}
+          <li class="vs__step">
+            <span class="vs__num">{{ forloop.index }}</span>
+            <div>
+              {%- if step_title != blank -%}
+                <h3 class="vs__step-title">{{ step_title }}</h3>
+              {%- endif -%}
+              {%- if step_text != blank -%}
+                <p class="vs__step-text">{{ step_text | escape | newline_to_br }}</p>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          <li class="vs__step" {{ block.shopify_attributes }}>
+            <span class="vs__num">{{ forloop.index }}</span>
+            <div>
+              {%- if block.settings.title != blank -%}
+                <h3 class="vs__step-title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <p class="vs__step-text">{{ block.settings.text }}</p>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ol>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Video specification",
+  "tag": "div",
+  "class": "section-video-spec",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Product metafields (custom.focus_*) override these settings and the step blocks when they have a value."
+    },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See the focus in action" },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>One light, two jobs. Slide the head back for a wide flood around your feet, push it forward to throw a tight spot down the trail.</p>"
+    },
+    { "type": "header", "content": "Video" },
+    { "type": "video", "id": "video", "label": "Video (Shopify hosted)" },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Or YouTube / Vimeo URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    { "type": "image_picker", "id": "video_poster", "label": "Fallback image", "info": "Shown when there is no video." },
+    { "type": "checkbox", "id": "show_controls", "label": "Show video controls", "default": false },
+    { "type": "header", "content": "Empty video box" },
+    { "type": "text", "id": "empty_title", "label": "Title", "default": "Flood-to-spot video" },
+    {
+      "type": "textarea",
+      "id": "empty_text",
+      "label": "Text",
+      "default": "Add your 10–15 second clip here. Until then, the interactive demo in the gallery shows the effect."
+    },
+    { "type": "text", "id": "empty_button_label", "label": "Button label", "default": "Try the focus demo" },
+    {
+      "type": "text",
+      "id": "empty_button_link",
+      "label": "Button link",
+      "info": "URL or anchor, e.g. #product-gallery",
+      "default": "#"
+    },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_bg", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#0a0a0a" },
+    { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#555555" },
+    { "type": "color", "id": "color_number", "label": "Step numbers", "default": "#ff3b4a" },
+    { "type": "color", "id": "color_accent", "label": "Button", "default": "#e30613" },
+    { "type": "color", "id": "color_box", "label": "Video box", "default": "#161616" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Step title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video specification",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Pull back for flood",
+            "text": "Wide, even light for close work, reading a map or working under a hood."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Push forward for spot",
+            "text": "A concentrated beam that reaches up to 1,050 ft on the P7R."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Twist to change mode",
+            "text": "The Mode Select Ring picks your brightness, locks the light for transport and opens the USB-C port."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

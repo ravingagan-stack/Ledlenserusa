@@ -1203,7 +1203,7 @@ shopify-payment-terms::part(installments-content) span{
 }
 .product-single product-form.product__block.product__form__wrapper span.radio__button.sold-out label{
     text-decoration: none !important;
-    background: #f6f5f2 !important;
+    background: #fff !important;
     border:2px solid #2424241A !important;
     color: #adadad !important;
     padding:12px;
@@ -2071,4 +2071,52 @@ html .breadcrumb.page-width {
 .collection__wrapper .wrapper--full-padded .collection__inner {
     width: 100% !important;
 }
+}
+.shopify-section.section-breadcrumb {
+    background-color: #f2f2f2;
+}
+
+.shopify-section--product {
+      background-color: #f2f2f2;
+}
+.section-padding.product-single {
+      background-color: #f2f2f2;
+}
+
+
+div#App--template--22168094441550__1792656446d9a3100d {
+    background-color: #f2f2f2;
+}
+span.product__price--regular {
+    font-family: Barlow Condensed;
+    font-weight: 800;
+    font-style: ExtraBold;
+    font-size: 40px;
+    leading-trim: NONE;
+    line-height: 60px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #0a0a0a;
+    margin: 0 0px 0 0 !important;
+}
+.product-single .product__price-wrapper {
+    flex-direction: column;
+}
+@media only screen and (max-width: 749px) {
+    span.product__price--regular {
+    font-family: Barlow Condensed;
+    font-weight: 800;
+    font-style: ExtraBold;
+    font-size: 28px;
+    leading-trim: NONE;
+    line-height: 40px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #0a0a0a;
+    margin: 0 0px 0 0 !important;
+}
+}
+.pro--ner-con {
+    position: sticky;
+    top: 0;
 }

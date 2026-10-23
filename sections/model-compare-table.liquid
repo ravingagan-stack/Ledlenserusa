@@ -1,0 +1,256 @@
+{%- comment -%}
+  Model comparison table with "Show differences only" toggle.
+  Models: product.metafields.custom.compare_models (Product, list). Current product column is highlighted.
+
+  Per-model metafields (on each model product):
+    custom.model_name      Single line text (falls back to product title)
+    custom.compare_specs   Single line text (List). One row per line as "Label: Value",
+                           e.g. "Max output (Boost): 2,000 lm". Rows are matched across models by label.
+  The Price row is added automatically from each product's price.
+{%- endcomment -%}
+
+{%- liquid
+  assign section_uid = 'ModelCompare-' | append: section.id
+  assign models = product.metafields.custom.compare_models.value
+
+  comment
+    Collect every spec label across all models, in order, without duplicates.
+  endcomment
+  assign labels_str = '|'
+  for model in models
+    for spec in model.metafields.custom.compare_specs.value
+      assign raw_label = spec | split: ':' | first
+      assign label = raw_label | strip
+      assign label_key = '|' | append: label | append: '|'
+      if label != blank
+        unless labels_str contains label_key
+          assign labels_str = labels_str | append: label | append: '|'
+        endunless
+      endif
+    endfor
+  endfor
+  assign labels = labels_str | remove_first: '|' | split: '|'
+-%}
+
+{%- if models != blank and models.size > 1 -%}
+{%- style -%}
+  #{{ section_uid }} {
+    --cmp-bg: #f2f2f2;
+    --cmp-text: {{ section.settings.color_text }};
+    --cmp-muted: {{ section.settings.color_muted }};
+    --cmp-line: {{ section.settings.color_border }};
+    --cmp-accent: {{ section.settings.color_accent }};
+    --cmp-tint: {{ section.settings.color_tint }};
+    background: var(--cmp-bg);
+    color: var(--cmp-text);
+    font-family: Barlow, Helvetica Neue, sans-serif;
+  }
+  #{{ section_uid }} .cmp__wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+  }
+  #{{ section_uid }} .cmp__title {
+    margin: 0 0 20px;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--cmp-text);
+  }
+  #{{ section_uid }} .cmp__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
+    color:#0a0a0a;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  #{{ section_uid }} .cmp__toggle input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--cmp-accent);
+  }
+  #{{ section_uid }} .cmp__scroll { overflow-x: auto; }
+  #{{ section_uid }} .cmp {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 15px;
+    background: var(--cmp-bg);
+  }
+  .cmp__scroll th {
+    border-color: #dadada;
+}
+.cmp__scroll td {
+    border-color: #dadada;
+}
+  #{{ section_uid }} .cmp th,
+  #{{ section_uid }} .cmp td {
+    padding: 11px 10px;
+    border-bottom: 1px solid #dadada;
+    text-align: left;
+    vertical-align: top;
+    color: #0a0a0a;
+  }
+  #{{ section_uid }} .cmp thead th {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  #{{ section_uid }} .cmp thead th a { color: inherit; text-decoration: none; }
+  #{{ section_uid }} .cmp thead th a:hover { color: var(--cmp-accent); }
+  #{{ section_uid }} .cmp tbody th { font-weight: 600; color:#494949; }
+  #{{ section_uid }} .cmp .is-on { background: #fff1f2; }
+  #{{ section_uid }} .cmp tr.diff td { font-weight: 700; }
+  #{{ section_uid }}.diff-only .cmp tr.same { display: none; }
+  #{{ section_uid }} .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  @media (max-width: 600px) {
+    #{{ section_uid }} .cmp__wrap { padding-left: 16px; padding-right: 16px; }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ section_uid }}"
+  class="model-compare{% if section.settings.diff_default %} diff-only{% endif %}"
+>
+  <div class="cmp__wrap">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="cmp__title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <label class="cmp__toggle">
+      <input
+        type="checkbox"
+        {% if section.settings.diff_default %}checked{% endif %}
+        onchange="document.getElementById('{{ section_uid }}').classList.toggle('diff-only', this.checked)"
+      >
+      {{ section.settings.toggle_label }}
+    </label>
+
+    <div class="cmp__scroll">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr">Spec</span></th>
+            {%- for model in models -%}
+              {%- assign m_name = model.metafields.custom.model_name.value | default: model.title -%}
+              <th scope="col" class="{% if model.id == product.id %}is-on{% endif %}">
+                {%- if model.id == product.id -%}
+                  {{ m_name }}
+                {%- else -%}
+                  <a href="{{ model.url }}">{{ m_name }}</a>
+                {%- endif -%}
+              </th>
+            {%- endfor -%}
+          </tr>
+        </thead>
+        <tbody>
+          {%- if section.settings.show_price -%}
+            {%- liquid
+              assign first_val = nil
+              assign all_same = true
+              capture cells
+                for model in models
+                  assign val = model.selected_or_first_available_variant.price | money
+                  if forloop.first
+                    assign first_val = val
+                  elsif val != first_val
+                    assign all_same = false
+                  endif
+                  if model.id == product.id
+                    echo '<td class="is-on">' | append: val | append: '</td>'
+                  else
+                    echo '<td>' | append: val | append: '</td>'
+                  endif
+                endfor
+              endcapture
+            -%}
+            <tr class="{% if all_same %}same{% else %}diff{% endif %}">
+              <th scope="row">{{ section.settings.price_label }}</th>
+              {{- cells -}}
+            </tr>
+          {%- endif -%}
+
+          {%- for label in labels -%}
+            {%- liquid
+              assign first_val = nil
+              assign all_same = true
+              capture cells
+                for model in models
+                  assign val = section.settings.empty_value
+                  for spec in model.metafields.custom.compare_specs.value
+                    assign raw_label = spec | split: ':' | first
+                    assign spec_label = raw_label | strip
+                    if spec_label == label
+                      assign val = spec | remove_first: raw_label | remove_first: ':' | strip
+                      break
+                    endif
+                  endfor
+                  if forloop.first
+                    assign first_val = val
+                  elsif val != first_val
+                    assign all_same = false
+                  endif
+                  assign val = val | escape
+                  if model.id == product.id
+                    echo '<td class="is-on">' | append: val | append: '</td>'
+                  else
+                    echo '<td>' | append: val | append: '</td>'
+                  endif
+                endfor
+              endcapture
+            -%}
+            <tr class="{% if all_same %}same{% else %}diff{% endif %}">
+              <th scope="row">{{ label | escape }}</th>
+              {{- cells -}}
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Model comparison table",
+  "tag": "div",
+  "class": "section-model-compare",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Rows come from each model's custom.compare_specs metafield (\"Label: Value\" per line). Hidden when custom.compare_models has fewer than 2 products."
+    },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "toggle_label", "label": "Toggle label", "default": "Show differences only" },
+    { "type": "checkbox", "id": "diff_default", "label": "Show differences only by default", "default": true },
+    { "type": "checkbox", "id": "show_price", "label": "Add price row", "default": true },
+    { "type": "text", "id": "price_label", "label": "Price row label", "default": "Price" },
+    { "type": "text", "id": "empty_value", "label": "Value when a model has no data", "default": "—" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_bg", "label": "Background", "default": "#121214" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#f2f2f2" },
+    { "type": "color", "id": "color_muted", "label": "Row labels", "default": "#b5b5b5" },
+    { "type": "color", "id": "color_border", "label": "Lines", "default": "#333338" },
+    { "type": "color", "id": "color_accent", "label": "Checkbox", "default": "#e30613" },
+    { "type": "color", "id": "color_tint", "label": "Selected column", "default": "#2a1215" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "presets": [{ "name": "Model comparison table" }]
+}
+{% endschema %}

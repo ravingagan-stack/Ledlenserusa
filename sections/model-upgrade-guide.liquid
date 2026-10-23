@@ -1,0 +1,276 @@
+{%- comment -%}
+  Model upgrade guide ("P7R, Pro or Signature?") - one card per model.
+  Models: product.metafields.custom.compare_models (Product, list). Current product = "Selected".
+
+  Current product metafields (override section settings):
+    custom.upgrade_heading      Single line text
+    custom.upgrade_description  Multi-line text
+
+  Per-model metafields (on each model product):
+    custom.model_name      Single line text (falls back to product title)
+    custom.best_for        Single line text
+    custom.upgrade_label   Single line text, e.g. "The best value" (empty = auto "+$50.00 vs P7R")
+    custom.upgrade_points  Single line text (List). Start each line with "+" (gain), "=" (same) or "-" (trade-off)
+{%- endcomment -%}
+
+{%- liquid
+  assign section_uid = 'ModelUpgrade-' | append: section.id
+  assign models = product.metafields.custom.compare_models.value
+  assign mf = product.metafields.custom
+
+  assign heading = mf.upgrade_heading.value | default: section.settings.heading
+  if mf.upgrade_description != blank
+    assign description = mf.upgrade_description.value | escape | newline_to_br
+  else
+    assign description = section.settings.description
+  endif
+
+  assign base_model = models.first
+  assign base_price = base_model.selected_or_first_available_variant.price
+  assign base_name = base_model.metafields.custom.model_name.value | default: base_model.title
+-%}
+
+{%- if models != blank and models.size > 1 -%}
+{%- style -%}
+  #{{ section_uid }} {
+    --up-bg: #f2f2f2;
+    --up-text: {{ section.settings.color_text }};
+    --up-muted: {{ section.settings.color_muted }};
+    --up-line: {{ section.settings.color_border }};
+    --up-accent: {{ section.settings.color_accent }};
+    --up-accent-text: {{ section.settings.color_accent_text }};
+    --up-good: {{ section.settings.color_good }};
+    background: var(--up-bg);
+    color: var(--up-text);
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    scroll-margin-top: 80px;
+  }
+  #{{ section_uid }} .up__wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+  }
+  #{{ section_uid }} .up__title {
+    margin: 0 0 12px;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    color:#0a0a0a;
+  }
+  #{{ section_uid }} .up__desc {
+    max-width: 620px;
+    margin: 0 0 28px;
+    font-size: 16px;
+    line-height: 1.6;
+color: #4a4a4a;
+  }
+  #{{ section_uid }} .up__desc p { margin: 0; }
+  #{{ section_uid }} .up__grid {
+    display: grid;
+    grid-template-columns: repeat({{ models.size | at_most: 4 }}, minmax(0, 1fr));
+    gap: 16px;
+  }
+  #{{ section_uid }} .up {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    border: 2px solid var(--up-line);
+    background: var(--up-bg);
+  }
+  #{{ section_uid }} .up.is-on { border-color: var(--up-accent); }
+  #{{ section_uid }} .up__name {
+    margin: 0;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #0a0a0a;
+  }
+  #{{ section_uid }} .up__price {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+      color: #0a0a0a;
+  }
+  #{{ section_uid }} .up__price s {
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+   color: #0a0a0a;
+  }
+  #{{ section_uid }} .up__delta { font-size: 14px; font-weight: 700; color: #4a4a4a; }
+  #{{ section_uid }} .up__for { font-size: 15px; color: #4a4a4a; }
+  #{{ section_uid }} .up__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  #{{ section_uid }} .up__list li { display: grid; grid-template-columns: 20px 1fr; gap: 6px;  color: #0a0a0a;}
+  #{{ section_uid }} .up__list li::before { font-weight: 800; }
+  #{{ section_uid }} .up__list li.gain::before { content: "+"; color: var(--up-good); }
+  #{{ section_uid }} .up__list li.same::before { content: "="; color: var(--up-muted); }
+  #{{ section_uid }} .up__list li.trade::before { content: "–"; color: var(--up-accent-text); }
+  #{{ section_uid }} .up__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    margin-top: auto;
+    padding: 0 24px;
+    border: 0;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #{{ section_uid }} .up__btn--red { background: {{ section.settings.color_accent }}; color: #fff; }
+  #{{ section_uid }} .up__btn--red:hover { background: #b8000f; color: #fff; }
+  #{{ section_uid }} .up__btn--line {
+    background:#0a0a0a;
+    border: 2px solid var(--up-text);
+    color: var(--up-text);
+    border-radius:0;
+    opacity: .45;
+    cursor: not-allowed;
+  }
+  @media (max-width: 960px) {
+    #{{ section_uid }} .up__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    #{{ section_uid }} .up__wrap { padding-left: 16px; padding-right: 16px; }
+    #{{ section_uid }} .up__title { font-size: 32px; }
+  }
+{%- endstyle -%}
+
+<section id="{{ section.settings.anchor_id | default: section_uid }}" class="model-upgrade">
+  <div id="{{ section_uid }}">
+    <div class="up__wrap">
+      {%- if heading != blank -%}
+        <h2 class="up__title">{{ heading }}</h2>
+      {%- endif -%}
+      {%- if description != blank -%}
+        <div class="up__desc">{{ description }}</div>
+      {%- endif -%}
+
+      <div class="up__grid">
+        {%- for model in models -%}
+          {%- liquid
+            assign m_mf = model.metafields.custom
+            assign m_variant = model.selected_or_first_available_variant
+            assign m_name = m_mf.model_name.value | default: model.title
+            assign is_current = false
+            if model.id == product.id
+              assign is_current = true
+            endif
+
+            assign delta = m_mf.upgrade_label.value
+            if delta == blank and forloop.first == false
+              assign diff = m_variant.price | minus: base_price
+              assign diff_money = diff | abs | money
+              if diff > 0
+                assign delta = '+' | append: diff_money | append: ' vs ' | append: base_name
+              elsif diff < 0
+                assign delta = '-' | append: diff_money | append: ' vs ' | append: base_name
+              endif
+            endif
+          -%}
+          <article class="up{% if is_current %} is-on{% endif %}">
+            <h3 class="up__name">{{ m_name }}</h3>
+            <span class="up__price">
+              {{- m_variant.price | money -}}
+              {%- if m_variant.compare_at_price > m_variant.price %}
+                <s>{{ m_variant.compare_at_price | money }}</s>
+              {%- endif -%}
+            </span>
+            {%- if delta != blank -%}
+              <span class="up__delta">{{ delta }}</span>
+            {%- endif -%}
+            {%- if m_mf.best_for != blank -%}
+              <span class="up__for">Best for {{ m_mf.best_for.value | downcase }}</span>
+            {%- endif -%}
+
+            {%- assign points = m_mf.upgrade_points.value -%}
+            {%- if points != blank -%}
+              <ul class="up__list">
+                {%- for point in points -%}
+                  {%- liquid
+                    assign p_text = point | strip
+                    assign p_first = p_text | slice: 0
+                    assign p_type = 'gain'
+                    case p_first
+                      when '+'
+                        assign p_text = p_text | remove_first: '+' | strip
+                      when '='
+                        assign p_type = 'same'
+                        assign p_text = p_text | remove_first: '=' | strip
+                      when '-', '–'
+                        assign p_type = 'trade'
+                        assign p_text = p_text | remove_first: p_first | strip
+                    endcase
+                  -%}
+                  <li class="{{ p_type }}"><span>{{ p_text }}</span></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+            {%- if is_current -%}
+              <button class="up__btn up__btn--line" type="button" disabled>{{ section.settings.selected_label }}</button>
+            {%- else -%}
+              <a class="up__btn up__btn--red" href="{{ model.url }}">{{ section.settings.choose_label }} {{ m_name }}</a>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Model upgrade guide",
+  "tag": "div",
+  "class": "section-model-upgrade",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the products in the custom.compare_models metafield. Hidden when the metafield has fewer than 2 products."
+    },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "P7R, Pro or Signature?", "info": "Overridden by custom.upgrade_heading" },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "info": "Overridden by custom.upgrade_description",
+      "default": "<p>All three share the same focus system, Mode Select Ring, 21700 battery, 3-hour USB-C charge, IP68 sealing and 2 m (6.6 ft) drop rating. Here's exactly what changes.</p>"
+    },
+    { "type": "text", "id": "choose_label", "label": "Button prefix", "default": "Choose" },
+    { "type": "text", "id": "selected_label", "label": "Selected label", "default": "Selected" },
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "upgrade", "info": "Used by the model selector's link, e.g. #upgrade" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_bg", "label": "Background", "default": "#121214" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#f2f2f2" },
+    { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#b5b5b5" },
+    { "type": "color", "id": "color_border", "label": "Border", "default": "#333338" },
+    { "type": "color", "id": "color_accent", "label": "Accent (selected border, button)", "default": "#e30613" },
+    { "type": "color", "id": "color_accent_text", "label": "Accent text (price difference, trade-offs)", "default": "#ff7a84" },
+    { "type": "color", "id": "color_good", "label": "Gain icon", "default": "#6fd39a" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 28 }
+  ],
+  "presets": [{ "name": "Model upgrade guide" }]
+}
+{% endschema %}

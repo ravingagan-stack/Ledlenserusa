@@ -177,6 +177,29 @@
       "type": "@app"
     },
     {
+      "type": "model_selector",
+      "name": "Model selector",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Shows the products in the custom.compare_models metafield. Hidden when the metafield has fewer than 2 products."
+        },
+        { "type": "text", "id": "label", "label": "Label", "default": "Choose your model" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "What's the difference?" },
+        { "type": "text", "id": "link_url", "label": "Link URL", "info": "Anchor of the upgrade guide section", "default": "#upgrade" },
+        { "type": "header", "content": "Colors" },
+        { "type": "color", "id": "color_bg", "label": "Card background", "default": "#121214" },
+        { "type": "color", "id": "color_text", "label": "Text", "default": "#f2f2f2" },
+        { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#b5b5b5" },
+        { "type": "color", "id": "color_border", "label": "Border", "default": "#333338" },
+        { "type": "color", "id": "color_accent", "label": "Selected border", "default": "#e30613" },
+        { "type": "color", "id": "color_tint", "label": "Selected background", "default": "#2a1215" },
+        { "type": "header", "content": "Block spacing" },
+        { "type": "range", "id": "padding_bottom", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding bottom", "default": 20 }
+      ]
+    },
+    {
       "type":"spectifications",
       "name":"Specifications",
       "limit":1,

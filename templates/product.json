@@ -124,6 +124,21 @@
             "padding_bottom": 20
           }
         },
+        "model_selector_RfKjJc": {
+          "type": "model_selector",
+          "settings": {
+            "label": "Choose your model",
+            "link_label": "What's the difference?",
+            "link_url": "#upgrade",
+            "color_bg": "#121214",
+            "color_text": "#f2f2f2",
+            "color_muted": "#b5b5b5",
+            "color_border": "#333338",
+            "color_accent": "#e30613",
+            "color_tint": "#2a1215",
+            "padding_bottom": 20
+          }
+        },
         "form": {
           "type": "form",
           "settings": {
@@ -331,6 +346,7 @@
         "divider_tKQ6nA",
         "icon_zCBf3k",
         "icon_xjYgQg",
+        "model_selector_RfKjJc",
         "form",
         "timer_NUAphU",
         "fit_guide_kMrhyr",
@@ -395,12 +411,75 @@
         "feature_dbXfp7",
         "feature_mM9qfr"
       ],
+      "disabled": true,
       "name": "Why Ledlenser",
       "settings": {
         "eyebrow": "",
         "heading_line_1": "More than a lumen number",
         "heading_line_2": "",
         "intro_description": "Brightness gets you noticed. Control is what gets the job done. Here's what you\npay for with the P7R."
+      }
+    },
+    "video_specification_4VfGr7": {
+      "type": "video-specification",
+      "name": "Video specification",
+      "settings": {
+        "heading": "",
+        "description": "",
+        "video_url": "",
+        "show_controls": false,
+        "empty_title": "",
+        "empty_text": "Add your 10–15 second clip here. Until then, the interactive demo in the gallery shows the effect.",
+        "empty_button_label": "",
+        "empty_button_link": "",
+        "color_bg": "#ffffff",
+        "color_text": "#0a0a0a",
+        "color_muted": "#555555",
+        "color_number": "#ff3b4a",
+        "color_accent": "#e30613",
+        "color_box": "#161616",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "model_upgrade_guide_kA3QfP": {
+      "type": "model-upgrade-guide",
+      "name": "Model upgrade guide",
+      "settings": {
+        "heading": "P7R, Pro or Signature?",
+        "description": "<p>All three share the same focus system, Mode Select Ring, 21700 battery, 3-hour USB-C charge, IP68 sealing and 2 m (6.6 ft) drop rating. Here's exactly what changes.</p>",
+        "choose_label": "Choose",
+        "selected_label": "Selected",
+        "anchor_id": "upgrade",
+        "color_bg": "#121214",
+        "color_text": "#f2f2f2",
+        "color_muted": "#b5b5b5",
+        "color_border": "#333338",
+        "color_accent": "#e30613",
+        "color_accent_text": "#ff7a84",
+        "color_good": "#6fd39a",
+        "padding_top": 56,
+        "padding_bottom": 28
+      }
+    },
+    "model_compare_table_jABGAQ": {
+      "type": "model-compare-table",
+      "name": "Model comparison table",
+      "settings": {
+        "heading": "",
+        "toggle_label": "Show differences only",
+        "diff_default": true,
+        "show_price": true,
+        "price_label": "Price",
+        "empty_value": "—",
+        "color_bg": "#121214",
+        "color_text": "#f2f2f2",
+        "color_muted": "#b5b5b5",
+        "color_border": "#333338",
+        "color_accent": "#e30613",
+        "color_tint": "#2a1215",
+        "padding_top": 0,
+        "padding_bottom": 56
       }
     },
     "specification_list_GAzDEz": {
@@ -472,11 +551,12 @@
         "specification_eRCyqG",
         "specification_rb9KY8"
       ],
+      "disabled": true,
       "name": "Specification List",
       "settings": {
         "heading_left": "SPECIFICATIONS",
         "subheading_left": "Measured to the ANSI/PLATO FL1 standard.",
-        "download_text": "<p><a href=\"https://cdn.shopify.com/s/files/1/0273/4987/6814/files/HF7R_Pro_Product_Datasheet_EN.pdf?v=1788927153\" title=\"https://cdn.shopify.com/s/files/1/0273/4987/6814/files/HF7R_Pro_Product_Datasheet_EN.pdf?v=1788927153\"><span style=\"text-decoration:underline\">Download the user guide (PDF)</span></a></p>",
+        "download_text": "Download the user guide (PDF)",
         "heading_right": "WHAT'S IN THE BOX"
       }
     },
@@ -851,6 +931,7 @@
         "row_PKEmXj",
         "row_MQymzA"
       ],
+      "disabled": true,
       "name": "Compare tiers",
       "settings": {
         "heading": "P7R, Pro or Signature?",
@@ -879,6 +960,29 @@
         "color_border": "#dadada",
         "padding_top": 80,
         "padding_bottom": 80
+      }
+    },
+    "product_specifications_6fgG6f": {
+      "type": "product-specifications",
+      "name": "Product specifications",
+      "settings": {
+        "heading": "Specifications:",
+        "description": "<p>Measured to the ANSI/PLATO FL 1 standard. Boost is a short burst and can be repeated.</p>",
+        "anchor_id": "specs",
+        "modes_heading": "Output by mode",
+        "mode_columns": "Mode|Output|Beam|Runtime",
+        "build_heading": "Build and power",
+        "show_sku": true,
+        "sku_label": "SKU",
+        "guide_label": "Quick start guide (PDF)",
+        "empty_value": "—",
+        "color_bg": "#1b1b1e",
+        "color_text": "#f2f2f2",
+        "color_muted": "#b5b5b5",
+        "color_border": "#333338",
+        "color_link_hover": "#e30613",
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
     "1792656446d9a3100d": {
@@ -978,6 +1082,9 @@
     "custom_breadcrumb_fYj9nF",
     "main",
     "why_ledlenser_mHenhq",
+    "video_specification_4VfGr7",
+    "model_upgrade_guide_kA3QfP",
+    "model_compare_table_jABGAQ",
     "specification_list_GAzDEz",
     "166716198631433af0",
     "section_testimonials_abpgFU",
@@ -985,6 +1092,7 @@
     "related",
     "section_icons_row_cKEWpK",
     "compare_tiers_gj8VNf",
+    "product_specifications_6fgG6f",
     "1792656446d9a3100d",
     "section_accordions_with_images_yi8jVm"
   ]

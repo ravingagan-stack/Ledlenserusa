@@ -1,0 +1,260 @@
+{%- comment -%}
+  Product specifications ("Specifications: P7R Pro") - output by mode + build and power.
+  All data from the current product's metafields (namespace "custom"):
+    custom.model_name            Single line text (heading name, falls back to product title)
+    custom.specs_description     Multi-line text (falls back to section setting)
+    custom.specs_modes           Single line text (List). One row per line, columns split by "|":
+                                 "Boost | 2,000 lm | 1,050 ft (320 m) | Short burst"
+    custom.specs_modes_note      Single line text, e.g. "Extra functions: Blink, Strobe, SOS and Position light."
+    custom.specs_build           Single line text (List). One row per line as "Label: Value",
+                                 e.g. "Battery: 21700 Li-ion, 4,600 mAh, 16.56 Wh (replaceable)"
+    custom.specs_guide           File (any file), e.g. the quick start guide PDF
+    custom.specs_guide_label     Single line text, e.g. "P7R quick start guide (PDF)"
+{%- endcomment -%}
+
+{%- liquid
+  assign section_uid = 'ProductSpecs-' | append: section.id
+  assign mf = product.metafields.custom
+  assign current_variant = product.selected_or_first_available_variant
+
+  assign model_name = mf.model_name.value | default: product.title
+  if mf.specs_description != blank
+    assign description = mf.specs_description.value | escape | newline_to_br
+  else
+    assign description = section.settings.description
+  endif
+
+  assign modes = mf.specs_modes.value
+  assign build = mf.specs_build.value
+  assign mode_headers = section.settings.mode_columns | split: '|'
+
+  assign show_sku = false
+  if section.settings.show_sku and current_variant.sku != blank
+    assign show_sku = true
+  endif
+
+  assign guide_url = mf.specs_guide.value.url
+  assign guide_label = mf.specs_guide_label.value | default: section.settings.guide_label
+-%}
+
+{%- if modes != blank or build != blank -%}
+{%- style -%}
+  #{{ section_uid }} {
+    --sp-bg: {{ section.settings.color_bg }};
+    --sp-text: {{ section.settings.color_text }};
+    --sp-muted: {{ section.settings.color_muted }};
+    --sp-line: {{ section.settings.color_border }};
+    background: #fff;
+    color: var(--sp-text);
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    scroll-margin-top: 80px;
+  }
+  #{{ section_uid }} .sp__wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+  }
+  #{{ section_uid }} .sp__title,
+  #{{ section_uid }} .sp__sub {
+    margin: 0;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+  }
+  #{{ section_uid }} .sp__title { font-size: 44px; margin-bottom: 10px; }
+  #{{ section_uid }} .sp__sub { font-size: 24px; margin-bottom: 10px; }
+  #{{ section_uid }} .sp__desc {
+    max-width: 62ch;
+    margin: 0 0 28px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #4a4a4a;
+  }
+  #{{ section_uid }} .sp__desc p { margin: 0; }
+  #{{ section_uid }} .sp__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 40px;
+  }
+  #{{ section_uid }} .sp__grid > * { min-width: 0; }
+  #{{ section_uid }} .sp__scroll { overflow-x: auto; }
+  #{{ section_uid }} table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  #{{ section_uid }} th,
+  #{{ section_uid }} td {
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--sp-line);
+    text-align: left;
+    vertical-align: top;
+    color: #0a0a0a;
+  }
+  #{{ section_uid }} thead th {
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  #{{ section_uid }} tbody th { font-weight: 600; color: #0a0a0a; }
+  #{{ section_uid }} .sp__modes { min-width: 480px; }
+  #{{ section_uid }} .sp__modes td,
+  #{{ section_uid }} .sp__modes th { text-align: center; }
+  #{{ section_uid }} .sp__modes th:first-child,
+  #{{ section_uid }} .sp__modes td:first-child { text-align: left; }
+  #{{ section_uid }} .sp__build tbody th { width: 40%; }
+  #{{ section_uid }} .sp__note {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: #0a0a0a;
+  }
+  #{{ section_uid }} .sp__note a { color: #0a0a0a; text-decoration: underline; }
+  #{{ section_uid }} .sp__note a:hover { color: {{ section.settings.color_link_hover }}; }
+  @media (max-width: 900px) {
+    #{{ section_uid }} .sp__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    #{{ section_uid }} .sp__wrap { padding-left: 16px; padding-right: 16px; }
+    #{{ section_uid }} .sp__title { font-size: 34px; }
+  }
+{%- endstyle -%}
+
+<section
+  id="{{ section.settings.anchor_id | default: section_uid }}"
+  aria-labelledby="{{ section_uid }}-title"
+>
+  <div id="{{ section_uid }}">
+    <div class="sp__wrap">
+      <h2 class="sp__title" id="{{ section_uid }}-title">
+        {%- if section.settings.heading != blank -%}{{ section.settings.heading }} {% endif -%}
+        {{- model_name -}}
+      </h2>
+      {%- if description != blank -%}
+        <div class="sp__desc">{{ description }}</div>
+      {%- endif -%}
+
+      <div class="sp__grid">
+        {%- if modes != blank -%}
+          <div>
+            {%- if section.settings.modes_heading != blank -%}
+              <h3 class="sp__sub">{{ section.settings.modes_heading }}</h3>
+            {%- endif -%}
+            <div class="sp__scroll">
+              <table class="sp__modes">
+                <thead>
+                  <tr>
+                    {%- for col in mode_headers -%}
+                      <th scope="col">{{ col | strip }}</th>
+                    {%- endfor -%}
+                  </tr>
+                </thead>
+                <tbody>
+                  {%- for row in modes -%}
+                    {%- assign cells = row | split: '|' -%}
+                    <tr>
+                      {%- for col in mode_headers -%}
+                        {%- assign cell = cells[forloop.index0] | strip | default: section.settings.empty_value -%}
+                        {%- if forloop.first -%}
+                          <th scope="row">{{ cell | escape }}</th>
+                        {%- else -%}
+                          <td>{{ cell | escape }}</td>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </tr>
+                  {%- endfor -%}
+                </tbody>
+              </table>
+            </div>
+            {%- if mf.specs_modes_note != blank -%}
+              <p class="sp__note">{{ mf.specs_modes_note.value }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if build != blank or show_sku -%}
+          <div>
+            {%- if section.settings.build_heading != blank -%}
+              <h3 class="sp__sub">{{ section.settings.build_heading }}</h3>
+            {%- endif -%}
+            <table class="sp__build">
+              <tbody>
+                {%- if show_sku -%}
+                  <tr>
+                    <th scope="row">{{ section.settings.sku_label }}</th>
+                    <td>{{ current_variant.sku }}</td>
+                  </tr>
+                {%- endif -%}
+                {%- for spec in build -%}
+                  {%- liquid
+                    assign raw_label = spec | split: ':' | first
+                    assign spec_label = raw_label | strip
+                    assign spec_value = spec | remove_first: raw_label | remove_first: ':' | strip
+                  -%}
+                  {%- if spec_label != blank -%}
+                    <tr>
+                      <th scope="row">{{ spec_label | escape }}</th>
+                      <td>{{ spec_value | default: section.settings.empty_value | escape }}</td>
+                    </tr>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tbody>
+            </table>
+            {%- if guide_url != blank -%}
+              <p class="sp__note">
+                <a href="{{ guide_url }}" target="_blank" rel="noopener">{{ guide_label }}</a>
+              </p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product specifications",
+  "tag": "div",
+  "class": "section-product-specs",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Data comes from the product's custom.specs_* metafields. Hidden when custom.specs_modes and custom.specs_build are both empty."
+    },
+    { "type": "text", "id": "heading", "label": "Heading prefix", "default": "Specifications:", "info": "Followed by custom.model_name or the product title" },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "info": "Overridden by custom.specs_description",
+      "default": "<p>Measured to the ANSI/PLATO FL 1 standard. Boost is a short burst and can be repeated.</p>"
+    },
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "specs" },
+    { "type": "header", "content": "Output by mode" },
+    { "type": "text", "id": "modes_heading", "label": "Heading", "default": "Output by mode" },
+    { "type": "text", "id": "mode_columns", "label": "Columns", "default": "Mode|Output|Beam|Runtime", "info": "Split by \"|\". Must match the column order in custom.specs_modes." },
+    { "type": "header", "content": "Build and power" },
+    { "type": "text", "id": "build_heading", "label": "Heading", "default": "Build and power" },
+    { "type": "checkbox", "id": "show_sku", "label": "Add SKU row from the variant", "default": true },
+    { "type": "text", "id": "sku_label", "label": "SKU label", "default": "SKU" },
+    { "type": "text", "id": "guide_label", "label": "Guide link label", "default": "Quick start guide (PDF)", "info": "Overridden by custom.specs_guide_label" },
+    { "type": "text", "id": "empty_value", "label": "Value when a cell is empty", "default": "—" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_bg", "label": "Background", "default": "#1b1b1e" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#f2f2f2" },
+    { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#b5b5b5" },
+    { "type": "color", "id": "color_border", "label": "Lines", "default": "#333338" },
+    { "type": "color", "id": "color_link_hover", "label": "Link hover", "default": "#e30613" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [{ "name": "Product specifications" }]
+}
+{% endschema %}

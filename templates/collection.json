@@ -198,7 +198,7 @@
       "settings": {
         "show_breadcrumbs": false,
         "products_per_page": 24,
-        "pagination_type": "theme",
+        "pagination_type": "infinite",
         "enable_sorting": true,
         "enable_filters": true,
         "filters_layout": "open",

@@ -42,13 +42,19 @@
   assign columns_tablet = columns | at_most: 3
   assign enable_sorting = section.settings.enable_sorting
   assign enable_infinity_scroll = settings.enable_infinity_scroll
+  case section.settings.pagination_type
+    when 'pagination'
+      assign enable_infinity_scroll = false
+    when 'infinite'
+      assign enable_infinity_scroll = true
+  endcase
   assign pagination_limit = section.settings.products_per_page
   assign show_breadcrumbs = section.settings.show_breadcrumbs
   assign color_scheme = 'color-' | append: section.settings.color_scheme
   assign selected_color_scheme = section.settings.color_scheme | strip
   assign scheme_bg_color = settings.color_schemes[selected_color_scheme].settings.section_bg
   assign scheme_bg_gradient = settings.color_schemes[selected_color_scheme].settings.section_bg_gradient
-  assign products_count = 'products.general.products_with_count' | t: count: collection.products_count
+  assign products_count = collection.products_count | append: ' ' | append: collection.title
 
   assign scheme_bg_color_brightness = scheme_bg_color | color_brightness | round
   if scheme_bg_color_brightness < 153
@@ -86,6 +92,8 @@
 -%}
 
 {%- render 'stylesheet', name: 'template-collection.css', async: true -%}
+{{ 'component-bs-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-ll-filters.css' | asset_url | stylesheet_tag }}
 
 {%- if enable_infinity_scroll -%}
   <script src="{{ 'ajaxinate.js' | asset_url }}" defer="defer"></script>
@@ -134,6 +142,7 @@
     <div class="wrapper--full-padded">
       <div class="collection__inner">
         {%- if show_breadcrumbs or enable_filters or enable_sorting -%}
+          {%- if collection_count > 0 -%}
           <div
             id="CollectionStickyBar"
             class="collection__sticky-bar"
@@ -167,6 +176,7 @@
               </button>
             {%- endif -%}
           </div>
+          {%- endif -%}
 
           {%- if enable_filters or enable_sorting -%}
             {%- render 'collection-filters',
@@ -226,6 +236,18 @@
       "max": 24,
       "step": 1,
       "default": 24
+    },
+    {
+      "type": "select",
+      "id": "pagination_type",
+      "label": "Product loading",
+      "info": "Choose how more products load when there are more than one page.",
+      "options": [
+        {"label": "Use theme setting", "value": "theme"},
+        {"label": "Pagination (page numbers)", "value": "pagination"},
+        {"label": "Infinite scroll", "value": "infinite"}
+      ],
+      "default": "theme"
     },
     {
       "type": "header",

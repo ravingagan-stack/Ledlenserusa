@@ -231,6 +231,8 @@
           cycle 1, 2, 3, 5, 6
         endcapture
         render 'product-grid-item--onboarding', columns_mobile: columns_mobile, carousel: carousel, placeholder_index: placeholder_index, index: forloop.index0, animation_delay: animation_delay, columns: columns, intersection_ratio: intersection_ratio
+      elsif section_template == 'collection'
+        render 'product-card-bs', product: current_product, columns: columns, columns_mobile: columns_mobile
       else
         render 'product-grid-item', product: current_product, animation_delay: animation_delay, tablet_counter: tablet_counter, mobile_counter: mobile_counter, carousel: carousel, columns: columns, section_width: section_width, item_index: forloop.index0, intersection_ratio: intersection_ratio
       endif
@@ -279,7 +281,11 @@
         assign intersection_ratio = '0.15'
       endif
 
-      render 'product-grid-item', columns: columns, columns_mobile: columns_mobile, product: product, carousel: carousel, animation_delay: animation_delay, tablet_counter: tablet_counter, mobile_counter: mobile_counter, section_width: section_width, item_index: forloop.index0, intersection_ratio: intersection_ratio
+      if section_template == 'collection'
+        render 'product-card-bs', product: product, columns: columns, columns_mobile: columns_mobile
+      else
+        render 'product-grid-item', columns: columns, columns_mobile: columns_mobile, product: product, carousel: carousel, animation_delay: animation_delay, tablet_counter: tablet_counter, mobile_counter: mobile_counter, section_width: section_width, item_index: forloop.index0, intersection_ratio: intersection_ratio
+      endif
       unless carousel
         assign tablet_counter = tablet_counter | plus: 1
         assign mobile_counter = mobile_counter | plus: 1

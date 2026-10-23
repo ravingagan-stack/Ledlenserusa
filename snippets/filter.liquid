@@ -233,7 +233,10 @@
                       </label>
                     </tooltip-component>
                   {%- else -%}
-                    <label class="filter__button" for="filter-{{ filter.label | escape }}-{{ forloop.index }}">{{ filter_value.label | escape_once }}</label>
+                    <label class="filter__button" for="filter-{{ filter.label | escape }}-{{ forloop.index }}">
+                      <span class="filter__button__text">{{ filter_value.label | escape_once }}</span>
+                      <span class="filter__button__count">{{ filter_value.count }}</span>
+                    </label>
                   {% endif %}
                 {%- if is_swatch -%}
                 </tooltip-component>

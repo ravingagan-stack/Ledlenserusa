@@ -1,0 +1,343 @@
+/* Collection sidebar filters — Ledlenser design */
+
+.collection__filters {
+  --ll-filter-text: #0a0a0a;
+  --ll-filter-muted: #4a4a4a;
+  --ll-filter-border: #dadada;
+}
+
+/* "FILTER" heading */
+.collection__filters .collection__filters__heading,
+.collection__filters .collection__filters__title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 26px;
+  line-height: 26px;
+  letter-spacing: 0.26px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: var(--ll-filter-text);
+}
+
+.collection__filters .collection__filters__heading {
+  margin: 0;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--ll-filter-border);
+}
+
+@media only screen and (max-width: 767px) {
+  .collection__filters .collection__filters__heading {
+    display: none;
+  }
+}
+
+/* When filters are active the theme header (title + clear chips) shows — avoid a duplicate heading */
+@media only screen and (min-width: 768px) {
+  .collection__filters .collection__filters-header:not(.hidden) ~ .collection__filters__heading {
+    display: none;
+  }
+}
+
+/* Filter groups */
+.collection__filters .collection__filter {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--ll-filter-border);
+}
+
+@media only screen and (min-width: 768px) {
+  .collection__filters .collection__filter:last-of-type {
+    padding-bottom: 16px;
+  }
+}
+
+/* Group title, e.g. "Availability" */
+.collection__filters .collection__filter .collection__filter__title {
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  text-transform: none;
+  color: var(--ll-filter-text);
+  padding: 0 40px 10px 0;
+}
+
+/* Accordion still works (click the title); only the +/- icon is hidden */
+.collection__filters .collection__filter .collection__filter__title {
+  padding-right: 0;
+}
+
+.collection__filters .collection__filter .collection__filter__count {
+  display: none;
+}
+
+/* Options */
+.collection__filters .collection__filter-tags .collection__filter-tag--default {
+  margin: 0 0 4px;
+}
+
+.collection__filters .collection__filter-tags .collection__filter-tag--default:last-child {
+  margin-bottom: 0;
+}
+
+.collection__filters .collection__filter-tag--default .filter__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 24px;
+  padding-left: 30px;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--ll-filter-text);
+}
+
+.collection__filters .filter__button__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Item count, e.g. "9" */
+.collection__filters .filter__button__count {
+  flex: 0 0 auto;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  vertical-align: middle;
+  color: var(--ll-filter-muted);
+}
+
+/* Checkbox */
+.collection__filters .collection__filter-tag--default .filter__button::before {
+  top: 50%;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 0;
+  transform: translateY(-50%);
+  border: 1px solid #8a8a8a;
+  border-radius: 2px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.collection__filters .collection__filter-tag--default .filter__input:checked ~ .filter__button::before,
+.collection__filters .collection__filter-tag--default.is-active .filter__button::before {
+  border-color: var(--ll-filter-text);
+  background: var(--ll-filter-text) var(--icon-check) no-repeat center center;
+  background-size: 14px auto;
+}
+
+.collection__filters .collection__filter-tag--default .filter__input:disabled ~ .filter__button {
+  color: var(--ll-filter-muted);
+  opacity: 0.5;
+}
+
+.collection__filters .collection__filter-tag--default .filter__input:disabled ~ .filter__button::before {
+  background: #f2f2f2;
+  border: 1px solid var(--ll-filter-border);
+}
+
+/* ================ Product count + Sort (top of product grid) ================ */
+
+@media only screen and (min-width: 768px) {
+  .collection .collection__sticky-bar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 12px;
+    padding-bottom: 16px;
+  }
+
+  /* "17 headlamps" sits on its own row, above the sort box */
+  .collection__sticky-bar .collection__products-count {
+    order: 1;
+    flex: 0 0 calc(100% - var(--ll-grid-offset, 0px));
+    max-width: calc(100% - var(--ll-grid-offset, 0px));
+    text-align: left;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: #0a0a0a;
+  }
+
+  .collection__sticky-bar .collection__sort-bar {
+    order: 2;
+  }
+
+  /* Line both up with the product grid, right of the sidebar (260px sidebar + 36px gap) */
+  .collection:not(.collection--filters-disabled) .collection__sticky-bar {
+    --ll-grid-offset: 296px;
+  }
+
+  .collection .collection__sticky-bar .collection__products-count,
+  .collection .collection__sticky-bar .collection__sort-bar {
+    margin-left: var(--ll-grid-offset, 0px);
+  }
+}
+
+/* ================ Sidebar width + product grid spacing ================ */
+
+@media only screen and (min-width: 768px) {
+  .collection .collection__filters {
+    width: 260px;
+    flex: 0 0 260px;
+    margin-right: 36px;
+  }
+
+  /* Theme hard-codes the inner list at 210px/270px and fades the right edge — fit it to the 260px sidebar */
+  .collection .collection__filters .collection__filters-list__inner {
+    width: calc(100% + 2 * var(--gutter-mobile));
+  }
+
+  .collection .collection__filters .collection__filters-list {
+    --double-scrollbar-width: 0px;
+  }
+
+  .collection:not(.collection--filters-disabled):not(.collection--filters-sorting-disabled) .collection__products {
+    width: calc(100% - 296px);
+  }
+}
+
+.collection .collection__products > .grid {
+  row-gap: 18px;
+  column-gap: 18px;
+}
+
+/* "Sort: Recommended" box */
+.collection__sort-bar .collection__sort__label {
+  display: inline-flex;
+  align-items: center;
+  min-width: 120px;
+  padding: 11px 16px;
+  border: 1px solid #0a0a0a;
+  border-radius: 0;
+  background: #ffffff;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 17px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  color: #0a0a0a;
+  white-space: nowrap;
+}
+
+.collection__sort-bar .collection__sort__label .icon {
+  display: none;
+}
+
+.collection__sort-bar .collection__sort__option-wrapper {
+  top: calc(100% + 4px);
+  left: 0;
+  border: 1px solid #dadada;
+  border-radius: 0;
+}
+
+.collection__sort-bar .collection__sort__button {
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #0a0a0a;
+}
+
+/* ================ Promo card in product grid ("Not sure which headlamp?") ================ */
+
+.collection .collection__products .collection-promo {
+  display: flex;
+  align-items: center;
+  background-color: #e30613;
+  overflow: hidden;
+}
+
+.collection .collection__products .collection-promo .collection-promo__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.collection .collection__products .collection-promo .collection-promo__body {
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  color: #ffffff;
+}
+
+.collection .collection__products .collection-promo .collection-promo__heading,
+.collection .collection__products .collection-promo .collection-promo__heading * {
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 36px;
+  line-height: 36px;
+  letter-spacing: 0.36px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.collection .collection__products .collection-promo .collection-promo__text,
+.collection .collection__products .collection-promo .collection-promo__text * {
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 17px;
+  line-height: 25.5px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  color: #ffffff;
+}
+
+.collection .collection__products .collection-promo .collection-promo__text {
+  margin: 11px 0;
+}
+
+.collection .collection__products .collection-promo .collection-promo__button {
+  margin: 0;
+  justify-content: flex-start;
+}
+
+.collection .collection__products .collection-promo .collection-promo__button .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 0;
+  background: #0a0a0a;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.72px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.collection .collection__products .collection-promo .collection-promo__button .btn::before,
+.collection .collection__products .collection-promo .collection-promo__button .btn::after,
+.collection .collection__products .collection-promo .collection-promo__button hover-button {
+  display: none;
+}

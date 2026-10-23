@@ -1,0 +1,160 @@
+{%- comment -%}
+  Renders a product card in the Best sellers (bs-card) style for the collection grid.
+  Markup is the same as the card in sections/Best-sellers.liquid; styles live in assets/component-bs-card.css.
+
+  Accepts:
+  - product: {Object} Product (required)
+  - columns: {Number} Desktop columns
+  - columns_mobile: {Number} Mobile columns
+
+  Usage:
+  {% render 'product-card-bs', product: product, columns: columns, columns_mobile: columns_mobile %}
+{%- endcomment -%}
+
+{%- liquid
+  assign columns = columns | default: settings.products_per_row_on_desktop | plus: 0
+  assign columns_mobile = columns_mobile | default: settings.products_per_row_on_mobile | plus: 0
+
+  case columns
+    when 1
+      assign size_desktop = 'one-whole'
+    when 2
+      assign size_desktop = 'one-half'
+    when 3
+      assign size_desktop = 'one-third'
+    when 4
+      assign size_desktop = 'one-quarter'
+  endcase
+
+  case columns_mobile
+    when 1
+      assign size_mobile = 'mobile--one-whole'
+    when 2
+      assign size_mobile = 'mobile--one-half'
+  endcase
+
+  # Same values as the Best sellers section settings (templates/index.json)
+  assign p = product
+  assign variant = p.selected_or_first_available_variant
+  assign product_title = p.title | escape
+
+  # Badge: metafield > sale badge
+  assign badge_text = p.metafields.custom.badge | metafield_text
+  if badge_text == blank and p.compare_at_price > p.price
+    assign badge_text = 'Sale'
+  endif
+
+  # Chip
+  assign chip_text = p.metafields.custom.chip | metafield_text
+
+  # Rating (Shopify standard reviews metafields)
+  assign rating_value = p.metafields.reviews.rating.value.rating
+  assign rating_count = p.metafields.reviews.rating_count.value
+
+  # Price
+  if settings.currency_code_enable
+    assign price_text = p.price | money_with_currency
+  else
+    assign price_text = p.price | money
+  endif
+
+  # Specs
+  assign spec_labels = 'Max|Beam|Runtime' | split: '|'
+  assign spec_keys = 'max_lumens|beam_range|runtime_range' | split: '|'
+  assign has_specs = false
+  for spec_key in spec_keys
+    assign spec_check = p.metafields.custom[spec_key] | metafield_text
+    if spec_check != blank
+      assign has_specs = true
+    endif
+  endfor
+-%}
+
+<div class="bs-collection-item grid__item {{ size_desktop }} {{ size_mobile }}" data-product-block>
+  <article class="bs-card">
+    <div class="bs-card__media">
+      {%- if badge_text != blank -%}
+        <span class="bs-card__badge">{{ badge_text }}</span>
+      {%- endif -%}
+
+      {%- if p.featured_media != blank -%}
+        {%- assign image_alt = p.featured_media.alt | default: p.title | escape -%}
+        {{
+          p.featured_media
+          | image_url: width: 800
+          | image_tag:
+            loading: 'lazy',
+            widths: '300, 450, 600, 800',
+            sizes: '(min-width: 1100px) 25vw, (min-width: 750px) 50vw, 100vw',
+            class: 'bs-card__img',
+            alt: image_alt
+        }}
+      {%- else -%}
+        <span class="bs-card__media-text">[Product photo: {{ product_title }}]</span>
+      {%- endif -%}
+    </div>
+
+    <div class="bs-card__body">
+      {%- if rating_value != blank -%}
+        <div class="bs-card__rating">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E30613" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"></path></svg>
+          <b>{{ rating_value | round: 1 }}</b>
+          {%- if rating_count != blank -%}
+            <span class="bs-card__rating-count">({{ rating_count }} reviews)</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <h3 class="bs-card__title asd">{{ p.title }}</h3>
+
+      {% if p.metafields.description.oneLiner != blank %}
+        <div class="bs-card__use">
+          {{ p.metafields.description.oneLiner.value }}
+        </div>
+      {% endif %}
+
+      {%- if has_specs -%}
+        <div class="bs-card__specs">
+          {%- for spec_key in spec_keys -%}
+            {%- assign spec_value = p.metafields.custom[spec_key] | metafield_text -%}
+            {%- if spec_value != blank -%}
+              <div class="bs-card__spec">
+                <div class="bs-card__spec-label">{{ spec_labels[forloop.index0] }}</div>
+                <div class="bs-card__spec-value">{{ spec_value }}</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if chip_text != blank -%}
+        <div class="bs-card__chip">{{ chip_text }}</div>
+      {%- endif -%}
+
+      <product-form class="bs-card__bottom" data-product-form>
+        <span class="bs-card__price">{{ price_text }}</span>
+
+        {%- form 'product', p, id: 'CollectionCardForm-{{ section.id }}-{{ p.id }}', class: 'bs-card__form', novalidate: 'novalidate' -%}
+          <input type="hidden" name="id" value="{{ variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button
+            type="submit"
+            name="add"
+            class="bs-card__btn"
+            {% unless variant.available %}disabled{% endunless %}
+          >
+            {%- if variant.available -%}
+              Quick add
+            {%- else -%}
+              Sold out
+            {%- endif -%}
+          </button>
+        {%- endform -%}
+
+        <div class="bs-card__errors" data-cart-errors-container></div>
+      </product-form>
+
+      <a href="{{ p.url }}" class="bs-card__details">View details</a>
+    </div>
+  </article>
+</div>

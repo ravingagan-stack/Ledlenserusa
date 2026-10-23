@@ -227,13 +227,26 @@
 
     {%- assign pill_blocks = section.blocks | where: 'type', 'pill' -%}
     {%- if pill_blocks.size > 0 -%}
-      <nav class="chh__pills" aria-label="Filter headlamps">
+      {%- liquid
+        comment
+          A pill whose link matches the current page wins; the "always active" checkbox is only a fallback
+        endcomment
+        assign has_url_match = false
+        for block in pill_blocks
+          if block.settings.link != blank and block.settings.link == request.path
+            assign has_url_match = true
+          endif
+        endfor
+      -%}
+      <nav class="chh__pills" aria-label="Filter headlamps" data-chh-pills>
         {%- for block in pill_blocks -%}
           {%- liquid
             assign is_active = false
-            if block.settings.active
-              assign is_active = true
-            elsif block.settings.link != blank and block.settings.link == request.path
+            if has_url_match
+              if block.settings.link != blank and block.settings.link == request.path
+                assign is_active = true
+              endif
+            elsif block.settings.active
               assign is_active = true
             endif
           -%}
@@ -245,6 +258,43 @@
           >{{ block.settings.label }}</a>
         {%- endfor -%}
       </nav>
+
+      <script>
+        (() => {
+          const nav = document.currentScript.previousElementSibling;
+          if (!nav || !nav.matches('[data-chh-pills]')) return;
+          const pills = nav.querySelectorAll('.chh__pill');
+
+          const setActive = (activePill) => {
+            pills.forEach((pill) => {
+              const isActive = pill === activePill;
+              pill.classList.toggle('is-active', isActive);
+              if (isActive) {
+                pill.setAttribute('aria-current', 'page');
+              } else {
+                pill.removeAttribute('aria-current');
+              }
+            });
+          };
+
+          // Links with filters/query strings: match the full URL on load
+          const current = window.location.pathname + window.location.search;
+          const exact = [...pills].find((pill) => {
+            const href = pill.getAttribute('href');
+            if (!href || href === '#') return false;
+            const url = new URL(href, window.location.origin);
+            return url.search && url.pathname + url.search === current;
+          });
+          if (exact) setActive(exact);
+
+          pills.forEach((pill) => {
+            pill.addEventListener('click', (event) => {
+              if (pill.getAttribute('href') === '#') event.preventDefault();
+              setActive(pill);
+            });
+          });
+        })();
+      </script>
     {%- endif -%}
   </div>
 </section>

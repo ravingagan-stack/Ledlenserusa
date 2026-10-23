@@ -12,9 +12,21 @@
 {%- assign sort_by = search.sort_by | default: collection.sort_by | default: collection.default_sort_by -%}
 {%- assign sort_options = search.sort_options | default: collection.sort_options -%}
 
+{%- liquid
+  assign current_sort_name = ''
+  for option in sort_options
+    if option.value == sort_by
+      assign current_sort_name = option.name
+    endif
+  endfor
+-%}
+
 <div class="collection__sort-bar">
   <button type="button" class="collection__sort__label" data-sort-toggle>
-    {{ 'collections.sorting.title' | t }}
+    Sort
+    {%- if current_sort_name != blank -%}
+      :&nbsp;<span class="collection__sort__current" data-sort-current>{{ current_sort_name }}</span>
+    {%- endif -%}
     {%- render 'icon-select' -%}
   </button>
 
@@ -47,3 +59,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('change', (event) => {
+    const input = event.target.closest('[data-input-sort]');
+    const current = document.querySelector('[data-sort-current]');
+    if (!input || !current) return;
+    const label = document.querySelector(`label[for="${input.id}"]`);
+    if (label) current.textContent = label.textContent.trim();
+  });
+</script>

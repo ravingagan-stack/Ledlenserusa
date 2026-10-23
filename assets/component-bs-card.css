@@ -1,0 +1,268 @@
+/* bs-card on the collection page — same styles as sections/Best-sellers.liquid */
+
+.bs-collection-item {
+  display: flex;
+}
+
+.bs-collection-item .bs-card {
+  border: 1px solid #dadada;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  width: 100%;
+}
+
+.bs-collection-item .bs-card__media {
+  height: 240px;
+  background: #ededed;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.bs-collection-item .bs-card__img,
+.bs-collection-item .bs-card__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bs-collection-item .bs-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  background: #0a0a0a;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 9px;
+}
+
+.bs-collection-item .bs-card__media-text {
+  font-size: 12px;
+  color: #6a6a6a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.bs-collection-item .bs-card__body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.bs-collection-item .bs-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.bs-collection-item .bs-card__rating-count {
+  color: #4a4a4a;
+}
+
+.bs-collection-item .bs-card__title {
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.bs-collection-item .bs-card__use {
+  font-size: 14px;
+  color: #4a4a4a;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  line-height: 17px;
+}
+
+.bs-collection-item .bs-card__specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  text-align: left;
+}
+
+.bs-collection-item .bs-card__spec {
+  background: #f2f2f2;
+  padding: 8px 7px;
+}
+
+.bs-collection-item .bs-card__spec-label {
+  font-size: 11px;
+  color: #4a4a4a;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  line-height: 13px;
+}
+
+.bs-collection-item .bs-card__spec-value {
+  font-weight: 700;
+  font-size: 15px;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  line-height: 18px;
+}
+
+.bs-collection-item .bs-card__chip {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0a0a0a;
+  border: 1px solid #0a0a0a;
+  padding: 4px 8px;
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  align-self: flex-start;
+  line-height: 16px;
+}
+
+.bs-collection-item .bs-card__bottom {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.bs-collection-item .bs-card__form {
+  margin: 0;
+}
+
+.bs-collection-item .bs-card__price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 34px;
+}
+
+.bs-collection-item .bs-card__btn {
+  background: #e30613;
+  color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 18px;
+  height: 46px;
+  border-radius: 0;
+  line-height: 20px;
+}
+
+.bs-collection-item .bs-card__btn[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.bs-collection-item .bs-card__btn.is-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.bs-collection-item .bs-card__errors {
+  flex: 0 0 100%;
+  font-size: 13px;
+  color: #e30613;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.bs-collection-item .bs-card__errors.is-visible {
+  opacity: 1;
+}
+
+.bs-collection-item .bs-card__errors:empty {
+  display: none;
+}
+
+.bs-collection-item .bs-card__details {
+  font-family: Barlow, Helvetica Neue, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  vertical-align: middle;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-skip-ink: auto;
+}
+
+/* ---------- Mobile (749px and below) ---------- */
+@media (max-width: 749px) {
+  .bs-collection-item .bs-card__media {
+    height: 128px;
+  }
+
+  .bs-collection-item .bs-card__badge {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+
+  .bs-collection-item .bs-card__body {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .bs-collection-item .bs-card__title {
+    font-size: 20px;
+  }
+
+  .bs-collection-item .bs-card__use {
+    font-size: 11px;
+  }
+
+  .bs-collection-item .bs-card__specs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .bs-collection-item .bs-card__spec {
+    padding: 5px;
+  }
+
+  .bs-collection-item .bs-card__spec-value {
+    font-size: 13px;
+  }
+
+  .bs-collection-item .bs-card__spec-label {
+    font-size: 10px;
+  }
+
+  .bs-collection-item .bs-card__price {
+    font-size: 22px;
+    line-height: normal;
+  }
+
+  .bs-collection-item .bs-card__btn {
+    font-size: 14px;
+    height: 36px;
+  }
+}
+
+/* ---------- 520px to 768px ---------- */
+@media (min-width: 520px) and (max-width: 768px) {
+  .bs-collection-item .bs-card__media {
+    height: 200px;
+  }
+
+  .bs-collection-item .bs-card__title {
+    font-size: 22px;
+  }
+}

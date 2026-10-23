@@ -92,7 +92,7 @@
           "type": "pill",
           "settings": {
             "label": "Work & jobsite",
-            "link": "",
+            "link": "shopify://collections/2020-work-series-headlamps",
             "active": false
           }
         },
@@ -100,7 +100,7 @@
           "type": "pill",
           "settings": {
             "label": "Hiking & camping",
-            "link": "",
+            "link": "shopify://collections/hiking-trekking-headlamps",
             "active": false
           }
         },
@@ -108,7 +108,7 @@
           "type": "pill",
           "settings": {
             "label": "Hands-free sensor",
-            "link": "",
+            "link": "shopify://collections/all-items",
             "active": false
           }
         },
@@ -116,7 +116,7 @@
           "type": "pill",
           "settings": {
             "label": "Brightest",
-            "link": "",
+            "link": "shopify://collections/all-items",
             "active": false
           }
         },
@@ -124,7 +124,7 @@
           "type": "pill",
           "settings": {
             "label": "Under $100",
-            "link": "",
+            "link": "shopify://collections/all-items",
             "active": false
           }
         },
@@ -132,7 +132,7 @@
           "type": "pill",
           "settings": {
             "label": "Kits with powerbank",
-            "link": "",
+            "link": "shopify://collections/all-items",
             "active": false
           }
         }

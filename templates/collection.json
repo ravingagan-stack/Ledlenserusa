@@ -84,7 +84,7 @@
           "type": "pill",
           "settings": {
             "label": "All headlamps",
-            "link": "/collections/headlamps",
+            "link": "shopify://collections/headlamps",
             "active": true
           }
         },
@@ -198,6 +198,7 @@
       "settings": {
         "show_breadcrumbs": false,
         "products_per_page": 24,
+        "pagination_type": "theme",
         "enable_sorting": true,
         "enable_filters": true,
         "filters_layout": "open",

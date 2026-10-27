@@ -359,13 +359,7 @@
         {%- endif -%}
 
         {%- if settings.show_header_search -%}
-          {%- render 'search-popdown',
-            unique: 'desktop',
-            in_header: true,
-            classes: 'menu__item menu__item--icon',
-            summary_classes: summary_classes,
-            header_icons_as_text: header_icons_as_text
-          -%}
+          {%- render 'header-search-bar', unique: 'desktop', classes: 'header-search--desktop' -%}
         {%- endif -%}
 
         {%- if shop.customer_accounts_enabled -%}
@@ -409,14 +403,6 @@
     </nav>
 
     <div class="mobile-menu" data-mobile-menu>
-      {%- if settings.show_header_search -%}
-        {%- render 'search-popdown',
-          unique: 'mobile',
-          in_header: true,
-          classes: 'mobile-menu__button caps'
-        -%}
-      {%- endif -%}
-
       <a
         href="{{ routes.cart_url }}"
         class="mobile-menu__button cart__toggle{% if cart.item_count > 0 %} cart__toggle--has-items{% endif %}{% if cart_animation %} cart__toggle--animation{% endif %}"
@@ -434,6 +420,12 @@
       </a>
     </div>
   </div>
+
+  {%- if settings.show_header_search -%}
+    <div class="header-search-row {{ section_width }}">
+      {%- render 'header-search-bar', unique: 'mobile', classes: 'header-search--mobile' -%}
+    </div>
+  {%- endif -%}
 
   <div class="drawer__overlay"></div>
 </header-component>

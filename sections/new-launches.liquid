@@ -88,7 +88,7 @@
     width: 100%; height: 100%;
     object-fit: contain;
     display: block;
-    background: #ededed;
+    background: #ffffff;
   }
 
   .ll-launch__status {
@@ -217,10 +217,16 @@
           {%- comment -%} --- Spec line logic --- {%- endcomment -%}
             {%- assign spec_text = '' -%}
             {%- liquid
-            assign spec_key_1 = product.metafields.custom.max_lumens.value
-            assign spec_key_2 = product.metafields.custom.beam_range.value
+            assign spec_key_1 = product.metafields.custom.max_lumens | metafield_text
+            assign spec_key_2 = product.metafields.custom.beam_range | metafield_text
             assign spec_key_3 = product.metafields.custom.runtime_range.value
             -%}
+            {%- if spec_key_1 != blank -%}
+              {%- capture spec_key_1 -%}{%- render 'spec-lumens', value: spec_key_1 -%}{%- endcapture -%}
+            {%- endif -%}
+            {%- if spec_key_2 != blank -%}
+              {%- capture spec_key_2 -%}{%- render 'beam-distance', value: spec_key_2, format: 'm' -%}{%- endcapture -%}
+            {%- endif -%}
 
             {%- if spec_key_1 != blank -%}
             {%- assign spec_text = spec_text | append: spec_key_1 -%}
@@ -362,7 +368,7 @@
       "type": "color",
       "id": "img_bg",
       "label": "Image tile bg",
-      "default": "#EDEDED"
+      "default": "#FFFFFF"
     },
     {
       "type": "color",

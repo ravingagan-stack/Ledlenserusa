@@ -1,0 +1,239 @@
+{%- comment -%}
+  Coast-style, data-driven Specifications sheet for the PDP "Specifications" accordion.
+  Source: product.metafields.custom.technical_data (the `td` object) — the rich,
+  data-sheet-accurate metafield (same one the merchant's hidden Specifications panel uses).
+
+  Layout: a per-mode Light Output BAR CHART (Boost emphasised in brand red) + a compact
+  beam-distance / run-time table, then grouped POWER & CHARGING / PHYSICAL / LIGHT SOURCE
+  sections as clean label/value rows. Falls back to the simple product-spec-table when the
+  rich metafield is empty. Styling lives in assets/pdp-redesign.css (INCREMENT 12).
+{%- endcomment -%}
+{%- assign td = product.metafields.custom.technical_data.value -%}
+{%- if td == blank -%}
+  {%- render 'product-spec-table' -%}
+{%- else -%}
+{%- liquid
+  # Two accepted formats for the per-mode rows.
+  #   legacy : "Boost:2000 Power:1200 Mid Power:450 Low Power:25"
+  #   multi  : "TAC Boost:2000|TAC High:1100|TAC Mid:600|Search:500|Check:100"
+  # The multi form carries the product's OWN mode names and any number of them, for
+  # lights whose modes are not Boost/Power/Mid/Low. A string with no '|' is parsed
+  # exactly as before, so every product already using the legacy form is unaffected.
+  #
+  # Both forms are normalised into four parallel '|'-joined lists. Liquid's split
+  # drops empty segments, so an absent value is carried as '~' to keep the lists
+  # aligned, and is rendered as an em dash.
+  assign lo_raw = td.td_light_output | default: ''
+  assign bd_raw = td.td_beam_distance | default: ''
+  assign rt_raw = td.td_runtime | default: ''
+
+  assign m_names = ''
+  assign m_lo = ''
+  assign m_bd = ''
+  assign m_rt = ''
+
+  if lo_raw contains '|'
+    assign lo_items = lo_raw | split: '|'
+    assign bd_items = bd_raw | split: '|'
+    assign rt_items = rt_raw | split: '|'
+    for it in lo_items
+      assign i = forloop.index0
+      assign pair = it | split: ':'
+      assign nm = pair[0] | strip
+      assign vv = pair[1] | default: '~' | strip
+      assign m_names = m_names | append: nm | append: '|'
+      assign m_lo = m_lo | append: vv | append: '|'
+
+      assign braw = bd_items[i] | default: ''
+      assign bpair = braw | split: ':'
+      assign bv = bpair[1] | default: '~' | strip
+      assign m_bd = m_bd | append: bv | append: '|'
+
+      assign rraw = rt_items[i] | default: ''
+      assign rpair = rraw | split: ':'
+      assign rv = rpair[1] | default: '~' | strip
+      assign m_rt = m_rt | append: rv | append: '|'
+    endfor
+  else
+    assign o_parts = lo_raw | split: ' Power:'
+    assign b_parts = bd_raw | split: ' Power:'
+    assign r_parts = rt_raw | split: ' Power:'
+
+    assign lo_boost = o_parts[0] | remove: 'Boost:' | strip
+    assign lo_power = o_parts[1] | split: ' Mid' | first | strip
+    assign lo_mid   = o_parts[2] | split: ' Low' | first | strip
+    assign lo_low   = o_parts[3] | strip
+
+    assign bd_boost = b_parts[0] | remove: 'Boost:' | strip
+    assign bd_power = b_parts[1] | split: ' Mid' | first | strip
+    assign bd_mid   = b_parts[2] | split: ' Low' | first | strip
+    assign bd_low   = b_parts[3] | strip
+
+    assign rt_boost = r_parts[0] | remove: 'Boost:' | strip
+    assign rt_power = r_parts[1] | split: ' Mid' | first | strip
+    assign rt_mid   = r_parts[2] | split: ' Low' | first | strip
+    assign rt_low   = r_parts[3] | strip
+
+    if lo_boost != blank
+      assign m_names = m_names | append: 'Boost|'
+      assign m_lo = m_lo | append: lo_boost | append: '|'
+      assign v = bd_boost | default: '~'
+      assign m_bd = m_bd | append: v | append: '|'
+      assign v = rt_boost | default: '~'
+      assign m_rt = m_rt | append: v | append: '|'
+    endif
+    if lo_power != blank
+      assign m_names = m_names | append: 'Power|'
+      assign m_lo = m_lo | append: lo_power | append: '|'
+      assign v = bd_power | default: '~'
+      assign m_bd = m_bd | append: v | append: '|'
+      assign v = rt_power | default: '~'
+      assign m_rt = m_rt | append: v | append: '|'
+    endif
+    if lo_mid != blank
+      assign m_names = m_names | append: 'Mid|'
+      assign m_lo = m_lo | append: lo_mid | append: '|'
+      assign v = bd_mid | default: '~'
+      assign m_bd = m_bd | append: v | append: '|'
+      assign v = rt_mid | default: '~'
+      assign m_rt = m_rt | append: v | append: '|'
+    endif
+    if lo_low != blank
+      assign m_names = m_names | append: 'Low|'
+      assign m_lo = m_lo | append: lo_low | append: '|'
+      assign v = bd_low | default: '~'
+      assign m_bd = m_bd | append: v | append: '|'
+      assign v = rt_low | default: '~'
+      assign m_rt = m_rt | append: v | append: '|'
+    endif
+  endif
+
+  assign name_arr = m_names | split: '|'
+  assign lo_arr = m_lo | split: '|'
+  assign bd_arr = m_bd | split: '|'
+  assign rt_arr = m_rt | split: '|'
+
+  assign lo_max = 0
+  for v in lo_arr
+    assign n = v | plus: 0
+    if n > lo_max
+      assign lo_max = n
+    endif
+  endfor
+  if lo_max == 0
+    assign lo_max = 1
+  endif
+
+  assign has_bars = false
+  if name_arr.size > 0
+    assign has_bars = true
+  endif
+
+  assign has_mini = false
+  for v in bd_arr
+    if v != '~' and v != blank
+      assign has_mini = true
+    endif
+  endfor
+  for v in rt_arr
+    if v != '~' and v != blank
+      assign has_mini = true
+    endif
+  endfor
+-%}
+<div class="pdp-spec">
+
+  {%- if has_bars -%}
+  <div class="pdp-spec__sec">
+    <div class="pdp-spec__label">Light Output · by mode</div>
+    <div class="pdp-spec__bars">
+      {%- for nm in name_arr -%}
+        {%- assign v = lo_arr[forloop.index0] -%}
+        {%- if v != blank and v != '~' and v != '-' -%}
+          {%- assign n = v | plus: 0 -%}
+          {%- assign pct = n | times: 100 | divided_by: lo_max -%}
+          {%- assign nml = nm | downcase -%}
+          <div class="pdp-spec__bar{% if nml contains 'boost' %} pdp-spec__bar--boost{% endif %}"><span class="pdp-spec__bn">{{ nm }}</span><span class="pdp-spec__bt"><i style="width:{{ pct }}%"></i></span><span class="pdp-spec__bv">{{ v }} <small>lm</small></span></div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if has_mini -%}
+    <div class="pdp-spec__miniwrap">
+    <table class="pdp-spec__mini">
+      <thead><tr><th></th>{%- for nm in name_arr -%}<th>{{ nm }}</th>{%- endfor -%}</tr></thead>
+      <tbody>
+        <tr><th>Lumens <small>lm</small></th>{%- for nm in name_arr -%}{%- assign v = lo_arr[forloop.index0] -%}<td>{% if v == blank or v == '~' %}—{% else %}{{ v }}{% endif %}</td>{%- endfor -%}</tr>
+        <tr><th>Beam distance <small>m</small></th>{%- for nm in name_arr -%}{%- assign v = bd_arr[forloop.index0] -%}<td>{% if v == blank or v == '~' %}—{% else %}{{ v }}{% endif %}</td>{%- endfor -%}</tr>
+        <tr><th>Run time <small>h</small></th>{%- for nm in name_arr -%}{%- assign v = rt_arr[forloop.index0] -%}<td>{% if v == blank or v == '~' %}—{% else %}{{ v }}{% endif %}</td>{%- endfor -%}</tr>
+      </tbody>
+    </table>
+    </div>
+    {%- endif -%}
+    <div class="pdp-spec__legend"><span><b>lm</b> lumens</span><span><b>m</b> meters</span><span><b>h</b> hours</span></div>
+  </div>
+  {%- endif -%}
+
+  <div class="pdp-spec__cols">
+    <div class="pdp-spec__col">
+      {%- capture pc -%}
+        {%- if td.td_battery_type != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Battery type</span><span class="pdp-spec__v">{{ td.td_battery_type }}</span></div>{%- endif -%}
+        {%- if td.td_battery_quantity != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Quantity</span><span class="pdp-spec__v">{{ td.td_battery_quantity }}</span></div>{%- endif -%}
+        {%- if td.td_battery_voltage != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Voltage <small>V</small></span><span class="pdp-spec__v">{{ td.td_battery_voltage | remove: 'V' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_battery_capacity != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Capacity <small>mAh</small></span><span class="pdp-spec__v">{{ td.td_battery_capacity | remove: 'mAh' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_battery_energy != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Energy <small>Wh</small></span><span class="pdp-spec__v">{{ td.td_battery_energy | remove: 'Wh' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_charging_time != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Charging <small>min</small></span><span class="pdp-spec__v">{{ td.td_charging_time | remove: 'min' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_rechargeable != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Rechargeable</span><span class="pdp-spec__v">{{ td.td_rechargeable }}</span></div>{%- endif -%}
+        {%- if td.td_battery_replaceable != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Replaceable</span><span class="pdp-spec__v">{{ td.td_battery_replaceable }}</span></div>{%- endif -%}
+        {%- if td.td_energy_indicator != blank -%}<div class="pdp-spec__r pdp-spec__r--stack"><span class="pdp-spec__k">Battery indicator</span><span class="pdp-spec__v">{{ td.td_energy_indicator }}</span></div>{%- endif -%}
+      {%- endcapture -%}
+      {%- if pc != blank -%}<div class="pdp-spec__label">Power &amp; Charging</div>{{ pc }}{%- endif -%}
+
+      {%- capture ls -%}
+        {%- if td.td_led_count != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">LEDs</span><span class="pdp-spec__v">{{ td.td_led_count }}</span></div>{%- endif -%}
+        {%- if td.td_light_color != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Color</span><span class="pdp-spec__v">{{ td.td_light_color }}</span></div>{%- endif -%}
+        {%- if td.td_color_temperature != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Color temp <small>K</small></span><span class="pdp-spec__v">{{ td.td_color_temperature | remove: 'K' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_cri != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">CRI</span><span class="pdp-spec__v">{{ td.td_cri }}</span></div>{%- endif -%}
+      {%- endcapture -%}
+      {%- if ls != blank -%}<div class="pdp-spec__label pdp-spec__label--mt">Light Source</div>{{ ls }}{%- endif -%}
+    </div>
+
+    <div class="pdp-spec__col">
+      {%- capture ph -%}
+        {%- if td.td_weight != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Weight <small>g</small></span><span class="pdp-spec__v">{{ td.td_weight | remove: 'g' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_material != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Material</span><span class="pdp-spec__v">{{ td.td_material }}</span></div>{%- endif -%}
+        {%- if td.td_ip_class != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">IP rating</span><span class="pdp-spec__v">{{ td.td_ip_class }}</span></div>{%- endif -%}
+        {%- if td.td_drop_test != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Drop test <small>m</small></span><span class="pdp-spec__v">{{ td.td_drop_test | remove: 'm' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_temperature_range != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Temp range <small>°C</small></span><span class="pdp-spec__v">{{ td.td_temperature_range | remove: '°C' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_switch != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Switch</span><span class="pdp-spec__v">{{ td.td_switch }}</span></div>{%- endif -%}
+      {%- endcapture -%}
+      {%- if ph != blank -%}<div class="pdp-spec__label">Physical &amp; Rating</div>{{ ph }}{%- endif -%}
+
+      {%- capture hb -%}
+        {%- if td.td_headband_color != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Color</span><span class="pdp-spec__v">{{ td.td_headband_color }}</span></div>{%- endif -%}
+        {%- if td.td_headband_type != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Type</span><span class="pdp-spec__v">{{ td.td_headband_type }}</span></div>{%- endif -%}
+        {%- if td.td_head_movement_type != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Head movement</span><span class="pdp-spec__v">{{ td.td_head_movement_type }}</span></div>{%- endif -%}
+        {%- if td.td_head_movement_angle != blank -%}<div class="pdp-spec__r"><span class="pdp-spec__k">Movement angle <small>°</small></span><span class="pdp-spec__v">{{ td.td_head_movement_angle | remove: '°' | strip }}</span></div>{%- endif -%}
+        {%- if td.td_headband_specs != blank -%}<div class="pdp-spec__r pdp-spec__r--stack"><span class="pdp-spec__k">Specifications</span><span class="pdp-spec__v">{{ td.td_headband_specs }}</span></div>{%- endif -%}
+      {%- endcapture -%}
+      {%- if hb != blank -%}<div class="pdp-spec__label pdp-spec__label--mt">Headband</div>{{ hb }}{%- endif -%}
+    </div>
+  </div>
+
+  {%- if td.td_features != blank -%}
+  <div class="pdp-spec__sec pdp-spec__sec--full">
+    <div class="pdp-spec__label">Features &amp; Technologies</div>
+    <div class="pdp-spec__chips">
+      {%- assign feats = td.td_features | split: ',' -%}
+      {%- for f in feats -%}{%- assign ft = f | strip -%}{%- if ft != blank -%}<span class="pdp-spec__chip">{{ ft }}</span>{%- endif -%}{%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+</div>
+{%- endif -%}
+
+{%- comment -%} added with multi-mode support: keep a wide mode table scrollable {%- endcomment -%}
+<style>
+  .pdp-spec__miniwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .pdp-spec__miniwrap .pdp-spec__mini{min-width:100%}
+</style>

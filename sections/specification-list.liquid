@@ -14,8 +14,14 @@
       {% for block in section.blocks %}
         {% if block.type == 'specification' %}
           {% comment %} Check if metafield exists before rendering the row {% endcomment %}
-          {% assign spec_value = product.metafields.custom[block.settings.metafield_key] %}
-          
+          {% assign spec_value = product.metafields.custom[block.settings.metafield_key] | metafield_text %}
+          {% assign spec_label_lower = block.settings.label | downcase %}
+          {% if spec_value != blank %}
+            {% if block.settings.metafield_key contains 'beam' or spec_label_lower contains 'beam' %}
+              {% capture spec_value %}{% render 'beam-distance', value: spec_value, format: 'table' %}{% endcapture %}
+            {% endif %}
+          {% endif %}
+
           {% if spec_value != blank %}
             <div class="spec-row" {{ block.shopify_attributes }}>
               <span class="spec-label">{{ block.settings.label }}</span>

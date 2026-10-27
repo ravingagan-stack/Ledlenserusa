@@ -748,6 +748,40 @@
                     <a href="{{ product_url }}" title="{{ product_title }}">{{ product_title }}</a>
                   {%- endif -%}
                 </h1>
+
+                {%- unless product == blank -%}
+                  <p class="product__sku{% if current_variant.sku == blank %} hidden{% endif %}" data-product-sku>
+                    SKU: <span data-product-sku-value>{{ current_variant.sku }}</span>
+                  </p>
+
+                  {%- render 'pdp-key-specs' -%}
+
+                  <script>
+                    (function initProductSku() {
+                      // theme.js is deferred, so wait for it to define window.subscribe
+                      if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initProductSku);
+                        return;
+                      }
+                      if (window.productSkuSubscribed || !window.subscribe || !window.theme?.PUB_SUB_EVENTS) return;
+                      window.productSkuSubscribed = true;
+
+                      // Keep the SKU under the title in sync with the selected variant
+                      window.subscribe(window.theme.PUB_SUB_EVENTS.variantChange, function ({data}) {
+                        if (!data?.sectionId) return;
+                        document.querySelectorAll('product-info').forEach(function (info) {
+                          if (info.dataset.section !== data.sectionId && info.dataset.originalSection !== data.sectionId) return;
+                          const sku = data.variant?.sku || '';
+                          info.querySelectorAll('[data-product-sku]').forEach(function (el) {
+                            const value = el.querySelector('[data-product-sku-value]');
+                            if (value) value.textContent = sku;
+                            el.classList.toggle('hidden', !sku);
+                          });
+                        });
+                      });
+                    })();
+                  </script>
+                {%- endunless -%}
               </div>
 
             {%- when 'price' -%}
@@ -1281,6 +1315,9 @@
 
                 {%- for spec_key in spec_keys -%}
                   {%- assign spec_value = product.metafields.custom[spec_key].value -%}
+                  {%- if spec_key == 'beam_range' and spec_value != blank -%}
+                    {%- capture spec_value -%}{%- render 'beam-distance', value: spec_value, format: 'm' -%}{%- endcapture -%}
+                  {%- endif -%}
 
                   {%- if spec_value != blank -%}
                     <div class="bs-card__spec">

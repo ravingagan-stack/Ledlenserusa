@@ -18,9 +18,10 @@
           "type": "logo_with_text",
           "settings": {
             "alignment": "text-left",
+            "image": "shopify://shop_images/ledlenser-logo-red-white.png",
             "logo_width": 250,
             "show_shop_name": false,
-            "text": "<p>LEDLENSER</p>",
+            "text": "",
             "contact_heading": "Talk to a US-based expert",
             "contact_phone": "904-694-3711",
             "contact_phone_link": "tel:904-694-3711",

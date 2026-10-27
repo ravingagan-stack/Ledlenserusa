@@ -154,7 +154,7 @@
         "load_fonts": true,
         "show_breadcrumb": true,
         "heading": "Headlamps",
-        "description": "<p>Rechargeable, focusable headlamps for the jobsite, the trail and the hunt. Specs are shown in feet and hours so you can compare at a glance.</p>",
+        "description": "<p>Rechargeable, focusable headlamps for the jobsite, the trail and the hunt. Specs are shown in meters and hours so you can compare at a glance.</p>",
         "max_width": 1360,
         "pills_spacing": 68,
         "padding_top": 40,

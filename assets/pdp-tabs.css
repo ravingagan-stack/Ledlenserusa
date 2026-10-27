@@ -1,0 +1,234 @@
+/* ============================================================
+   PDP tabs - styles for sections/custom-tabs.liquid (dropdown cards, spec sheet,
+   manuals, accessories carousel). Extracted from the live theme's pdp-redesign.css;
+   the buy-box / gallery parts of that file are intentionally left out.
+   ============================================================ */
+
+:root{
+  --pdp-radius:10px;
+  --pdp-radius-lg:14px;
+  --pdp-border:rgba(0,0,0,.12);
+  --pdp-border-2:rgba(0,0,0,.18);
+  --pdp-surface:#f6f6f4;
+  --pdp-text-2:#6c6c66;
+}
+
+/* ---------- PHASE 3 + INCREMENT 10: accordions as premium cards ----------
+   Each dropdown is a rounded card (border + soft shadow). The OPEN card fills with
+   the light surface, lifts, and turns its title + chevron brand-red. Titles use the
+   theme heading font (var(--FONT-STACK-HEADING)) in sentence case. */
+.pdp-accordions{ 
+  /* max-width:1080px;  */
+  margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+.pdp-acc{
+  background:#fff; border:1px solid var(--pdp-border); border-radius:var(--pdp-radius-lg);
+  overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.04);
+  transition:box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
+}
+.pdp-acc:hover{ box-shadow:0 4px 14px rgba(0,0,0,.07); border-color:var(--pdp-border-2); }
+.pdp-acc.open{ background:var(--pdp-surface); border-color:var(--pdp-border-2); box-shadow:0 6px 22px rgba(0,0,0,.08); }
+.pdp-acc__head{
+  width:100%; background:none; border:none; cursor:pointer; color:#1b1b19;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:18px 20px; font-family:var(--FONT-STACK-HEADING); font-size:16px; font-weight:700; letter-spacing:.01em; text-align:left;
+}
+.pdp-acc__chev{ width:22px; height:22px; flex:none; color:var(--pdp-text-2); transition:transform .25s ease, color .15s ease; }
+.pdp-acc.open .pdp-acc__chev{ transform:rotate(180deg); color:#e3000b; }
+.pdp-acc.open .pdp-acc__title{ color:#e3000b; }
+.pdp-acc__panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .28s ease; }
+.pdp-acc.open .pdp-acc__panel{ grid-template-rows:1fr; }
+.pdp-acc__inner{ overflow:hidden; min-height:0; }
+.pdp-acc__body{ padding:4px 20px 22px; font-size:14.5px; line-height:1.7; color:#333; }
+.pdp-acc.open .pdp-acc__body{ border-top:1px solid var(--pdp-border); padding-top:16px; }
+.pdp-acc .scope-item{ background:#fff; } /* What's-Included tiles pop on the open card's gray */
+@media (max-width:768px){
+  .pdp-acc__head{ padding:16px; }
+  .pdp-acc__body{ padding:4px 16px 18px; }
+  .pdp-acc.open .pdp-acc__body{ padding-top:14px; }
+}
+
+/* ---------- INCREMENT 11: accordion CONTENT (font + layout inside the cards) ----------
+   Tames the merchant "All about…" panels (.technical-data / .item2 / .special-information),
+   which otherwise inherit the theme's giant .rte h2 and render label/value pairs as inline
+   bulleted text. Everything is scoped under .pdp-acc__body so nothing leaks. */
+
+/* Compact heading-font "section labels" (resets the theme's oversized .rte headings) */
+.pdp-acc__body h2, .pdp-acc__body h3, .pdp-acc__body h4, .pdp-acc__body .title{
+  font-family:var(--FONT-STACK-HEADING); font-weight:700; color:#1b1b19;
+  font-size:13px; text-transform:uppercase; letter-spacing:.06em; line-height:1.3; margin:16px 0 9px;
+}
+.pdp-acc__body h4{ font-size:12px; color:var(--pdp-text-2); }
+.pdp-acc__body .technical-data > h3:first-child,
+.pdp-acc__body .rte > :first-child,
+.pdp-acc__body .spec-tec > :first-child .title{ margin-top:0; }
+
+/* Spec label/value rows — mirror the .pdp-specs table */
+.pdp-acc__body .technical-data{ margin-bottom:6px; }
+.pdp-acc__body .technical-data .list{ list-style:none; margin:0; padding:0; }
+.pdp-acc__body .technical-data .item2{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:10px 0; border-bottom:1px solid var(--pdp-border); }
+.pdp-acc__body .technical-data .item2:last-child{ border-bottom:none; }
+.pdp-acc__body .technical-data .item2 .name{ flex:0 1 auto; color:#1b1b19; font-weight:600; }
+.pdp-acc__body .technical-data .item2 .value{ flex:1 0 auto; text-align:right; color:var(--pdp-text-2); }
+.pdp-acc__body .technical-data .item2 .name sup{ font-size:.7em; vertical-align:super; }
+.pdp-acc__body .technical-data .item2.item--color{ display:block; border-bottom:none; padding:12px 0 6px; }
+
+/* Feature sections (Light Functions / Switches / Signature Series, etc.) */
+.pdp-acc__body .special-information{ list-style:none; margin:0; padding:0; }
+.pdp-acc__body .special-information .bullet{ margin-top:20px; }
+.pdp-acc__body .special-information .bullet:first-child{ margin-top:14px; }
+.pdp-acc__body .special-information .bullet > ul{ margin:0; padding-left:18px; }
+.pdp-acc__body .special-information .bullet > ul > li{ margin:0 0 7px; line-height:1.6; color:#333; }
+.pdp-acc__body .special-information .bullet > ul > li::marker{ color:var(--pdp-text-2); }
+.pdp-acc__body .special-information .bullet p.text{ margin:0; color:#333; }
+
+/* Links inside the content read as brand-red — but keep the Manuals list's own dark style */
+.pdp-acc__body a{ color:var(--accent,#e3000b); text-decoration:none; }
+.pdp-acc__body a:hover{ text-decoration:underline; }
+.pdp-acc__body .pdp-manuals a{ color:inherit; }
+
+/* Phones: stack the value under the name */
+@media (max-width:600px){
+  .pdp-acc__body .technical-data .item2{ flex-direction:column; gap:2px; }
+  .pdp-acc__body .technical-data .item2 .value{ text-align:left; }
+}
+
+/* ---------- INCREMENT 12: data-driven Coast-style spec sheet (pdp-spec-sheet.liquid) ----------
+   Light-output bar chart (Boost = brand red) + beam/runtime table + grouped sections.
+   Monospace values, Karla labels, brand-red section headers. Scoped to the Specs card. */
+.pdp-acc__body .pdp-spec{ --mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace; color:#1b1b19; }
+.pdp-acc__body .pdp-spec__sec{ margin:0 0 24px; }
+.pdp-acc__body .pdp-spec__label{ font-family:var(--FONT-STACK-HEADING); font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.09em; color:var(--accent,#e3000b); margin:0 0 14px; }
+.pdp-acc__body .pdp-spec__label--mt{ margin-top:22px; }
+
+/* Light-output bar chart */
+.pdp-acc__body .pdp-spec__bars{ margin:0 0 18px; }
+.pdp-acc__body .pdp-spec__bar{ display:flex; align-items:center; gap:12px; margin:0 0 9px; }
+.pdp-acc__body .pdp-spec__bar:last-child{ margin-bottom:0; }
+.pdp-acc__body .pdp-spec__bn{ width:52px; flex:none; font-family:var(--FONT-STACK-HEADING); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#1b1b19; }
+.pdp-acc__body .pdp-spec__bt{ flex:1; display:block; height:18px; background:rgba(0,0,0,.06); border-radius:4px; overflow:hidden; }
+.pdp-acc__body .pdp-spec__bt > i{ display:block; height:100%; background:#1b1b19; border-radius:4px; min-width:3px; }
+.pdp-acc__body .pdp-spec__bv{ width:96px; flex:none; text-align:right; font-family:var(--mono); font-size:13px; color:#1b1b19; }
+.pdp-acc__body .pdp-spec__bv small{ color:var(--pdp-text-2); }
+.pdp-acc__body .pdp-spec__bar--boost .pdp-spec__bn{ color:var(--accent,#e3000b); }
+.pdp-acc__body .pdp-spec__bar--boost .pdp-spec__bt > i{ background:var(--accent,#e3000b); }
+.pdp-acc__body .pdp-spec__bar--boost .pdp-spec__bv{ color:var(--accent,#e3000b); font-weight:700; }
+
+/* Beam / run-time mini table */
+.pdp-acc__body .pdp-spec__mini{ width:100%; border-collapse:collapse; }
+.pdp-acc__body .pdp-spec__mini thead th{ font-family:var(--FONT-STACK-HEADING); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--pdp-text-2); text-align:center; padding:0 8px 7px; border-bottom:1px solid var(--pdp-border); }
+.pdp-acc__body .pdp-spec__mini thead th:first-child{ text-align:left; }
+.pdp-acc__body .pdp-spec__mini tbody th{ text-align:left; font-family:var(--FONT-STACK-HEADING); font-size:11.5px; font-weight:600; text-transform:uppercase; letter-spacing:.03em; color:#1b1b19; padding:10px 8px 10px 8px; white-space:nowrap; }
+.pdp-acc__body .pdp-spec__mini tbody th small{ color:var(--pdp-text-2); font-weight:400; font-family:var(--mono); font-size:11px; margin-left:5px; }
+.pdp-acc__body .pdp-spec__mini tbody td{ text-align:center; font-family:var(--mono); font-size:13px; color:#1b1b19; padding:10px 8px; border-bottom:1px solid var(--pdp-border); }
+.pdp-acc__body .pdp-spec__mini tbody tr:last-child td{ border-bottom:none; }
+
+/* Units legend under the Light Values block */
+.pdp-acc__body .pdp-spec__legend{ display:flex; flex-wrap:wrap; gap:5px 18px; margin-top:14px; font-family:var(--mono); font-size:11.5px; color:var(--pdp-text-2); }
+.pdp-acc__body .pdp-spec__legend b{ color:#1b1b19; font-weight:700; margin-right:5px; }
+
+/* Grouped two-column sections */
+.pdp-acc__body .pdp-spec__cols{ display:grid; grid-template-columns:1fr 1fr; gap:0 36px; align-items:start; }
+.pdp-acc__body .pdp-spec__r{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:8px 0; border-bottom:1px solid var(--pdp-border); }
+.pdp-acc__body .pdp-spec__col > .pdp-spec__r:last-child{ border-bottom:none; }
+.pdp-acc__body .pdp-spec__k{ font-family:var(--FONT-STACK-HEADING); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; font-weight:600; color:#1b1b19; white-space:nowrap; }
+.pdp-acc__body .pdp-spec__k small{ color:var(--pdp-text-2); font-weight:400; font-family:var(--mono); font-size:10.5px; margin-left:5px; }
+.pdp-acc__body .pdp-spec__v{ font-family:var(--mono); font-size:13px; color:var(--pdp-text-2); text-align:right; }
+/* Stacked row for long comma-list values (battery indicator, headband specs) */
+.pdp-acc__body .pdp-spec__r--stack{ flex-direction:column; align-items:stretch; gap:4px; }
+.pdp-acc__body .pdp-spec__r--stack .pdp-spec__v{ text-align:left; line-height:1.5; }
+/* Full-width Features & Technologies section with chips */
+.pdp-acc__body .pdp-spec__sec--full{ margin-top:24px; }
+.pdp-acc__body .pdp-spec__chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.pdp-acc__body .pdp-spec__chip{ font-family:var(--mono); font-size:11.5px; color:#1b1b19; background:#fff; border:1px solid var(--pdp-border); border-radius:999px; padding:5px 11px; line-height:1.2; }
+
+@media (max-width:600px){
+  .pdp-acc__body .pdp-spec__cols{ grid-template-columns:1fr; gap:0; }
+  .pdp-acc__body .pdp-spec__bn{ width:46px; }
+  .pdp-acc__body .pdp-spec__bv{ width:78px; }
+  .pdp-acc__body .pdp-spec__mini{ display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+}
+
+/* ---------- PHASE 3: Coast-style spec table ---------- */
+.pdp-specs{ width:100%; border-collapse:collapse; font-size:14.5px; }
+.pdp-specs tr{ border-bottom:1px solid var(--pdp-border); }
+.pdp-specs tr:last-child{ border-bottom:none; }
+.pdp-specs th{ text-align:left; font-weight:600; color:#1b1b19; padding:11px 16px 11px 0; width:46%; vertical-align:top; }
+.pdp-specs td{ text-align:left; color:var(--pdp-text-2); padding:11px 0; vertical-align:top; }
+@media (max-width:600px){ .pdp-specs th{ width:50%; } }
+
+/* ---------- Manuals: downloadable file list ---------- */
+.pdp-manuals{ list-style:none; margin:0; padding:2px 0; display:flex; flex-direction:column; }
+.pdp-manuals li{ border-bottom:1px solid var(--pdp-border); }
+.pdp-manuals li:last-child{ border-bottom:none; }
+.pdp-manuals a{
+  display:flex; align-items:center; gap:12px; padding:13px 4px;
+  color:inherit; text-decoration:none; font-size:14.5px; font-weight:500;
+  transition:color .12s ease;
+}
+.pdp-manuals a:hover{ color: #e3000b; }
+.pdp-manuals a svg{ width:20px; height:20px; flex:none; color:var(--accent, #e3000b); }
+.pdp-manuals a span{ text-transform:capitalize; }
+
+
+/* ---------- accessories carousel ---------- */
+.pdp-carousel{ position:relative; }
+.pdp-carousel__track{ display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding:4px 2px; scrollbar-width:none; -ms-overflow-style:none; }
+.pdp-carousel__track::-webkit-scrollbar{ display:none; }
+.pdp-carousel__track .pdp-acc-item{ flex:0 0 160px; scroll-snap-align:start; }
+.pdp-carousel__arrow{ position:absolute; top:42%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; background:#fff; border:1px solid rgba(0,0,0,.15); box-shadow:0 2px 10px rgba(0,0,0,.12); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; color:#1b1b19; transition:background .15s, opacity .15s; }
+.pdp-carousel__arrow:hover{ background:var(--pdp-surface); }
+.pdp-carousel__arrow svg{ width:18px; height:18px; }
+.pdp-carousel__arrow--prev{ left:6px; }
+.pdp-carousel__arrow--next{ right:6px; }
+.pdp-carousel__arrow[disabled]{ opacity:0; pointer-events:none; }
+.pdp-acc-item{ display:flex; flex-direction:column; gap:6px; border:1px solid var(--pdp-border); border-radius:10px; padding:10px; text-decoration:none; color:inherit; transition:box-shadow .15s, border-color .15s; }
+.pdp-acc-item:hover{ border-color:var(--pdp-border-2); box-shadow:0 6px 18px rgba(0,0,0,.06); }
+.pdp-acc-item__img{ aspect-ratio:1; background:var(--pdp-surface); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#b5b5b0; margin-bottom:2px; overflow:hidden; }
+.pdp-acc-item__img img{ width:100%; height:100%; object-fit:contain; }
+.pdp-acc-item__img svg{ width:34px; height:34px; }
+.pdp-acc-item__name{ font-size:13.5px; font-weight:600; color:#1b1b19; line-height:1.3; }
+.pdp-acc-item__price{ font-size:13px; font-weight:600; color:var(--pdp-text-2); }
+.pdp-acc-item__price s{ color:#b5b5b0; font-weight:400; margin-right:4px; }
+
+
+/* Accessory tiles: white image background, matching the product cards */
+.pdp-acc-item__img{ background:#fff; }
+
+/* ---------- Tabs layout (sections/custom-tabs.liquid, "Layout" setting) ----------
+   The script adds .is-tabs and a tab bar built from the accordion items; the item with
+   .open is the visible panel and its accordion head is hidden. */
+.pdp-tabs__nav{ display:none; }
+.pdp-accordions.is-tabs{ gap:0; }
+.pdp-accordions.is-tabs .pdp-tabs__nav{
+  display:flex; gap:32px; margin:0 0 28px; border-bottom:1px solid var(--pdp-border-2);
+  overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;
+}
+.pdp-accordions.is-tabs .pdp-tabs__nav::-webkit-scrollbar{ display:none; }
+.pdp-tabs__tab{
+  position:relative; flex:none; margin:0; padding:14px 0; background:none; border:0; cursor:pointer;
+  font-family:var(--FONT-STACK-HEADING); font-size:16px; font-weight:700; letter-spacing:.01em;
+  color:var(--pdp-text-2); white-space:nowrap; transition:color .15s ease;
+}
+.pdp-tabs__tab:hover,
+.pdp-tabs__tab[aria-selected="true"]{ color:#1b1b19; }
+.pdp-tabs__tab[aria-selected="true"]::after{
+  content:''; position:absolute; left:0; right:0; bottom:-1px; height:3px; background:#e30613;
+}
+.pdp-tabs__tab:focus-visible{ outline:2px solid #e30613; outline-offset:2px; }
+
+.pdp-accordions.is-tabs .pdp-acc,
+.pdp-accordions.is-tabs .pdp-acc:hover,
+.pdp-accordions.is-tabs .pdp-acc.open{
+  display:none; background:none; border:0; border-radius:0; box-shadow:none; overflow:visible;
+}
+.pdp-accordions.is-tabs .pdp-acc.open{ display:block; }
+.pdp-accordions.is-tabs .pdp-acc__head{ display:none; }
+.pdp-accordions.is-tabs .pdp-acc__panel{ display:block; }
+.pdp-accordions.is-tabs .pdp-acc__inner{ overflow:visible; }
+.pdp-accordions.is-tabs .pdp-acc__body,
+.pdp-accordions.is-tabs .pdp-acc.open .pdp-acc__body{ padding:0; border-top:0; }
+
+@media (max-width:767px){
+  .pdp-accordions.is-tabs .pdp-tabs__nav{ gap:24px; margin:0 -16px 22px; padding:0 16px;scroll-snap-type: X mandatory; }
+  .pdp-tabs__tab{ font-size:15px; padding:12px 0; }
+}

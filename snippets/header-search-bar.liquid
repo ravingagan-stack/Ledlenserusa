@@ -1,0 +1,99 @@
+{%- comment -%}
+  Always-visible search input for the header (replaces the click-to-open search popup).
+
+  Accepts:
+  - unique: {String} Unique id suffix for the input/results ids
+  - classes: {String} Extra classes for the wrapper
+
+  Usage:
+  {% render 'header-search-bar', unique: 'desktop' %}
+{%- endcomment -%}
+
+<div class="header-search{% if classes != blank %} {{ classes }}{% endif %}">
+  {%- if settings.enable_predictive_search -%}
+    <predictive-search class="header-search__component">
+  {%- else -%}
+    <search-form class="header-search__component">
+  {%- endif -%}
+
+    <form class="header-search__form" action="{{ routes.search_url }}" method="get" role="search">
+      <input name="options[prefix]" type="hidden" value="last">
+      {%- if template.name == 'search' -%}
+        {%- comment -%} Required by SearchForm JS on the search page; value is synced from the main search form {%- endcomment -%}
+        <input type="hidden" name="type" value="">
+      {%- endif -%}
+
+      <label for="HeaderSearch-{{ unique }}" class="visually-hidden">{{ 'general.search.title' | t }}</label>
+
+      <input
+        type="search"
+        id="HeaderSearch-{{ unique }}"
+        class="header-search__input"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="Search headlamps, flashlights…"
+        aria-label="{{ 'general.search.placeholder' | t }}"
+        {% if settings.enable_predictive_search %}
+          role="combobox"
+          aria-expanded="false"
+          aria-owns="HeaderSearchResults-{{ unique }}"
+          aria-controls="HeaderSearchResults-{{ unique }}"
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+        {% endif %}
+        autocorrect="off"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+      >
+
+      <button class="header-search__submit" type="submit" aria-label="{{ 'general.search.submit' | t }}">
+        {%- render 'icon-search' -%}
+      </button>
+
+      {%- if settings.enable_predictive_search -%}
+        <div id="HeaderSearchResults-{{ unique }}" class="header-search__results">
+          <div class="predictive-search" data-predictive-search-results data-scroll-lock-scrollable>
+            <div class="predictive-search__loading-state">
+              <div class="predictive-search__loader loader loader--line"><div class="loader-indeterminate"></div></div>
+            </div>
+          </div>
+
+          <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true" data-predictive-search-status></span>
+        </div>
+      {%- endif -%}
+    </form>
+
+  {%- if settings.enable_predictive_search -%}
+    </predictive-search>
+  {%- else -%}
+    </search-form>
+  {%- endif -%}
+</div>
+
+{%- if settings.enable_predictive_search -%}
+  <script>
+    (function () {
+      if (window.headerSearchOutsideClickAttached) return;
+      window.headerSearchOutsideClickAttached = true;
+
+      // Hide predictive results when clicking outside the search bar or pressing Escape.
+      // Results reopen on focus because PredictiveSearch keeps its `results` state.
+      function closeHeaderSearches(except) {
+        document.querySelectorAll('.header-search predictive-search[open]').forEach(function (search) {
+          if (search === except || typeof search.close !== 'function') return;
+          search.close();
+          search.input?.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      document.addEventListener('click', function (event) {
+        closeHeaderSearches(event.target.closest('.header-search predictive-search'));
+      });
+
+      document.addEventListener('keyup', function (event) {
+        if (event.code === 'Escape') closeHeaderSearches();
+      });
+    })();
+  </script>
+{%- endif -%}

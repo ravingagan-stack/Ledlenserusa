@@ -1,0 +1,53 @@
+{%- comment -%}
+  Compatible accessories carousel.
+  Data: product.metafields.custom.compatible_accessories (List of products).
+  Renders nothing if the list is empty. Used inside the "Accessories" accordion.
+{%- endcomment -%}
+
+{%- assign accessories = product.metafields.custom.compatible_accessories.value -%}
+
+{%- if accessories != blank and accessories.size > 0 -%}
+<div class="pdp-carousel" data-pdp-carousel>
+  <button type="button" class="pdp-carousel__arrow pdp-carousel__arrow--prev" data-pdp-carousel-prev aria-label="Previous accessories"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div class="pdp-carousel__track" data-pdp-carousel-track>
+    {%- for acc in accessories -%}
+      <a class="pdp-acc-item" href="{{ acc.url }}">
+        <span class="pdp-acc-item__img">
+          {%- if acc.featured_image != blank -%}
+            <img src="{{ acc.featured_image | image_url: width: 320 }}" alt="{{ acc.title | escape }}" loading="lazy" width="160" height="160">
+          {%- else -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5-9 8"/></svg>
+          {%- endif -%}
+        </span>
+        <span class="pdp-acc-item__name">{{ acc.title }}</span>
+        <span class="pdp-acc-item__price">
+          {%- if acc.compare_at_price > acc.price -%}<s>{{ acc.compare_at_price | money }}</s> {% endif -%}
+          {{ acc.price | money }}
+        </span>
+      </a>
+    {%- endfor -%}
+  </div>
+  <button type="button" class="pdp-carousel__arrow pdp-carousel__arrow--next" data-pdp-carousel-next aria-label="Next accessories"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<script>
+  (function () {
+    document.querySelectorAll('[data-pdp-carousel]').forEach(function (car) {
+      if (car.dataset.pdpCarouselReady) return;
+      car.dataset.pdpCarouselReady = '1';
+      var track = car.querySelector('[data-pdp-carousel-track]');
+      var prev = car.querySelector('[data-pdp-carousel-prev]');
+      var next = car.querySelector('[data-pdp-carousel-next]');
+      if (!track) return;
+      function step() { return Math.max(track.clientWidth * 0.8, 180); }
+      function update() {
+        if (prev) prev.disabled = track.scrollLeft <= 2;
+        if (next) next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      }
+      if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+      track.addEventListener('scroll', update, { passive: true });
+      update();
+    });
+  })();
+</script>
+{%- endif -%}

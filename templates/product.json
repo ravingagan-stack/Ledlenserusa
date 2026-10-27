@@ -375,6 +375,67 @@
         "padding_bottom": 100
       }
     },
+    "custom_tabs_DATTdN": {
+      "type": "custom-tabs",
+      "blocks": {
+        "panel_ywBAVG": {
+          "type": "panel",
+          "settings": {
+            "title": "Specifications",
+            "custom_code": "<style>\n#CustomTabs--template--20177705402446__custom_tabs_DATTdN .scope-grid {\n  display: flex;\n  justify-content: center;\n}\n\n.technical-data-table {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  margin-top: 20px;\n}\n\n.spec-block {\n  border-top: 3px solid #000;\n  background: #fff;\n}\n\n.spec-block h4 {\n  background: #000;\n  color: #fff;\n  padding: 8px;\n  font-size: 14px;\n  text-transform: uppercase;\n  margin: 0;\n}\n\n.spec-block ul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n.spec-block li {\n  display: flex;\n  justify-content: space-between;\n  padding: 6px 10px;\n  border-bottom: 1px solid #ddd;\n  font-size: 13px;\n}\n\n.spec-block li span:first-child {\n  color: #555;\n}\n\n.spec-block li span:last-child {\n  font-weight: 500;\n}\n\n.spec-block p {\n  padding: 10px;\n  font-size: 13px;\n  margin: 0;\n}\n\n.light-values-table {\n  width: 100%;\n  border-collapse: collapse;\n  font-size: 13px;\n}\n\n.light-values-table th,\n.light-values-table td {\n  padding: 8px 10px;\n  border-bottom: 1px solid #ddd;\n  text-align: center;\n}\n\n.light-values-table th:first-child,\n.light-values-table td:first-child {\n  text-align: left;\n  color: #555;\n}\n\n.light-values-table thead th {\n  background: #f5f5f5;\n  font-weight: 600;\n}\n\n@media (max-width: 768px) {\n  .technical-data-table {\n    display: flex;\n    flex-direction: column;\n    gap: 15px;\n  }\n\n  .spec-block {\n    width: 100%;\n  }\n\n  .spec-block ul {\n    width: 100%;\n  }\n\n  .spec-block li {\n    display: block;\n    padding: 10px;\n  }\n\n  .spec-block li span {\n    display: block;\n    width: 100%;\n  }\n\n  .spec-block li span:first-child {\n    font-size: 12px;\n    color: #777;\n    margin-bottom: 2px;\n  }\n\n  .spec-block li span:last-child {\n    font-size: 14px;\n    font-weight: 600;\n    color: #000;\n  }\n\n  .light-values-table {\n    display: block;\n    width: 100%;\n    overflow-x: auto;\n    -webkit-overflow-scrolling: touch;\n  }\n\n  .light-values-table th,\n  .light-values-table td {\n    font-size: 12px;\n    padding: 8px;\n    white-space: nowrap;\n  }\n\n  .spec-block h4 {\n    font-size: 13px;\n    padding: 8px;\n  }\n\n  .tabs,\n  .product-tabs,\n  .tab-list {\n    display: flex;\n    flex-wrap: wrap;\n    overflow-x: auto;\n    white-space: nowrap;\n    border-bottom: 1px solid #ddd;\n  }\n\n  .tabs button,\n  .product-tabs button,\n  .tab-list button {\n    flex: 0 0 auto;\n    padding: 10px 12px;\n    font-size: 12px;\n  }\n\n  .tab-buttons {\n    justify-content: left !important;\n    display: flex !important;\n    flex-wrap: wrap !important;\n    overflow-x: auto !important;\n    overflow-y: hidden !important;\n    white-space: nowrap !important;\n    width: 100% !important;\n    padding: 0 10px !important;\n    gap: 8px !important;\n    -webkit-overflow-scrolling: touch !important;\n    scrollbar-width: none !important;\n    background: #ffffff !important;\n  }\n\n  .tab-buttons::-webkit-scrollbar {\n    display: none !important;\n  }\n\n  .tab-buttons .tab-button {\n    flex: 0 0 auto !important;\n    display: inline-block !important;\n    white-space: nowrap !important;\n    padding: 10px 14px !important;\n    font-size: 13px !important;\n    background: #000 !important;\n    color: #fff !important;\n    border-radius: 3px !important;\n  }\n\n  .tab-buttons .tab-button.active {\n    background: #333 !important;\n  }\n\n  [data-tab-content],\n  [data-tab-panel],\n  .tab-panel,\n  .tab-content {\n    max-height: none !important;\n    height: auto !important;\n    overflow: visible !important;\n  }\n}\n</style>\n\n{%- assign td = product.metafields.custom.technical_data.value -%}\n\n{% if td %}\n\n<div class=\"technical-data-table\">\n\n  <div class=\"spec-block\">\n    <h4>Technical Data</h4>\n    <ul>\n      {% if td.td_weight != blank %}\n        <li><span>Weight incl. batteries [g]</span><span>{{ td.td_weight }}</span></li>\n      {% endif %}\n\n      {% if td.td_material != blank %}\n        <li><span>Material</span><span>{{ td.td_material }}</span></li>\n      {% endif %}\n\n      {% if td.td_luminous_range != blank %}\n        <li><span>Luminous range [m]</span><span>{{ td.td_luminous_range }}</span></li>\n      {% endif %}\n\n      {% if td.td_luminous_range_focused != blank %}\n        <li><span>Luminous range focused [m]</span><span>{{ td.td_luminous_range_focused }}</span></li>\n      {% endif %}\n\n      {% if td.td_tube_diameter != blank %}\n        <li><span>Tube diameter [mm]</span><span>{{ td.td_tube_diameter }}</span></li>\n      {% endif %}\n\n      {% if td.td_head_diameter != blank %}\n        <li><span>Head diameter [mm]</span><span>{{ td.td_head_diameter }}</span></li>\n      {% endif %}\n    </ul>\n  </div>\n\n  <div class=\"spec-block\">\n    <h4>Power Supply</h4>\n    <ul>\n      {% if td.td_battery_quantity != blank %}\n        <li><span>Battery quantity</span><span>{{ td.td_battery_quantity }}</span></li>\n      {% endif %}\n\n      {% if td.td_rechargeable != blank %}\n        <li><span>Rechargeable</span><span>{{ td.td_rechargeable }}</span></li>\n      {% endif %}\n\n      {% if td.td_battery_type != blank %}\n        <li><span>Battery type</span><span>{{ td.td_battery_type }}</span></li>\n      {% endif %}\n\n      {% if td.td_battery_voltage != blank %}\n        <li><span>Total battery voltage [V]</span><span>{{ td.td_battery_voltage }}</span></li>\n      {% endif %}\n\n      {% if td.td_battery_capacity != blank %}\n        <li><span>Total battery capacity [mAh]</span><span>{{ td.td_battery_capacity }}</span></li>\n      {% endif %}\n\n      {% if td.td_battery_energy != blank %}\n        <li><span>Total battery energy [Wh]</span><span>{{ td.td_battery_energy }}</span></li>\n      {% endif %}\n\n      {% if td.td_charging_time != blank %}\n        <li><span>Charging time [min]</span><span>{{ td.td_charging_time }}</span></li>\n      {% endif %}\n    </ul>\n  </div>\n\n  <div class=\"spec-block\">\n    <h4>Further Specifications</h4>\n    <ul>\n      {% if td.td_ip_class != blank %}\n        <li><span>IP class</span><span>{{ td.td_ip_class }}</span></li>\n      {% endif %}\n\n      {% if td.td_drop_test != blank %}\n        <li><span>Drop test [m]</span><span>{{ td.td_drop_test }}</span></li>\n      {% endif %}\n\n      {% if td.td_temperature_range != blank %}\n        <li><span>Working temperature [°C]</span><span>{{ td.td_temperature_range }}</span></li>\n      {% endif %}\n    </ul>\n  </div>\n\n  {% if td.td_light_functions != blank %}\n    <div class=\"spec-block\">\n      <h4>Light Functions</h4>\n      <p>{{ td.td_light_functions }}</p>\n    </div>\n  {% endif %}\n\n  <div class=\"spec-block\">\n    <h4>Light Source</h4>\n    <ul>\n      {% if td.td_led_count != blank %}\n        <li><span>Amount LEDs</span><span>{{ td.td_led_count }}</span></li>\n      {% endif %}\n\n      {% if td.td_light_color != blank %}\n        <li><span>Color</span><span>{{ td.td_light_color }}</span></li>\n      {% endif %}\n\n      {% if td.td_color_temperature != blank %}\n        <li><span>Color temperature [K]</span><span>{{ td.td_color_temperature }}</span></li>\n      {% endif %}\n\n      {% if td.td_cri != blank %}\n        <li><span>CRI</span><span>{{ td.td_cri }}</span></li>\n      {% endif %}\n    </ul>\n  </div>\n\n  <div class=\"spec-block\">\n    <h4>Light Values</h4>\n\n{% assign output = td.td_light_output | default: '' %}\n{% assign beam = td.td_beam_distance | default: '' %}\n{% assign runtime = td.td_runtime | default: '' %}\n\n{% assign output_parts = output | split: ' Power:' %}\n{% assign beam_parts = beam | split: ' Power:' %}\n{% assign runtime_parts = runtime | split: ' Power:' %}\n\n{% assign out_boost = output_parts[0] | remove: 'Boost:' | strip %}\n{% assign out_power = output_parts[1] | split: ' Mid' | first | strip %}\n{% assign out_mid = output_parts[2] | split: ' Low' | first | strip %}\n{% assign out_low = output_parts[3] | strip %}\n\n{% assign beam_boost = beam_parts[0] | remove: 'Boost:' | strip %}\n{% assign beam_power = beam_parts[1] | split: ' Mid' | first | strip %}\n{% assign beam_mid = beam_parts[2] | split: ' Low' | first | strip %}\n{% assign beam_low = beam_parts[3] | strip %}\n\n{% assign run_boost = runtime_parts[0] | remove: 'Boost:' | strip %}\n{% assign run_power = runtime_parts[1] | split: ' Mid' | first | strip %}\n{% assign run_mid = runtime_parts[2] | split: ' Low' | first | strip %}\n{% assign run_low = runtime_parts[3] | strip %}\n\n    <table class=\"light-values-table\">\n      <thead>\n        <tr>\n          <th></th>\n          <th>Boost</th>\n          <th>Power</th>\n          <th>Mid power</th>\n          <th>Low power</th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <tr>\n          <td>Luminous flux (lm)</td>\n          <td>{{ out_boost }}</td>\n          <td>{{ out_power }}</td>\n          <td>{{ out_mid }}</td>\n          <td>{{ out_low }}</td>\n        </tr>\n\n        <tr>\n          <td>Beam range (m)</td>\n          <td>{{ beam_boost }}</td>\n          <td>{{ beam_power }}</td>\n          <td>{{ beam_mid }}</td>\n          <td>{{ beam_low }}</td>\n        </tr>\n\n        <tr>\n          <td>Duration (h)</td>\n          <td>{{ run_boost }}</td>\n          <td>{{ run_power }}</td>\n          <td>{{ run_mid }}</td>\n          <td>{{ run_low }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  {% if td.td_switch != blank %}\n    <div class=\"spec-block\">\n      <h4>Switch</h4>\n      <p>{{ td.td_switch }}</p>\n    </div>\n  {% endif %}\n\n  {% if td.td_features != blank %}\n    <div class=\"spec-block\">\n      <h4>Features</h4>\n      <p>{{ td.td_features }}</p>\n    </div>\n  {% endif %}\n\n</div>\n\n{% else %}\n\n<p style=\"padding: 20px; color: #777; font-size: 14px;\">\n  Technical data not available for this product.\n</p>\n\n{% endif %}"
+          }
+        },
+        "panel_Upw67Q": {
+          "type": "panel",
+          "settings": {
+            "title": "All about the light beam",
+            "custom_code": "{%- assign bu = 'lumens' -%}\n{%- assign du = 'metres' -%}\n{%- assign tu = 'hour(s)' -%}\n\n{%- assign dataPrice = featured.price -%}\n{%- assign technical = product.metafields.technical -%}\n{%- assign LEDConfiguration = technical.LEDConfiguration| strip| remove:\"\" -%}\n{%- assign dataLm = technical.Luminosity | downcase | replace: '–', '-' | split: '-'|first | remove: 'lm' | remove: 'lumens' | remove: 'max' | remove: 'min'| strip | plus: 0 -%}\n{%- assign dataLmFull = technical.Luminosity | replace: '–', '-' -%}\n{%- assign dataRange = technical.LightingRange | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'm' | strip  -%}\n{%- assign dataRangeFull = technical.LightingRange | replace: '–', '-' | strip  -%}\n{%- assign dataSize  = technical.Length | downcase | remove: 'mm' | strip | plus: 0 -%}\n{%- assign dataWeight  = technical.Weight | downcase | remove: 'g' | strip | plus: 0 -%}\n{%- if technical.Rechargeable  contains 'Yes' -%}{%- assign dataR = 1 -%}{%- else -%}{%- assign dataR = 0 -%}{%- endif -%}\n{%- assign dataWR = technical.WaterResistance -%}\n{%- assign dataHours =  technical.BatteryDuration | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'h' | strip | plus: 0 -%}\n{%- assign dataHoursFull =  technical.BatteryDuration | replace: '–', '-' -%}\n{%- assign dataCRI = technical.CRI | replace: '–', '-' -%}\n{%- assign dataCT = technical.ColourTemperature | replace: '–', '-' -%}\n{%- assign dataCRI2 = technical.CRI2 | replace: '–', '-' -%}\n{%- assign dataCT2 = technical.ColourTemperature2 | replace: '–', '-' -%}\n\n\n{%- assign LEDConfiguration2 = technical.LEDConfiguration2 -%}\n{%- assign dataLm2 = technical.Luminosity2 | downcase | replace: '–', '-'| split: '-'|first | remove: 'lm' | remove: 'lumens' | remove: 'max' | remove: 'min'| strip | plus: 0 -%}\n{%- assign dataLmFull2 = technical.Luminosity2 | replace: '–', '-' -%}\n{%- assign dataRange2 = technical.LightingRange2 | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'm' | strip  -%}\n{%- assign dataSize2  = technical.Length2 | downcase | remove: 'mm' | strip | plus: 0 -%}\n{%- assign dataWeight2  = technical.Weight2 | downcase | remove: 'g' | strip | plus: 0 -%}\n{%- if technical.Rechargeable2  contains 'Yes' -%}{%- assign dataR2 = 1 -%}{%- else -%}{%- assign dataR2 = 0 -%}{%- endif -%}\n{%- assign dataWR2 = technical.WaterResistance2 -%}\n{%- assign dataHours2 =  technical.BatteryDuration2 | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'h' | strip | plus: 0 -%}\n{%- assign dataHoursFull2 =  technical.BatteryDuration2 | downcase | replace: '–', '-' -%}\n\n{% capture additionally %}\n<div class=\"technical-data\">\n  <ul class=\"list\">\n    {%- assign additionalLines=0 -%} \n    {%- for field in product.metafields.additional -%}\n    {%- assign key= field | first -%}\n    {%- assign keyTitle= key -%}\n    {%- assign additionalLines=additionalLines|plus:1 -%}\n    {%- assign keySplitters = key|split: ''|uniq|sort -%}\n    {%- for letter in keySplitters -%}\n    {%- if 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains letter -%}\n    {%- assign letterSpaced=letter | prepend:' ' -%}\n    {%- assign keyTitle= keyTitle|replace: letter,letterSpaced -%}\n    {%- else -%}\n    {%- break -%}\n    {%- endif -%}\n    {%- endfor -%}\n    {%- assign keyTitle= keyTitle|replace:'L E D','LED' -%}\n    {%- assign keyTitle= keyTitle| strip -%}\n\n    <li class=\"item2\"><span class=\"name\">{{ keyTitle }}</span> <span class=\"value\">{{ field | last }}</span></li>\n    {% endfor %}\n  </ul>\n</div>\n{% endcapture %}\n\n{% if product.metafields.bullets.bullet_1 %}\n\n<div class=\"spec-tec\">\n              {%- if dataLm >0 -%}\n              <div class=\"technical-data\">\n                <h3 class=\"led title with-icon\">LED</h3>\n                <ul class=\"list\">\n                  <li class=\"item2\"><span class=\"name\">LED Configuration</span> <span class=\"value\">{{LEDConfiguration}}</span></li>      \n                  <li class=\"item2\"><span class=\"name\">Luminosity<sup>1</sup></span> <span class=\"value\">{{dataLmFull}}</span></li>\n                  {%- if dataRange != blank -%}<li class=\"item2\"><span class=\"name\">Lighting Range<sup>1</sup></span> <span class=\"value\">{{dataRangeFull}}</span></li>{%- endif -%}\n                  <li class=\"item2\"><span class=\"name\">Battery Duration<sup>1</sup></span> <span class=\"value\">{{dataHoursFull}}</span></li>\n                  {%- if dataCRI != blank -%}<li class=\"item2\"><span class=\"name\">CRI</span> <span class=\"value\">{{dataCRI }}</span></li>{%- endif -%}\n                  {%- if dataCT != blank -%}<li class=\"item2\"><span class=\"name\">Color Temperature</span> <span class=\"value\">{{dataCT }}</span></li>\n                  <li class=\"item2 item--color\"><div  id=\"color-temperature\" style=\"width: 100%;\">{%  render \"product-colorTemperature\", temperature: product.metafields.technical.ColourTemperature %}</div></li>\n                  {%- endif -%}\n\n\n                  {%- if dataLm2 != 0 -%}\n                  <li><p></p></li>\n                  <li class=\"item2\"><span class=\"name\">LED Configuration</span> <span class=\"value\">{{LEDConfiguration2}}</span></li>      \n                  <li class=\"item2\"><span class=\"name\">Luminosity<sup>1</sup></span> <span class=\"value\">{{dataLmFull2}}</span></li>\n                  {%- if dataRange2 != blank -%}<li class=\"item2\"><span class=\"name\">Lighting Range<sup>1</sup></span> <span class=\"value\">{{dataRange2}} {{du}}</span></li>{%- endif -%}\n                  {%- if dataHours2 != blank -%}<li class=\"item2\"><span class=\"name\">Battery Duration<sup>1</sup></span> <span class=\"value\">{{dataHoursFull2}}</span></li>{%- endif -%}\n                  {%- endif -%}\n                </ul>\n              </div>\n              {%- endif -%}\n              <ul class=\"special-information\">\n                {% for bulletNum in (1..16) %}\n                {% assign bulletId= 'bullet_'|append:bulletNum %}\n                {% assign bullet = product.metafields.bullets[bulletId] %}\n                {% if bulletNum == 3 %}{% continue %}{% endif %}\n                {% if bulletNum == 4 %}{% continue %}{% endif %}\n                {% if bulletNum == 5 %}{% continue %}{% endif %}\n                {% if bullet %}<li {{bulletNum}} class=\"bullet\">{{ bullet }}</li>{% endif %}\n                {% endfor %}\n              </ul>\n            </div>\n            {% endif %}"
+          }
+        },
+        "panel_7hAFpp": {
+          "type": "panel",
+          "settings": {
+            "title": "All about the features",
+            "custom_code": "{%- assign bu = 'lumens' -%}\n{%- assign du = 'metres' -%}\n{%- assign tu = 'hour(s)' -%}\n\n{%- assign dataPrice = featured.price -%}\n{%- assign technical = product.metafields.technical -%}\n{%- assign LEDConfiguration = technical.LEDConfiguration| strip| remove:\" \" -%}\n{%- assign dataLm = technical.Luminosity | downcase | replace: '–', '-' | split: '-'|first | remove: 'lm' | remove: 'lumens' | remove: 'max' | remove: 'min'| strip | plus: 0 -%}\n{%- assign dataLmFull = technical.Luminosity | replace: '–', '-' -%}\n{%- assign dataRange = technical.LightingRange | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'm' | strip  -%}\n{%- assign dataRangeFull = technical.LightingRange | replace: '–', '-' | strip  -%}\n{%- assign dataSize  = technical.Length | downcase | remove: 'mm' | strip | plus: 0 -%}\n{%- assign dataWeight  = technical.Weight | downcase | remove: 'g' | strip | plus: 0 -%}\n{%- if technical.Rechargeable  contains 'Yes' -%}{%- assign dataR = 1 -%}{%- else -%}{%- assign dataR = 0 -%}{%- endif -%}\n{%- assign dataWR = technical.WaterResistance -%}\n{%- assign dataHours =  technical.BatteryDuration | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'h' | strip | plus: 0 -%}\n{%- assign dataHoursFull =  technical.BatteryDuration | replace: '–', '-' -%}\n{%- assign dataCRI = technical.CRI | replace: '–', '-' -%}\n{%- assign dataCT = technical.ColourTemperature | replace: '–', '-' -%}\n{%- assign dataCRI2 = technical.CRI2 | replace: '–', '-' -%}\n{%- assign dataCT2 = technical.ColourTemperature2 | replace: '–', '-' -%}\n\n\n{%- assign LEDConfiguration2 = technical.LEDConfiguration2 -%}\n{%- assign dataLm2 = technical.Luminosity2 | downcase | replace: '–', '-'| split: '-'|first | remove: 'lm' | remove: 'lumens' | remove: 'max' | remove: 'min'| strip | plus: 0 -%}\n{%- assign dataLmFull2 = technical.Luminosity2 | replace: '–', '-' -%}\n{%- assign dataRange2 = technical.LightingRange2 | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'm' | strip  -%}\n{%- assign dataSize2  = technical.Length2 | downcase | remove: 'mm' | strip | plus: 0 -%}\n{%- assign dataWeight2  = technical.Weight2 | downcase | remove: 'g' | strip | plus: 0 -%}\n{%- if technical.Rechargeable2  contains 'Yes' -%}{%- assign dataR2 = 1 -%}{%- else -%}{%- assign dataR2 = 0 -%}{%- endif -%}\n{%- assign dataWR2 = technical.WaterResistance2 -%}\n{%- assign dataHours2 =  technical.BatteryDuration2 | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'h' | strip | plus: 0 -%}\n{%- assign dataHoursFull2 =  technical.BatteryDuration2 | downcase | replace: '–', '-' -%}\n\n{%- capture allAboutOurTechnology1 -%}{% for bulletNum in (1..16) %}{% assign bulletId= 'bullet_'|append:bulletNum %}{%\nassign bullet = product.metafields.bullets[bulletId] %}{% if bulletNum == 3 and bullet %}<li class=\"bullet\">{{ bullet }}\n</li>{% endif %}{% if bulletNum == 4 and bullet %}<li class=\"bullet\">{{ bullet }}</li>{% endif %}{% endfor %}{%-\nendcapture -%}\n{% capture allAboutOurTechnology2 %}\n{%- if technical.Length -%}<li class=\"item2\"><span class=\"name\">Length (defocused)</span> <span\n    class=\"value\">{{technical.Length}}</span></li>{%- endif -%}\n{%- if technical.HeadDiameter -%}<li class=\"item2\"><span class=\"name\">Head Diameter</span> <span\n    class=\"value\">{{technical.HeadDiameter}}</span></li>{%- endif -%}\n{%- if technical.Width -%}<li class=\"item2\"><span class=\"name\">Width</span> <span\n    class=\"value\">{{technical.Width}}</span></li>{%- endif -%}\n{%- if technical.Height -%}<li class=\"item2\"><span class=\"name\">Height</span> <span\n    class=\"value\">{{technical.Height}}</span></li>{%- endif -%}\n{%- if technical.Depth -%}<li class=\"item2\"><span class=\"name\">Depth</span> <span\n    class=\"value\">{{technical.Depth}}</span></li>{%- endif -%}\n{%- if technical.Weight -%}<li class=\"item2\"><span class=\"name\">Weight</span> <span\n    class=\"value\">{{technical.Weight}}</span></li>{%- endif -%}\n{% endcapture %}\n{% assign allAboutOurTechnology1 = allAboutOurTechnology1 | strip %}\n{% if allAboutOurTechnology2 != blank or allAboutOurTechnology1 != blank %}\n<div class=\"rte\">\n  <ul class=\"special-information\">{{ allAboutOurTechnology1 | strip}}</ul>\n  {%- if dataLm >0 -%}\n  <div class=\"technical-data\">\n    <h3 class=\"size title with-icon\">Height and Weight</h3>\n    <ul class=\"list\">\n      {{ allAboutOurTechnology2 }}\n    </ul>\n  </div>\n  {%- endif -%}\n</div>\n{% endif %}"
+          }
+        },
+        "panel_GWyJCm": {
+          "type": "panel",
+          "settings": {
+            "title": "All about the power",
+            "custom_code": "{%- assign bu = 'lumens' -%}\n{%- assign du = 'metres' -%}\n{%- assign tu = 'hour(s)' -%}\n\n{%- assign dataPrice = featured.price -%}\n{%- assign technical = product.metafields.technical -%}\n{%- assign LEDConfiguration = technical.LEDConfiguration| strip| remove:\"\" -%}\n{%- assign dataLm = technical.Luminosity | downcase | replace: '–', '-' | split: '-'|first | remove: 'lm' | remove: 'lumens' | remove: 'max' | remove: 'min'| strip | plus: 0 -%}\n{%- assign dataLmFull = technical.Luminosity | replace: '–', '-' -%}\n{%- assign dataRange = technical.LightingRange | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'm' | strip  -%}\n{%- assign dataRangeFull = technical.LightingRange | replace: '–', '-' | strip  -%}\n{%- assign dataSize  = technical.Length | downcase | remove: 'mm' | strip | plus: 0 -%}\n{%- assign dataWeight  = technical.Weight | downcase | remove: 'g' | strip | plus: 0 -%}\n{%- if technical.Rechargeable  contains 'Yes' -%}{%- assign dataR = 1 -%}{%- else -%}{%- assign dataR = 0 -%}{%- endif -%}\n{%- assign dataWR = technical.WaterResistance -%}\n{%- assign dataHours =  technical.BatteryDuration | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'h' | strip | plus: 0 -%}\n{%- assign dataHoursFull =  technical.BatteryDuration | replace: '–', '-' -%}\n{%- assign dataCRI = technical.CRI | replace: '–', '-' -%}\n{%- assign dataCT = technical.ColourTemperature | replace: '–', '-' -%}\n{%- assign dataCRI2 = technical.CRI2 | replace: '–', '-' -%}\n{%- assign dataCT2 = technical.ColourTemperature2 | replace: '–', '-' -%}\n\n\n{%- assign LEDConfiguration2 = technical.LEDConfiguration2 -%}\n{%- assign dataLm2 = technical.Luminosity2 | downcase | replace: '–', '-'| split: '-'|first | remove: 'lm' | remove: 'lumens' | remove: 'max' | remove: 'min'| strip | plus: 0 -%}\n{%- assign dataLmFull2 = technical.Luminosity2 | replace: '–', '-' -%}\n{%- assign dataRange2 = technical.LightingRange2 | downcase | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'm' | strip  -%}\n{%- assign dataSize2  = technical.Length2 | downcase | remove: 'mm' | strip | plus: 0 -%}\n{%- assign dataWeight2  = technical.Weight2 | downcase | remove: 'g' | strip | plus: 0 -%}\n{%- if technical.Rechargeable2  contains 'Yes' -%}{%- assign dataR2 = 1 -%}{%- else -%}{%- assign dataR2 = 0 -%}{%- endif -%}\n{%- assign dataWR2 = technical.WaterResistance2 -%}\n{%- assign dataHours2 =  technical.BatteryDuration2 | replace: '–', '-' | split: '-'|first | remove: 'max' | remove: 'min'| remove: 'h' | strip | plus: 0 -%}\n{%- assign dataHoursFull2 =  technical.BatteryDuration2 | downcase | replace: '–', '-' -%}\n\n{%- capture allAboutThePower -%}{% for bulletNum in (1..16) %}{% assign bulletId= 'bullet_'|append:bulletNum %}{% assign bullet = product.metafields.bullets[bulletId] %}{% if bulletNum == 5 and bullet %}<li class=\"bullet\">{{ bullet }}</li>{% endif %}{% endfor %}{%- endcapture -%}\n      {% assign allAboutThePower = allAboutThePower | strip %}\n      {% if allAboutThePower != blank %}\n\n          <div class=\"rte\">\n            {% render 'product-technical-data' %}\n            <ul class=\"special-information\">\n              {% for bulletNum in (1..16) %}\n              {% assign bulletId= 'bullet_'|append:bulletNum %}\n              {% assign bullet = product.metafields.bullets[bulletId] %}\n              {% if bulletNum == 5 %}<li {{bulletNum}} class=\"bullet\">{{ bullet }}</li>{% endif %}\n              {% endfor %}\n            </ul>\n          </div>\n      {% endif %}"
+          }
+        },
+        "stamped_reviews_main_widget_xExn4R": {
+          "type": "shopify://apps/stamped-reviews/blocks/main-widget/a103faaf-2125-4b0e-89fa-de5149736723",
+          "disabled": true,
+          "settings": {
+            "animation": true,
+            "tags_exclude": "",
+            "tags_include": "",
+            "search": "",
+            "linkify": true,
+            "use_metafields": false,
+            "sku_tagtype": "sku"
+          }
+        }
+      },
+      "block_order": [
+        "panel_ywBAVG",
+        "panel_Upw67Q",
+        "panel_7hAFpp",
+        "panel_GWyJCm",
+        "stamped_reviews_main_widget_xExn4R"
+      ],
+      "settings": {
+        "description_tab_label": "Description",
+        "scope_tab_label": "What's Included",
+        "bg_color": "#fafafa",
+        "text_color": "#333333",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "why_ledlenser_mHenhq": {
       "type": "why-ledlenser",
       "blocks": {
@@ -384,7 +445,7 @@
             "media_image": "shopify://shop_images/Background_2.png",
             "number": "",
             "title": "Focus in one move",
-            "description": "Slide the head to switch from a wide flood for close\nwork to a tight spot that reaches 1,050 ft. Most\nflashlights are fixed-beam."
+            "description": "Slide the head to switch from a wide flood for close\nwork to a tight spot that reaches 320 m. Most\nflashlights are fixed-beam."
           }
         },
         "feature_dbXfp7": {
@@ -468,7 +529,7 @@
       "settings": {
         "heading": "",
         "toggle_label": "Show differences only",
-        "diff_default": true,
+        "diff_default": false,
         "show_price": true,
         "price_label": "Price",
         "empty_value": "—",
@@ -890,9 +951,9 @@
           "type": "row",
           "settings": {
             "label": "Max beam",
-            "value_1": "1,050 ft (320 m)",
-            "value_2": "1,050 ft (320 m)",
-            "value_3": "1,115 ft (340 m)"
+            "value_1": "320 m (1,050 ft)",
+            "value_2": "320 m (1,050 ft)",
+            "value_3": "340 m (1,115 ft)"
           }
         },
         "row_yYKeAx": {
@@ -907,10 +968,10 @@
         "row_PKEmXj": {
           "type": "row",
           "settings": {
-            "label": "What it adds",
-            "value_1": "Advanced Focus System, Mode Select Ring, IP68",
-            "value_2": "Pro upgrade",
-            "value_3": "Signature upgrade"
+            "label": "Upgrade over P7R",
+            "value_1": "The all-round base: Advanced Focus System, Mode Select Ring, IP68",
+            "value_2": "Charging station · removable protective bumpers for jobsite durability · natural white, CRI 80 (vs 70). Trade-off: 60 hr max runtime (vs 80) and 26 g heavier",
+            "value_3": "+500 lm boost (2,500 lm) · +20 m beam (340 m) · brighter Power/Mid modes (1,400/500 lm vs 1,200/450) · charging station · charcoal housing with red light ring · option to add an extra light function · same 80 hr runtime"
           }
         },
         "row_MQymzA": {
@@ -921,6 +982,33 @@
             "value_2": "7 years, no questions",
             "value_3": "7 years, no questions"
           }
+        },
+        "row_light_upg": {
+          "type": "row",
+          "settings": {
+            "label": "Light color",
+            "value_1": "Cool white, CRI 70",
+            "value_2": "Natural white, high CRI 80: truer colors, less eye fatigue",
+            "value_3": "Cool white, CRI 70"
+          }
+        },
+        "row_housing_upg": {
+          "type": "row",
+          "settings": {
+            "label": "Housing",
+            "value_1": "Black anodized aluminum",
+            "value_2": "Black aluminum with removable protective bumpers",
+            "value_3": "Charcoal housing with iconic red light ring"
+          }
+        },
+        "row_charging_upg": {
+          "type": "row",
+          "settings": {
+            "label": "Charging",
+            "value_1": "USB-C",
+            "value_2": "USB-C + charging station included",
+            "value_3": "USB-C + charging station included"
+          }
         }
       },
       "block_order": [
@@ -928,6 +1016,9 @@
         "row_cC63fA",
         "row_aTLrxD",
         "row_yYKeAx",
+        "row_light_upg",
+        "row_housing_upg",
+        "row_charging_upg",
         "row_PKEmXj",
         "row_MQymzA"
       ],
@@ -1081,6 +1172,7 @@
   "order": [
     "custom_breadcrumb_fYj9nF",
     "main",
+    "custom_tabs_DATTdN",
     "why_ledlenser_mHenhq",
     "video_specification_4VfGr7",
     "model_upgrade_guide_kA3QfP",

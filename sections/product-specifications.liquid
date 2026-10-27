@@ -4,7 +4,8 @@
     custom.model_name            Single line text (heading name, falls back to product title)
     custom.specs_description     Multi-line text (falls back to section setting)
     custom.specs_modes           Single line text (List). One row per line, columns split by "|":
-                                 "Boost | 2,000 lm | 1,050 ft (320 m) | Short burst"
+                                 "Boost | 2,000 lm | 320 m | Short burst"
+                                 (Beam columns display as "320 m (1,050 ft)"; ft or m input both work)
     custom.specs_modes_note      Single line text, e.g. "Extra functions: Blink, Strobe, SOS and Position light."
     custom.specs_build           Single line text (List). One row per line as "Label: Value",
                                  e.g. "Battery: 21700 Li-ion, 4,600 mAh, 16.56 Wh (replaceable)"
@@ -159,6 +160,10 @@
                     <tr>
                       {%- for col in mode_headers -%}
                         {%- assign cell = cells[forloop.index0] | strip | default: section.settings.empty_value -%}
+                        {%- assign col_lower = col | downcase -%}
+                        {%- if col_lower contains 'beam' and cell != section.settings.empty_value -%}
+                          {%- capture cell -%}{%- render 'beam-distance', value: cell, format: 'table' -%}{%- endcapture -%}
+                        {%- endif -%}
                         {%- if forloop.first -%}
                           <th scope="row">{{ cell | escape }}</th>
                         {%- else -%}
@@ -194,6 +199,12 @@
                     assign raw_label = spec | split: ':' | first
                     assign spec_label = raw_label | strip
                     assign spec_value = spec | remove_first: raw_label | remove_first: ':' | strip
+                    assign spec_label_lower = spec_label | downcase
+                    if spec_label_lower contains 'beam' and spec_value != blank
+                      capture spec_value
+                        render 'beam-distance', value: spec_value, format: 'table'
+                      endcapture
+                    endif
                   -%}
                   {%- if spec_label != blank -%}
                     <tr>

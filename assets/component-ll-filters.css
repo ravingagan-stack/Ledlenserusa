@@ -65,13 +65,29 @@
   padding: 0 40px 10px 0;
 }
 
-/* Accordion still works (click the title); only the +/- icon is hidden */
+/* Expand/collapse +/- icon at the right of each group title */
 .collection__filters .collection__filter .collection__filter__title {
-  padding-right: 0;
+  padding-right: 32px;
 }
 
 .collection__filters .collection__filter .collection__filter__count {
-  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  width: 20px;
+  color: var(--ll-filter-text);
+}
+
+.collection__filters .collection__filter .collection__filter__count .icon {
+  top: 50%;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0;
+  stroke-width: 20px;
 }
 
 /* Options */

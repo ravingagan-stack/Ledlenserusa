@@ -108,6 +108,30 @@
   #{{ section_uid }} .cmp .is-on { background: #fff1f2; }
   #{{ section_uid }} .cmp tr.diff td { font-weight: 700; }
   #{{ section_uid }}.diff-only .cmp tr.same { display: none; }
+  #{{ section_uid }} .cmp tr.is-varies th { box-shadow: inset 3px 0 0 var(--cmp-accent); padding-left: 12px; }
+  #{{ section_uid }} .cmp td.is-top { color: var(--cmp-accent); }
+  #{{ section_uid }} .cmp__badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--cmp-accent);
+    color: #fff;
+    font-family: Barlow, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    vertical-align: 2px;
+    white-space: nowrap;
+  }
+  #{{ section_uid }} .cmp__badge--top {
+    background: transparent;
+    color: var(--cmp-accent);
+    border: 1px solid currentColor;
+    padding: 1px 5px;
+  }
   #{{ section_uid }} .sr {
     position: absolute;
     width: 1px;
@@ -185,36 +209,108 @@
 
           {%- for label in labels -%}
             {%- liquid
+              assign label_lower = label | downcase
+
+              comment
+                Pass 1: collect each model's value and its number, and find the highest number.
+              endcomment
+              assign vals_str = ''
+              assign nums_str = ''
               assign first_val = nil
               assign all_same = true
-              capture cells
-                for model in models
-                  assign val = section.settings.empty_value
-                  for spec in model.metafields.custom.compare_specs.value
-                    assign raw_label = spec | split: ':' | first
-                    assign spec_label = raw_label | strip
-                    if spec_label == label
-                      assign val = spec | remove_first: raw_label | remove_first: ':' | strip
-                      break
+              assign max_num = -1
+              assign num_count = 0
+              for model in models
+                assign val = section.settings.empty_value
+                for spec in model.metafields.custom.compare_specs.value
+                  assign raw_label = spec | split: ':' | first
+                  assign spec_label = raw_label | strip
+                  if spec_label == label
+                    assign val = spec | remove_first: raw_label | remove_first: ':' | strip
+                    if label_lower contains 'beam'
+                      capture val
+                        render 'beam-distance', value: val, format: 'table'
+                      endcapture
                     endif
-                  endfor
-                  if forloop.first
-                    assign first_val = val
-                  elsif val != first_val
-                    assign all_same = false
-                  endif
-                  assign val = val | escape
-                  if model.id == product.id
-                    echo '<td class="is-on">' | append: val | append: '</td>'
-                  else
-                    echo '<td>' | append: val | append: '</td>'
+                    break
                   endif
                 endfor
-              endcapture
+                if forloop.first
+                  assign first_val = val
+                elsif val != first_val
+                  assign all_same = false
+                endif
+
+                capture num
+                  render 'spec-number', value: val
+                endcapture
+                if num != blank
+                  assign num_count = num_count | plus: 1
+                  assign num_value = num | times: 1
+                  if num_value > max_num
+                    assign max_num = num_value
+                  endif
+                endif
+                assign vals_str = vals_str | append: val | append: '~~~'
+                assign nums_str = nums_str | append: num | append: '~~~'
+              endfor
+              assign vals = vals_str | split: '~~~'
+              assign nums = nums_str | split: '~~~'
+
+              comment
+                Highlight rows where a number changes between models. "Highest" only marks
+                specs where more is better (output, distance, runtime, battery).
+              endcomment
+              assign is_varies = false
+              if all_same == false and num_count > 1 and num_count == models.size
+                assign is_varies = true
+              endif
+              assign mark_top = false
+              if is_varies
+                if label_lower contains 'lumen' or label_lower contains 'output' or label_lower contains 'beam' or label_lower contains 'distance' or label_lower contains 'range' or label_lower contains 'runtime' or label_lower contains 'run time' or label_lower contains 'battery' or label_lower contains 'capacity'
+                  assign mark_top = true
+                endif
+              endif
+
+              comment
+                No "Highest" when the compared numbers are all equal (e.g. multi-mode values
+                like "2.5 / 5.5 / 80 hr" that only differ after the first number).
+              endcomment
+              if mark_top
+                assign all_nums_equal = true
+                for n in nums
+                  if n != blank
+                    assign n_value = n | times: 1
+                    if n_value != max_num
+                      assign all_nums_equal = false
+                    endif
+                  endif
+                endfor
+                if all_nums_equal
+                  assign mark_top = false
+                endif
+              endif
             -%}
-            <tr class="{% if all_same %}same{% else %}diff{% endif %}">
-              <th scope="row">{{ label | escape }}</th>
-              {{- cells -}}
+            <tr class="{% if all_same %}same{% else %}diff{% endif %}{% if is_varies %} is-varies{% endif %}">
+              <th scope="row">
+                {{- label | escape -}}
+                {%- if is_varies %} <span class="cmp__badge">Varies</span>{% endif -%}
+              </th>
+              {%- for model in models -%}
+                {%- liquid
+                  assign is_top = false
+                  if mark_top and nums[forloop.index0] != blank
+                    assign num_value = nums[forloop.index0] | times: 1
+                    if num_value == max_num
+                      assign is_top = true
+                    endif
+                  endif
+                -%}
+                <td class="{% if model.id == product.id %}is-on{% endif %}{% if is_top %} is-top{% endif %}">
+                  {{- vals[forloop.index0] | escape -}}
+                  {%- if is_top %} <span class="cmp__badge cmp__badge--top">Highest</span>{% endif -%}
+                </td>
+              {%- endfor -%}
             </tr>
           {%- endfor -%}
         </tbody>
@@ -236,7 +332,7 @@
     },
     { "type": "text", "id": "heading", "label": "Heading" },
     { "type": "text", "id": "toggle_label", "label": "Toggle label", "default": "Show differences only" },
-    { "type": "checkbox", "id": "diff_default", "label": "Show differences only by default", "default": true },
+    { "type": "checkbox", "id": "diff_default", "label": "Show differences only by default", "default": false },
     { "type": "checkbox", "id": "show_price", "label": "Add price row", "default": true },
     { "type": "text", "id": "price_label", "label": "Price row label", "default": "Price" },
     { "type": "text", "id": "empty_value", "label": "Value when a model has no data", "default": "—" },

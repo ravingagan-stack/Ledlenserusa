@@ -486,6 +486,8 @@ span.bs-card__price {
         -%}
 
         <article class="bs-card">
+          <a href="{{ p.url }}" class="bs-card__link" tabindex="-1" aria-hidden="true"></a>
+
           <div class="bs-card__media">
             {%- if badge_text != blank -%}
               <span class="bs-card__badge">{{ badge_text }}</span>
@@ -537,6 +539,15 @@ span.bs-card__price {
                     assign spec_key_name = 'spec_' | append: i | append: '_metafield'
                     assign spec_parts = section.settings[spec_key_name] | split: '.'
                     assign spec_value = p.metafields[spec_parts[0]][spec_parts[1]] | metafield_text
+                    if spec_parts[1] contains 'beam' and spec_value != blank
+                      capture spec_value
+                        render 'beam-distance', value: spec_value, format: 'm'
+                      endcapture
+                    elsif spec_parts[1] contains 'lumen' and spec_value != blank
+                      capture spec_value
+                        render 'spec-lumens', value: spec_value
+                      endcapture
+                    endif
                   -%}
                   {%- if spec_value != blank -%}
                     <div class="bs-card__spec">
@@ -729,7 +740,7 @@ span.bs-card__price {
       "type": "text",
       "id": "spec_1_label",
       "label": "Spec 1 label",
-      "default": "Max"
+      "default": "Output"
     },
     {
       "type": "text",
@@ -741,7 +752,7 @@ span.bs-card__price {
       "type": "text",
       "id": "spec_2_label",
       "label": "Spec 2 label",
-      "default": "Beam"
+      "default": "Distance"
     },
     {
       "type": "text",
@@ -852,7 +863,7 @@ span.bs-card__price {
       "type": "color",
       "id": "color_media_bg",
       "label": "Image background",
-      "default": "#EDEDED"
+      "default": "#FFFFFF"
     },
     {
       "type": "color",

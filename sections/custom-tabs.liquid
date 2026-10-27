@@ -1,0 +1,308 @@
+{{ 'pdp-tabs.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg_color = section.settings.bg_color
+  assign button_color = section.settings.button_color
+  assign scope_items = product.metafields.custom.scope_of_delivery.value
+  assign has_specs = false
+  if product.metafields.technical != blank
+    assign has_specs = true
+  endif
+-%}
+
+{%- style -%}
+  #CustomTabs--{{ section.id }} {
+    --PT: {{ section.settings.padding_top }}px;
+    --PB: {{ section.settings.padding_bottom }}px;
+    max-width: 1272px; width: 100%; margin: 80px auto; padding-left: 16px; padding-right: 16px;
+    {%- if bg_color != 'rgba(0,0,0,0)' and bg_color != '' -%}background: {{ bg_color }};{%- endif -%}
+  }
+  #CustomTabs--{{ section.id }} .description-panel { font-size: 15.5px; color: #2c2c2a; line-height: 1.75; }
+  #CustomTabs--{{ section.id }} .description-panel > p:first-child { font-size: 17px; line-height: 1.6; color: #1b1b19; margin-bottom: 16px; }
+  #CustomTabs--{{ section.id }} .description-panel h1,
+  #CustomTabs--{{ section.id }} .description-panel h2,
+  #CustomTabs--{{ section.id }} .description-panel h3 { margin-bottom: 10px; }
+  #CustomTabs--{{ section.id }} .description-panel p { margin-bottom: 12px; }
+  #CustomTabs--{{ section.id }} .description-panel ol { padding-left: 20px; margin-bottom: 12px; }
+  /* LedLenser logo-mark bullets — the actual LedLenser mark (ring + filled centre) embedded inline
+     so it renders identically with no dependency on an uploaded asset. */
+  #CustomTabs--{{ section.id }} .description-panel ul { list-style: none; padding-left: 0; margin: 14px 0; }
+  #CustomTabs--{{ section.id }} .description-panel ul li { position: relative; padding-left: 30px; margin-bottom: 11px; line-height: 1.6; }
+  #CustomTabs--{{ section.id }} .description-panel ul li::before { content: ''; position: absolute; left: 0; top: .18em; width: 17px; height: 17px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23cd0000' d='M.66,12c0,6.31,5.04,11.34,11.31,11.34s11.31-5.08,11.31-11.34S18.28.61,11.96.61.66,5.84.66,12ZM24.02,12c0,6.78-5.37,12-12.06,12S0,18.78,0,12,5.18,0,11.96,0s12.06,5.22,12.06,12Z'/%3E%3Cpath fill='%23cd0000' d='M11.96,4.85c3.96,0,7.16,3.2,7.16,7.15s-3.2,7.15-7.16,7.15-7.16-3.2-7.16-7.15,3.2-7.15,7.16-7.15Z'/%3E%3C/svg%3E") no-repeat center / contain; }
+  #CustomTabs--{{ section.id }} .scope-grid { display: flex; flex-wrap: wrap; gap: 16px; padding: 8px 0; justify-content: flex-start; }
+  #CustomTabs--{{ section.id }} .scope-item { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; border: 1px solid #e5e5e5; border-radius: 8px; padding: 20px 14px 14px; width: calc(25% - 12px); min-width: 130px; text-align: center; gap: 10px; }
+  #CustomTabs--{{ section.id }} .scope-item img { max-width: 110px; max-height: 90px; object-fit: contain; }
+  #CustomTabs--{{ section.id }} .scope-item span { font-size: 14px; color: #333; }
+  @media (max-width: 768px) { #CustomTabs--{{ section.id }} .scope-item { width: calc(50% - 8px); } }
+{%- endstyle -%}
+
+<section
+  id="CustomTabs--{{ section.id }}"
+  class="section-padding{%- render 'button-fallback-classes', primary_color: button_color, section_bg_color: bg_color -%}"
+  data-section-id="{{ section.id }}"
+  data-section-type="custom-tabs">
+  <div
+    id="PdpTabs-{{ section.id }}"
+    class="pdp-accordions"
+    data-pdp-accordions
+    data-pdp-layout="{{ section.settings.layout | default: 'tabs' }}"
+  >
+
+    {%- if product.description != blank -%}
+      {%- render 'pdp-accordion', title: section.settings.description_tab_label, open: true -%}
+        <div class="description-panel rte">{{ product.description }}</div>
+      {%- render 'pdp-accordion-end' -%}
+    {%- endif -%}
+
+    {%- comment -%} "What's included" — placed directly under the description {%- endcomment -%}
+    {%- if scope_items != blank -%}
+      {%- render 'pdp-accordion', title: section.settings.scope_tab_label -%}
+        <div class="scope-grid">
+          {%- for item in scope_items -%}
+            <div class="scope-item">
+              {%- if item.image != blank -%}
+                <img src="{{ item.image }}" alt="{{ item.label | escape }}" loading="lazy" width="110" height="90">
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              <span>{{ item.label }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- render 'pdp-accordion-end' -%}
+    {%- endif -%}
+
+    {%- comment -%} Prefer the rich data-driven spec sheet (custom.technical_data); fall back to the simple metafield table. {%- endcomment -%}
+    {%- if product.metafields.custom.technical_data != blank or has_specs -%}
+      {%- capture spec_html -%}
+        {%- if product.metafields.custom.technical_data != blank -%}{%- render 'pdp-spec-sheet' -%}{%- else -%}{%- render 'product-spec-table' -%}{%- endif -%}
+      {%- endcapture -%}
+      {%- if spec_html contains 'pdp-spec' or spec_html contains '<table' -%}
+        {%- render 'pdp-accordion', title: 'Specifications', id: 'pdp-specs-acc' -%}{{ spec_html }}{%- render 'pdp-accordion-end' -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- comment -%} Compatible accessories carousel (custom.compatible_accessories) — directly under Specifications {%- endcomment -%}
+    {%- capture acc_html -%}{%- render 'pdp-accessories' -%}{%- endcapture -%}
+    {%- if acc_html contains 'pdp-carousel' -%}
+      {%- render 'pdp-accordion', title: 'Accessories' -%}{{ acc_html }}{%- render 'pdp-accordion-end' -%}
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'panel' -%}
+          {%- assign tlower = block.settings.title | downcase -%}
+          {%- unless tlower contains 'specification' or block.settings.custom_code == blank -%}
+            {%- render 'pdp-accordion', title: block.settings.title -%}{{ block.settings.custom_code }}{%- render 'pdp-accordion-end' -%}
+          {%- endunless -%}
+      {%- endcase -%}
+    {%- endfor -%}
+
+    {%- comment -%} Product manuals — list-of-files metafield (custom.manuals) PLUS any PDF links the JS below pulls out of the description (e.g. User Guide, Safety Instructions). Renders directly above Reviews; the JS removes the accordion again if nothing was found. {%- endcomment -%}
+    {%- assign manuals = product.metafields.custom.manuals.value | default: product.metafields.custom.manuals -%}
+    {%- if manuals != blank or product.description contains '.pdf' -%}
+      {%- render 'pdp-accordion', title: 'Manuals & Documents' -%}
+        <ul class="pdp-manuals" data-pdp-manuals>
+          {%- for manual in manuals -%}
+            {%- assign manual_url = manual.url | default: manual -%}
+            {%- if manual_url != blank -%}
+              {%- assign manual_name = manual.filename -%}
+              {%- if manual_name == blank -%}
+                {%- assign manual_name = manual_url | split: '?' | first | split: '/' | last -%}
+              {%- endif -%}
+              {%- assign manual_name = manual_name | split: '.' | first | replace: '-', ' ' | replace: '_', ' ' | strip -%}
+              <li>
+                <a href="{{ manual_url }}" target="_blank" rel="noopener" download>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 12v5M9.5 14.5 12 17l2.5-2.5"/></svg>
+                  <span>{{ manual_name | default: 'Download' }}</span>
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- render 'pdp-accordion-end' -%}
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          {%- render 'pdp-accordion', title: 'Reviews', id: 'pdp-reviews-acc' -%}{%- render block -%}{%- render 'pdp-accordion-end' -%}
+      {%- endcase -%}
+    {%- endfor -%}
+
+  </div>
+</section>
+
+{%- javascript -%}
+  (function () {
+    document.querySelectorAll('[data-pdp-accordions] .pdp-acc__head').forEach(function (head) {
+      head.addEventListener('click', function () {
+        var acc = head.closest('.pdp-acc');
+        var open = acc.classList.toggle('open');
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  })();
+
+  // Move PDF manual links (e.g. User Guide, Safety Instructions) out of the description and into
+  // the Manuals dropdown. If nothing is found, remove the now-empty Manuals accordion.
+  (function () {
+    var ul = document.querySelector('[data-pdp-manuals]');
+    if (!ul) return;
+    var descBody = document.querySelector('[data-pdp-accordions] .description-panel');
+    if (descBody) {
+      var icon = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 12v5M9.5 14.5 12 17l2.5-2.5"/></svg>';
+      Array.prototype.slice.call(descBody.querySelectorAll('a')).forEach(function (a) {
+        if ((a.getAttribute('href') || '').toLowerCase().indexOf('.pdf') === -1) return;
+        var name = (a.textContent || '').replace(/\s+/g, ' ').trim() || 'Download';
+        var li = document.createElement('li');
+        li.innerHTML = '<a href="' + a.href + '" target="_blank" rel="noopener" download>' + icon + '<span>' + name + '</span></a>';
+        ul.appendChild(li);
+        var p = a.closest('p');
+        if (p && p.textContent.replace(/\s+/g, ' ').trim() === name) { p.remove(); } else { a.remove(); }
+      });
+    }
+    if (!ul.children.length) { var acc = ul.closest('.pdp-acc'); if (acc) { acc.remove(); } }
+  })();
+
+  // Tabs layout: builds a tab bar from the accordion items and shows one panel at a time.
+  // Runs after the Manuals clean-up above so removed panels never get a tab. The active
+  // panel is the item with the "open" class, so anything that opens an item (e.g. the
+  // star-rating link opening Reviews) also switches the tab.
+  (function () {
+    document.querySelectorAll('[data-pdp-accordions]').forEach(function (root) {
+      var layout = root.dataset.pdpLayout || 'tabs';
+      if (layout === 'accordion') return;
+
+      var desktop = window.matchMedia('(min-width: 768px)');
+      var items = Array.prototype.filter.call(root.children, function (el) {
+        return el.classList.contains('pdp-acc');
+      });
+      if (!items.length) return;
+
+      var nav = document.createElement('div');
+      nav.className = 'pdp-tabs__nav';
+      nav.setAttribute('role', 'tablist');
+      root.insertBefore(nav, root.firstChild);
+
+      var tabs = items.map(function (acc, i) {
+        var title = acc.querySelector('.pdp-acc__title');
+        var panel = acc.querySelector('.pdp-acc__panel');
+        if (!panel.id) panel.id = root.id + '-panel-' + (i + 1);
+
+        var tab = document.createElement('button');
+        tab.type = 'button';
+        tab.className = 'pdp-tabs__tab';
+        tab.id = panel.id + '-tab';
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-controls', panel.id);
+        tab.textContent = title ? title.textContent.trim() : 'Tab ' + (i + 1);
+        tab.addEventListener('click', function () { activate(acc); });
+        nav.appendChild(tab);
+        return tab;
+      });
+
+      var current = null;
+
+      function isTabs() {
+        return layout === 'tabs' || desktop.matches;
+      }
+
+      function activate(acc, focusTab) {
+        current = acc;
+        items.forEach(function (item, i) {
+          var active = item === acc;
+          item.classList.toggle('open', active);
+          var head = item.querySelector('.pdp-acc__head');
+          if (head) head.setAttribute('aria-expanded', active ? 'true' : 'false');
+          tabs[i].setAttribute('aria-selected', active ? 'true' : 'false');
+          tabs[i].tabIndex = active ? 0 : -1;
+          if (active && focusTab) tabs[i].focus();
+        });
+      }
+
+      function apply() {
+        var useTabs = isTabs();
+        root.classList.toggle('is-tabs', useTabs);
+        items.forEach(function (item, i) {
+          var panel = item.querySelector('.pdp-acc__panel');
+          if (useTabs) {
+            panel.setAttribute('role', 'tabpanel');
+            panel.setAttribute('aria-labelledby', tabs[i].id);
+          } else {
+            panel.removeAttribute('role');
+            panel.removeAttribute('aria-labelledby');
+          }
+        });
+        if (useTabs) {
+          var opened = items.filter(function (item) { return item.classList.contains('open'); })[0];
+          activate(current && current.isConnected ? current : opened || items[0]);
+        }
+      }
+
+      nav.addEventListener('keydown', function (e) {
+        var index = tabs.indexOf(document.activeElement);
+        if (index === -1) return;
+        var next = null;
+        if (e.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (e.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+        if (e.key === 'Home') next = 0;
+        if (e.key === 'End') next = tabs.length - 1;
+        if (next === null) return;
+        e.preventDefault();
+        activate(items[next], true);
+      });
+
+      // Keep exactly one panel open in tabs mode when something else toggles "open"
+      var observer = new MutationObserver(function () {
+        if (!isTabs()) return;
+        var opened = items.filter(function (item) { return item.classList.contains('open') && item !== current; })[0];
+        if (opened) activate(opened);
+        else if (current && !current.classList.contains('open')) activate(current);
+      });
+      items.forEach(function (item) { observer.observe(item, { attributes: true, attributeFilter: ['class'] }); });
+
+      desktop.addEventListener('change', apply);
+      apply();
+    });
+  })();
+{%- endjavascript -%}
+
+{% schema %}
+  {
+    "name": "Custom Tabs",
+    "settings": [
+      { "type": "text", "id": "description_tab_label", "label": "Description heading", "default": "Full description" },
+      { "type": "text", "id": "scope_tab_label", "label": "What's Included heading", "default": "What's included" },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "tabs",
+        "options": [
+          { "value": "tabs", "label": "Tabs" },
+          { "value": "tabs_desktop", "label": "Tabs on desktop, dropdowns on mobile" },
+          { "value": "accordion", "label": "Dropdowns" }
+        ]
+      },
+      { "type": "header", "content": "Colors" },
+      { "type": "color", "id": "bg_color", "label": "Background color" },
+      { "type": "color", "id": "text_color", "label": "Text", "default": "#333" },
+      { "type": "header", "content": "Section spacing" },
+      { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding top", "default": 40 },
+      { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding bottom", "default": 40 }
+    ],
+    "blocks": [
+      {
+        "type": "panel",
+        "name": "Panel",
+        "settings": [
+          { "type": "text", "id": "title", "label": "Heading", "default": "Feature" },
+          { "type": "liquid", "id": "custom_code", "label": "Custom code", "info": "Rendered inside an accordion panel." }
+        ]
+      },
+      { "type": "@app" }
+    ],
+    "presets": [ { "name": "Custom tabs", "category": "Text", "blocks": [ { "type": "panel" } ] } ]
+  }
+{% endschema %}

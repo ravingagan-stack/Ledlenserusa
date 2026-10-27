@@ -229,7 +229,7 @@
         "view_all_link": "shopify://collections/hf-series-headlamps",
         "bg_color": "#ffffff",
         "card_bg": "#ffffff",
-        "img_bg": "#ededed",
+        "img_bg": "#ffffff",
         "border_color": "#dadada",
         "text_color": "#0a0a0a",
         "muted_color": "#4a4a4a",
@@ -258,7 +258,7 @@
         "flood_heading": "Flood",
         "flood_description": "Wide, even light for close work",
         "spot_heading": "Spot",
-        "spot_description": "Throws up to 1,050 ft (320 m)",
+        "spot_description": "Throws up to 320 m",
         "step_1": "Flood",
         "step_2": "One-hand slide",
         "step_3": "Spot",
@@ -341,9 +341,9 @@
           "type": "row",
           "settings": {
             "label": "Max beam",
-            "value_1": "1,050 ft (320 m)",
-            "value_2": "1,050 ft (320 m)",
-            "value_3": "1,115 ft (340 m)"
+            "value_1": "320 m (1,050 ft)",
+            "value_2": "320 m (1,050 ft)",
+            "value_3": "340 m (1,115 ft)"
           }
         },
         "row_EWqjXy": {
@@ -358,10 +358,10 @@
         "row_T4hyq7": {
           "type": "row",
           "settings": {
-            "label": "What it adds",
-            "value_1": "Advanced Focus System, Mode Select Ring, IP68",
-            "value_2": "Pro upgrade",
-            "value_3": "Signature upgrade"
+            "label": "Upgrade over P7R",
+            "value_1": "The all-round base: Advanced Focus System, Mode Select Ring, IP68",
+            "value_2": "Charging station · removable protective bumpers for jobsite durability · natural white, CRI 80 (vs 70). Trade-off: 60 hr max runtime (vs 80) and 26 g heavier",
+            "value_3": "+500 lm boost (2,500 lm) · +20 m beam (340 m) · brighter Power/Mid modes (1,400/500 lm vs 1,200/450) · charging station · charcoal housing with red light ring · option to add an extra light function · same 80 hr runtime"
           }
         },
         "row_WeYP8f": {
@@ -372,6 +372,33 @@
             "value_2": "7 years, no questions",
             "value_3": "7 years, no questions"
           }
+        },
+        "row_light_upg": {
+          "type": "row",
+          "settings": {
+            "label": "Light color",
+            "value_1": "Cool white, CRI 70",
+            "value_2": "Natural white, high CRI 80: truer colors, less eye fatigue",
+            "value_3": "Cool white, CRI 70"
+          }
+        },
+        "row_housing_upg": {
+          "type": "row",
+          "settings": {
+            "label": "Housing",
+            "value_1": "Black anodized aluminum",
+            "value_2": "Black aluminum with removable protective bumpers",
+            "value_3": "Charcoal housing with iconic red light ring"
+          }
+        },
+        "row_charging_upg": {
+          "type": "row",
+          "settings": {
+            "label": "Charging",
+            "value_1": "USB-C",
+            "value_2": "USB-C + charging station included",
+            "value_3": "USB-C + charging station included"
+          }
         }
       },
       "block_order": [
@@ -379,6 +406,9 @@
         "row_ihYdYf",
         "row_mtQaAJ",
         "row_EWqjXy",
+        "row_light_upg",
+        "row_housing_upg",
+        "row_charging_upg",
         "row_T4hyq7",
         "row_WeYP8f"
       ],
@@ -526,7 +556,7 @@
         "view_all_link": "shopify://collections",
         "bg_color": "#ffffff",
         "card_bg": "#ffffff",
-        "img_bg": "#efe6dc",
+        "img_bg": "#ffffff",
         "border_color": "#dadada",
         "text_color": "#0a0a0a",
         "muted_color": "#4a4a4a",
@@ -724,9 +754,9 @@
         "show_rating": true,
         "reviews_label": "reviews",
         "use_metafield": "custom.use_case",
-        "spec_1_label": "Max",
+        "spec_1_label": "Output",
         "spec_1_metafield": "custom.max_lumens",
-        "spec_2_label": "Beam",
+        "spec_2_label": "Distance",
         "spec_2_metafield": "custom.beam_range",
         "spec_3_label": "Runtime",
         "spec_3_metafield": "custom.runtime_range",
@@ -743,7 +773,7 @@
         "color_placeholder_text": "#6a6a6a",
         "color_border": "#dadada",
         "color_card_bg": "#ffffff",
-        "color_media_bg": "#ededed",
+        "color_media_bg": "#ffffff",
         "color_spec_bg": "#f2f2f2",
         "padding_top": 56,
         "padding_bottom": 56

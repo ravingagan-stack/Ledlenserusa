@@ -1,0 +1,83 @@
+{%- comment -%}
+  Coast-style key-specs strip: max lumens · max runtime · max beam distance · IP rating · View Specs.
+  Reads product.metafields.technical.* (same fields the spec tabs use).
+  "View Specs" opens + scrolls to the Specifications accordion (#pdp-specs-acc).
+  Rendered via a custom_code block right under the product title.
+{%- endcomment -%}
+
+{%- liquid
+  comment
+    Pick the LARGEST number from each range. The metafield may be ordered
+    "MAX x - MIN y" or "y - x", so compare numerically instead of taking a fixed end.
+  endcomment
+  assign lum_clean = product.metafields.technical.Luminosity | downcase | replace: '–', '-' | replace: 'lumens', '' | replace: 'lm', '' | replace: 'max', '' | replace: 'min', ''
+  assign lum_max = 0
+  assign lum_parts = lum_clean | split: '-'
+  for lp in lum_parts
+    assign lp_n = lp | strip | plus: 0
+    if lp_n > lum_max
+      assign lum_max = lp_n
+    endif
+  endfor
+
+  assign dur_clean = product.metafields.technical.BatteryDuration | downcase | replace: '–', '-' | replace: 'hours', '' | replace: 'hrs', '' | replace: 'h', '' | replace: 'max', '' | replace: 'min', ''
+  assign dur_max = 0
+  assign dur_parts = dur_clean | split: '-'
+  for dp in dur_parts
+    assign dp_n = dp | strip | plus: 0
+    if dp_n > dur_max
+      assign dur_max = dp_n
+    endif
+  endfor
+
+  comment
+    Max beam distance from LightingRange (e.g. "MAX 330 m - MIN 80 m" → 330).
+  endcomment
+  assign rng_clean = product.metafields.technical.LightingRange | downcase | replace: '–', '-' | replace: 'metres', '' | replace: 'meters', '' | replace: 'max', '' | replace: 'min', '' | replace: 'm', ''
+  assign rng_max = 0
+  assign rng_parts = rng_clean | split: '-'
+  for rp in rng_parts
+    assign rp_n = rp | strip | plus: 0
+    if rp_n > rng_max
+      assign rng_max = rp_n
+    endif
+  endfor
+
+  comment
+    IP rating comes straight from WaterResistance (already an "IP68"-style code).
+  endcomment
+  capture ip
+    echo product.metafields.technical.WaterResistance
+  endcapture
+  assign ip = ip | strip
+-%}
+
+{%- if lum_max > 0 or dur_max > 0 or rng_max > 0 or ip != blank -%}
+  <div class="pdp-keyspecs">
+    {%- if lum_max > 0 -%}<span><img class="pdp-keyspecs__img" src="https://cdn.shopify.com/s/files/1/2421/2085/files/sun.webp?v=1695882301" alt="" aria-hidden="true" width="16" height="16" loading="lazy">{{ lum_max }} <span class="pdp-keyspecs__lf">Lumens</span><span class="pdp-keyspecs__la">lm</span></span>{%- endif -%}
+    {%- if dur_max > 0 -%}<span><img class="pdp-keyspecs__img" src="https://cdn.shopify.com/s/files/1/2421/2085/files/charging.webp?v=1695882424" alt="" aria-hidden="true" width="16" height="16" loading="lazy">{{ dur_max }} H</span>{%- endif -%}
+    {%- if rng_max > 0 -%}<span><img class="pdp-keyspecs__img" src="https://cdn.shopify.com/s/files/1/2421/2085/files/car-light_dd084313-cb6e-4fa6-930e-7c40b6b86654.png?v=1695882253" alt="" aria-hidden="true" width="16" height="16" loading="lazy">{{ rng_max }} M</span>{%- endif -%}
+    {%- if ip != blank -%}<span><svg class="pdp-keyspecs__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7 5 5.4v4.8c0 4.3 3 7 7 8.6 4-1.6 7-4.3 7-8.6V5.4z"/><path d="M9 12l2 2 4-4.2"/></svg>{{ ip }}</span>{%- endif -%}
+    <a class="pdp-keyspecs__link" href="#pdp-specs-acc" data-pdp-view-specs>View Specs</a>
+  </div>
+  <script>
+    (function () {
+      var strip = document.querySelector('.pdp-keyspecs');
+      if (!strip) return;
+      // The whole strip is a shortcut to the Specifications accordion: tapping any
+      // spec (or the "View Specs" link) opens + smooth-scrolls to it. On mobile the
+      // "View Specs" link is hidden (CSS) and the specs themselves are the tap target.
+      strip.addEventListener('click', function (e) {
+        var acc = document.getElementById('pdp-specs-acc');
+        if (!acc) return;
+        e.preventDefault();
+        if (!acc.classList.contains('open')) {
+          acc.classList.add('open');
+          var head = acc.querySelector('.pdp-acc__head');
+          if (head) head.setAttribute('aria-expanded', 'true');
+        }
+        acc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    })();
+  </script>
+{%- endif -%}

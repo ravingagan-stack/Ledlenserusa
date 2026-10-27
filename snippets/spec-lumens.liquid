@@ -1,0 +1,23 @@
+{%- comment -%}
+  Outputs a light output value with its lumens unit, e.g. "2,000" → "2,000 lumens".
+  Values that already include a unit ("2,000 lm", "2,000 lumens") are output unchanged.
+
+  Accepts:
+  - value: {String} Raw output value (e.g. a metafield via `| metafield_text`)
+
+  Usage:
+  {% render 'spec-lumens', value: product.metafields.custom.max_lumens | metafield_text %}
+{%- endcomment -%}
+
+{%- liquid
+  assign raw = value | strip
+  assign lower = raw | downcase
+
+  if raw == blank
+    echo raw
+  elsif lower contains 'lm' or lower contains 'lumen'
+    echo raw
+  else
+    echo raw | append: ' lumens'
+  endif
+-%}

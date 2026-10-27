@@ -1,0 +1,30 @@
+{%- comment -%}
+  Outputs the first number found in a spec value, or nothing.
+  "2,000 lumens" → 2000, "Up to 80 hr" → 80, "320 m (1,050 ft)" → 320, "IP68" → (nothing)
+
+  Accepts:
+  - value: {String} Spec value
+
+  Usage:
+  {%- capture n -%}{% render 'spec-number', value: cell %}{%- endcapture -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign tokens = value | strip_html | remove: ',' | replace: '(', ' ' | replace: ')', ' ' | replace: '–', ' ' | replace: '-', ' ' | split: ' '
+  for token in tokens
+    comment
+      Drop unit letters glued to the number ("2000lm", "80h", "4600mAh"); "IP68" keeps "ip" and is skipped.
+    endcomment
+    assign t = token | strip | downcase | remove: 'lumens' | remove: 'lm' | remove: 'mah' | remove: 'wh' | remove: 'hrs' | remove: 'hr' | remove: 'h' | remove: 'm' | remove: 'g' | remove: 'k'
+    assign num = t | times: 1
+    comment
+      Only accept tokens that are fully numeric ("80", "2.5"), so words never count as numbers.
+    endcomment
+    assign t_digits = t | remove_first: '.'
+    assign num_digits = t_digits | times: 1 | append: ''
+    if t != blank and num_digits == t_digits
+      echo num
+      break
+    endif
+  endfor
+-%}

@@ -85,7 +85,7 @@
         "first_highlight": "10% off",
         "first_text": "your first light – join the list",
         "first_link": "",
-        "second_text": "Free US shipping over $35",
+        "second_text": "Free US shipping over $50",
         "third_text": "Military, LE & EMS save [15]% – verify",
         "third_link": "",
         "fourth_text": "7-year warranty, no questions asked"
@@ -95,7 +95,7 @@
       "type": "header",
       "settings": {
         "width": "wrapper--full-padded",
-        "sticky_header": false,
+        "sticky_header": true,
         "link_hover_effect": "dot",
         "highlight_color": "#fff7f2",
         "cont_link": "tel:904-694-3711",
@@ -104,7 +104,7 @@
         "header_border": false,
         "header_border_color": "",
         "border_opacity": 50,
-        "logo_not_home": "shopify://shop_images/Link_-_Ledlenser_USA_home_1.png",
+        "logo_not_home": "shopify://shop_images/ledlenser-logo-red-black.png",
         "logo_max_width": 170,
         "main-menu": "new-menu",
         "main_menu_secondary": "",
@@ -123,6 +123,7 @@
         "highlight_item_color": "#e30613",
         "highlight_item_text_color": "#ffffff",
         "header_transparent": false,
+        "logo": "shopify://shop_images/ledlenser-logo-red-black.png",
         "header_gradient": false
       }
     }

@@ -1,0 +1,37 @@
+{%- comment -%}
+  Coast-style product spec table — label/value rows from technical.* metafields.
+  Renders nothing if the product has no technical specs.
+{%- endcomment -%}
+{%- liquid
+  assign tech = product.metafields.technical
+  assign spec_map = 'Luminosity|Light Output,LightingRange|Beam Distance,BatteryDuration|Runtime,LEDConfiguration|LED Configuration,Battery|Battery,BatteryCapacity|Battery Capacity,Rechargeable|Rechargeable,WaterResistance|Water Resistance,DustResistance|Dust Resistance,ColourTemperature|Color Temperature,CRI|Color Rendering (CRI),Weight|Weight,HeadDiameter|Head Diameter,Length|Length' | split: ','
+  assign has_any = false
+-%}
+{%- comment -%}
+  Note: technical.* values are read by capturing {{ tech[key] }} so this works
+  whether the metafield resolves to a typed drop (use .value) or a raw string —
+  matching how the rest of the theme accesses product.metafields.technical.*.
+{%- endcomment -%}
+{%- for pair in spec_map -%}
+  {%- assign kv = pair | split: '|' -%}
+  {%- capture mfval -%}{{ tech[kv[0]] }}{%- endcapture -%}
+  {%- if mfval != blank -%}{%- assign has_any = true -%}{%- endif -%}
+{%- endfor -%}
+
+{%- if has_any -%}
+<table class="pdp-specs">
+  <tbody>
+    {%- for pair in spec_map -%}
+      {%- assign kv = pair | split: '|' -%}
+      {%- capture mfval -%}{{ tech[kv[0]] }}{%- endcapture -%}
+      {%- assign mfval = mfval | strip -%}
+      {%- if mfval != blank -%}
+        <tr>
+          <th scope="row">{{ kv[1] }}</th>
+          <td>{{ mfval }}</td>
+        </tr>
+      {%- endif -%}
+    {%- endfor -%}
+  </tbody>
+</table>
+{%- endif -%}

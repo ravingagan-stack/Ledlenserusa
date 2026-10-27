@@ -1,0 +1,115 @@
+{%- comment -%}
+  Formats a beam distance with meters as the primary unit.
+
+  Reads free-text values such as "1,050 ft", "320 m", "320m", "1,050 ft (320 m)",
+  "Up to 320 m" or ranges like "20–320 m". Values without a recognizable unit are
+  output unchanged.
+
+  Accepts:
+  - value: {String} Raw beam distance (e.g. a metafield via `| metafield_text`)
+  - format: {String} 'm' (default) → "320 m"
+                     'table'       → "320 m (1,050 ft)"
+
+  Usage:
+  {% render 'beam-distance', value: product.metafields.custom.beam_range | metafield_text, format: 'm' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign raw = value | strip
+  assign lower = raw | downcase
+
+  assign s = lower | remove: ',' | replace: '(', ' ' | replace: ')', ' '
+  assign s = s | replace: '–', ' – ' | replace: '—', ' – ' | replace: '-', ' – '
+  assign s = s | replace: 'metres', ' m ' | replace: 'meters', ' m ' | replace: 'metre', ' m ' | replace: 'meter', ' m '
+  assign s = s | replace: 'feet', ' ft ' | replace: 'foot', ' ft ' | replace: 'ft', ' ft '
+  assign s = s | replace: 'm', ' m '
+  assign tokens = s | split: ' '
+
+  comment
+    Collect the numbers that precede the first "m" and the first "ft" unit.
+  endcomment
+  assign pending = ''
+  assign m_vals = ''
+  assign ft_vals = ''
+  for token in tokens
+    assign num = token | times: 1
+    if num != 0 or token == '0'
+      assign pending = pending | append: num | append: '|'
+    elsif token == 'm'
+      if m_vals == blank and pending != blank
+        assign m_vals = pending
+      endif
+      assign pending = ''
+    elsif token == 'ft'
+      if ft_vals == blank and pending != blank
+        assign ft_vals = pending
+      endif
+      assign pending = ''
+    elsif token != '–'
+      assign pending = ''
+    endif
+  endfor
+
+  assign meters = m_vals | split: '|'
+  assign feet = ft_vals | split: '|'
+
+  if meters.size == 0 and feet.size > 0
+    assign m_vals = ''
+    for ft in feet
+      assign m = ft | times: 0.3048 | round
+      assign m_vals = m_vals | append: m | append: '|'
+    endfor
+    assign meters = m_vals | split: '|'
+  endif
+
+  if meters.size > 0 and feet.size != meters.size
+    assign ft_vals = ''
+    for m in meters
+      assign ft = m | times: 3.28084 | round
+      assign ft_vals = ft_vals | append: ft | append: '|'
+    endfor
+    assign feet = ft_vals | split: '|'
+  endif
+
+  comment
+    Format both lists with thousands separators and join ranges with an en dash.
+  endcomment
+  assign m_text = ''
+  for m in meters
+    assign n = m | round
+    if n >= 1000
+      assign rest = n | modulo: 1000 | prepend: '00' | slice: -3, 3
+      assign n = n | divided_by: 1000 | append: ',' | append: rest
+    endif
+    unless forloop.first
+      assign m_text = m_text | append: '–'
+    endunless
+    assign m_text = m_text | append: n
+  endfor
+
+  assign ft_text = ''
+  for ft in feet
+    assign n = ft | round
+    if n >= 1000
+      assign rest = n | modulo: 1000 | prepend: '00' | slice: -3, 3
+      assign n = n | divided_by: 1000 | append: ',' | append: rest
+    endif
+    unless forloop.first
+      assign ft_text = ft_text | append: '–'
+    endunless
+    assign ft_text = ft_text | append: n
+  endfor
+
+  assign prefix = ''
+  if lower contains 'up to'
+    assign prefix = 'Up to '
+  endif
+
+  if meters.size == 0
+    echo raw
+  elsif format == 'table'
+    echo prefix | append: m_text | append: ' m (' | append: ft_text | append: ' ft)'
+  else
+    echo prefix | append: m_text | append: ' m'
+  endif
+-%}

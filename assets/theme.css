@@ -5474,6 +5474,7 @@ header-component {
   overflow: initial;
   -webkit-overflow-scrolling: touch;
   transition: color 0.2s ease, background 0.3s ease;
+      border-bottom: 1px solid #DADADA;
 }
 .site-header > .site-header__wrapper:not(.aos-initialized) {
   transform: translateZ(0);

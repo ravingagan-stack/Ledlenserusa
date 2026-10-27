@@ -59,7 +59,7 @@
   endif
 
   # Specs
-  assign spec_labels = 'Max|Beam|Runtime' | split: '|'
+  assign spec_labels = 'Output|Distance|Runtime' | split: '|'
   assign spec_keys = 'max_lumens|beam_range|runtime_range' | split: '|'
   assign has_specs = false
   for spec_key in spec_keys
@@ -72,6 +72,8 @@
 
 <div class="bs-collection-item grid__item {{ size_desktop }} {{ size_mobile }}" data-product-block>
   <article class="bs-card">
+    <a href="{{ p.url }}" class="bs-card__link" tabindex="-1" aria-hidden="true"></a>
+
     <div class="bs-card__media">
       {%- if badge_text != blank -%}
         <span class="bs-card__badge">{{ badge_text }}</span>
@@ -117,6 +119,11 @@
         <div class="bs-card__specs">
           {%- for spec_key in spec_keys -%}
             {%- assign spec_value = p.metafields.custom[spec_key] | metafield_text -%}
+            {%- if spec_key == 'beam_range' and spec_value != blank -%}
+              {%- capture spec_value -%}{%- render 'beam-distance', value: spec_value, format: 'm' -%}{%- endcapture -%}
+            {%- elsif spec_key == 'max_lumens' and spec_value != blank -%}
+              {%- capture spec_value -%}{%- render 'spec-lumens', value: spec_value -%}{%- endcapture -%}
+            {%- endif -%}
             {%- if spec_value != blank -%}
               <div class="bs-card__spec">
                 <div class="bs-card__spec-label">{{ spec_labels[forloop.index0] }}</div>

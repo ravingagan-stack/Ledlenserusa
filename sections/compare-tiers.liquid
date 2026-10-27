@@ -177,6 +177,39 @@ vertical-align: middle;
     border-top-color: {{ section.settings.color_accent }};
   }
 
+  /* Specs that change between tiers */
+  #{{ section_uid }} .ct__label.is-varies {
+    box-shadow: inset 3px 0 0 {{ section.settings.color_accent }};
+  }
+
+  #{{ section_uid }} .ct__cell.is-top {
+    color: {{ section.settings.color_accent }};
+  }
+
+  #{{ section_uid }} .ct__badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: {{ section.settings.color_accent }};
+    color: #ffffff;
+    font-family: Barlow, Helvetica Neue, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    vertical-align: 2px;
+    white-space: nowrap;
+  }
+
+  #{{ section_uid }} .ct__badge--top {
+    background: transparent;
+    color: {{ section.settings.color_accent }};
+    border: 1px solid currentColor;
+    padding: 1px 5px;
+  }
+
   @media only screen and (max-width: 749px) {
       #{{ section_uid }} {
             padding: 50px 20px;
@@ -243,10 +276,77 @@ span.ct__name {
       {%- endfor -%}
 
       {%- for block in section.blocks -%}
-        <div class="ct__label" {{ block.shopify_attributes }}>{{ block.settings.label }}</div>
-        <div class="ct__cell" data-col="0">{{ block.settings.value_1 }}</div>
-        <div class="ct__cell" data-col="1">{{ block.settings.value_2 }}</div>
-        <div class="ct__cell" data-col="2">{{ block.settings.value_3 }}</div>
+        {%- liquid
+          comment
+            Highlight rows where a number changes between tiers; "Highest" marks the top value
+            for specs where more is better (output, distance, runtime, battery).
+          endcomment
+          assign label_lower = block.settings.label | downcase
+          capture n1
+            render 'spec-number', value: block.settings.value_1
+          endcapture
+          capture n2
+            render 'spec-number', value: block.settings.value_2
+          endcapture
+          capture n3
+            render 'spec-number', value: block.settings.value_3
+          endcapture
+
+          assign is_varies = false
+          assign mark_top = false
+          assign top_num = -1
+          if n1 != blank and n2 != blank and n3 != blank
+            assign v1 = n1 | times: 1
+            assign v2 = n2 | times: 1
+            assign v3 = n3 | times: 1
+            if v1 != v2 or v1 != v3
+              assign is_varies = true
+            endif
+            assign top_num = v1
+            if v2 > top_num
+              assign top_num = v2
+            endif
+            if v3 > top_num
+              assign top_num = v3
+            endif
+          endif
+
+          if is_varies
+            if label_lower contains 'lumen' or label_lower contains 'output' or label_lower contains 'beam' or label_lower contains 'distance' or label_lower contains 'range' or label_lower contains 'runtime' or label_lower contains 'run time' or label_lower contains 'battery' or label_lower contains 'capacity'
+              assign mark_top = true
+            endif
+          endif
+        -%}
+        <div class="ct__label{% if is_varies %} is-varies{% endif %}" {{ block.shopify_attributes }}>
+          {{- block.settings.label -}}
+          {%- if is_varies %} <span class="ct__badge">Varies</span>{% endif -%}
+        </div>
+        {%- for i in (1..3) -%}
+          {%- liquid
+            assign value_key = 'value_' | append: i
+            assign is_top = false
+            if mark_top
+              case i
+                when 1
+                  if v1 == top_num
+                    assign is_top = true
+                  endif
+                when 2
+                  if v2 == top_num
+                    assign is_top = true
+                  endif
+                when 3
+                  if v3 == top_num
+                    assign is_top = true
+                  endif
+              endcase
+            endif
+          -%}
+          <div class="ct__cell{% if is_varies %} is-varies{% endif %}{% if is_top %} is-top{% endif %}" data-col="{{ i | minus: 1 }}">
+            {{- block.settings[value_key] -}}
+            {%- if is_top %} <span class="ct__badge ct__badge--top">Highest</span>{% endif -%}
+          </div>
+        {%- endfor -%}
       {%- endfor -%}
 
       <div class="ct__foot-spacer"></div>
@@ -519,9 +619,12 @@ span.ct__name {
       "blocks": [
         {"type": "row", "settings": {"label": "Best for", "value_1": "All-round: home, car, camp", "value_2": "Daily professional use", "value_3": "Maximum output"}},
         {"type": "row", "settings": {"label": "Max output", "value_1": "2,000 lumens", "value_2": "2,000 lumens", "value_3": "2,500 lumens"}},
-        {"type": "row", "settings": {"label": "Max beam", "value_1": "1,050 ft (320 m)", "value_2": "1,050 ft (320 m)", "value_3": "1,115 ft (340 m)"}},
+        {"type": "row", "settings": {"label": "Max beam", "value_1": "320 m (1,050 ft)", "value_2": "320 m (1,050 ft)", "value_3": "340 m (1,115 ft)"}},
         {"type": "row", "settings": {"label": "Longest runtime", "value_1": "Up to 80 hr", "value_2": "Up to 60 hr", "value_3": "Up to 80 hr"}},
-        {"type": "row", "settings": {"label": "What it adds", "value_1": "Advanced Focus System, Mode Select Ring, IP68", "value_2": "[Pro upgrade – confirm with product team]", "value_3": "[Signature upgrade – confirm with product team]"}},
+        {"type": "row", "settings": {"label": "Light color", "value_1": "Cool white, CRI 70", "value_2": "Natural white, high CRI 80: truer colors, less eye fatigue", "value_3": "Cool white, CRI 70"}},
+        {"type": "row", "settings": {"label": "Housing", "value_1": "Black anodized aluminum", "value_2": "Black aluminum with removable protective bumpers", "value_3": "Charcoal housing with iconic red light ring"}},
+        {"type": "row", "settings": {"label": "Charging", "value_1": "USB-C", "value_2": "USB-C + charging station included", "value_3": "USB-C + charging station included"}},
+        {"type": "row", "settings": {"label": "Upgrade over P7R", "value_1": "The all-round base: Advanced Focus System, Mode Select Ring, IP68", "value_2": "Charging station · removable protective bumpers for jobsite durability · natural white, CRI 80 (vs 70). Trade-off: 60 hr max runtime (vs 80) and 26 g heavier", "value_3": "+500 lm boost (2,500 lm) · +20 m beam (340 m) · brighter Power/Mid modes (1,400/500 lm vs 1,200/450) · charging station · charcoal housing with red light ring · option to add an extra light function · same 80 hr runtime"}},
         {"type": "row", "settings": {"label": "Warranty", "value_1": "7 years, no questions", "value_2": "7 years, no questions", "value_3": "7 years, no questions"}}
       ]
     }

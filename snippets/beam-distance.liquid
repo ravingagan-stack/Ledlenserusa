@@ -32,8 +32,13 @@
   assign m_vals = ''
   assign ft_vals = ''
   for token in tokens
-    assign num = token | times: 1
-    if num != 0 or token == '0'
+    if token == blank
+      continue
+    endif
+    assign token_digits = token | remove_first: '.'
+    assign num_digits = token_digits | times: 1 | append: ''
+    if num_digits == token_digits
+      assign num = token | times: 1
       assign pending = pending | append: num | append: '|'
     elsif token == 'm'
       if m_vals == blank and pending != blank
@@ -79,7 +84,7 @@
     assign n = m | round
     if n >= 1000
       assign rest = n | modulo: 1000 | prepend: '00' | slice: -3, 3
-      assign n = n | divided_by: 1000 | append: ',' | append: rest
+      assign n = n | divided_by: 1000 | floor | append: ',' | append: rest
     endif
     unless forloop.first
       assign m_text = m_text | append: '–'
@@ -92,7 +97,7 @@
     assign n = ft | round
     if n >= 1000
       assign rest = n | modulo: 1000 | prepend: '00' | slice: -3, 3
-      assign n = n | divided_by: 1000 | append: ',' | append: rest
+      assign n = n | divided_by: 1000 | floor | append: ',' | append: rest
     endif
     unless forloop.first
       assign ft_text = ft_text | append: '–'

@@ -944,7 +944,8 @@
             "label": "Max output",
             "value_1": "2,000 lumens",
             "value_2": "2,000 lumens",
-            "value_3": "2,500 lumens"
+            "value_3": "2,500 lumens",
+            "source": "output"
           }
         },
         "row_aTLrxD": {
@@ -953,7 +954,8 @@
             "label": "Max beam",
             "value_1": "320 m (1,050 ft)",
             "value_2": "320 m (1,050 ft)",
-            "value_3": "340 m (1,115 ft)"
+            "value_3": "340 m (1,115 ft)",
+            "source": "beam"
           }
         },
         "row_yYKeAx": {
@@ -962,7 +964,8 @@
             "label": "Longest runtime",
             "value_1": "Up to 80 hr",
             "value_2": "Up to 60 hr",
-            "value_3": "Up to 80 hr"
+            "value_3": "Up to 80 hr",
+            "source": "runtime"
           }
         },
         "row_PKEmXj": {

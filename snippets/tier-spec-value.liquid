@@ -1,0 +1,179 @@
+{%- comment -%}
+  Outputs one spec for a product, from the same data as the PDP "Specifications" tab
+  (custom.technical_data, falling back to the technical.* metafields). Outputs nothing
+  when the product has no value, so callers can fall back to typed text.
+
+  Accepts:
+  - product: {Object} Product (required)
+  - source: {String} output | beam | runtime | weight | ip | cri | light | battery
+
+  Usage:
+  {%- capture v -%}{% render 'tier-spec-value', product: tier_product, source: 'output' %}{%- endcapture -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign td = product.metafields.custom.technical_data.value
+  assign tech = product.metafields.technical
+
+  # Raw text for the requested spec: technical_data field first, then technical.* metafield.
+  assign raw = ''
+  case source
+    when 'output'
+      capture raw
+        echo td.td_light_output
+      endcapture
+      if raw == blank
+        capture raw
+          echo tech.Luminosity
+        endcapture
+      endif
+    when 'beam'
+      capture raw
+        echo td.td_beam_distance
+      endcapture
+      if raw == blank
+        capture raw
+          echo tech.LightingRange
+        endcapture
+      endif
+    when 'runtime'
+      capture raw
+        echo td.td_runtime
+      endcapture
+      if raw == blank
+        capture raw
+          echo tech.BatteryDuration
+        endcapture
+      endif
+    when 'weight'
+      capture raw
+        echo td.td_weight
+      endcapture
+      if raw == blank
+        capture raw
+          echo tech.Weight
+        endcapture
+      endif
+    when 'ip'
+      capture raw
+        echo td.td_ip_class
+      endcapture
+      if raw == blank
+        capture raw
+          echo tech.WaterResistance
+        endcapture
+      endif
+    when 'cri'
+      capture raw
+        echo td.td_cri
+      endcapture
+      if raw == blank
+        capture raw
+          echo tech.CRI
+        endcapture
+      endif
+    when 'light'
+      capture raw
+        echo td.td_light_color
+      endcapture
+      if raw == blank
+        capture raw
+          echo tech.ColourTemperature
+        endcapture
+      endif
+    when 'battery'
+      capture raw
+        echo td.td_battery_capacity
+      endcapture
+      if raw == blank
+        capture raw
+          echo tech.BatteryCapacity
+        endcapture
+      endif
+  endcase
+  assign raw = raw | strip
+
+  # Output, beam and runtime are per-mode lists ("Boost:2000 Power:1200 ..." or
+
+  # "MAX 330 m - MIN 80 m"), so take the largest number.
+  assign max_num = -1
+  if source == 'output' or source == 'beam' or source == 'runtime'
+    assign tokens = raw | downcase | remove: ',' | replace: ':', ' ' | replace: '|', ' ' | replace: '–', ' ' | replace: '-', ' ' | split: ' '
+    for token in tokens
+      assign t = token | strip | remove: 'lumens' | remove: 'lm' | remove: 'hrs' | remove: 'hr' | remove: 'h' | remove: 'm'
+      assign t_digits = t | remove_first: '.'
+      assign num_digits = t_digits | times: 1 | append: ''
+      if t != blank and num_digits == t_digits
+        assign n = t | times: 1
+        if n > max_num
+          assign max_num = n
+        endif
+      endif
+    endfor
+  endif
+
+  # Thousands separator for whole numbers, e.g. 2000 → "2,000".
+  assign max_text = max_num
+  if max_num >= 1000
+    assign whole = max_num | floor
+    if whole == max_num
+      assign rest = whole | modulo: 1000 | prepend: '00' | slice: -3, 3
+      assign max_text = whole | divided_by: 1000 | floor | append: ',' | append: rest
+    endif
+  endif
+
+  case source
+    when 'output'
+      if max_num > 0
+        echo max_text | append: ' lumens'
+      endif
+    when 'beam'
+      if max_num > 0
+        assign beam_m = max_num | append: ' m'
+        render 'beam-distance', value: beam_m, format: 'table'
+      endif
+    when 'runtime'
+      if max_num > 0
+        echo 'Up to ' | append: max_text | append: ' hr'
+      endif
+    when 'weight'
+      if raw != blank
+        assign raw_lower = raw | downcase
+        if raw_lower contains 'g' or raw_lower contains 'oz'
+          echo raw
+        else
+          echo raw | append: ' g'
+        endif
+      endif
+    when 'cri'
+      if raw != blank
+        assign raw_lower = raw | downcase
+        if raw_lower contains 'cri'
+          echo raw
+        else
+          echo 'CRI ' | append: raw
+        endif
+      endif
+    when 'light'
+      capture temp
+        echo td.td_color_temperature
+      endcapture
+      assign temp = temp | remove: 'K' | strip
+      if raw != blank and temp != blank
+        echo raw | append: ', ' | append: temp | append: ' K'
+      else
+        echo raw
+      endif
+    when 'battery'
+      if raw != blank
+        assign raw_lower = raw | downcase
+        if raw_lower contains 'mah'
+          echo raw
+        else
+          echo raw | append: ' mAh'
+        endif
+      endif
+    else
+      echo raw
+  endcase
+-%}

@@ -152,8 +152,8 @@
 .pdp-specs{ width:100%; border-collapse:collapse; font-size:14.5px; }
 .pdp-specs tr{ border-bottom:1px solid var(--pdp-border); }
 .pdp-specs tr:last-child{ border-bottom:none; }
-.pdp-specs th{ text-align:left; font-weight:600; color:#1b1b19; padding:11px 16px 11px 0; width:46%; vertical-align:top; }
-.pdp-specs td{ text-align:left; color:var(--pdp-text-2); padding:11px 0; vertical-align:top; }
+.pdp-specs th{ text-align:left; font-weight:600; color:#1b1b19; padding:11px 16px 11px 8px; width:46%; vertical-align:top; }
+.pdp-specs td{ text-align:left; color:var(--pdp-text-2); padding:11px 8px; vertical-align:top; }
 @media (max-width:600px){ .pdp-specs th{ width:50%; } }
 
 /* ---------- Manuals: downloadable file list ---------- */

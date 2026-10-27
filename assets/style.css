@@ -2341,8 +2341,8 @@ span.product__price--regular {
 
 .bs-card__btn:not([disabled]):hover,
 .bs-card__btn:not([disabled]):focus-visible {
-    background: #b8000f !important;
-    color: #ffffff !important;
+    background: #e30613 !important;
+    color: #000 !important;
 }
 
 /* ================ PDP: SKU under the product title ================ */
@@ -2422,12 +2422,27 @@ span.product__price--regular {
 
 .btn.product__submit__add:not([disabled]):hover,
 .btn.product__submit__add:not([disabled]):focus-visible {
-    background-color: #000 !important;
-    border-color: #b8000f !important;
-    color: #b8000f !important;
+    /* background-color: #000 !important;
+    border-color: #b8000f !important; */
+    color: #000 !important;
 }
 
 .btn.product__submit__add:not([disabled]):hover span,
 .btn.product__submit__add:not([disabled]):focus-visible span {
-    color: #ffffff !important;
+       color: #000 !important;
+}
+.fn__submit:hover {
+    color: #000;
+}
+.product__form .product__submit__holder--spb .product__submit__add:hover s.product__price--compare {
+    color: #000;
+}
+
+
+
+@media only screen and (min-width: 749px) and (max-width: 1180px) {
+.logo__image-link {
+    width: 124px !important;
+    height: 26px;
+}
 }

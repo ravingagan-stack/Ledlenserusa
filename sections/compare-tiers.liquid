@@ -253,6 +253,37 @@ span.ct__name {
   {%- endif -%}
 
   <div class="ct__scroll">
+    {%- liquid
+      comment
+        Tier products: the "Product" setting, else the product in the button link
+        ("/products/<handle>"). Rows with a data source read their specs from these.
+      endcomment
+      assign tp1 = section.settings.tier_1_product
+      assign tp2 = section.settings.tier_2_product
+      assign tp3 = section.settings.tier_3_product
+      for i in (1..3)
+        assign url_key = 'tier_' | append: i | append: '_url'
+        assign tier_link = section.settings[url_key] | append: ''
+        if tier_link contains '/products/'
+          assign tier_handle = tier_link | split: '/products/' | last | split: '?' | first | split: '#' | first
+          case i
+            when 1
+              if tp1 == blank
+                assign tp1 = all_products[tier_handle]
+              endif
+            when 2
+              if tp2 == blank
+                assign tp2 = all_products[tier_handle]
+              endif
+            when 3
+              if tp3 == blank
+                assign tp3 = all_products[tier_handle]
+              endif
+          endcase
+        endif
+      endfor
+    -%}
+
     <div class="ct__grid" data-active="{{ active_col }}">
       <div class="ct__corner"></div>
 
@@ -282,14 +313,50 @@ span.ct__name {
             for specs where more is better (output, distance, runtime, battery).
           endcomment
           assign label_lower = block.settings.label | downcase
+
+          comment
+            Cell values: from each tier product's Specifications data when the row has a
+            data source, falling back to the typed value when the product has none.
+          endcomment
+          assign c1 = block.settings.value_1
+          assign c2 = block.settings.value_2
+          assign c3 = block.settings.value_3
+          assign spec_source = block.settings.source | default: 'manual'
+          if spec_source != 'manual'
+            if tp1 != blank
+              capture spec_value
+                render 'tier-spec-value', product: tp1, source: spec_source
+              endcapture
+              if spec_value != blank
+                assign c1 = spec_value
+              endif
+            endif
+            if tp2 != blank
+              capture spec_value
+                render 'tier-spec-value', product: tp2, source: spec_source
+              endcapture
+              if spec_value != blank
+                assign c2 = spec_value
+              endif
+            endif
+            if tp3 != blank
+              capture spec_value
+                render 'tier-spec-value', product: tp3, source: spec_source
+              endcapture
+              if spec_value != blank
+                assign c3 = spec_value
+              endif
+            endif
+          endif
+
           capture n1
-            render 'spec-number', value: block.settings.value_1
+            render 'spec-number', value: c1
           endcapture
           capture n2
-            render 'spec-number', value: block.settings.value_2
+            render 'spec-number', value: c2
           endcapture
           capture n3
-            render 'spec-number', value: block.settings.value_3
+            render 'spec-number', value: c3
           endcapture
 
           assign is_varies = false
@@ -323,7 +390,14 @@ span.ct__name {
         </div>
         {%- for i in (1..3) -%}
           {%- liquid
-            assign value_key = 'value_' | append: i
+            case i
+              when 1
+                assign cell_value = c1
+              when 2
+                assign cell_value = c2
+              when 3
+                assign cell_value = c3
+            endcase
             assign is_top = false
             if mark_top
               case i
@@ -343,7 +417,7 @@ span.ct__name {
             endif
           -%}
           <div class="ct__cell{% if is_varies %} is-varies{% endif %}{% if is_top %} is-top{% endif %}" data-col="{{ i | minus: 1 }}">
-            {{- block.settings[value_key] -}}
+            {{- cell_value -}}
             {%- if is_top %} <span class="ct__badge ct__badge--top">Highest</span>{% endif -%}
           </div>
         {%- endfor -%}
@@ -446,6 +520,12 @@ span.ct__name {
       "label": "Button link"
     },
     {
+      "type": "product",
+      "id": "tier_1_product",
+      "label": "Product",
+      "info": "Rows with a data source read this product's Specifications. Defaults to the product in the button link."
+    },
+    {
       "type": "header",
       "content": "Tier 2"
     },
@@ -470,6 +550,12 @@ span.ct__name {
       "type": "url",
       "id": "tier_2_url",
       "label": "Button link"
+    },
+    {
+      "type": "product",
+      "id": "tier_2_product",
+      "label": "Product",
+      "info": "Rows with a data source read this product's Specifications. Defaults to the product in the button link."
     },
     {
       "type": "header",
@@ -497,6 +583,12 @@ span.ct__name {
       "type": "url",
       "id": "tier_3_url",
       "label": "Button link"
+    },
+    {
+      "type": "product",
+      "id": "tier_3_product",
+      "label": "Product",
+      "info": "Rows with a data source read this product's Specifications. Defaults to the product in the button link."
     },
     {
       "type": "header",
@@ -596,6 +688,24 @@ span.ct__name {
           "default": "Feature"
         },
         {
+          "type": "select",
+          "id": "source",
+          "label": "Data source",
+          "info": "Read each tier's value from its product Specifications (same data as the PDP Specifications tab). The tier values below are used when a product has no data.",
+          "default": "manual",
+          "options": [
+            { "value": "manual", "label": "Manual (tier values below)" },
+            { "value": "output", "label": "Max output (lumens)" },
+            { "value": "beam", "label": "Max beam (m)" },
+            { "value": "runtime", "label": "Longest runtime (hr)" },
+            { "value": "weight", "label": "Weight" },
+            { "value": "ip", "label": "IP rating" },
+            { "value": "cri", "label": "CRI" },
+            { "value": "light", "label": "Light color + temperature" },
+            { "value": "battery", "label": "Battery capacity" }
+          ]
+        },
+        {
           "type": "text",
           "id": "value_1",
           "label": "Tier 1 value"
@@ -618,9 +728,9 @@ span.ct__name {
       "name": "Compare tiers",
       "blocks": [
         {"type": "row", "settings": {"label": "Best for", "value_1": "All-round: home, car, camp", "value_2": "Daily professional use", "value_3": "Maximum output"}},
-        {"type": "row", "settings": {"label": "Max output", "value_1": "2,000 lumens", "value_2": "2,000 lumens", "value_3": "2,500 lumens"}},
-        {"type": "row", "settings": {"label": "Max beam", "value_1": "320 m (1,050 ft)", "value_2": "320 m (1,050 ft)", "value_3": "340 m (1,115 ft)"}},
-        {"type": "row", "settings": {"label": "Longest runtime", "value_1": "Up to 80 hr", "value_2": "Up to 60 hr", "value_3": "Up to 80 hr"}},
+        {"type": "row", "settings": {"label": "Max output", "source": "output", "value_1": "2,000 lumens", "value_2": "2,000 lumens", "value_3": "2,500 lumens"}},
+        {"type": "row", "settings": {"label": "Max beam", "source": "beam", "value_1": "320 m (1,050 ft)", "value_2": "320 m (1,050 ft)", "value_3": "340 m (1,115 ft)"}},
+        {"type": "row", "settings": {"label": "Longest runtime", "source": "runtime", "value_1": "Up to 80 hr", "value_2": "Up to 60 hr", "value_3": "Up to 80 hr"}},
         {"type": "row", "settings": {"label": "Light color", "value_1": "Cool white, CRI 70", "value_2": "Natural white, high CRI 80: truer colors, less eye fatigue", "value_3": "Cool white, CRI 70"}},
         {"type": "row", "settings": {"label": "Housing", "value_1": "Black anodized aluminum", "value_2": "Black aluminum with removable protective bumpers", "value_3": "Charcoal housing with iconic red light ring"}},
         {"type": "row", "settings": {"label": "Charging", "value_1": "USB-C", "value_2": "USB-C + charging station included", "value_3": "USB-C + charging station included"}},

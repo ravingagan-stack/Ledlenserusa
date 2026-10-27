@@ -343,7 +343,7 @@
             "label": "Max beam",
             "value_1": "320 m (1,050 ft)",
             "value_2": "320 m (1,050 ft)",
-            "value_3": "340 m (1,115 ft)"
+            "value_3": "330 m (1,115 ft)"
           }
         },
         "row_EWqjXy": {
@@ -353,24 +353,6 @@
             "value_1": "Up to 80 hr",
             "value_2": "Up to 60 hr",
             "value_3": "Up to 80 hr"
-          }
-        },
-        "row_T4hyq7": {
-          "type": "row",
-          "settings": {
-            "label": "Upgrade over P7R",
-            "value_1": "The all-round base: Advanced Focus System, Mode Select Ring, IP68",
-            "value_2": "Charging station · removable protective bumpers for jobsite durability · natural white, CRI 80 (vs 70). Trade-off: 60 hr max runtime (vs 80) and 26 g heavier",
-            "value_3": "+500 lm boost (2,500 lm) · +20 m beam (340 m) · brighter Power/Mid modes (1,400/500 lm vs 1,200/450) · charging station · charcoal housing with red light ring · option to add an extra light function · same 80 hr runtime"
-          }
-        },
-        "row_WeYP8f": {
-          "type": "row",
-          "settings": {
-            "label": "Warranty",
-            "value_1": "7 years, no questions",
-            "value_2": "7 years, no questions",
-            "value_3": "7 years, no questions"
           }
         },
         "row_light_upg": {
@@ -398,6 +380,24 @@
             "value_1": "USB-C",
             "value_2": "USB-C + charging station included",
             "value_3": "USB-C + charging station included"
+          }
+        },
+        "row_T4hyq7": {
+          "type": "row",
+          "settings": {
+            "label": "Upgrade over P7R",
+            "value_1": "The all-round base: Advanced Focus System, Mode Select Ring, IP68",
+            "value_2": "Charging station · removable protective bumpers for jobsite durability · natural white, CRI 80 (vs 70). Trade-off: 60 hr max runtime (vs 80) and 26 g heavier",
+            "value_3": "+500 lm boost (2,500 lm) · +20 m beam (340 m) · brighter Power/Mid modes (1,400/500 lm vs 1,200/450) · charging station · charcoal housing with red light ring · option to add an extra light function · same 80 hr runtime"
+          }
+        },
+        "row_WeYP8f": {
+          "type": "row",
+          "settings": {
+            "label": "Warranty",
+            "value_1": "7 years, no questions",
+            "value_2": "7 years, no questions",
+            "value_3": "7 years, no questions"
           }
         }
       },

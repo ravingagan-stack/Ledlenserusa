@@ -223,7 +223,7 @@
         "products_to_show": 4,
         "preorder_text": "",
         "new_text": "",
-        "default_status": "Pre-order",
+        "default_status": "",
         "heading": "Just launched: new H & HF Series",
         "view_all_text": "Shop HF-Series",
         "view_all_link": "shopify://collections/hf-series-headlamps",
@@ -323,6 +323,7 @@
           "type": "row",
           "settings": {
             "label": "Best for",
+            "source": "manual",
             "value_1": "All-round: home, car, camp",
             "value_2": "Daily professional use",
             "value_3": "Maximum output"
@@ -332,6 +333,7 @@
           "type": "row",
           "settings": {
             "label": "Max output",
+            "source": "manual",
             "value_1": "2,000 lumens",
             "value_2": "2,000 lumens",
             "value_3": "2,500 lumens"
@@ -341,6 +343,7 @@
           "type": "row",
           "settings": {
             "label": "Max beam",
+            "source": "manual",
             "value_1": "320 m (1,050 ft)",
             "value_2": "320 m (1,050 ft)",
             "value_3": "330 m (1,115 ft)"
@@ -350,6 +353,7 @@
           "type": "row",
           "settings": {
             "label": "Longest runtime",
+            "source": "manual",
             "value_1": "Up to 80 hr",
             "value_2": "Up to 60 hr",
             "value_3": "Up to 80 hr"
@@ -359,6 +363,7 @@
           "type": "row",
           "settings": {
             "label": "Light color",
+            "source": "manual",
             "value_1": "Cool white, CRI 70",
             "value_2": "Natural white, high CRI 80: truer colors, less eye fatigue",
             "value_3": "Cool white, CRI 70"
@@ -368,6 +373,7 @@
           "type": "row",
           "settings": {
             "label": "Housing",
+            "source": "manual",
             "value_1": "Black anodized aluminum",
             "value_2": "Black aluminum with removable protective bumpers",
             "value_3": "Charcoal housing with iconic red light ring"
@@ -377,6 +383,7 @@
           "type": "row",
           "settings": {
             "label": "Charging",
+            "source": "manual",
             "value_1": "USB-C",
             "value_2": "USB-C + charging station included",
             "value_3": "USB-C + charging station included"
@@ -386,6 +393,7 @@
           "type": "row",
           "settings": {
             "label": "Upgrade over P7R",
+            "source": "manual",
             "value_1": "The all-round base: Advanced Focus System, Mode Select Ring, IP68",
             "value_2": "Charging station · removable protective bumpers for jobsite durability · natural white, CRI 80 (vs 70). Trade-off: 60 hr max runtime (vs 80) and 26 g heavier",
             "value_3": "+500 lm boost (2,500 lm) · +20 m beam (340 m) · brighter Power/Mid modes (1,400/500 lm vs 1,200/450) · charging station · charcoal housing with red light ring · option to add an extra light function · same 80 hr runtime"
@@ -395,6 +403,7 @@
           "type": "row",
           "settings": {
             "label": "Warranty",
+            "source": "manual",
             "value_1": "7 years, no questions",
             "value_2": "7 years, no questions",
             "value_3": "7 years, no questions"
@@ -422,14 +431,17 @@
         "tier_1_name": "P7R",
         "tier_1_price": "$109.95",
         "tier_1_url": "shopify://products/p7r-flashlight",
+        "tier_1_product": "",
         "tier_2_tag": "",
         "tier_2_name": "P7R Pro",
         "tier_2_price": "$139.99",
         "tier_2_url": "shopify://products/p7r-pro",
+        "tier_2_product": "",
         "tier_3_tag": "Most powerful",
         "tier_3_name": "P7R Signature",
         "tier_3_price": "$189.99",
         "tier_3_url": "shopify://products/p7r-signature-flashlight",
+        "tier_3_product": "",
         "highlighted_tier": "1",
         "button_prefix": "Shop",
         "color_accent": "#e30613",

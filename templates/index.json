@@ -122,8 +122,8 @@
         "text_2": "P7R Flashlight",
         "link_2": "shopify://products/p7r-flashlight",
         "publication_3": "Wired",
-        "text_3": "H14R.2 Headlamp",
-        "link_3": "shopify://products/h14r-2-headlamp",
+        "text_3": "MH10 Headlamp",
+        "link_3": "https://www.wired.com/gallery/best-gifts-under-100/",
         "publication_4": "Travel + Leisure",
         "text_4": "NEW | H9R Black Headlamp",
         "link_4": "shopify://products/h9r-pro-headlamp"
@@ -586,7 +586,7 @@
         "finder_button_label": "Start the Light Finder",
         "finder_button_url": "",
         "join_heading": "Get 10% off your first light",
-        "join_text": "Plus launch alerts and gear guides. Unsubscribe anytime.",
+        "join_text": "Plus, launch alerts and gear guides. Unsubscribe anytime.",
         "email_label": "Email address",
         "email_placeholder": "you@example.com",
         "submit_label": "Claim 10% off",
@@ -630,7 +630,7 @@
           "type": "step",
           "settings": {
             "number": "3",
-            "title": "We repair or replace",
+            "title": "We replace it",
             "body": "Handled by our US service team."
           }
         },

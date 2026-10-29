@@ -82,7 +82,7 @@
       "type": "announcementbar",
       "name": "Custom Announcement Bar",
       "settings": {
-        "first_highlight": "10% off",
+        "first_highlight": "15% off",
         "first_text": "your first light – join the list",
         "first_link": "",
         "second_text": "Free US shipping over $35",

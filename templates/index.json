@@ -711,7 +711,7 @@
           "settings": {
             "eyebrow": "Trades · Fleets · Departments",
             "heading": "Outfitting a team?",
-            "description": "<p>Volume pricing from 5 units, engraving with your crew or unit name, and one point of contact.</p>",
+            "description": "<p>Volume pricing from 5 units and one point of contact.</p>",
             "button_label": "Get a team quote",
             "button_link": ""
           }

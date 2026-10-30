@@ -11,10 +11,10 @@
     <div class="pro-team-grid">
       {% for block in section.blocks %}
         <div
-          class="pro-team-cardd"
+          class="pro-team-card"
           {{ block.shopify_attributes }}
         >
-          <div class="pro-team-card">
+          <div class="pro-tem-iner-card">
           {% if block.settings.eyebrow != blank %}
             <div class="pro-team-eyebrow">
               {{ block.settings.eyebrow | escape }}

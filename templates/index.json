@@ -680,7 +680,7 @@
         "heading": "The 7-year warranty, in 3 steps",
         "description": "No receipts hunt, no interrogation. Just a working light.",
         "link_text": "Register your light",
-        "link_url": "",
+        "link_url": "https://ledlenser.com/en/infos-service/product-registration/",
         "card_heading": "Why buy direct",
         "bg_color": "#ffffff",
         "text_color": "#0a0a0a",
@@ -703,7 +703,7 @@
             "heading": "Save 15% on every order",
             "description": "<p>Contact us to confirm availability and receive your discount code.</p>",
             "button_label": "Verify my service",
-            "button_link": ""
+            "button_link": "https://www.ledlenserusa.com/pages/contact-ledlenser"
           }
         },
         "pro_offer_frMJAr": {
@@ -713,7 +713,7 @@
             "heading": "Outfitting a team?",
             "description": "<p>Volume pricing from 5 units and one point of contact.</p>",
             "button_label": "Get a team quote",
-            "button_link": ""
+            "button_link": "https://www.ledlenserusa.com/pages/contact-ledlenser"
           }
         }
       },

@@ -211,7 +211,7 @@
       "settings": {
         "heading": "What do you need light for?",
         "quiz_text": "Take the Light Finder quiz →",
-        "quiz_link": "",
+        "quiz_link": "https://www.ledlenserusa.com/pages/product-quiz?srsltid=AYCX9vLpHHX3zD15o2GUbwruuaBbpA57w1q7nLE8KbBYoJ8AH9s_0Q21",
         "pick_label": "Top pick:"
       }
     },
@@ -253,7 +253,7 @@
         "button_2_text": "Shop Headlamps",
         "button_2_link": "shopify://collections/headlamps",
         "finder_text": "Not sure which light? Find yours in 60 seconds →",
-        "finder_link": "",
+        "finder_link": "https://www.ledlenserusa.com/pages/product-quiz?srsltid=AYCX9vLpHHX3zD15o2GUbwruuaBbpA57w1q7nLE8KbBYoJ8AH9s_0Q21",
         "visual_label": "Advanced Focus System · P7R",
         "flood_heading": "Flood",
         "flood_description": "Wide, even light for close work",
@@ -565,7 +565,7 @@
         "heading": "Kits that never run dry",
         "subheading": "Headlamp + Flex powerbank. Charge in the field and save versus buying separately.",
         "view_all_text": "Shop all bundles & kits",
-        "view_all_link": "shopify://collections",
+        "view_all_link": "shopify://collections/bundles",
         "bg_color": "#ffffff",
         "card_bg": "#ffffff",
         "img_bg": "#ffffff",
@@ -584,7 +584,7 @@
         "finder_heading": "Not sure which light?",
         "finder_text": "Answer 4 quick questions about how you'll use it. We'll match you with the right beam, runtime and price.",
         "finder_button_label": "Start the Light Finder",
-        "finder_button_url": "",
+        "finder_button_url": "https://www.ledlenserusa.com/pages/product-quiz?srsltid=AYCX9vLpHHX3zD15o2GUbwruuaBbpA57w1q7nLE8KbBYoJ8AH9s_0Q21",
         "join_heading": "Get 10% off your first light",
         "join_text": "Plus, launch alerts and gear guides. Unsubscribe anytime.",
         "email_label": "Email address",

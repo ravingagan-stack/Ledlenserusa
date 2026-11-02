@@ -3378,7 +3378,7 @@ search-popdown details[open] predictive-search {
 }
 
 .nav:has(.menu__item.is-visible) predictive-search {
-  opacity: 0;
+  opacity: 1;
 }
 
 /*================ Modal ================*/

@@ -14,61 +14,51 @@
       "disabled": true,
       "settings": {
         "show_page_title": true,
+        "color_scheme": "",
         "padding_top": 60,
         "padding_bottom": 60
       }
     },
-    "42b43e0f-1c2a-49a7-80a2-8e3b7218b20c": {
-      "type": "section-text",
+    "section_banner_image_Mkyjge": {
+      "type": "section-banner-image",
       "blocks": {
-        "template--16737047904534__42b43e0f-1c2a-49a7-80a2-8e3b7218b20c-166716343227cd2953-0": {
-          "type": "subheading",
-          "settings": {
-            "text": "<p>Help center</p>",
-            "size": 100,
-            "margin_bottom": 16
-          }
-        },
-        "template--16737047904534__42b43e0f-1c2a-49a7-80a2-8e3b7218b20c-166716343227cd2953-1": {
+        "heading_krVHWp": {
           "type": "heading",
           "settings": {
-            "text": "<p>Frequently asked questions</p>",
-            "size": 150,
-            "heading_highlight_type": "italics",
-            "highlight_color": "#d43747",
-            "highlight_text_color": "#000000"
-          }
-        },
-        "template--16737047904534__42b43e0f-1c2a-49a7-80a2-8e3b7218b20c-166716343227cd2953-2": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Here are some answers to popular questions about our brand and products. Looking to get in touch or have other questions not listed? <a href=\"/pages/contact\" title=\"Contact\">Contact us here</a></p>",
-            "size": 100
-          }
-        },
-        "template--16737047904534__42b43e0f-1c2a-49a7-80a2-8e3b7218b20c-166716343227cd2953-3": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_text": "Read More",
-            "button_link": "",
-            "button_color": "btn--black",
-            "button_style": "btn--solid",
-            "button_size": "btn--small"
+            "text": "<p>In case you’re ever stuck in the dark: Here are some illuminating answers.</p>",
+            "size": 100,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": ""
           }
         }
       },
       "block_order": [
-        "template--16737047904534__42b43e0f-1c2a-49a7-80a2-8e3b7218b20c-166716343227cd2953-0",
-        "template--16737047904534__42b43e0f-1c2a-49a7-80a2-8e3b7218b20c-166716343227cd2953-1",
-        "template--16737047904534__42b43e0f-1c2a-49a7-80a2-8e3b7218b20c-166716343227cd2953-2",
-        "template--16737047904534__42b43e0f-1c2a-49a7-80a2-8e3b7218b20c-166716343227cd2953-3"
+        "heading_krVHWp"
       ],
+      "name": "Banner image",
       "settings": {
+        "height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "image": "shopify://shop_images/faq-buehne-02.webp",
+        "overlay_type": "disabled",
+        "transition": "zoom-out",
+        "enable_zoom_animation": true,
+        "enable_card_scrolling": false,
+        "increase_border_radius": true,
+        "content_width": 80,
         "text_position": "center",
-        "width": "wrapper--narrow",
-        "padding_top": 60,
-        "padding_bottom": 40
+        "text_alignment": "center",
+        "mobile_text_position": "center",
+        "mobile_text_alignment": "center",
+        "color_scheme": "",
+        "show_text_background": false,
+        "bg_color": "",
+        "text_color": "",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "accordion-section-2": {
@@ -77,36 +67,78 @@
         "accordion_block_2_0": {
           "type": "text",
           "settings": {
-            "title": "How long does it take to get my products?",
-            "text": "<p>Domestic shipping can take up to 5 business days.<br/><br/>Foreign shipping could take up to 14 business days.<br/><br/>Due to global supply chain challenges, shipping times could be longer than usual.</p>"
+            "title": "How does the Ledlenser warranty work?",
+            "text": "<p>At Ledlenser USA, we take extraordinary measures so your Ledlenser light will give you many years of dependable service. If it doesn't, we will gladly repair or replace it, at our discretion, with one of equal or greater value under our 7-year guarantee. Visit the <a href=\"https://www.ledlenserusa.com/pages/service-warranty/\" title=\"warranty\">warranty</a> page to learn how easy it is to get Warranty service.</p>"
           }
         },
         "accordion_block_2_1": {
           "type": "text",
           "settings": {
-            "title": "How much does it cost?",
-            "text": "<p>Shipping rates can vary depending on your region and are calculated at checkout.<br/><br/>Here are the full details of our <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">Shipping Policy</a>.</p>"
+            "title": "My new flashlight is heating up when left on the Constant Light function over a long period of time. Is something wrong with it?",
+            "text": "<p>Our new range of headlamps and flashlights&nbsp;have been created with the technological advantage of over 20 years of LED lighting experience.&nbsp;</p><p>We have engineered the latest products in our range of headlamps and flashlights&nbsp;using the very best LED technology in the world. Through technological advancement we have created a range of products with updates on our features including, <em>Constant Light Technology</em>, allowing your Ledlenser product to produce higher light output for an extended period of time.</p><p>When using your product’s <em>High-Power Mode</em> over a sustained period, you may experience that the product itself feels warmer to the touch and this temperature will remain as long as the light is in use. This is due to the product omitting a higher lumen output over an extended period of time. If you do not require the highest lumen output reduce to either mid-power or low-power and this will decrease the temperature being emitted.</p><p>This increase in temperate is completely normal and your product will not exceed a safe temperate&nbsp;and therefore will not burn your skin. We have developed <em>Temperature Control Technology</em>, to ensure that your LED light will not overheat internally or externally- Protecting the integrity of your Ledlenser product.</p>"
           }
         },
         "accordion_block_2_2": {
           "type": "text",
           "settings": {
-            "title": "Is there free shipping?",
-            "text": "<p>Yes, we offer free shipping for large domestic orders.  Check the cart to see the current deal on free shipping..</p>"
+            "title": "With fading luminosity, the light starts blinking at regular intervals – what does that mean?",
+            "text": "<p>Tip: Treat the battery compartment on a regular basis with contact spray to avoid leakage problems. You should remove your batteries from your light if you do not use it for a long time.</p><p>If the light still doesn’t work after cleaning and replacing your old batteries for new ones, you should contact your retailer if the purchase date is less than 24 months ago. Alternatively you can use the support form on our website. You will find it here.</p><p>Please select the field “Support: Warranty/Repairs for End Customers” in the form and fill it out completely. Our staff in support can then decide whether to send you the respective replacement part (battery magazine or end cap, depending on the model) based on the warranty/goodwill.</p>"
           }
         },
         "accordion_block_2_3": {
           "type": "text",
           "settings": {
-            "title": "Do you ship internationally?",
-            "text": "<p>Yes, we ship our products all over the globe.<br/><br/>Please note that free shipping is not applicable for international orders and that shipping rates could vary depending on your region.</p>"
+            "title": "Some of my flashlight’s functions no longer work – what should I do?",
+            "text": "<p>Some models, e.g. lights in the M-Series, can be programmed. To program your light you will need the Quick User Guide or the Smart Instruction Card.</p><p>You will find this under the menu item “Service & Warranty” under&nbsp;<a href=\"https://www.ledlenserusa.com/pages/downloads/\" title=\"Downloads\">Downloads</a>. Here you can select your light and download the document as a PDF.</p>"
           }
         },
         "accordion_block_2_4": {
           "type": "text",
           "settings": {
-            "title": "Do you ship to my area?",
-            "text": "<p>A full list of all of our shipping areas can be found <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a>.<br/><br/>If your country or region is not mentioned, please feel free to reach out to see if we can work out the details.</p>"
+            "title": "What do I do if the batteries in my light have leaked?",
+            "text": "<p>Firstly, carefully remove the batteries from your light.</p><p>If your model has a battery compartment, you will most likely no longer be able to use this. If you would like to attempt to clean it, use a penetrating or multifunction oil to clean the leaked battery fluid. You can find this oil at any hardware store.</p><p>In any case, you should always clean the inside of the light compartment. This can also be cleaned with the described agents and for example, a small, medium-to-hard wire brush.</p><ol><li>The head of your light is comprised of two different parts. The purely cylindrical part with the reflector lens and the Speed Focus carriage which tapers off into a tube. In some newer models the cylindrical part is silver.</li><li>Unscrew the cylinder from the Speed Focus carriage in anticlockwise direction.</li><li>Please note that you should NEVER TOUCH THE LED.</li><li>Remove the Speed Focus carriage from the light downward. Now you can properly clean all of the parts from the inside with a damp or dry cloth. You can treat the O-ring which can now be seen on the light compartment with silicon-free grease.</li><li>Then re-close the head of the light by again pulling up the Speed Focus carriage and screwing it back together with the cylindrical part. In all models with a Focus Lock function you have to pay particular attention to one thing when pulling up the carriage. The grooves on the inside of the carriage have to slide exactly along the tracks that are intended for that purpose.</li></ol>"
+          }
+        },
+        "text_mG4DE9": {
+          "type": "text",
+          "settings": {
+            "title": "My flashlight is difficult to focus – what should I do?",
+            "text": "<ol><li>The head of your light is comprised of two different parts. The purely cylindrical part with the reflector lens and the Rapid Focus carriage which tapers off into a tube. In some newer models the cylindrical part is silver.</li><li>Unscrew the cylinder from the Rapid Focus carriage in anticlockwise direction.</li><li>Please note that you should NEVER TOUCH THE LED.</li><li>Remove the Rapid Focus carriage from the light downward. Now you can properly clean all of the parts from the inside with a damp or dry cloth. You can treat the O-ring which can now be seen on the light compartment with silicon-free grease.</li><li>Then re-close the head of the light by again pulling up the Rapid Focus carriage and screwing it back together with the cylindrical part. In all models with a Focus Lock function you have to pay particular attention to one thing when pulling up the carriage. The grooves on the inside of the carriage have to slide exactly along the tracks that are intended for that purpose.</li></ol>"
+          }
+        },
+        "text_Epy9Pf": {
+          "type": "text",
+          "settings": {
+            "title": "How does Ledlenser measure and report its lighting specifications?",
+            "text": "<p>Ledlenser lights are measured in lumens. Ledlenser USA uses <strong>ANSI/FL1 standards</strong> as published by the National Electrical Manufacturers Association (NEMA). To date, this is the only industry-wide, agreed-upon standard of measurement.</p>"
+          }
+        },
+        "text_pw4phB": {
+          "type": "text",
+          "settings": {
+            "title": "Can I replace the LED?",
+            "text": "<p>No. The LEDs used in Ledlenser lights are soldered to electronic circuit boards and cannot be replaced.</p>"
+          }
+        },
+        "text_gHi88U": {
+          "type": "text",
+          "settings": {
+            "title": "Which is the largest flashlight in the world?",
+            "text": "<p>At the Solinger “Lichternacht” (light event) on 09/24/2011 an approx. four-meter long flashlight was unveiled, making Zweibrüder Optoelectronics the current world record holder for&nbsp;<a href=\"https://www.youtube.com/watch?v=xTne5NnNe3g\" title=\"“Biggest Flashlight in the World”\">“Biggest Flashlight in the World”.</a> An employee from Guinness World Records tested the light and confirmed the record. The approx. 216kg (476 lbs) light is modeled on the X21 and with 19 LEDs produces around 100,000 lumens.</p>"
+          }
+        },
+        "text_gYRDPX": {
+          "type": "text",
+          "settings": {
+            "title": "Why are the lights in Ledlensers different colors?",
+            "text": "<p>You have several lights from Ledlenser and the color of the light in the last one is slightly different to the others?</p><p>That is perfectly normal with LEDs. When they are made they are doped like computer chips and then coated with a conversion layer. This converts part of the blue light created by the chip into yellow light. The combination of the two colors is what creates white light. Like in any technical process there is a certain amount of variation. For LEDs, this is called binning.</p><p>This binning also pertains to the color of the light, so there are relatively large differences between different chips – even if the chip type is the same.</p>"
+          }
+        },
+        "text_E6LmRD": {
+          "type": "text",
+          "settings": {
+            "title": "Why When should you change the light’s batteries?  are the lights in Ledlensers different colors?",
+            "text": "<p>The time to change the batteries will depend on various factors: the requirements, your personal preferences, and also how long the light is still going to be used.</p><p>In some circumstances it is advisable to take extra batteries with you and/or to put new batteries in before a long trip. As a general rule, batteries should be taken out if the light is not being used for a long time.</p>"
           }
         }
       },
@@ -115,193 +147,35 @@
         "accordion_block_2_1",
         "accordion_block_2_2",
         "accordion_block_2_3",
-        "accordion_block_2_4"
+        "accordion_block_2_4",
+        "text_mG4DE9",
+        "text_Epy9Pf",
+        "text_pw4phB",
+        "text_gHi88U",
+        "text_gYRDPX",
+        "text_E6LmRD"
       ],
       "settings": {
         "layout": "one-column",
         "show_accordion_divider": true,
         "line_thickness": "normal",
         "subheading": "",
-        "title": "Shipping & Delivery",
-        "type_style": "font-heading",
+        "title": "Frequently Asked Questions",
         "heading_size": 120,
         "text": "",
+        "type_style": "font-heading",
         "tabs_bg_color": "rgba(0,0,0,0)",
+        "color_scheme": "",
         "border_color": "",
         "width": "wrapper--narrow",
         "padding_top": 60,
         "padding_bottom": 60
-      }
-    },
-    "accordion-section-4": {
-      "type": "section-accordions",
-      "blocks": {
-        "accordion_block_4_0": {
-          "type": "text",
-          "settings": {
-            "title": "Do you offer refunds?",
-            "text": "<p>Yes, we offer full and partial refunds.<br/><br/>Please enquire for more information about our Refund policy.</p>"
-          }
-        },
-        "accordion_block_4_1": {
-          "type": "text",
-          "settings": {
-            "title": "How long after I complete a purchase can I ask for a refund?",
-            "text": "<p>A refund request can be submitted within a month after the purchase is made.</p>"
-          }
-        },
-        "accordion_block_4_2": {
-          "type": "text",
-          "settings": {
-            "title": "How much can I get refunded?",
-            "text": "<p>In the case when the<strong>product and packaging are unopened and undamaged</strong>, you are<strong>eligible</strong>for a full refund.<br/><br/>In the case when<strong>the packaging has been opened and the product has been used</strong>, you are<strong>eligible</strong>for a partial refund.<br/><br/>In the case when a<strong>product has been damaged</strong>, and the damage is not covered by your warranty, you are<strong>not eligible</strong>for a refund.<br/><br/>Please check our <a href=\"/policies/terms-of-service\" title=\"Terms of Service\">Terms of Service</a> to see if you're eligible for a refund.</p>"
-          }
-        },
-        "accordion_block_4_3": {
-          "type": "text",
-          "settings": {
-            "title": "Who pays the shipping costs in the case of a refund when the order doesn't have free shipping?",
-            "text": "<p>When an order does not include free shipping, all shipping costs (including the return shipping) are handled by the customer.</p>"
-          }
-        },
-        "accordion_block_4_4": {
-          "type": "text",
-          "settings": {
-            "title": "Who pays the shipping costs in the case of a refund when the order has free shipping?",
-            "text": "<p>When an order includes free shipping, only the cost of the return shipping is handled by the customer.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "accordion_block_4_0",
-        "accordion_block_4_1",
-        "accordion_block_4_2",
-        "accordion_block_4_3",
-        "accordion_block_4_4"
-      ],
-      "settings": {
-        "layout": "one-column",
-        "show_accordion_divider": true,
-        "line_thickness": "normal",
-        "subheading": "",
-        "title": "Returns & Refunds",
-        "type_style": "font-heading",
-        "heading_size": 120,
-        "text": "",
-        "tabs_bg_color": "rgba(0,0,0,0)",
-        "border_color": "",
-        "width": "wrapper--narrow",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "accordion-section-3": {
-      "type": "section-accordions",
-      "blocks": {
-        "accordion_block_3_0": {
-          "type": "text",
-          "settings": {
-            "title": "Do you offer warranty for your products?",
-            "text": "<p>All our products are subject to quality control.<br/><br/>Our warranty provides a guarantee against manufacturer defects.<br/><br/>The guarantee covers any manufacturing, design, or material defect. Please notify us within 2 months of noticing any defects.<br/><br/>It does not cover blows, improper use, or other issues that are not attributable to a manufacturer defects.</p>"
-          }
-        },
-        "accordion_block_3_1": {
-          "type": "text",
-          "settings": {
-            "title": "Do you offer extended warranty?",
-            "text": "<p>An extended warranty can be added to your products for an additional cost.<br/><br/>Please get in touch for more information about extended warranties.</p>"
-          }
-        },
-        "accordion_block_3_2": {
-          "type": "text",
-          "settings": {
-            "title": "How much does extended warranty cost?",
-            "text": "<p>The extended warranty could come at a different cost depending on the type of product and extended period.<br/><br/>Please get in touch for more information.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "accordion_block_3_0",
-        "accordion_block_3_1",
-        "accordion_block_3_2"
-      ],
-      "settings": {
-        "layout": "one-column",
-        "show_accordion_divider": true,
-        "line_thickness": "normal",
-        "subheading": "",
-        "title": "Warranty & Repair",
-        "type_style": "font-heading",
-        "heading_size": 120,
-        "text": "",
-        "tabs_bg_color": "rgba(0,0,0,0)",
-        "border_color": "",
-        "width": "wrapper--narrow",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "accordion-section-1": {
-      "type": "section-accordions",
-      "blocks": {
-        "accordion_block_1_1": {
-          "type": "text",
-          "settings": {
-            "title": "Is my payment data safe with you?",
-            "text": "<p>All direct payment gateways adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, MasterCard, American Express, and Discover.</p>"
-          }
-        },
-        "accordion_block_1_2": {
-          "type": "text",
-          "settings": {
-            "title": "Do you accept online payments?",
-            "text": "<p>Yes, we accept online payments. All payment processing and vital customer information is quick, easy, and secure.<br/></p><p>Learn more about our store's safe checkout experience (powered by Shopify) <a href=\"https://www.shopify.com/legal/terms#DataProtection\" target=\"_blank\" title=\"https://www.shopify.com/legal/terms#DataProtection\">here</a>.</p>"
-          }
-        },
-        "accordion_block_1_3": {
-          "type": "text",
-          "settings": {
-            "title": "Where can I learn more about the payment and processing on your store?",
-            "text": "<p>For more insight, you may also want to read Shopify’s Terms of Service <a href=\"https://www.shopify.com/legal/terms\" target=\"_blank\" title=\"https://www.shopify.com/legal/terms\">here</a> or Privacy Statement <a href=\"https://www.shopify.com/legal/privacy\" target=\"_blank\" title=\"https://www.shopify.com/legal/privacy\">here</a>.</p>"
-          }
-        },
-        "accordion_block_1_4": {
-          "type": "text",
-          "settings": {
-            "title": "What forms of payment do you accept?",
-            "text": "<p>We accept payments from major credit card companies like Visa, Mastercard, and American Express.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "accordion_block_1_1",
-        "accordion_block_1_2",
-        "accordion_block_1_3",
-        "accordion_block_1_4"
-      ],
-      "settings": {
-        "layout": "one-column",
-        "show_accordion_divider": true,
-        "line_thickness": "normal",
-        "subheading": "",
-        "title": "Payments & Safety",
-        "type_style": "font-heading",
-        "heading_size": 120,
-        "text": "",
-        "tabs_bg_color": "rgba(0,0,0,0)",
-        "border_color": "",
-        "width": "wrapper--narrow",
-        "padding_top": 60,
-        "padding_bottom": 80
       }
     }
   },
   "order": [
     "main",
-    "42b43e0f-1c2a-49a7-80a2-8e3b7218b20c",
-    "accordion-section-2",
-    "accordion-section-4",
-    "accordion-section-3",
-    "accordion-section-1"
+    "section_banner_image_Mkyjge",
+    "accordion-section-2"
   ]
 }

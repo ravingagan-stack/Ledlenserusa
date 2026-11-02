@@ -1,0 +1,587 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "live-page-style": {
+      "type": "live-page-style",
+      "settings": {
+        "heading_font": "barlow_n5",
+        "heading_size": 100,
+        "body_font": "karla_n4",
+        "text_size": 100,
+        "text_color": "#333333",
+        "border_width": 2
+      }
+    },
+    "main": {
+      "type": "product-quiz",
+      "blocks": {
+        "be6ef22c-a08e-49db-a945-eb1b72610085": {
+          "type": "category_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/ledlenserusa-1.jpg",
+            "mobile_img": "shopify://shop_images/First_page_1.jpg",
+            "title": "What <b>kind of portable light</b> are you looking for?",
+            "cta_label": "Continue",
+            "hl_icon": "shopify://shop_images/Ellipse_5_1bfe851f-9728-415e-aef4-1aa94ae501cc.png",
+            "hl_title": "Headlamp",
+            "hl_collection": "headlamps-quiz",
+            "hl_handle": "headlamp",
+            "fl_icon": "shopify://shop_images/Ellipse_5_e307897c-bdaa-4055-87b1-906531028029.png",
+            "fl_title": "Flashlight",
+            "fl_collection": "flashlights-quiz",
+            "fl_handle": "flashlight",
+            "la_icon": "shopify://shop_images/Ellipse_5_a491bd50-c119-4741-ba89-a8924f8ddf48.png",
+            "la_title": "Lantern / Area Light",
+            "la_collection": "area-lights-quiz",
+            "la_handle": "arealight",
+            "is_optional": false
+          }
+        },
+        "d9024faf-74ad-4845-a93b-627cfb784460": {
+          "type": "multi_choice_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_cbbe04ba-3427-46be-b93a-e964761ab526.jpg",
+            "mobile_img": "shopify://shop_images/First_page_Headlamps_1.jpg",
+            "category": "headlamp",
+            "step": "2",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "How will <b>you use your headlamp?</b>",
+            "sub_title": "Feel free to select a few.",
+            "cta_label": "Continue",
+            "tag_prefix": "",
+            "options": "Work,Home & Life,Hiking,Camping,Running,Hunting,Fishing,Kids"
+          }
+        },
+        "ce7765d0-1414-44a0-ac42-1bf783ef621c": {
+          "type": "multi_choice_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_9969f42c-854c-42d1-9446-b5ed4e2d4cf6.jpg",
+            "mobile_img": "shopify://shop_images/Page_Headlamps_2.jpg",
+            "category": "headlamp",
+            "step": "3",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What <b>features</b> are you interested in?",
+            "sub_title": "Feel free to select a few.",
+            "cta_label": "Continue",
+            "tag_prefix": "",
+            "options": "Rechargeable,Everyday,Strobe Mode,Beam Control,Flicker Free,Bluetooth,Red Light,Hardhat  Mounting"
+          }
+        },
+        "8fdaa854-9f32-4cb8-aca4-7ecea82dbbdc": {
+          "type": "icon_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_c69e5bd7-391d-4ddd-811f-7410490d1e36.jpg",
+            "mobile_img": "shopify://shop_images/custom_resized_c69e5bd7-391d-4ddd-811f-7410490d1e36.jpg",
+            "category": "headlamp",
+            "step": "4",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What <b>size</b> headlamp are you looking for?",
+            "cta_label": "Continue",
+            "ch_1_icon": "shopify://shop_images/custom_resized_6ecb5e88-d1df-42d4-b1ef-2dd2e31578cb.png",
+            "ch_1_title": "Small",
+            "ch_2_icon": "shopify://shop_images/custom_resized_aa5d80b0-217e-4902-bf6b-3b4eae8ccdf3.png",
+            "ch_2_title": "Medium",
+            "ch_3_icon": "shopify://shop_images/custom_resized_ce710917-eaae-4ad1-ab65-3ddfb030c1a8.png",
+            "ch_3_title": "Large",
+            "ch_4_title": "Large",
+            "tag_prefix": "Size:"
+          }
+        },
+        "3592dded-e0db-42ac-bb03-6c4bfa301245": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_dfd460f8-5603-43b8-a074-3886275c9bd7.jpg",
+            "mobile_img": "shopify://shop_images/custom_resized_dfd460f8-5603-43b8-a074-3886275c9bd7.jpg",
+            "category": "headlamp",
+            "step": "5",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What is the <b>Max Light Output (Lumens)</b> you <br>are looking for?",
+            "cta_label": "Continue",
+            "tag_prefix": "light-output-range",
+            "ch_1_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><path id=\"path20\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 7.424,11.467 H 6.75 v 2.361 h 0.674 z m 0,-11.129 H 6.75 V 2.699 H 7.424 Z M 2.703,6.746 H 0.342 V 7.42 h 2.361 z m 11.129,0 H 11.471 V 7.42 h 2.361 z M 3.748,4.222 4.225,3.744 2.556,2.075 2.079,2.553 Z m 7.869,7.869 0.478,-0.477 -1.669,-1.669 -0.478,0.477 z M 7.086,3.711 c -1.859,0 -3.371,1.513 -3.371,3.373 0,1.859 1.512,3.373 3.371,3.373 1.86,0 3.374,-1.514 3.374,-3.373 0,-1.86 -1.514,-3.373 -3.374,-3.373 m 0,6.07 c -1.487,0 -2.697,-1.21 -2.697,-2.697 0,-1.488 1.21,-2.698 2.697,-2.698 1.487,0 2.698,1.21 2.698,2.698 0,1.487 -1.211,2.697 -2.698,2.697 M 4.225,10.422 3.748,9.945 2.079,11.614 2.556,12.091 Z m 7.87,-7.869 -0.478,-0.478 -1.669,1.669 0.478,0.478 z\"></path></g></g></g></svg>",
+            "ch_1_title": "25_ Lumens",
+            "ch_1_description": "",
+            "ch_2_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><path id=\"path20\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 7.424,11.467 H 6.75 v 2.361 h 0.674 z m 0,-11.129 H 6.75 V 2.699 H 7.424 Z M 2.703,6.746 H 0.342 V 7.42 h 2.361 z m 11.129,0 H 11.471 V 7.42 h 2.361 z M 3.748,4.222 4.225,3.744 2.556,2.075 2.079,2.553 Z m 7.869,7.869 0.478,-0.477 -1.669,-1.669 -0.478,0.477 z M 7.086,3.711 c -1.859,0 -3.371,1.513 -3.371,3.373 0,1.859 1.512,3.373 3.371,3.373 1.86,0 3.374,-1.514 3.374,-3.373 0,-1.86 -1.514,-3.373 -3.374,-3.373 m 0,6.07 c -1.487,0 -2.697,-1.21 -2.697,-2.697 0,-1.488 1.21,-2.698 2.697,-2.698 1.487,0 2.698,1.21 2.698,2.698 0,1.487 -1.211,2.697 -2.698,2.697 M 4.225,10.422 3.748,9.945 2.079,11.614 2.556,12.091 Z m 7.87,-7.869 -0.478,-0.478 -1.669,1.669 0.478,0.478 z\"></path></g></g></g></svg>",
+            "ch_2_title": "100_ Lumens",
+            "ch_2_description": "",
+            "ch_3_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><path id=\"path20\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 7.424,11.467 H 6.75 v 2.361 h 0.674 z m 0,-11.129 H 6.75 V 2.699 H 7.424 Z M 2.703,6.746 H 0.342 V 7.42 h 2.361 z m 11.129,0 H 11.471 V 7.42 h 2.361 z M 3.748,4.222 4.225,3.744 2.556,2.075 2.079,2.553 Z m 7.869,7.869 0.478,-0.477 -1.669,-1.669 -0.478,0.477 z M 7.086,3.711 c -1.859,0 -3.371,1.513 -3.371,3.373 0,1.859 1.512,3.373 3.371,3.373 1.86,0 3.374,-1.514 3.374,-3.373 0,-1.86 -1.514,-3.373 -3.374,-3.373 m 0,6.07 c -1.487,0 -2.697,-1.21 -2.697,-2.697 0,-1.488 1.21,-2.698 2.697,-2.698 1.487,0 2.698,1.21 2.698,2.698 0,1.487 -1.211,2.697 -2.698,2.697 M 4.225,10.422 3.748,9.945 2.079,11.614 2.556,12.091 Z m 7.87,-7.869 -0.478,-0.478 -1.669,1.669 0.478,0.478 z\"></path></g></g></g></svg>",
+            "ch_3_title": "400_ Lumens",
+            "ch_3_description": "",
+            "ch_4_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><path id=\"path20\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 7.424,11.467 H 6.75 v 2.361 h 0.674 z m 0,-11.129 H 6.75 V 2.699 H 7.424 Z M 2.703,6.746 H 0.342 V 7.42 h 2.361 z m 11.129,0 H 11.471 V 7.42 h 2.361 z M 3.748,4.222 4.225,3.744 2.556,2.075 2.079,2.553 Z m 7.869,7.869 0.478,-0.477 -1.669,-1.669 -0.478,0.477 z M 7.086,3.711 c -1.859,0 -3.371,1.513 -3.371,3.373 0,1.859 1.512,3.373 3.371,3.373 1.86,0 3.374,-1.514 3.374,-3.373 0,-1.86 -1.514,-3.373 -3.374,-3.373 m 0,6.07 c -1.487,0 -2.697,-1.21 -2.697,-2.697 0,-1.488 1.21,-2.698 2.697,-2.698 1.487,0 2.698,1.21 2.698,2.698 0,1.487 -1.211,2.697 -2.698,2.697 M 4.225,10.422 3.748,9.945 2.079,11.614 2.556,12.091 Z m 7.87,-7.869 -0.478,-0.478 -1.669,1.669 0.478,0.478 z\"></path></g></g></g></svg>",
+            "ch_4_title": "1000_ Lumens",
+            "ch_4_description": ""
+          }
+        },
+        "117471f4-d905-4986-a74f-b7264bdac7ff": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_0bd745fa-c4fb-4218-9508-2a91dd9b7ef9.jpg",
+            "mobile_img": "shopify://shop_images/Page_Headlamps_after_bonus_page.jpg",
+            "category": "headlamp",
+            "step": "7",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What <b>Beam Distance Range</b> (Feet) are you looking for?",
+            "cta_label": "Continue",
+            "tag_prefix": "beam-distance",
+            "ch_1_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g transform=\"translate(6.7446,9.8136)\" id=\"g12\"><path id=\"path14\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 0,0 -1.365,-1.023 H -6.484 V -4.432 L -1.365,-4.437 0,-5.461 H 2.731 V 0 Z m -5.802,-1.706 h 4.779 l 1.365,1.023 H 2.048 V -4.778 H 0.342 l -1.365,1.023 H -5.802 Z M 4.756,-1.283 6.203,-2.731 4.756,-4.179 5.237,-4.661 7.169,-2.731 5.237,-0.8 Z M 3.414,-3.072 H 5.462 V -2.39 H 3.414 Z\"></path></g></g></svg>",
+            "ch_1_title": "25_ Feet",
+            "ch_1_description": "",
+            "ch_2_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g transform=\"translate(6.7446,9.8136)\" id=\"g12\"><path id=\"path14\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 0,0 -1.365,-1.023 H -6.484 V -4.432 L -1.365,-4.437 0,-5.461 H 2.731 V 0 Z m -5.802,-1.706 h 4.779 l 1.365,1.023 H 2.048 V -4.778 H 0.342 l -1.365,1.023 H -5.802 Z M 4.756,-1.283 6.203,-2.731 4.756,-4.179 5.237,-4.661 7.169,-2.731 5.237,-0.8 Z M 3.414,-3.072 H 5.462 V -2.39 H 3.414 Z\"></path></g></g></svg>",
+            "ch_2_title": "200_ Feet",
+            "ch_2_description": "",
+            "ch_3_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g transform=\"translate(6.7446,9.8136)\" id=\"g12\"><path id=\"path14\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 0,0 -1.365,-1.023 H -6.484 V -4.432 L -1.365,-4.437 0,-5.461 H 2.731 V 0 Z m -5.802,-1.706 h 4.779 l 1.365,1.023 H 2.048 V -4.778 H 0.342 l -1.365,1.023 H -5.802 Z M 4.756,-1.283 6.203,-2.731 4.756,-4.179 5.237,-4.661 7.169,-2.731 5.237,-0.8 Z M 3.414,-3.072 H 5.462 V -2.39 H 3.414 Z\"></path></g></g></svg>",
+            "ch_3_title": "500_ Feet",
+            "ch_3_description": "",
+            "ch_4_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g transform=\"translate(6.7446,9.8136)\" id=\"g12\"><path id=\"path14\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 0,0 -1.365,-1.023 H -6.484 V -4.432 L -1.365,-4.437 0,-5.461 H 2.731 V 0 Z m -5.802,-1.706 h 4.779 l 1.365,1.023 H 2.048 V -4.778 H 0.342 l -1.365,1.023 H -5.802 Z M 4.756,-1.283 6.203,-2.731 4.756,-4.179 5.237,-4.661 7.169,-2.731 5.237,-0.8 Z M 3.414,-3.072 H 5.462 V -2.39 H 3.414 Z\"></path></g></g></svg>",
+            "ch_4_title": "1000_ Feet",
+            "ch_4_description": ""
+          }
+        },
+        "a4690ef4-6625-4e54-884f-10bb25512e1f": {
+          "type": "bonus_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_8b7f3be8-3371-4fc2-951e-6fee324028c1.jpg",
+            "mobile_img": "shopify://shop_images/custom_resized_8b7f3be8-3371-4fc2-951e-6fee324028c1.jpg",
+            "category": "headlamp",
+            "step": "6",
+            "display_condition_tags": "",
+            "title": "Ready for <b>results?</b>",
+            "yes_label": "<b>Yes</b>  <br> <span style=\"text-transform: initial;\">This sums up what I’m  <br> looking for in a headlamp.</span>",
+            "no_label": "<b>No</b> <br> <span style=\"text-transform: initial;\">Take me to the bonus round  <br> to answer more questions.</span>"
+          }
+        },
+        "3d4bfb0b-ab42-4e74-9299-4ec5d45afaec": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_93295bec-0154-44b4-9715-f4b8137a0327.jpg",
+            "mobile_img": "shopify://shop_images/page_Flashlights_5.jpg",
+            "category": "headlamp",
+            "step": "8",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What <b>battery position</b> are you looking for?",
+            "cta_label": "Continue",
+            "tag_prefix": "battery-position",
+            "ch_1_svg": "",
+            "ch_1_title": "Front",
+            "ch_1_description": "Battery location: front of the headlamp",
+            "ch_2_svg": "",
+            "ch_2_title": "Rear",
+            "ch_2_description": "Battery location: rear of the headlamp",
+            "ch_3_svg": "",
+            "ch_3_title": "",
+            "ch_3_description": "",
+            "ch_4_svg": "",
+            "ch_4_title": "",
+            "ch_4_description": ""
+          }
+        },
+        "a3d87ae6-8cb9-490a-8bdc-e81ff8ec5497": {
+          "type": "range_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_9ea790ce-23bb-4732-8bf7-42b0a616ece0.jpg",
+            "mobile_img": "shopify://shop_images/custom_resized_9ea790ce-23bb-4732-8bf7-42b0a616ece0-fotor-20230623102624.jpg",
+            "category": "headlamp",
+            "step": "9",
+            "display_condition_tags": "work",
+            "is_optional": true,
+            "title": "How important is seeing <b>color</b>(CRI)?",
+            "cta_label": "Continue",
+            "range_min": 70,
+            "range_max": 90,
+            "range_step": 10,
+            "range_unit": "CRI",
+            "tag_prefix": "CRI",
+            "ch_1_icon": "shopify://shop_images/transparent-slider.png",
+            "ch_1_title": "Low",
+            "ch_1_description": "Great for closer look",
+            "ch_1_range": 70,
+            "ch_2_icon": "shopify://shop_images/transparent-slider.png",
+            "ch_2_title": "Medium",
+            "ch_2_description": "Great for finding objects at distance",
+            "ch_2_range": 80,
+            "ch_3_icon": "shopify://shop_images/transparent-slider.png",
+            "ch_3_title": "High",
+            "ch_3_description": "Get full clarity",
+            "ch_3_range": 90
+          }
+        },
+        "f788e446-1ec8-4abf-89a4-dc6e1c90bd6f": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_48c79d78-7e6c-4682-9d3d-45c930520332.jpg",
+            "mobile_img": "shopify://shop_images/Page_Headlamps_last_page.jpg",
+            "category": "headlamp",
+            "step": "10",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What is the optimum <b>run time</b> you're looking for?",
+            "cta_label": "VIEW THE RESULTS",
+            "tag_prefix": "duration-range",
+            "ch_1_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_1_title": "5_ hours",
+            "ch_1_description": "",
+            "ch_2_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_2_title": "25_ hours",
+            "ch_2_description": "",
+            "ch_3_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_3_title": "50_ hours",
+            "ch_3_description": "",
+            "ch_4_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_4_title": "100_ hours",
+            "ch_4_description": ""
+          }
+        },
+        "98d614e7-71f8-45e7-b4ba-304555c496b6": {
+          "type": "multi_choice_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_55b0d553-4ebc-40fd-a098-f97bffbaa901.jpg",
+            "mobile_img": "shopify://shop_images/First_page_Flashlights_1.jpg",
+            "category": "flashlight",
+            "step": "2",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "How will <b>you use your flashlight?</b>",
+            "sub_title": "Feel free to select a few.",
+            "cta_label": "Continue",
+            "tag_prefix": "",
+            "options": "Work,Home & Life,Hiking,Camping,Running,Hunting,Fishing,Kids"
+          }
+        },
+        "32f4ef50-5224-494c-9fd9-12925b202b68": {
+          "type": "multi_choice_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/fotor_2023-6-8_15_23_32.jpg",
+            "mobile_img": "shopify://shop_images/page_Flashlights_2.jpg",
+            "category": "flashlight",
+            "step": "3",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What <b>features</b> are you interested in?",
+            "sub_title": "Feel free to select a few.",
+            "cta_label": "Continue",
+            "tag_prefix": "",
+            "options": "Rechargeable,Strobe Mode,Bluetooth,Beam Control,Flicker Free"
+          }
+        },
+        "e3ae7405-6815-4269-838a-9646788c8219": {
+          "type": "icon_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/fotor_2023-6-8_15_18_39.jpg",
+            "mobile_img": "shopify://shop_images/page_Flashlights_3.jpg",
+            "category": "flashlight",
+            "step": "4",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What <b>size</b> flashlight are you looking for?",
+            "cta_label": "Continue",
+            "ch_1_icon": "shopify://shop_images/K6R-Safety_502580_grey_standard_laying.png",
+            "ch_1_title": "Small",
+            "ch_2_icon": "shopify://shop_images/Ellipse_5_e307897c-bdaa-4055-87b1-906531028029.png",
+            "ch_2_title": "Medium",
+            "ch_3_icon": "shopify://shop_images/P18R_Signature_1080x1080_8dd79f35-d73a-4ffa-a582-804a067437c9.jpg",
+            "ch_3_title": "Large",
+            "ch_4_title": "",
+            "tag_prefix": "Size:"
+          }
+        },
+        "27014389-21df-4829-abd8-2b825c96cb95": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/fotor_2023-6-8_15_26_3.jpg",
+            "mobile_img": "shopify://shop_images/fotor_2023-6-8_15_26_3.jpg",
+            "category": "flashlight",
+            "step": "5",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What is the <b>Max Light Output (Lumens)</b> you are looking for?",
+            "cta_label": "Continue",
+            "tag_prefix": "light-output-range",
+            "ch_1_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><path id=\"path20\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 7.424,11.467 H 6.75 v 2.361 h 0.674 z m 0,-11.129 H 6.75 V 2.699 H 7.424 Z M 2.703,6.746 H 0.342 V 7.42 h 2.361 z m 11.129,0 H 11.471 V 7.42 h 2.361 z M 3.748,4.222 4.225,3.744 2.556,2.075 2.079,2.553 Z m 7.869,7.869 0.478,-0.477 -1.669,-1.669 -0.478,0.477 z M 7.086,3.711 c -1.859,0 -3.371,1.513 -3.371,3.373 0,1.859 1.512,3.373 3.371,3.373 1.86,0 3.374,-1.514 3.374,-3.373 0,-1.86 -1.514,-3.373 -3.374,-3.373 m 0,6.07 c -1.487,0 -2.697,-1.21 -2.697,-2.697 0,-1.488 1.21,-2.698 2.697,-2.698 1.487,0 2.698,1.21 2.698,2.698 0,1.487 -1.211,2.697 -2.698,2.697 M 4.225,10.422 3.748,9.945 2.079,11.614 2.556,12.091 Z m 7.87,-7.869 -0.478,-0.478 -1.669,1.669 0.478,0.478 z\"></path></g></g></g></svg>",
+            "ch_1_title": "25_ Lumens",
+            "ch_1_description": "",
+            "ch_2_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><path id=\"path20\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 7.424,11.467 H 6.75 v 2.361 h 0.674 z m 0,-11.129 H 6.75 V 2.699 H 7.424 Z M 2.703,6.746 H 0.342 V 7.42 h 2.361 z m 11.129,0 H 11.471 V 7.42 h 2.361 z M 3.748,4.222 4.225,3.744 2.556,2.075 2.079,2.553 Z m 7.869,7.869 0.478,-0.477 -1.669,-1.669 -0.478,0.477 z M 7.086,3.711 c -1.859,0 -3.371,1.513 -3.371,3.373 0,1.859 1.512,3.373 3.371,3.373 1.86,0 3.374,-1.514 3.374,-3.373 0,-1.86 -1.514,-3.373 -3.374,-3.373 m 0,6.07 c -1.487,0 -2.697,-1.21 -2.697,-2.697 0,-1.488 1.21,-2.698 2.697,-2.698 1.487,0 2.698,1.21 2.698,2.698 0,1.487 -1.211,2.697 -2.698,2.697 M 4.225,10.422 3.748,9.945 2.079,11.614 2.556,12.091 Z m 7.87,-7.869 -0.478,-0.478 -1.669,1.669 0.478,0.478 z\"></path></g></g></g></svg>",
+            "ch_2_title": "200_ Lumens",
+            "ch_2_description": "",
+            "ch_3_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><path id=\"path20\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 7.424,11.467 H 6.75 v 2.361 h 0.674 z m 0,-11.129 H 6.75 V 2.699 H 7.424 Z M 2.703,6.746 H 0.342 V 7.42 h 2.361 z m 11.129,0 H 11.471 V 7.42 h 2.361 z M 3.748,4.222 4.225,3.744 2.556,2.075 2.079,2.553 Z m 7.869,7.869 0.478,-0.477 -1.669,-1.669 -0.478,0.477 z M 7.086,3.711 c -1.859,0 -3.371,1.513 -3.371,3.373 0,1.859 1.512,3.373 3.371,3.373 1.86,0 3.374,-1.514 3.374,-3.373 0,-1.86 -1.514,-3.373 -3.374,-3.373 m 0,6.07 c -1.487,0 -2.697,-1.21 -2.697,-2.697 0,-1.488 1.21,-2.698 2.697,-2.698 1.487,0 2.698,1.21 2.698,2.698 0,1.487 -1.211,2.697 -2.698,2.697 M 4.225,10.422 3.748,9.945 2.079,11.614 2.556,12.091 Z m 7.87,-7.869 -0.478,-0.478 -1.669,1.669 0.478,0.478 z\"></path></g></g></g></svg>",
+            "ch_3_title": "400_ Lumens",
+            "ch_3_description": "",
+            "ch_4_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><path id=\"path20\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 7.424,11.467 H 6.75 v 2.361 h 0.674 z m 0,-11.129 H 6.75 V 2.699 H 7.424 Z M 2.703,6.746 H 0.342 V 7.42 h 2.361 z m 11.129,0 H 11.471 V 7.42 h 2.361 z M 3.748,4.222 4.225,3.744 2.556,2.075 2.079,2.553 Z m 7.869,7.869 0.478,-0.477 -1.669,-1.669 -0.478,0.477 z M 7.086,3.711 c -1.859,0 -3.371,1.513 -3.371,3.373 0,1.859 1.512,3.373 3.371,3.373 1.86,0 3.374,-1.514 3.374,-3.373 0,-1.86 -1.514,-3.373 -3.374,-3.373 m 0,6.07 c -1.487,0 -2.697,-1.21 -2.697,-2.697 0,-1.488 1.21,-2.698 2.697,-2.698 1.487,0 2.698,1.21 2.698,2.698 0,1.487 -1.211,2.697 -2.698,2.697 M 4.225,10.422 3.748,9.945 2.079,11.614 2.556,12.091 Z m 7.87,-7.869 -0.478,-0.478 -1.669,1.669 0.478,0.478 z\"></path></g></g></g></svg>",
+            "ch_4_title": "1000_ Lumens",
+            "ch_4_description": ""
+          }
+        },
+        "d17de004-b126-4d0f-ba21-071f28c5721a": {
+          "type": "bonus_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_8b7f3be8-3371-4fc2-951e-6fee324028c1.jpg",
+            "mobile_img": "shopify://shop_images/custom_resized_8b7f3be8-3371-4fc2-951e-6fee324028c1.jpg",
+            "category": "flashlight",
+            "step": "6",
+            "display_condition_tags": "",
+            "title": "Ready for <b>results?</b>",
+            "yes_label": "<b>Yes</b>  <br> <span style=\"text-transform: initial;\">This sums up what I’m  <br> looking for in flashlight.</span>",
+            "no_label": "<b>No</b> <br> <span style=\"text-transform: initial;\">Take me to the bonus round  <br> to answer more questions.</span>"
+          }
+        },
+        "46d21d0e-7b32-48b4-b407-56ee7b38643c": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/fotor_2023-6-8_15_20_4.jpg",
+            "mobile_img": "shopify://shop_images/page_Flashlights_4.jpg",
+            "category": "flashlight",
+            "step": "7",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What <b>Beam Distance Range</b> (Feet) you are looking for?",
+            "cta_label": "Continue",
+            "tag_prefix": "beam-distance",
+            "ch_1_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g transform=\"translate(6.7446,9.8136)\" id=\"g12\"><path id=\"path14\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 0,0 -1.365,-1.023 H -6.484 V -4.432 L -1.365,-4.437 0,-5.461 H 2.731 V 0 Z m -5.802,-1.706 h 4.779 l 1.365,1.023 H 2.048 V -4.778 H 0.342 l -1.365,1.023 H -5.802 Z M 4.756,-1.283 6.203,-2.731 4.756,-4.179 5.237,-4.661 7.169,-2.731 5.237,-0.8 Z M 3.414,-3.072 H 5.462 V -2.39 H 3.414 Z\"></path></g></g></svg>",
+            "ch_1_title": "25_ Feet",
+            "ch_1_description": "",
+            "ch_2_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g transform=\"translate(6.7446,9.8136)\" id=\"g12\"><path id=\"path14\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 0,0 -1.365,-1.023 H -6.484 V -4.432 L -1.365,-4.437 0,-5.461 H 2.731 V 0 Z m -5.802,-1.706 h 4.779 l 1.365,1.023 H 2.048 V -4.778 H 0.342 l -1.365,1.023 H -5.802 Z M 4.756,-1.283 6.203,-2.731 4.756,-4.179 5.237,-4.661 7.169,-2.731 5.237,-0.8 Z M 3.414,-3.072 H 5.462 V -2.39 H 3.414 Z\"></path></g></g></svg>",
+            "ch_2_title": "200_ Feet",
+            "ch_2_description": "",
+            "ch_3_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g transform=\"translate(6.7446,9.8136)\" id=\"g12\"><path id=\"path14\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 0,0 -1.365,-1.023 H -6.484 V -4.432 L -1.365,-4.437 0,-5.461 H 2.731 V 0 Z m -5.802,-1.706 h 4.779 l 1.365,1.023 H 2.048 V -4.778 H 0.342 l -1.365,1.023 H -5.802 Z M 4.756,-1.283 6.203,-2.731 4.756,-4.179 5.237,-4.661 7.169,-2.731 5.237,-0.8 Z M 3.414,-3.072 H 5.462 V -2.39 H 3.414 Z\"></path></g></g></svg>",
+            "ch_3_title": "500_ Feet",
+            "ch_3_description": "",
+            "ch_4_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g transform=\"translate(6.7446,9.8136)\" id=\"g12\"><path id=\"path14\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"M 0,0 -1.365,-1.023 H -6.484 V -4.432 L -1.365,-4.437 0,-5.461 H 2.731 V 0 Z m -5.802,-1.706 h 4.779 l 1.365,1.023 H 2.048 V -4.778 H 0.342 l -1.365,1.023 H -5.802 Z M 4.756,-1.283 6.203,-2.731 4.756,-4.179 5.237,-4.661 7.169,-2.731 5.237,-0.8 Z M 3.414,-3.072 H 5.462 V -2.39 H 3.414 Z\"></path></g></g></svg>",
+            "ch_4_title": "1000_ Feet",
+            "ch_4_description": ""
+          }
+        },
+        "0fcfe3d0-7c05-4f4d-96a1-b73f60a08ec4": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_93295bec-0154-44b4-9715-f4b8137a0327.jpg",
+            "mobile_img": "shopify://shop_images/page_Flashlights_5.jpg",
+            "category": "flashlight",
+            "step": "8",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "Where do you prefer your <b>switch position</b> to be?",
+            "cta_label": "Continue",
+            "tag_prefix": "switch-position",
+            "ch_1_svg": "",
+            "ch_1_title": "Front",
+            "ch_1_description": "Switch location: near the front of the flashlight",
+            "ch_2_svg": "",
+            "ch_2_title": "Rear",
+            "ch_2_description": "Switch location: near the bottom of the flashlight",
+            "ch_3_svg": "",
+            "ch_3_title": "",
+            "ch_3_description": "",
+            "ch_4_svg": "",
+            "ch_4_title": "",
+            "ch_4_description": ""
+          }
+        },
+        "af696301-34d4-4a8c-bb21-abb5be924dbc": {
+          "type": "range_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_69b62866-0b0e-4baa-9c33-9df7e870e77f.jpg",
+            "mobile_img": "shopify://shop_images/flashlight-quiz-step-cri.png",
+            "category": "flashlight",
+            "step": "9",
+            "display_condition_tags": "work",
+            "is_optional": true,
+            "title": "How important is seeing <b>color</b>(CRI)?",
+            "cta_label": "Continue",
+            "range_min": 70,
+            "range_max": 90,
+            "range_step": 10,
+            "range_unit": "CRI",
+            "tag_prefix": "CRI",
+            "ch_1_icon": "shopify://shop_images/transparent-slider.png",
+            "ch_1_title": "Low",
+            "ch_1_description": "Great for closer look",
+            "ch_1_range": 70,
+            "ch_2_icon": "shopify://shop_images/transparent-slider.png",
+            "ch_2_title": "Medium",
+            "ch_2_description": "Great for finding objects at distance",
+            "ch_2_range": 80,
+            "ch_3_icon": "shopify://shop_images/transparent-slider.png",
+            "ch_3_title": "High",
+            "ch_3_description": "Get full clarity",
+            "ch_3_range": 90
+          }
+        },
+        "7a645102-b0f8-489d-bf63-4cda1d53c900": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/fotor_2023-6-8_15_30_13.jpg",
+            "mobile_img": "shopify://shop_images/page_Flashlights_6.jpg",
+            "category": "flashlight",
+            "step": "10",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What is the optimum <b>run time</b> you're looking for?",
+            "cta_label": "VIEW THE RESULTS",
+            "tag_prefix": "duration-range",
+            "ch_1_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_1_title": "5_ Hours",
+            "ch_1_description": "",
+            "ch_2_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_2_title": "15_ Hours",
+            "ch_2_description": "",
+            "ch_3_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_3_title": "50_ Hours",
+            "ch_3_description": "",
+            "ch_4_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_4_title": "100_ Hours",
+            "ch_4_description": ""
+          }
+        },
+        "54748bc7-75ec-4316-8fa2-2ba6fe0ec911": {
+          "type": "multi_choice_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_fa9661f3-242e-49cd-88ff-ab56587c46ff.jpg",
+            "mobile_img": "shopify://shop_images/First_page_Lantern_1.jpg",
+            "category": "arealight",
+            "step": "2",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "How will <b>you use your Area Light?</b>",
+            "sub_title": "Feel free to select a few.",
+            "cta_label": "Continue",
+            "tag_prefix": "",
+            "options": "Work,Home & Life,Hiking,Camping,Running,Hunting,Fishing,Kids"
+          }
+        },
+        "0bc7086a-2597-4420-bda1-ec1a15ac5c9f": {
+          "type": "multi_choice_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/ML6_image_in_use_03.jpg",
+            "mobile_img": "shopify://shop_images/page_Lantern_2.jpg",
+            "category": "arealight",
+            "step": "3",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What <b>features</b> are you interested in?",
+            "sub_title": "Feel free to select a few.",
+            "cta_label": "Continue",
+            "tag_prefix": "",
+            "options": "Rechargeable,Powerbank,Strobe Mode,Bluetooth"
+          }
+        },
+        "252a0a34-ab28-4eb8-8e2b-048343edef65": {
+          "type": "block_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/fotor_2023-6-8_15_16_37.jpg",
+            "mobile_img": "shopify://shop_images/page_Lantern_3.jpg",
+            "category": "arealight",
+            "step": "4",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "What is the optimum <b>run time</b> you're looking for?",
+            "cta_label": "Continue",
+            "tag_prefix": "duration-range",
+            "ch_1_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_1_title": "5_ Hours",
+            "ch_1_description": "",
+            "ch_2_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_2_title": "10_ Hours",
+            "ch_2_description": "",
+            "ch_3_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_3_title": "40_ Hours",
+            "ch_3_description": "",
+            "ch_4_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 18.893333 18.893333\" height=\"18.893333\" width=\"18.893333\" id=\"svg2\" version=\"1.1\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:svg=\"http://www.w3.org/2000/svg\" xml:space=\"preserve\"><metadata id=\"metadata8\"><rdf:rdf><cc:work rdf:about=\"\"><dc:format>image/svg+xml</dc:format><dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"></dc:type></cc:work></rdf:rdf></metadata><defs id=\"defs6\"><clippath id=\"clipPath18\" clippathunits=\"userSpaceOnUse\"><path id=\"path16\" d=\"M 0,14.17 H 14.17 V 0 H 0 Z\"></path></clippath></defs><g transform=\"matrix(1.3333333,0,0,-1.3333333,0,18.893333)\" id=\"g10\"><g id=\"g12\"><g clip-path=\"url(#clipPath18)\" id=\"g14\"><g transform=\"translate(7.0864,2.3604)\" id=\"g20\"><path id=\"path22\" style=\"fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none\" d=\"m 0,0 c -2.604,0 -4.722,2.118 -4.722,4.723 0,2.604 2.118,4.722 4.722,4.722 2.604,0 4.722,-2.118 4.722,-4.722 C 4.722,2.118 2.604,0 0,0 m 0,8.771 c -2.232,0 -4.048,-1.816 -4.048,-4.048 0,-2.233 1.816,-4.047 4.048,-4.047 2.232,0 4.048,1.814 4.048,4.047 C 4.048,6.955 2.232,8.771 0,8.771 M 2.361,5.061 H 0.337 V 7.758 H -0.337 V 4.385 h 2.698 z\"></path></g></g></g></g></svg>",
+            "ch_4_title": "150_ Hours",
+            "ch_4_description": ""
+          }
+        },
+        "008c9196-e146-47b8-b383-0be7e06d99d0": {
+          "type": "bonus_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/custom_resized_8b7f3be8-3371-4fc2-951e-6fee324028c1.jpg",
+            "mobile_img": "shopify://shop_images/custom_resized_8b7f3be8-3371-4fc2-951e-6fee324028c1.jpg",
+            "category": "arealight",
+            "step": "5",
+            "display_condition_tags": "",
+            "title": "Ready for <b>results?</b>",
+            "yes_label": "<b>Yes</b>  <br> <span style=\"text-transform: initial;\">This sums up what I’m  <br> looking for in a area light/lantern.</span>",
+            "no_label": "<b>No</b> <br> <span style=\"text-transform: initial;\">Take me to the bonus round  <br> to answer more questions.</span>"
+          }
+        },
+        "b06e7c46-1c45-404e-99ae-845e16a4ab86": {
+          "type": "icon_selector",
+          "settings": {
+            "bg_img": "shopify://shop_images/fotor_2023-6-8_15_8_20.jpg",
+            "mobile_img": "shopify://shop_images/page_Lantern_4.jpg",
+            "category": "arealight",
+            "step": "10",
+            "display_condition_tags": "",
+            "is_optional": true,
+            "title": "Do you need a <b>lantern</b> or <b>floodlight</b>?",
+            "cta_label": "View the results",
+            "ch_1_icon": "shopify://shop_images/lanterns.png",
+            "ch_1_title": "Lantern",
+            "ch_2_icon": "shopify://shop_images/floodlights.png",
+            "ch_2_title": "Floodlight",
+            "ch_3_title": "",
+            "ch_4_title": "",
+            "tag_prefix": ""
+          }
+        }
+      },
+      "block_order": [
+        "be6ef22c-a08e-49db-a945-eb1b72610085",
+        "d9024faf-74ad-4845-a93b-627cfb784460",
+        "ce7765d0-1414-44a0-ac42-1bf783ef621c",
+        "8fdaa854-9f32-4cb8-aca4-7ecea82dbbdc",
+        "3592dded-e0db-42ac-bb03-6c4bfa301245",
+        "117471f4-d905-4986-a74f-b7264bdac7ff",
+        "a4690ef4-6625-4e54-884f-10bb25512e1f",
+        "3d4bfb0b-ab42-4e74-9299-4ec5d45afaec",
+        "a3d87ae6-8cb9-490a-8bdc-e81ff8ec5497",
+        "f788e446-1ec8-4abf-89a4-dc6e1c90bd6f",
+        "98d614e7-71f8-45e7-b4ba-304555c496b6",
+        "32f4ef50-5224-494c-9fd9-12925b202b68",
+        "e3ae7405-6815-4269-838a-9646788c8219",
+        "27014389-21df-4829-abd8-2b825c96cb95",
+        "d17de004-b126-4d0f-ba21-071f28c5721a",
+        "46d21d0e-7b32-48b4-b407-56ee7b38643c",
+        "0fcfe3d0-7c05-4f4d-96a1-b73f60a08ec4",
+        "af696301-34d4-4a8c-bb21-abb5be924dbc",
+        "7a645102-b0f8-489d-bf63-4cda1d53c900",
+        "54748bc7-75ec-4316-8fa2-2ba6fe0ec911",
+        "0bc7086a-2597-4420-bda1-ec1a15ac5c9f",
+        "252a0a34-ab28-4eb8-8e2b-048343edef65",
+        "008c9196-e146-47b8-b383-0be7e06d99d0",
+        "b06e7c46-1c45-404e-99ae-845e16a4ab86"
+      ],
+      "custom_css": [],
+      "settings": {
+        "loading_messages": "Lighting your<br> adventure...,Rising out of the <br>darkness...,Stepping into the <br>light..."
+      }
+    },
+    "section_custom_html_Pyet8y": {
+      "type": "section-custom-html",
+      "disabled": true,
+      "settings": {
+        "custom_code": "<style>\n.announcement-bar-static,\n.custom-announcement-bar {\n  display: none !important;\n}\n</style>",
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "live-page-style",
+    "main",
+    "section_custom_html_Pyet8y"
+  ]
+}

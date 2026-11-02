@@ -1,0 +1,199 @@
+{%- comment -%}
+  Applies the homepage design (Barlow fonts, red eyebrows/accents, square
+  Ledlenser buttons) to the standard Palo Alto sections on the page this
+  section is added to. Renders no markup of its own.
+  Wrap words in <em> inside a heading to colour them with the accent color.
+{%- endcomment -%}
+{%- liquid
+  assign eyebrow = section.settings.eyebrow_color
+  assign accent = section.settings.accent_color
+  assign accent_hover = section.settings.accent_hover_color
+  assign dark = section.settings.dark_color
+  assign warm = section.settings.warm_color
+-%}
+
+{%- style -%}
+  /* ---------- Typography ---------- */
+  #MainContent .image-with-text__subheading,
+  #MainContent .slide__subheading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: {{ eyebrow }};
+    opacity: 1;
+  }
+
+  #MainContent .image-with-text__heading,
+  #MainContent .slide__heading,
+  #MainContent .column-item__heading,
+  #MainContent .section-columns .section__heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.95;
+  }
+
+  #MainContent .image-with-text__heading {
+    font-size: clamp(34px, 4vw, 56px);
+  }
+
+  #MainContent .slide__heading {
+    font-size: clamp(42px, 6vw, 76px);
+  }
+
+  #MainContent .image-with-text__heading em,
+  #MainContent .slide__heading em {
+    font-style: normal;
+    color: {{ accent }};
+  }
+
+  #MainContent .image-with-text__text,
+  #MainContent .slide__text,
+  #MainContent .column-item__text {
+    font-family: Barlow, 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  #MainContent .color-scheme-3 .image-with-text__text,
+  #MainContent .color-scheme-3 .slide__text {
+    color: #D0D0D0;
+  }
+
+  /* ---------- Section backgrounds ---------- */
+  #MainContent .color-scheme-3 {
+    --bg: {{ dark }};
+    background-color: {{ dark }};
+  }
+
+  /* Any section whose template key contains "ll-warm" gets the warm background */
+  #MainContent [id*="ll-warm"] .image-with-text {
+    --bg: {{ warm }};
+    background-color: {{ warm }};
+  }
+
+  /* ---------- Buttons ---------- */
+  #MainContent .btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 23px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    min-height: 52px;
+    padding: 14px 30px;
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  #MainContent .btn::before,
+  #MainContent .btn::after {
+    display: none;
+  }
+
+  #MainContent .btn.btn--primary {
+    --btn-bg: {{ accent }};
+    --btn-border: {{ accent }};
+    --btn-text: #FFFFFF;
+  }
+
+  #MainContent .btn.btn--primary:hover {
+    --btn-bg: {{ accent_hover }};
+    --btn-border: {{ accent_hover }};
+  }
+
+  #MainContent .btn.btn--black {
+    --btn-bg: {{ dark }};
+    --btn-border: {{ dark }};
+    --btn-text: #FFFFFF;
+  }
+
+  #MainContent .btn.btn--white {
+    --btn-bg: #FFFFFF;
+    --btn-border: #FFFFFF;
+    --btn-text: {{ dark }};
+  }
+
+  #MainContent .btn.btn--black:hover,
+  #MainContent .btn.btn--white:hover {
+    --btn-bg: {{ accent }};
+    --btn-border: {{ accent }};
+    --btn-text: #FFFFFF;
+  }
+
+  #MainContent .image-with-text__buttons,
+  #MainContent .slide__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  @media only screen and (max-width: 749px) {
+    #MainContent .btn {
+      font-size: 16px;
+      min-height: 48px;
+      padding: 12px 22px;
+    }
+
+    #MainContent .image-with-text__text,
+    #MainContent .slide__text,
+    #MainContent .column-item__text {
+      font-size: 16px;
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+  {
+    "name": "Ledlenser page style",
+    "class": "shopify-section--ll-page-style",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Applies the homepage fonts, accent color and buttons to the other sections on this page. Wrap heading words in italics to color them with the accent."
+      },
+      {
+        "type": "color",
+        "id": "eyebrow_color",
+        "label": "Eyebrow color",
+        "default": "#FF3B4A"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent color",
+        "default": "#E30613"
+      },
+      {
+        "type": "color",
+        "id": "accent_hover_color",
+        "label": "Accent hover color",
+        "default": "#B8050F"
+      },
+      {
+        "type": "color",
+        "id": "dark_color",
+        "label": "Dark background",
+        "default": "#0A0A0A"
+      },
+      {
+        "type": "color",
+        "id": "warm_color",
+        "label": "Warm background",
+        "default": "#F5F0EA"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Ledlenser page style"
+      }
+    ]
+  }
+{% endschema %}

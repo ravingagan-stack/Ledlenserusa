@@ -46,7 +46,21 @@
     endif
   endfor
 
-  if parent or grandparent
+  assign mega = false
+  unless nav_secondary
+    assign mega_handle = link.title | handleize
+    capture mega_panel
+      render 'nav-mega-panel', handle: mega_handle
+    endcapture
+    assign mega_panel = mega_panel | strip
+    if mega_panel != blank
+      assign mega = true
+      assign parent = false
+      assign grandparent = false
+    endif
+  endunless
+
+  if parent or grandparent or mega
     assign expands = true
     assign key = link.url | append: link.title | append: link.levels | md5
 
@@ -68,7 +82,9 @@
   capture classes
     echo 'menu__item'
 
-    if grandparent
+    if mega
+      echo ' menu__item--mega'
+    elsif grandparent
       echo ' grandparent kids-' | append: child_count
 
       if image_count > 0
@@ -95,6 +111,11 @@
   endif
 -%}
 
+{%- if mega -%}
+  {{ 'nav-mega.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'nav-mega.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 <{{ item_tag }}
   class="{{ classes }}"
   data-nav-item
@@ -117,6 +138,9 @@
     {%- if enable_custom_badge and custom_badge_text != blank and highlight_item == link_title_lowercase -%}
       <span class="navtext__custom-badge">{{ custom_badge_text }}</span>
     {%- endif -%}
+    {%- if mega -%}
+      <svg class="navlink__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+    {%- endif -%}
   </a>
 
   {%- if expands -%}
@@ -138,7 +162,9 @@
     >
       <div class="header__dropdown__wrapper">
         <div class="header__dropdown__inner">
-          {%- if grandparent -%}
+          {%- if mega -%}
+            {{ mega_panel }}
+          {%- elsif grandparent -%}
             {%- unless images_only -%}
               <div class="header__grandparent__links{% if nav_caps_megamenu %} caps{% endif %}">
                 {%- if link.levels == 2 -%}

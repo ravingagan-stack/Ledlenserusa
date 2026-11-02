@@ -25,7 +25,12 @@ button{font-family:inherit}
 @keyframes llStar{0%,100%{opacity:.25}50%{opacity:.9}}
 @media (prefers-reduced-motion: reduce){.ll-a,.ll-star,.ll-star2{animation:none}}
 
-
+@media screen and (min-width:989px) and (max-width: 1180px) {
+html .logo__image-link {
+    width: 123px !important;
+    height: 26px;
+}
+}
   .custom-announcement-bar {
     background: #0A0A0A;
     color: #FFFFFF;
@@ -66,7 +71,7 @@ button{font-family:inherit}
 }
 .site-header--nav-center .nav--default {
     justify-content: flex-start;
-    padding-left: 230px;
+    padding-left: 227px;
     padding-right: 0 !important;
 }
 
@@ -87,7 +92,7 @@ button{font-family:inherit}
 }
 
 .menu__item.menu__item--icons {
-    gap: 10px;
+    gap: 15px;
     right: 34px !important;
 }
 
@@ -162,7 +167,7 @@ a.navlink.navlink--icon.caps.navlink--dot svg.icon.icon-user {
 
   }
 a.contact-text span {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.3;
     letter-spacing: 0;
     font-family: Barlow, "Helvetica Neue", sans-serif;
@@ -938,10 +943,6 @@ a.contact-text span {
 a.logo__image-link.logo__image-link--other.logo__image-link--single {
     width: 120px !important;
     height: 26px !important;
-}
-
-.site-header--nav-center .nav--default {
-    padding-left: 160px !important;
 }
 
 a.navlink.navlink--icon.caps.navlink--dot {
@@ -2148,7 +2149,7 @@ span.product__price--regular {
         min-width: 0;
         justify-content: flex-end;
         margin-left: 24px;
-        margin-right: 34px;
+        margin-right: 24px;
     }
 
     .site-header--nav-center .nav--default > .menu__items {
@@ -2445,4 +2446,30 @@ span.product__price--regular {
     width: 124px !important;
     height: 26px;
 }
+.site-header--nav-center .nav--default {
+    padding-left: 160px !important;
+}
+
+}
+
+.slide__text__container.text-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    width: 100%;
+}
+a.navlink.navlink--toplevel.navlink--dot.caps {
+    font-family: Barlow Condensed, sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    padding: 0;
+}
+
+.menu__item--mega .header__dropdown__wrapper .header__dropdown__inner{
+    max-width: 1360px;
+    margin: 0 auto;
+}
+.temppage-world-is-as-bright collapsible-elements.image-with-text__content.aos-animate {
+    padding-left: 45px !important;
 }

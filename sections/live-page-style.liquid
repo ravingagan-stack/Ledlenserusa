@@ -1,0 +1,142 @@
+{%- comment -%}
+  Gives the standard sections on the page it is added to the same typography,
+  corners and text colours as the live (Palo Alto 5.6) theme, without changing
+  the global theme settings. Renders no markup of its own.
+{%- endcomment -%}
+{%- liquid
+  assign heading_font = section.settings.heading_font
+  assign body_font = section.settings.body_font
+  assign body_font_bold = body_font | font_modify: 'weight', 'bold'
+  assign text_color = section.settings.text_color
+-%}
+
+{%- style -%}
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {{ body_font | font_face: font_display: 'swap' }}
+  {{ body_font_bold | font_face: font_display: 'swap' }}
+
+  #MainContent {
+    --FONT-STACK-HEADING: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --FONT-WEIGHT-HEADING: {{ heading_font.weight }};
+    --FONT-STYLE-HEADING: {{ heading_font.style }};
+    --FONT-ADJUST-HEADING: {{ section.settings.heading_size | divided_by: 100.0 }};
+    --LETTER-SPACING-HEADING: 0em;
+    --HEADING-TEXT-CAPS: none;
+
+    --FONT-STACK-BODY: {{ body_font.family }}, {{ body_font.fallback_families }};
+    --FONT-WEIGHT-BODY: {{ body_font.weight }};
+    --FONT-WEIGHT-BODY-BOLD: {{ body_font_bold.weight | default: 700 }};
+    --FONT-STYLE-BODY: {{ body_font.style }};
+    --FONT-ADJUST-BODY: {{ section.settings.text_size | divided_by: 100.0 }};
+
+    --FONT-STACK-SUBHEADING: {{ body_font.family }}, {{ body_font.fallback_families }};
+    --FONT-WEIGHT-SUBHEADING: {{ body_font.weight }};
+    --FONT-STYLE-SUBHEADING: {{ body_font.style }};
+    --FONT-ADJUST-SUBHEADING: 0.9;
+    --LETTER-SPACING-SUBHEADING: -0.025em;
+
+    --FONT-STACK-BUTTON: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --FONT-WEIGHT-BUTTON: {{ heading_font.weight }};
+    --FONT-STYLE-BUTTON: {{ heading_font.style }};
+    --FONT-ADJUST-SMALL-BUTTON: 0.75;
+    --FONT-ADJUST-MEDIUM-BUTTON: 0.75;
+    --FONT-ADJUST-LARGE-BUTTON: 0.75;
+    --LETTER-SPACING-BUTTON: 0.05em;
+    --BUTTON-TEXT-CAPS: uppercase;
+
+    --BORDER-WIDTH: {{ section.settings.border_width }}px;
+
+    --RADIUS: 0px;
+    --RADIUS-SMALL: 0px;
+    --RADIUS-TINY: 0px;
+    --radius: 0px;
+    --radius-small: 0px;
+    --radius-medium: 0px;
+    --radius-large: 0px;
+  }
+
+  /* Collection list: name in a bordered box under the image (live custom.css) */
+  #MainContent .list-collections__item__title {
+    border: 1px solid;
+    padding: 10px;
+  }
+
+  #MainContent .color-scheme-1,
+  #MainContent .color-scheme-2,
+  #MainContent .color-scheme-4,
+  #MainContent .color-scheme-5,
+  #MainContent .color-scheme-6,
+  #MainContent .color-scheme-7,
+  #MainContent .color-scheme-8 {
+    --COLOR-TEXT: {{ text_color }};
+    --COLOR-HEADING: {{ text_color }};
+    --text: {{ text_color }};
+    --heading: {{ text_color }};
+  }
+{%- endstyle -%}
+
+{% schema %}
+  {
+    "name": "Live page style",
+    "class": "shopify-section--live-page-style",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Matches the fonts, corners and text color of the other sections on this page to the previous live theme. Global theme settings are not changed."
+      },
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Heading and button font",
+        "default": "barlow_n5"
+      },
+      {
+        "type": "range",
+        "id": "heading_size",
+        "label": "Heading size",
+        "min": 50,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "default": 100
+      },
+      {
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "Body and subheading font",
+        "default": "karla_n4"
+      },
+      {
+        "type": "range",
+        "id": "text_size",
+        "label": "Body text size",
+        "min": 50,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "default": 100
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color on light sections",
+        "default": "#333333"
+      },
+      {
+        "type": "range",
+        "id": "border_width",
+        "label": "Box and button border width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 2
+      }
+    ],
+    "presets": [
+      {
+        "name": "Live page style"
+      }
+    ]
+  }
+{% endschema %}

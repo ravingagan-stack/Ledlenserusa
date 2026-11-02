@@ -1,0 +1,13 @@
+<div class="quiz--loading quiz--step-loading {{ class }}">
+  <div class="loading__wrapper">
+    {% assign messages = messages | split: ',' %}
+
+    {% for message in messages %}
+      <h4 class="quiz--loading--message quiz--loading--message-{{ forloop.index }} {% if forloop.index > 1 %}hide{% endif %}">
+        {{ message }}
+      </h4>
+    {% endfor %}
+
+    {% render 'icon-quiz-loading' %}
+  </div>
+</div>

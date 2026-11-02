@@ -63,6 +63,21 @@
     </button>
   </div>
 
+  {%- comment -%} Mobile search (as on the live theme) {%- endcomment -%}
+  <form class="mobile-nav-search" action="{{ routes.search_url }}" method="get" role="search">
+    <input type="hidden" name="type" value="product">
+    <input
+      type="search"
+      name="q"
+      placeholder="Search headlamps, flashlights…"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+      aria-label="{{ 'general.search.title' | t }}"
+    >
+    <button type="submit">{{ 'general.search.submit' | t }}</button>
+  </form>
+
   {%- comment -%} Mobile Navigation {%- endcomment -%}
   <collapsible-elements>
     <ul class="mobile-nav mobile-nav--weight-{{ settings.nav_font_weight }}{% unless settings.nav_caps_letter_spacing %} letter-spacing-nav{% endunless %}">

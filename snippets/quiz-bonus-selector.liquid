@@ -1,0 +1,19 @@
+<div
+  class="quiz--step-{{ block.settings.step }} quiz--bg step-600 {{ class }}"
+  style="--desktopimg: url({{ block.settings.bg_img | img_url: 'master' }}); --mobileimg: url({{ block.settings.mobile_img | img_url: 'master' }});"
+  data-category="{{ block.settings.category }}"
+  data-image="{{ block.settings.bg_img | img_url: 'master' }}"
+>
+  {%- if block.settings.title != blank -%}
+    <h2 class="quiz--step_h2">{{ block.settings.title }}</h2>
+  {%- endif -%}
+
+  <div class="quiz--product_main quiz--product_select quiz--product_select-radio">
+    <label class="btn--filter">
+      <span>{{ block.settings.yes_label }}</span>
+    </label>
+    <label class="btn--next">
+      <span>{{ block.settings.no_label }}</span>
+    </label>
+  </div>
+</div>

@@ -1,0 +1,1415 @@
+{%- comment -%} Ported from the live theme, which loaded jQuery and these styles site-wide {%- endcomment -%}
+{%- render 'stylesheet', name: 'section-product-quiz.css' -%}
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+
+<div class="product-quiz--main">
+  <div class="product-quiz--header">
+    <button class="quiz-header--left btn--back" style="opacity: 0;">
+      {%- render 'icon-quiz-back' -%}
+    </button>
+    <div class="quiz-header--center">
+      <p>THE BASICS 1/6</p>
+    </div>
+    <button class="quiz-header--right btn--exit">
+      {%- render 'icon-quiz-exit' -%}
+    </button>
+  </div>
+
+  <div class="quiz--step">
+    {%- liquid
+      for block in section.blocks
+        case block.type
+          when 'category_selector'
+            render 'quiz-category-selector', block: block
+          when 'multi_choice_selector'
+            render 'quiz-multi-choice-selector', block: block, class: 'hide'
+          when 'icon_selector'
+            render 'quiz-icon-selector', block: block, class: 'hide'
+          when 'range_selector'
+            render 'quiz-range-selector', block: block, class: 'hide'
+          when 'bonus_selector'
+            render 'quiz-bonus-selector', block: block, class: 'hide'
+          when 'block_selector'
+            render 'quiz-block-selector', block: block, class: 'hide'
+        endcase
+      endfor
+    -%}
+  </div>
+</div>
+
+{% render 'quiz-loading', messages: section.settings.loading_messages, class: 'hide' %}
+
+<script
+  type="text/javascript"
+>
+  let currentStep = 1
+  let skippedSteps = []
+
+  window.addEventListener("load", () => {
+    $('.btn--next').on('click', e => {
+      const category = $("input[name='category']:checked").val()
+      navigateNextStep(category)
+    })
+
+    $('.btn--back').on('click', () => {
+      const category = $("input[name='category']:checked").val()
+      navigatePreviousStep(category)
+    })
+
+    $('.btn--skip').on('click', () => {
+      const category = $("input[name='category']:checked").val()
+      navigateNextStep(category, true)
+    })
+
+    $('.quiz--step-option').on('click', e => {
+      const category = $("input[name='category']:checked").val()
+      const step = e.currentTarget.dataset.step
+      const type = e.currentTarget.dataset.type
+
+      validateCurrentStep(category, step, type)
+    })
+
+    $('.btn--filter').on('click', () => {
+      skippedSteps = Array.from(new Set(skippedSteps.concat([7,8,9,10])))
+
+      filterProducts()
+    })
+
+    $('.btn--exit').on('click', () => {
+      window.location.href = '/'
+    })
+  })
+
+  const validateCurrentStep = (category, step, type) => {
+    const dom = parseInt(step) === 1 ? $(`.quiz--step-${step}`) : $(`.quiz--step-${step}[data-category=${category}]`)
+    const btn = dom.find('.btn--next')
+
+    if (type === 'multi-choice-selector') {
+      if (dom.find('input:checkbox:checked').length) {
+        btn.attr('disabled', false)
+      } else {
+        btn.attr('disabled', true)
+      }
+    }
+
+    if (type === 'block-selector' || type === 'icon-selector' || type === 'category-selector') {
+      if (dom.find('input:radio:checked').length) {
+        btn.attr('disabled', false)
+      } else {
+        btn.attr('disabled', true)
+      }
+    }
+  }
+
+  const navigatePreviousStep = (category) => {
+    if (currentStep === 1) {
+      history.back()
+      return
+    }
+
+    for (let step = 10; step >= 1; step--) {
+      const selector = step === 1 ? `.quiz--step-${step}` : `.quiz--step-${step}[data-category=${category}]`
+      const conditionTags = $(selector).data('condition-tags')
+      let shouldSkip = false
+  
+      if (conditionTags) {
+        const selectedTags = getSelectedOptionHandles(step)
+        const containedTags = conditionTags.split(',').filter(tag => selectedTags.includes(tag))
+        if (containedTags.length !== conditionTags.split(',').length) {
+          shouldSkip = true
+        }
+      }
+
+      if (step < currentStep && $(selector).length) {
+        if (shouldSkip) {
+          skippedSteps.push(step)
+          const set = new Set(skippedSteps)
+          skippedSteps = Array.from(set)
+          continue
+        } else {
+          $(`.quiz--step-${currentStep}`).fadeOut(300, () => {
+            $(selector).fadeIn()
+          })
+          if (skippedSteps.includes(step)) {
+            skippedSteps = skippedSteps.filter(st => st !== step)
+          }
+          currentStep = step
+          if (currentStep === 1) {
+            $('.btn--back').css('opacity', 0)
+          }
+          if (currentStep > 6) {
+            $(`.quiz-header--center`).html(`<p>BONUS ROUND ${currentStep - 6}/4</p>`)
+          } else {
+            $(`.quiz-header--center`).html(`<p>THE BASICS ${currentStep}/6</p>`)
+          }
+          break
+        }
+      }
+    }
+  }
+
+  const navigateNextStep = (category, isSkip = false) => {
+    if (currentStep === 10) {
+      filterProducts()
+    }
+
+    for (let step = 1; step <= 10; step++) {
+      const selector = `.quiz--step-${step}[data-category=${category}]`
+      const conditionTags = $(selector).data('condition-tags')
+      let shouldSkip = false
+
+      if (conditionTags) {
+        const selectedTags = getSelectedOptionHandles(step)
+        const containedTags = conditionTags.split(',').filter(tag => selectedTags.includes(tag))
+        if (containedTags.length !== conditionTags.split(',').length) {
+          shouldSkip = true
+        }
+      }
+
+      if (step > currentStep && $(selector).length) {
+        if (shouldSkip) {
+          skippedSteps.push(step)
+          const set = new Set(skippedSteps)
+          skippedSteps = Array.from(set)
+          continue
+        } else {
+          $(`.quiz--step-${currentStep}`).fadeOut(300, () => {
+            $(selector).fadeIn()
+          })
+          if (isSkip) {
+            skippedSteps.push(currentStep)
+            const set = new Set(skippedSteps)
+            skippedSteps = Array.from(set)
+          }
+          currentStep = step
+          if (currentStep > 1) {
+            $('.btn--back').css('opacity', 1)
+          }
+          if (currentStep > 6) {
+            $(`.quiz-header--center`).html(`<p>BONUS ROUND ${currentStep - 6}/4</p>`)
+          } else {
+            $(`.quiz-header--center`).html(`<p><p>THE BASICS ${currentStep}/6</p>`)
+          }
+          break
+        }
+      }
+    }
+  }
+
+  const filterProducts = () => {
+    $(`.quiz--step-${currentStep}`).fadeOut(300, () => {
+      $(`.quiz--step-loading`).fadeIn(300, () => {
+        $(`.quiz--loading--message-1`).fadeOut(1500, () => {
+          $(`.quiz--loading--message-2`).fadeIn(1000, () => {
+            $(`.quiz--loading--message-2`).fadeOut(1500, () => {
+              $(`.quiz--loading--message-3`).fadeIn(1500, () => {
+                navigateToCollection()
+              })
+            })
+          })
+        })
+      })
+    })
+  }
+
+  const handleize = (str) => {
+    return str.toLowerCase().replace(/[^a-z0-9_]+/g, '-').replace(/-$/, '').replace(/^-/, '')
+  }
+
+  const getSelectedOptionHandles = (endStep) => {
+    const categoryDom = $("input[name='category']:checked")
+    const category = categoryDom.val()
+    let filter = []
+
+    for (let step = 0; step <= endStep; step++) {
+      if (!skippedSteps.includes(step)) {
+
+        const selector = `.quiz--step-${step}[data-category=${category}]`
+        const type = $(selector).data('type')
+        const tagPrefix = $(selector).data('tag-prefix')
+
+        if ($(selector).length && type) {
+          if (type === 'block-selector' || type === 'icon-selector') {
+            if (tagPrefix) {
+              filter.push(`${tagPrefix}-${$(selector).find("input[type='radio']:checked").val()}`)
+            } else {
+              filter.push($(selector).find("input[type='radio']:checked").val())
+            }
+          }
+          if (type === 'multi-choice-selector') {
+            $(selector).find("input:checkbox:checked").each((index, element) => {
+              if (tagPrefix) {
+                filter.push(`${tagPrefix}-${$(element).val()}`)
+              } else {
+                filter.push($(element).val())
+              }
+            })
+          }
+          if (type === 'range-selector') {
+            if (tagPrefix) {
+              filter.push(`${tagPrefix}-${$(selector).find('.range-value').data('val')}`)
+            } else {
+              filter.push($(selector).find('.range-value').data('val'))
+            }
+          }
+        }
+      }
+    }
+    filter = filter.map(str => handleize(str))
+
+    return filter
+  }
+
+  const navigateToCollection = () => {
+    const categoryDom = $("input[name='category']:checked")
+    const collection = categoryDom.data('handle')
+    let url = `https://${document.domain}/collections/${collection}/`
+    const filter = getSelectedOptionHandles(10)
+
+    window.location.href = `${url}${filter.join('+')}`
+  }
+</script>
+
+<script
+  type="text/javascript"
+>
+  window.addEventListener("load", () => {
+    $('.quiz--range-slider').each((index, element) => {
+      const $rangeSlider  = $(element)
+      const $rangeOutput  = $rangeSlider.parent().find('.range-value')
+      const $rangeItems   = $rangeSlider.parent().parent().find('.quiz--range-items-wrapper')
+      const $rangeImage   = $rangeSlider.parent().parent().find('.quiz--product_slide--main')
+      const $rangeDetails = $rangeSlider.parent().parent().find('.quiz--step3_details')
+
+      setValue($rangeSlider, $rangeOutput, $rangeItems, $rangeImage, $rangeDetails)
+      $rangeSlider.on('input', () => {
+        setValue($rangeSlider, $rangeOutput, $rangeItems, $rangeImage, $rangeDetails)
+      })
+    })
+  })
+
+  const setValue = ($rangeSlider, $rangeOutput, $rangeItems, $rangeImage, $rangeDetails) => {
+    const unit = $rangeSlider.attr('unit')
+    const min = parseInt($rangeSlider.attr('min'))
+    const max = parseInt($rangeSlider.attr('max'))
+    const val = parseInt($rangeSlider.val())
+    const cal = Number( (val - min) * 100 / (max - min) )
+    const newPosition = 10 - (cal * 0.2)
+    const style = `calc(${cal}% + (${newPosition}px))`
+
+    $rangeOutput.html(`<span>${val} ${unit}</span>`)
+    $rangeOutput.data('val', val)
+    $rangeSlider.css('--value', style)
+    // $rangeOutput.css('left', style)
+
+    $rangeItems.children().each((i, obj) => {
+      const range = parseInt($(obj).data('range'))
+      const image = $(obj).data('image')
+      const title = $(obj).data('title')
+      const description = $(obj).data('description')
+
+      if (range === val) {
+        $rangeImage.find('img').attr('src', `https://${image}`)
+        $rangeDetails.html(`<span class="step3_details--title">${title}</span><span class="step3_details--text">${description}</span>`)
+      }
+    })
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product Quiz",
+  "settings": [
+    {
+      "type": "header",
+      "content" : "General Settings"
+    },
+    {
+      "type": "textarea",
+      "id": "loading_messages",
+      "label": "Loading Messages",
+      "info": "Please use , for separating different messages.",
+      "default": "Lighting your<br> adventure...,Rising out of the <br>darkness...,Stepping into the <br>light..."
+    }
+  ],
+  "blocks":[
+    {
+      "name": "Category Selector",
+      "type": "category_selector",
+      "settings": [
+        {
+          "type": "header",
+          "content" : "General Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Desktop Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_img",
+          "label": "Mobile Background Image"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "info": "Title of step 1",
+          "default": "What <b>kind of portable light</b> are you looking for?"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "info": "Label of call to action",
+          "default": "Continue"
+        },
+        {
+          "type": "header",
+          "content" : "Headlamp Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "hl_icon",
+          "label": "Select image for headlamp",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "hl_title",
+          "label": "Type title for headlamp",
+          "info": "This title will be displayed at step 1 of quiz",
+          "default": "Headlamp"
+        },
+        {
+          "type": "collection",
+          "id": "hl_collection",
+          "label": "Select collection for headlamp results",
+          "info": "This collection will determine the collection at result step of quiz"
+        },
+        {
+          "type": "text",
+          "id": "hl_handle",
+          "label": "Type handle for headlamp",
+          "info": "This handle will be used for identifying other steps of quiz",
+          "default": "headlamp"
+        },
+        {
+          "type": "header",
+          "content" : "Flashlight Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "fl_icon",
+          "label": "Select image for flashlight",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "fl_title",
+          "label": "Type title for flashlight",
+          "info": "This title will be displayed at step 1 of quiz",
+          "default": "Flashlight"
+        },
+        {
+          "type": "collection",
+          "id": "fl_collection",
+          "label": "Select collection for flashlight results",
+          "info": "This collection will determine the collection at result step of quiz"
+        },
+        {
+          "type": "text",
+          "id": "fl_handle",
+          "label": "Type handle for flashlight",
+          "info": "This handle will be used for identifying other steps of quiz",
+          "default": "flashlight"
+        },
+        {
+          "type": "header",
+          "content" : "Lantern / Area Light Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "la_icon",
+          "label": "Select image for lantern/area light",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "la_title",
+          "label": "Type title for lantern/area light",
+          "info": "This title will be displayed at step 1 of quiz",
+          "default": "Lantern / Area Light"
+        },
+        {
+          "type": "collection",
+          "id": "la_collection",
+          "label": "Select collection for lantern/area light results",
+          "info": "This collection will determine the collection at result step of quiz"
+        },
+        {
+          "type": "text",
+          "id": "la_handle",
+          "label": "Type handle for arealights",
+          "info": "This handle will be used for identifying other steps of quiz",
+          "default": "arealight"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_optional",
+          "label": "Is this step optional?",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "Multi Choice Selector",
+      "type": "multi_choice_selector",
+      "settings": [
+        {
+          "type": "header",
+          "content" : "General Settings"
+        },
+         {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Desktop Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_img",
+          "label": "Mobile Background Image"
+        },
+        {
+          "type": "radio",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            {
+              "value": "headlamp",
+              "label": "Headlamp"
+            },
+            {
+              "value": "flashlight",
+              "label": "Flashlight"
+            },
+            {
+              "value": "arealight",
+              "label": "Lantern / Area Light"
+            }
+          ],
+          "info": "Which category is this step for?",
+          "default": "headlamp"
+        },
+        {
+          "type": "radio",
+          "id": "step",
+          "label": "Step",
+          "options": [
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            },
+            {
+              "value": "3",
+              "label": "3"
+            },
+            {
+              "value": "4",
+              "label": "4"
+            },
+            {
+              "value": "5",
+              "label": "5"
+            },
+            {
+              "value": "6",
+              "label": "6"
+            },
+            {
+              "value": "7",
+              "label": "7 (Bonus Round 1st Step)"
+            },
+            {
+              "value": "8",
+              "label": "8 (Bonus Round 2nd Step)"
+            },
+            {
+              "value": "9",
+              "label": "9 (Bonus Round 3rd Step)"
+            },
+            {
+              "value": "10",
+              "label": "10 (Bonus Round final Step)"
+            }
+          ],
+          "info": "Which step is this block for?",
+          "default": "2"
+        },
+        {
+          "type": "textarea",
+          "id": "display_condition_tags",
+          "label": "Display Condition Tags",
+          "info": "Tags that should be exist in previous steps for determining whether to display step or not.please use comma for separating different tags"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_optional",
+          "label": "Is this step optional?",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "info": "Title of step 2",
+          "default": "How will <b>you use your flashlight?</b>"
+        },
+        {
+          "type": "textarea",
+          "id": "sub_title",
+          "label": "Sub Title",
+          "info": "Sub Title of step 2",
+          "default": "Feel free to select a few."
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "info": "Label of call to action",
+          "default": "Continue"
+        },
+        {
+          "type": "header",
+          "content" : "Filter Settings"
+        },
+        {
+          "type": "text",
+          "id": "tag_prefix",
+          "label": "Mapping Tag Prefix",
+          "info": "Mapping Tag Prefix"
+        },
+        {
+          "type": "header",
+          "content" : "Content Settings"
+        },
+        {
+          "type": "textarea",
+          "id": "options",
+          "label": "Options",
+          "info": "Please split options with ,",
+          "default": "Hiking,Camping,Running,Hunting,Fishing,Work,Kids,Home/Prep,Looking for Monsters"
+        }
+      ]
+    },
+    {
+      "name": "Icon Selector",
+      "type": "icon_selector",
+      "settings": [
+        {
+          "type": "header",
+          "content" : "General Settings"
+        },
+         {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Desktop Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_img",
+          "label": "Mobile Background Image"
+        },
+        {
+          "type": "radio",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            {
+              "value": "headlamp",
+              "label": "Headlamp"
+            },
+            {
+              "value": "flashlight",
+              "label": "Flashlight"
+            },
+            {
+              "value": "arealight",
+              "label": "Lantern / Area Light"
+            }
+          ],
+          "info": "Which category is this step for?",
+          "default": "headlamp"
+        },
+        {
+          "type": "radio",
+          "id": "step",
+          "label": "Step",
+          "options": [
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            },
+            {
+              "value": "3",
+              "label": "3"
+            },
+            {
+              "value": "4",
+              "label": "4"
+            },
+            {
+              "value": "5",
+              "label": "5"
+            },
+            {
+              "value": "6",
+              "label": "6"
+            },
+            {
+              "value": "7",
+              "label": "7 (Bonus Round 1st Step)"
+            },
+            {
+              "value": "8",
+              "label": "8 (Bonus Round 2nd Step)"
+            },
+            {
+              "value": "9",
+              "label": "9 (Bonus Round 3rd Step)"
+            },
+            {
+              "value": "10",
+              "label": "10 (Bonus Round final Step)"
+            }
+          ],
+          "info": "Which step is this block for?",
+          "default": "2"
+        },
+        {
+          "type": "textarea",
+          "id": "display_condition_tags",
+          "label": "Display Condition Tags",
+          "info": "Tags that should be exist in previous steps for determining whether to display step or not.please use comma for separating different tags"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_optional",
+          "label": "Is this step optional?",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "info": "Title of step 4",
+          "default": "What <b>size</b> are you looking for?"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "info": "Label of call to action",
+          "default": "Continue"
+        },
+        {
+          "type": "header",
+          "content" : "#1st Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_1_icon",
+          "label": "Select image for #1st choice",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "ch_1_title",
+          "label": "Type title for #1st choice",
+          "info": "This title will be displayed for #1st choice",
+          "default": "Small"
+        },
+        {
+          "type": "header",
+          "content" : "#2nd Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_2_icon",
+          "label": "Select image for #2nd choice",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "ch_2_title",
+          "label": "Type title for #2nd choice",
+          "info": "This title will be displayed for #2nd choice",
+          "default": "Medium"
+        },
+        {
+          "type": "header",
+          "content" : "#3rd Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_3_icon",
+          "label": "Select image for #3rd choice",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "ch_3_title",
+          "label": "Type title for #3rd choice",
+          "info": "This title will be displayed for #3rd choice",
+          "default": "Large"
+        },
+        {
+          "type": "header",
+          "content" : "#4th Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_4_icon",
+          "label": "Select image for #4th choice",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "ch_4_title",
+          "label": "Type title for #4th choice",
+          "info": "This title will be displayed for #4th choice",
+          "default": "Large"
+        },
+        {
+          "type": "header",
+          "content" : "Filter Settings"
+        },
+        {
+          "type": "text",
+          "id": "tag_prefix",
+          "label": "Mapping Tag Prefix",
+          "info": "Mapping Tag Prefix"
+        }
+      ]
+    },
+    {
+      "name": "Range Selector",
+      "type": "range_selector",
+      "settings": [
+        {
+          "type": "header",
+          "content" : "General Settings"
+        },
+         {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Desktop Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_img",
+          "label": "Mobile Background Image"
+        },
+        {
+          "type": "radio",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            {
+              "value": "headlamp",
+              "label": "Headlamp"
+            },
+            {
+              "value": "flashlight",
+              "label": "Flashlight"
+            },
+            {
+              "value": "arealight",
+              "label": "Lantern / Area Light"
+            }
+          ],
+          "info": "Which category is this step for?",
+          "default": "headlamp"
+        },
+        {
+          "type": "radio",
+          "id": "step",
+          "label": "Step",
+          "options": [
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            },
+            {
+              "value": "3",
+              "label": "3"
+            },
+            {
+              "value": "4",
+              "label": "4"
+            },
+            {
+              "value": "5",
+              "label": "5"
+            },
+            {
+              "value": "6",
+              "label": "6"
+            },
+            {
+              "value": "7",
+              "label": "7 (Bonus Round 1st Step)"
+            },
+            {
+              "value": "8",
+              "label": "8 (Bonus Round 2nd Step)"
+            },
+            {
+              "value": "9",
+              "label": "9 (Bonus Round 3rd Step)"
+            },
+            {
+              "value": "10",
+              "label": "10 (Bonus Round final Step)"
+            }
+          ],
+          "info": "Which step is this block for?",
+          "default": "2"
+        },
+        {
+          "type": "textarea",
+          "id": "display_condition_tags",
+          "label": "Display Condition Tags",
+          "info": "Tags that should be exist in previous steps for determining whether to display step or not.please use comma for separating different tags"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_optional",
+          "label": "Is this step optional?",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "info": "Title of step 4",
+          "default": "How important is seeing <b>color</b>(CRI)?"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "info": "Label of call to action",
+          "default": "Continue"
+        },
+        {
+          "type": "number",
+          "id": "range_min",
+          "label": "Range Minimum Value",
+          "info": "Range slider min value",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "range_max",
+          "label": "Range Maximum Value",
+          "info": "Range slider max value",
+          "default": 100
+        },
+        {
+          "type": "number",
+          "id": "range_step",
+          "label": "Range Step Value",
+          "info": "Range slider step value",
+          "default": 50
+        },
+        {
+          "type": "text",
+          "id": "range_unit",
+          "label": "Range Unit",
+          "info": "Range slider unit value",
+          "default": "CRI"
+        },
+        {
+          "type": "header",
+          "content" : "Filter Settings"
+        },
+        {
+          "type": "text",
+          "id": "tag_prefix",
+          "label": "Mapping Tag Prefix",
+          "info": "Mapping Tag Prefix"
+        },
+        {
+          "type": "header",
+          "content" : "#1st Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_1_icon",
+          "label": "Select image for #1st choice",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "ch_1_title",
+          "label": "Type title for #1st choice",
+          "info": "This title will be displayed for #1st choice",
+          "default": "Low"
+        },
+        {
+          "type": "textarea",
+          "id": "ch_1_description",
+          "label": "Type description for #1st choice",
+          "info": "This description will be displayed for #1st choice",
+          "default": "Great for closer look <br/> Lorem Ipsum"
+        },
+        {
+          "type": "number",
+          "id": "ch_1_range",
+          "label": "Set range value for #1st choice",
+          "info": "This range value will be used for displaying #1st choice",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content" : "#2nd Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_2_icon",
+          "label": "Select image for #2nd choice",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "ch_2_title",
+          "label": "Type title for #2nd choice",
+          "info": "This title will be displayed for #2nd choice",
+          "default": "Medium"
+        },
+        {
+          "type": "textarea",
+          "id": "ch_2_description",
+          "label": "Type description for #2nd choice",
+          "info": "This description will be displayed for #2nd choice",
+          "default": "Great for adjusting the <br/> lorem Ipsum"
+        },
+        {
+          "type": "number",
+          "id": "ch_2_range",
+          "label": "Set range value for #2nd choice",
+          "info": "This range value will be used for displaying #2nd choice",
+          "default": 50
+        },
+        {
+          "type": "header",
+          "content" : "#3rd Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_3_icon",
+          "label": "Select image for #3rd choice",
+          "info": "90x90"
+        },
+        {
+          "type": "text",
+          "id": "ch_3_title",
+          "label": "Type title for #3rd choice",
+          "info": "This title will be displayed for #3rd choice",
+          "default": "High"
+        },
+        {
+          "type": "textarea",
+          "id": "ch_3_description",
+          "label": "Type description for #3rd choice",
+          "info": "This description will be displayed for #3rd choice",
+          "default": "Get full clarity <br/> Lorem Ipsum"
+        },
+        {
+          "type": "number",
+          "id": "ch_3_range",
+          "label": "Set range value for #3rd choice",
+          "info": "This range value will be used for displaying #3rd choice",
+          "default": 100
+        }
+      ]
+    },
+    {
+      "name": "Bonus Selector",
+      "type": "bonus_selector",
+      "settings": [
+        {
+          "type": "header",
+          "content" : "General Settings"
+        },
+         {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Desktop Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_img",
+          "label": "Mobile Background Image"
+        },
+        {
+          "type": "radio",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            {
+              "value": "headlamp",
+              "label": "Headlamp"
+            },
+            {
+              "value": "flashlight",
+              "label": "Flashlight"
+            },
+            {
+              "value": "arealight",
+              "label": "Lantern / Area Light"
+            }
+          ],
+          "info": "Which category is this step for?",
+          "default": "headlamp"
+        },
+        {
+          "type": "radio",
+          "id": "step",
+          "label": "Step",
+          "options": [
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            },
+            {
+              "value": "3",
+              "label": "3"
+            },
+            {
+              "value": "4",
+              "label": "4"
+            },
+            {
+              "value": "5",
+              "label": "5"
+            },
+            {
+              "value": "6",
+              "label": "6"
+            },
+            {
+              "value": "7",
+              "label": "7 (Bonus Round 1st Step)"
+            },
+            {
+              "value": "8",
+              "label": "8 (Bonus Round 2nd Step)"
+            },
+            {
+              "value": "9",
+              "label": "9 (Bonus Round 3rd Step)"
+            },
+            {
+              "value": "10",
+              "label": "10 (Bonus Round final Step)"
+            }
+          ],
+          "info": "Which step is this block for?",
+          "default": "2"
+        },
+        {
+          "type": "textarea",
+          "id": "display_condition_tags",
+          "label": "Display Condition Tags",
+          "info": "Tags that should be exist in previous steps for determining whether to display step or not.please use comma for separating different tags"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "info": "Title of step 4",
+          "default": "Ready for <b>results?</b>"
+        },
+        {
+          "type": "html",
+          "id": "yes_label",
+          "label": "Yes button Label",
+          "info": "Label of Yes action",
+          "default": "Yes! <br> This sums up what I’m <br> looking for in a flashlight."
+        },
+        {
+          "type": "html",
+          "id": "no_label",
+          "label": "No button Label",
+          "info": "Label of No action",
+          "default": "No <br> Take me to the bonus round <br> to answer more questions."
+        }
+      ]
+    },
+    {
+      "name": "Block Selector",
+      "type": "block_selector",
+      "settings": [
+        {
+          "type": "header",
+          "content" : "General Settings"
+        },
+       {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Desktop Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_img",
+          "label": "Mobile Background Image"
+        },
+        {
+          "type": "radio",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            {
+              "value": "headlamp",
+              "label": "Headlamp"
+            },
+            {
+              "value": "flashlight",
+              "label": "Flashlight"
+            },
+            {
+              "value": "arealight",
+              "label": "Lantern / Area Light"
+            }
+          ],
+          "info": "Which category is this step for?",
+          "default": "headlamp"
+        },
+        {
+          "type": "radio",
+          "id": "step",
+          "label": "Step",
+          "options": [
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            },
+            {
+              "value": "3",
+              "label": "3"
+            },
+            {
+              "value": "4",
+              "label": "4"
+            },
+            {
+              "value": "5",
+              "label": "5"
+            },
+            {
+              "value": "6",
+              "label": "6"
+            },
+            {
+              "value": "7",
+              "label": "7 (Bonus Round 1st Step)"
+            },
+            {
+              "value": "8",
+              "label": "8 (Bonus Round 2nd Step)"
+            },
+            {
+              "value": "9",
+              "label": "9 (Bonus Round 3rd Step)"
+            },
+            {
+              "value": "10",
+              "label": "10 (Bonus Round final Step)"
+            }
+          ],
+          "info": "Which step is this block for?",
+          "default": "2"
+        },
+        {
+          "type": "textarea",
+          "id": "display_condition_tags",
+          "label": "Display Condition Tags",
+          "info": "Tags that should be exist in previous steps for determining whether to display step or not.please use comma for separating different tags"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_optional",
+          "label": "Is this step optional?",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "info": "Title of step 4",
+          "default": "What <b>battery position</b> are you looking for?"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "info": "Label of call to action",
+          "default": "Continue"
+        },
+        {
+          "type": "header",
+          "content" : "Filter Settings"
+        },
+        {
+          "type": "text",
+          "id": "tag_prefix",
+          "label": "Mapping Tag Prefix",
+          "info": "Mapping Tag Prefix"
+        },
+        {
+          "type": "header",
+          "content" : "#1st Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_1_icon",
+          "label": "Select image for #1st choice",
+          "info": "90x90"
+        },
+        {
+          "type": "html",
+          "id": "ch_1_svg",
+          "label": "Add svg #1st choice"
+        },
+        {
+          "type": "text",
+          "id": "ch_1_title",
+          "label": "Type title for #1st choice",
+          "info": "This title will be displayed for #1st choice",
+          "default": "Lorem Ipsum"
+        },
+        {
+          "type": "textarea",
+          "id": "ch_1_description",
+          "label": "Type description for #1st choice",
+          "info": "This description will be displayed for #1st choice",
+          "default": "Lorem Ipsum about direct Display light direction"
+        },
+        {
+          "type": "header",
+          "content" : "#2nd Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_2_icon",
+          "label": "Select image for #2nd choice",
+          "info": "90x90"
+        },
+        {
+          "type": "html",
+          "id": "ch_2_svg",
+          "label": "Add svg #2nd choice"
+        },
+        {
+          "type": "text",
+          "id": "ch_2_title",
+          "label": "Type title for #2nd choice",
+          "info": "This title will be displayed for #2nd choice",
+          "default": "Lorem Ipsum"
+        },
+        {
+          "type": "textarea",
+          "id": "ch_2_description",
+          "label": "Type description for #2nd choice",
+          "info": "This description will be displayed for #2nd choice",
+          "default": "Lorem Ipsum about direct Display light direction"
+        },
+        {
+          "type": "header",
+          "content" : "#3rd Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_3_icon",
+          "label": "Select image for #3rd choice",
+          "info": "90x90"
+        },
+        {
+          "type": "html",
+          "id": "ch_3_svg",
+          "label": "Add svg #3rd choice"
+        },
+        {
+          "type": "text",
+          "id": "ch_3_title",
+          "label": "Type title for #3rd choice",
+          "info": "This title will be displayed for #3rd choice",
+          "default": "Lorem Ipsum"
+        },
+        {
+          "type": "textarea",
+          "id": "ch_3_description",
+          "label": "Type description for #3rd choice",
+          "info": "This description will be displayed for #3rd choice",
+          "default": "Lorem Ipsum about direct Display light direction"
+        },
+        {
+          "type": "header",
+          "content" : "#4th Choice Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "ch_4_icon",
+          "label": "Select image for #4th choice",
+          "info": "90x90"
+        },
+        {
+          "type": "html",
+          "id": "ch_4_svg",
+          "label": "Add svg #4th choice"
+        },
+        {
+          "type": "text",
+          "id": "ch_4_title",
+          "label": "Type title for #4th choice",
+          "info": "This title will be displayed for #4th choice",
+          "default": "Lorem Ipsum"
+        },
+        {
+          "type": "textarea",
+          "id": "ch_4_description",
+          "label": "Type description for #4th choice",
+          "info": "This description will be displayed for #4th choice",
+          "default": "Lorem Ipsum about direct Display light direction"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

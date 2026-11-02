@@ -1,0 +1,273 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "live-page-style": {
+      "type": "live-page-style",
+      "settings": {
+        "heading_font": "barlow_n5",
+        "heading_size": 100,
+        "body_font": "karla_n4",
+        "text_size": 100,
+        "text_color": "#333333",
+        "border_width": 2
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "section_banner_image_PiakGD": {
+      "type": "section-banner-image",
+      "blocks": {
+        "heading_zNaJga": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Our History</p>",
+            "size": 180,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#D43747",
+            "highlight_text_color": "#000"
+          }
+        },
+        "text_eBQYYG": {
+          "type": "text",
+          "settings": {
+            "text": "<p>More than 20 years of expertise in lighting solutions.</p>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_zNaJga",
+        "text_eBQYYG"
+      ],
+      "settings": {
+        "height": "six-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "image": "shopify://shop_images/Untitled_design_42_bd794875-3b3b-45fb-8f0a-421cbc156b84.png",
+        "transition": "zoom-out",
+        "enable_zoom_animation": true,
+        "text_position": "left",
+        "color_scheme": "scheme-3",
+        "overlay_type": "opacity",
+        "increase_border_radius": false,
+        "width": "wrapper--full",
+        "text_alignment": "left",
+        "mobile_text_position": "left",
+        "mobile_text_alignment": "left"
+      }
+    },
+    "section_image_with_text_DxUgFq": {
+      "type": "section-image-with-text",
+      "settings": {
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Untitled_2048_x_1048_px_8f3d74b2-95ff-4371-a091-807064440d9f.png",
+        "section_width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1",
+        "increase_border_radius": false
+      },
+      "blocks": {
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "THE REINVENTION OF THE TORCH",
+            "size": 75,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>OUR HISTORY</p>",
+            "size": 130,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#D43747",
+            "highlight_text_color": "#000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>In 1993, the bank refused to grant them a business loan and they had no real estate to offer as collateral, just fresh ideas and the prototype of the first Ledlenser V8 flashlight. For the gentlemen at the bank, who told them that the V8 was unsellable, that wasn't enough. So In 1994, with 1,000 Deutschmarks, a sketch book, toolbox and old Atari® computer, twin brothers Rainer and Harald Opolka struck out on their own and founded Ledlenser in their garage in Germany.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "subheading",
+        "heading",
+        "text"
+      ]
+    },
+    "section_image_with_text_38XJxn": {
+      "type": "section-image-with-text",
+      "settings": {
+        "section_height": "three-fifty-height",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Untitled_1500_x_2000_px_1_e2fc9540-ac20-4289-8f8d-06ed58e59a28.png",
+        "section_width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1",
+        "increase_border_radius": false
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>CONQUERING THE MARKET</p>",
+            "size": 130,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#D43747",
+            "highlight_text_color": "#000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With all the passion and courage of two young, newly-minted entrepreneurs, they managed without the bank and to their own surprise ended up selling more than 200 million Euros' worth of LED flashlights in the first five years. The V8 became an international design classic and one of the the top-selling LED flashlights in the world.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ]
+    },
+    "section_image_with_text_DchC8k": {
+      "type": "section-image-with-text",
+      "settings": {
+        "section_height": "six-fifty-height",
+        "layout": "inline",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Untitled_2048_x_1048_px_4_c65e94ad-9c16-406f-b16f-ecbcdc09f626.png",
+        "section_width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1",
+        "increase_border_radius": false
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>FROM A GARAGE TO WORLD LEADERS</p>",
+            "size": 130,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#D43747",
+            "highlight_text_color": "#000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Now, as Harald Opolka likes to say, \"We are our own bank.\" As if to remind anyone of this who might happen by, today a lone, tattered, pirate flag waves over their Solingen headquarters.</p><p>Fast forward 25 years, hundreds of patents and design awards later, and Ledlenser is now a company of more than 1,500 employees, three manufacturing bases and a range of some of the world's highest-quality LED flashlights. And today, just as in the beginning, we remain driven by light - the emission, channeling and powering of light.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ]
+    },
+    "section_image_with_text_43Mg6b": {
+      "type": "section-image-with-text",
+      "settings": {
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Untitled_design_39.png",
+        "section_width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1",
+        "increase_border_radius": false
+      },
+      "blocks": {
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "WHERE LIGHT AND EXPERTISE COME TOGETHER",
+            "size": 75,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>OUR HEADQUARTERS</p>",
+            "size": 130,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#D43747",
+            "highlight_text_color": "#000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Before the final production of a new Ledlenser light come months, even years, of research and development. Over 100 employees work at our headquarters in Solingen, which is about a 40-minute drive from either Düsseldorf or Cologne. Here you will find an innovative light research center and high-tech workshops where our team of portable lighting experts design all Ledlenser products.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "subheading",
+        "heading",
+        "text"
+      ]
+    }
+  },
+  "order": [
+    "live-page-style",
+    "main",
+    "section_banner_image_PiakGD",
+    "section_image_with_text_DxUgFq",
+    "section_image_with_text_38XJxn",
+    "section_image_with_text_DchC8k",
+    "section_image_with_text_43Mg6b"
+  ]
+}

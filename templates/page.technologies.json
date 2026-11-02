@@ -1,0 +1,756 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "live-page-style": {
+      "type": "live-page-style",
+      "settings": {
+        "heading_font": "barlow_n5",
+        "heading_size": 100,
+        "body_font": "karla_n4",
+        "text_size": 100,
+        "text_color": "#333333"
+      }
+    },
+    "slideshow": {
+      "type": "section-slideshow",
+      "blocks": {
+        "slideshow-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/cantor-pokey-reverse_f3824306-b89b-49ef-b4cb-8b7c0c8a97a1.jpg",
+            "image_mobile": "shopify://shop_images/cantor-pokey-reverse_f3824306-b89b-49ef-b4cb-8b7c0c8a97a1.jpg",
+            "overlay_type": "opacity",
+            "text_position": "bottom-left",
+            "text_alignment": "left",
+            "mobile_text_position": "bottom-left",
+            "mobile_text_alignment": "left",
+            "subheading": "",
+            "title": "<p>LEDLENSER USA TECHNOLOGIES</p>",
+            "heading_size": 120,
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "text": "From innovative lenses to future-oriented batteries – we work tirelessly to further develop our technological edge. And this is why we already have over 100 patents. And there are no doubt 100 more to come. Below you’ll find a small extract of our personal top 10.",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_1_color": "btn--white",
+            "button_1_style": "btn--solid-border",
+            "button_1_size": "btn--large",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_color": "btn--black",
+            "button_2_style": "btn--solid",
+            "button_2_size": "btn--large",
+            "video_text": "",
+            "video_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slideshow-0"
+      ],
+      "settings": {
+        "slide_height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_slide_height": "two-thirds-height-mobile",
+        "show_nav_dots": false,
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": false,
+        "duration": 4,
+        "transition": "fade",
+        "enable_zoom_animation": true,
+        "enable_card_scrolling": false,
+        "increase_border_radius": false,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "columns": {
+      "type": "section-columns",
+      "blocks": {
+        "column-0": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/1_500x500_a679f875-ad00-498d-b8cc-d8e9320ecb61.webp",
+            "title": "",
+            "text": "",
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--solid-border",
+            "button_size": "btn--medium",
+            "video_link_popup": ""
+          }
+        },
+        "text_block_k86U8N": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/2_500x500_7820a8b9-9a78-4800-9e49-826b704611bf.webp",
+            "title": "",
+            "text": "",
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--solid-border",
+            "button_size": "btn--medium",
+            "video_link_popup": ""
+          }
+        },
+        "text_block_jpJrpW": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/3_500x500_a16e4d75-179d-4865-adf3-ffaaa212f64c.webp",
+            "title": "",
+            "text": "",
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--solid-border",
+            "button_size": "btn--medium",
+            "video_link_popup": ""
+          }
+        }
+      },
+      "block_order": [
+        "column-0",
+        "text_block_k86U8N",
+        "text_block_jpJrpW"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": 120,
+        "layout_desktop": "grid",
+        "align_text": "text-left",
+        "columns": 3,
+        "show_images": true,
+        "show_borders": false,
+        "layout_mobile": "stacked",
+        "columns_mobile": "1",
+        "equalize_height": true,
+        "desktop_aspect_ratio": 0.8,
+        "mobile_aspect_ratio": 0.8,
+        "color_scheme": "scheme-1",
+        "color_borders": "#000000",
+        "width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "cdb3be2a-9d5e-47f0-9431-04f739f3c7cc": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Flex Sealing Technology</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A protective inner sleeve means all moving parts are covered. The flex seal is 100% dust and watertight, even when adjusting focus, giving our new range ratings of up to IP67 and IP68.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Flex-SealTech-Image_baa774c1-64af-45df-9c27-aec3e2f2b655.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 20
+      }
+    },
+    "section_image_with_text_9weF8t": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Multi-core Optics</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The newest and brightest LEDs require optics that are 100% tailor-made to the application. Our new multi-core optic is the perfect upgrade for our advanced focus system – for unprecedented light output and light quality.</p><p>We are always working tirelessly to further our technological edge – from superior lenses to smart batteries, we currently own over 100 patents. And we already have our eyes on the next 100.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Multi-Core-Tech-Image_68dc7ca7-e7a6-43a8-ac71-1de66b6a38d3.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 60
+      }
+    },
+    "section_image_with_text_kHxT6H": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>X-Lens Technology</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>This technology is an extension of the Advanced Focus System (AFS). It can merge virtually any number of reflector lenses and synchronizes its individual light beams into one perfect ray. The result is a high-grade, homogeneous floodlight in unfocused mode, as well as our most sharply focused high beam.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/x-lense_01c7de2c-30d1-4618-b394-4f56d5c24a54.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "909772ff-e663-4f4f-9da8-7ede957325bf": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Safety Ytrion Cell</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>This battery technology is predominantly found in electric vehicles. But it is also ideal for Ledlensers. A Safety Ytrion Cell is considerably lighter than a nickel-metal hydride battery, and can be charged up to five times faster than a lithium-ion battery. Plus it offers more than 3,000 charge cycles with virtually zero capacity loss because of the \"memory effect\".</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/ytrion-cell_e54d0199-457f-48cc-8e7d-45eda8c93b3a.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_image_with_text_f77Ntq": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Advanced Focus System</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Galileo swore by the power of lenses, Newton swore by reflectors. We have simply combined the two technologies – but better than anyone before. The result: Our patented3 Advanced Focus System (AFS), which allows a seamless transition from homogeneous low beam to sharply focused high beam. The efficiency of the AFS even has experts enthralled.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/advanced-focus_d579da75-4cff-4afe-a35f-013fe6682439.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "section_image_with_text_Mpgdhc": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Smart Light Technology</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>This innovation turns a Ledlenser into your personal lighting tool: Using a microcontroller you can program your individual range of functions with different touch and switch combinations. That way you always have the optimal light function at hand.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/smart-light_845a2255-3e9a-418b-a5dc-b75c6bfc3460.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "section_image_with_text_DA7BB9": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Floating Charge System</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>For this battery charge system our engineers have placed a lot of importance on simple handling. A magnetic interface between the light and the charger is what makes it possible. You can therefore dock your Ledlenser directly to the station. The battery remains in the casing and your flashlight is always ready at hand. Due to intelligent charging electronics, it is environmentally-friendly even if you leave it on charge for a long time. And it looks spectacular.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/floating-charge_87c585bc-bb55-4504-a90a-14c3e1f022c1.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "section_image_with_text_eRVUzX": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Rapid Focus</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>When focusing or defocusing the flashlight or headlamp, the reflector lens moves in relation to the LED. To ensure this process is as quick and ergonomic as possible we developed Rapid Focus: a single-hand mechanism that allows the light beam to be adjusted as fast as lightning.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/radid-focus_4b5b2895-a59a-46e7-8729-8763d9772080.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "section_image_with_text_jC7gXK": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Wide Beam</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our wide light format takes into account that the human field of vision is around 180 degrees horizontally and only around 130 degrees vertically. The oval shape of the light and the Wide Beam technology makes things doubly safe: You don't only see more, but are also seen from every angle.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/widebeam_e7f1452f-734a-4402-a071-429949122be0.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "section_image_with_text_waBbe6": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Optisense Technology</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Whether it's dusky, shadowy, dim or pitch-black: With the Optisense technology your Ledlenser will automatically adapt to the present light conditions. The innovative dimmer controls the luminosity based on the reflecting surrounding light, and avoids annoying glare effects.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/optisense_f5128394-8325-4cce-9bf1-73c608a87f95.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "section_image_with_text_AA8xtH": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Temperature Control</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Hard work leaves our lights cold: A Ledlenser never gets too hot, regardless of how much you use it. This protects you from burns and the LED from overheating.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/temperature-control_a3794d13-ceae-479d-80d6-6a0f64db799d.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "section_image_with_text_C4E8mz": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>Emergency Light</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>This application turns your flashlight into an emergency light: When the power goes out and your Ledlenser is on its charging station, it turns on automatically. The light thus helps you to orient yourself, and you can then find the fuse box, for example.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/emergency-light_16960111-009c-4b67-a916-40d5aaf4f2ff.webp",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "section_columns_hmLAiw": {
+      "type": "section-columns",
+      "blocks": {
+        "text_block_CEpk6h": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/case-studies_teaser_1024x_f5b1b79c-35ae-4a68-abf5-b249bd88144f.webp",
+            "title": "From the idea to the finished product.",
+            "text": "<h2><a href=\"/pages/case-studies\" title=\"Case Studies\">A Case Study</a></h2><p>How does a spark become a bonfire? Or in other words: How are lights at Ledlenser made? We can answer that with our case study using the evolutionary story of the XEO19R.</p>",
+            "button_text": "Learn more",
+            "button_link": "shopify://pages/case-studies",
+            "button_color": "btn--black",
+            "button_style": "btn--text",
+            "button_size": "btn--medium",
+            "video_link_popup": ""
+          }
+        },
+        "text_block_zUWU76": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/awards_teaser_1024x_29b69d26-a0f0-4762-8144-e7a151132074.webp",
+            "title": "Our award-winning lights.",
+            "text": "<h2><a href=\"https://www.ledlenserusa.com/pages/awards\">Awards and Test Ratings</a></h2><p>Ledlenser lights even turn heads among experts: This has been demonstrated by our approximately 200 awards, prizes and test ratings.</p>",
+            "button_text": "Learn more",
+            "button_link": "shopify://pages/awards",
+            "button_color": "btn--black",
+            "button_style": "btn--text",
+            "button_size": "btn--medium",
+            "video_link_popup": ""
+          }
+        },
+        "text_block_UxKtWR": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/kontakt_1024x_562f18a7-9b17-48cf-bfd8-50dfba6e0a43.jpg",
+            "title": "Questions? We have answers.",
+            "text": "<h2><a href=\"/pages/contact\" title=\"Contact\">Contact</a></h2><p>We are always open to questions and suggestions concerning our products, and we make your concerns our own. Simply contact us.</p>",
+            "button_text": "Learn more",
+            "button_link": "shopify://pages/contact",
+            "button_color": "btn--black",
+            "button_style": "btn--text",
+            "button_size": "btn--medium",
+            "video_link_popup": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_CEpk6h",
+        "text_block_zUWU76",
+        "text_block_UxKtWR"
+      ],
+      "custom_css": [
+        ".column-item__text h2 {font-size: 26px; font-weight: 500;}",
+        ".column-item__heading.h6 {margin-bottom: 20px; font-size: 16px;}"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": 120,
+        "layout_desktop": "grid",
+        "align_text": "text-left",
+        "columns": 3,
+        "show_images": true,
+        "show_borders": false,
+        "layout_mobile": "stacked",
+        "columns_mobile": "1",
+        "equalize_height": true,
+        "desktop_aspect_ratio": 0.8,
+        "mobile_aspect_ratio": 0.8,
+        "color_scheme": "scheme-1",
+        "color_borders": "#000000",
+        "width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "live-page-style",
+    "slideshow",
+    "columns",
+    "cdb3be2a-9d5e-47f0-9431-04f739f3c7cc",
+    "section_image_with_text_9weF8t",
+    "section_image_with_text_kHxT6H",
+    "909772ff-e663-4f4f-9da8-7ede957325bf",
+    "section_image_with_text_f77Ntq",
+    "section_image_with_text_Mpgdhc",
+    "section_image_with_text_DA7BB9",
+    "section_image_with_text_eRVUzX",
+    "section_image_with_text_jC7gXK",
+    "section_image_with_text_waBbe6",
+    "section_image_with_text_AA8xtH",
+    "section_image_with_text_C4E8mz",
+    "section_columns_hmLAiw",
+    "main"
+  ]
+}

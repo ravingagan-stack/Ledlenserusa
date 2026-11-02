@@ -1,0 +1,104 @@
+{%- comment -%}
+  Renders the mobile accordion links for a mega menu item (links ported from the live theme).
+  Outputs nothing when the item has no mega links, so the menu's own sub-links are used.
+
+  Accepts:
+  - handle: {String} Handleized top-level link title, e.g. 'headlamps' (required)
+
+  Usage:
+  {% render 'nav-mega-mobile-links', handle: mega_handle %}
+{%- endcomment -%}
+{%- case handle -%}
+  {%- when 'headlamps' -%}
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/headlamps?filter.p.m.custom.use_case=Work" class="mobile-navlink mobile-navlink--level-2"><span>Work &amp; Professional</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/headlamps?filter.p.m.custom.use_case=Outdoor" class="mobile-navlink mobile-navlink--level-2"><span>Outdoor</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/headlamps?filter.p.m.custom.use_case=Everyday" class="mobile-navlink mobile-navlink--level-2"><span>Everyday Life</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/hf-series-headlamps" class="mobile-navlink mobile-navlink--level-2"><span>HF-Series</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/h-series-headlamps" class="mobile-navlink mobile-navlink--level-2"><span>H-Series</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/25th-anniversary-edition-headlamp" class="mobile-navlink mobile-navlink--level-2"><span>25th Anniversary</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2 mobile-menu__item--mega-all">
+      <a href="/collections/headlamps" class="mobile-navlink mobile-navlink--level-2 mobile-navlink--mega-all"><span>Shop all headlamps →</span></a>
+    </li>
+  {%- when 'flashlights' -%}
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/flashlights?filter.p.m.custom.use_case=Work" class="mobile-navlink mobile-navlink--level-2"><span>Work &amp; Professional</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/flashlights?filter.p.m.custom.use_case=Outdoor" class="mobile-navlink mobile-navlink--level-2"><span>Outdoor</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/tactical-flashlights" class="mobile-navlink mobile-navlink--level-2"><span>Tactical</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/tac-series" class="mobile-navlink mobile-navlink--level-2"><span>TAC-Series</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/the-p-series-redefined" class="mobile-navlink mobile-navlink--level-2"><span>P-Series</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/25th-anniversary-edition-flashlights" class="mobile-navlink mobile-navlink--level-2"><span>25th Anniversary</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2 mobile-menu__item--mega-all">
+      <a href="/collections/flashlights" class="mobile-navlink mobile-navlink--level-2 mobile-navlink--mega-all"><span>Shop all flashlights →</span></a>
+    </li>
+  {%- when 'area-lights' -%}
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/area-lights?filter.p.m.custom.use_case=Work" class="mobile-navlink mobile-navlink--level-2"><span>Work &amp; Professional</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/area-lights?filter.p.m.custom.use_case=Outdoor" class="mobile-navlink mobile-navlink--level-2"><span>Outdoor</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/collections/area-lights?filter.p.m.custom.rechargeable=Yes" class="mobile-navlink mobile-navlink--level-2"><span>Rechargeable</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2 mobile-menu__item--mega-all">
+      <a href="/collections/area-lights" class="mobile-navlink mobile-navlink--level-2 mobile-navlink--mega-all"><span>Shop all area lights →</span></a>
+    </li>
+  {%- when 'powerup' -%}
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/product-quiz" class="mobile-navlink mobile-navlink--level-2"><span>Light Finder</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/the-world-is-as-bright-as-you-make-it" class="mobile-navlink mobile-navlink--level-2"><span>The World is as Bright as you Make it</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/about-us" class="mobile-navlink mobile-navlink--level-2"><span>About Us</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/our-history" class="mobile-navlink mobile-navlink--level-2"><span>Our History</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/faq" class="mobile-navlink mobile-navlink--level-2"><span>FAQ</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/technologies" class="mobile-navlink mobile-navlink--level-2"><span>Technology</span></a>
+    </li>
+  {%- when 'support' -%}
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="https://ledlenser.com/en/infos-service/product-registration/" class="mobile-navlink mobile-navlink--level-2" target="_blank" rel="noopener"><span>Product Registration</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/exchange-returns" class="mobile-navlink mobile-navlink--level-2"><span>Returns &amp; Exchanges</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/service-warranty" class="mobile-navlink mobile-navlink--level-2"><span>Service &amp; Warranty</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/contact-us" class="mobile-navlink mobile-navlink--level-2"><span>Contact Form</span></a>
+    </li>
+    <li class="mobile-menu__item mobile-menu__item--level-2">
+      <a href="/pages/faq" class="mobile-navlink mobile-navlink--level-2"><span>Customer Support</span></a>
+    </li>
+{%- endcase -%}

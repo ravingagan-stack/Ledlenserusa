@@ -34,7 +34,7 @@
           "type": "link",
           "settings": {
             "alignment": "text-left",
-            "menu": "footer-shop-new",
+            "menu": "footer-shop",
             "title": "SHOP",
             "column_width": "25"
           }
@@ -43,8 +43,17 @@
           "type": "link",
           "settings": {
             "alignment": "text-left",
-            "menu": "footer-support-new",
+            "menu": "footer-support",
             "title": "SUPPORT",
+            "column_width": "25"
+          }
+        },
+        "link_RBaT4g": {
+          "type": "link",
+          "settings": {
+            "alignment": "text-left",
+            "menu": "footer-company",
+            "title": "Company",
             "column_width": "25"
           }
         },
@@ -52,8 +61,8 @@
           "type": "link",
           "settings": {
             "alignment": "text-left",
-            "menu": "footer-programs",
-            "title": "PROGRAMS",
+            "menu": "footer-explore",
+            "title": "Explore",
             "column_width": "25"
           }
         }
@@ -62,6 +71,7 @@
         "logo_with_text_GjMFj9",
         "footer-block-2",
         "85419cdc-79f6-42de-b7c4-aab7a9f33c50",
+        "link_RBaT4g",
         "link_9nPEyE"
       ],
       "settings": {

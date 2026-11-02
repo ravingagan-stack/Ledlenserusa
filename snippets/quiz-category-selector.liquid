@@ -1,0 +1,76 @@
+<div
+  class="quiz--step-1 quiz--bg step-600 {{ class }}"
+  style="--desktopimg: url({{ block.settings.bg_img | img_url: 'master' }}); --mobileimg: url({{ block.settings.mobile_img | img_url: 'master' }});"
+  data-type="category-selector"
+>
+  {%- if block.settings.title != blank -%}
+    <h2 class="quiz--step_h2">{{ block.settings.title }}</h2>
+  {%- endif -%}
+
+  <div class="quiz--product_flex quiz--product_main quiz--step1">
+    <!-- head lamp -->
+    {%- if block.settings.hl_collection != blank -%}
+      <label class="quiz--product-col quiz--step-option" data-step="1" data-type="category-selector">
+        {%- assign collection = collections[block.settings.hl_collection] -%}
+        <input
+          type="radio"
+          name="category"
+          value="{{ block.settings.hl_handle }}"
+          data-handle="{{ collection.handle }}"
+        >
+        <span class="step1-img-wrap">
+          <img src="{{ block.settings.hl_icon | img_url: "master" }}">
+        </span>
+        <span>{{ block.settings.hl_title }}</span>
+      </label>
+    {%- endif -%}
+    <!-- ./head lamp -->
+
+    <!-- flash light -->
+    {%- if block.settings.fl_collection != blank -%}
+      {%- assign collection = collections[block.settings.fl_collection] -%}
+      <label class="quiz--product-col quiz--step-option" data-step="1" data-type="category-selector">
+        <input
+          type="radio"
+          name="category"
+          value="{{ block.settings.fl_handle }}"
+          data-handle="{{ collection.handle }}"
+        >
+        <span class="step1-img-wrap">
+          <img src="{{ block.settings.fl_icon | img_url: "master" }}">
+        </span>
+        <span>{{ block.settings.fl_title }}</span>
+      </label>
+    {%- endif -%}
+    <!-- ./flash light -->
+
+    <!-- area light -->
+    {%- if block.settings.la_collection != blank -%}
+      {%- assign collection = collections[block.settings.la_collection] -%}
+      <label class="quiz--product-col quiz--step-option" data-step="1" data-type="category-selector">
+        <input
+          type="radio"
+          name="category"
+          value="{{ block.settings.la_handle }}"
+          data-handle="{{ collection.handle }}"
+        >
+        <span class="step1-img-wrap">
+          <img src="{{ block.settings.la_icon | img_url: "master" }}">
+        </span>
+        <span>{{ block.settings.la_title }}</span>
+      </label>
+    {%- endif -%}
+    <!-- ./area light -->
+  </div>
+
+  <!-- cta -->
+  {%- if block.settings.cta_label != blank -%}
+    <button class="quiz--product-button btn--next" disabled>
+      {{ block.settings.cta_label }}
+    </button>
+  {%- endif -%}
+  <!-- ./cta -->
+  {%- if block.settings.is_optional -%}
+    <button class="button--text quiz--product-button btn--skip">I’M NOT SURE, SKIP</button>
+  {%- endif -%}
+</div>

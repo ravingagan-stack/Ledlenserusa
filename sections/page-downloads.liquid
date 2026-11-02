@@ -1,0 +1,223 @@
+{%- comment -%}
+  Styles and behaviour for the downloads accordion that lives in the page
+  content of /pages/downloads (ported from the live theme's custom.css/js).
+  Only outputs anything when the page content contains the accordion.
+{%- endcomment -%}
+{%- if page.content contains 'down-acc' -%}
+  {%- style -%}
+    #MainContent .rte > img:first-child {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    #MainContent .rte .grid {
+      display: block;
+    }
+
+    #MainContent .rte h1 {
+      margin-top: 20px;
+      padding: 0;
+    }
+
+    #MainContent .down-acc hr {
+      display: none;
+    }
+
+    #MainContent .down-acc #quickfilter {
+      width: 100%;
+      margin: 30px 0 10px;
+      padding: 14px 18px;
+      border: 1px solid #cccccc;
+      border-radius: 0;
+      font-family: Barlow, 'Helvetica Neue', sans-serif;
+      font-size: 16px;
+    }
+
+    #MainContent .down-acc #quickfilter:focus {
+      outline: none;
+      border-color: {{ section.settings.active_color }};
+    }
+
+    #MainContent .down-acc h3.acc-head {
+      position: relative;
+      margin: 10px 0 0;
+      padding: 17px 50px 17px 30px;
+      background-color: {{ section.settings.inactive_color }};
+      color: #ffffff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #MainContent .down-acc h3.acc-head::after {
+      content: '+';
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2em;
+    }
+
+    #MainContent .down-acc h3.acc-head.active {
+      background-color: {{ section.settings.active_color }};
+    }
+
+    #MainContent .down-acc h3.acc-head.active::after {
+      content: '\2212';
+    }
+
+    #MainContent .down-acc .acc-text {
+      display: none;
+      padding: 0 30px;
+    }
+
+    #MainContent .acc-text .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    #MainContent .acc-text .grid.none {
+      display: none;
+    }
+
+    #MainContent .acc-text .grid > * {
+      width: 50%;
+    }
+
+    #MainContent .acc-text h4 {
+      width: 100%;
+      margin: 10px 0 0;
+      padding: 10px 0;
+      border-bottom: 1px solid #dddddd;
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    #MainContent .acc-text .grid__item {
+      padding: 10px 20px 10px 0;
+    }
+
+    #MainContent .acc-text .grid__item p {
+      margin: 0 0 4px;
+      font-weight: 700;
+    }
+
+    @media only screen and (max-width: 767px) {
+      #MainContent .down-acc .acc-text {
+        padding: 0 15px;
+      }
+
+      #MainContent .acc-text .grid > * {
+        width: 100%;
+      }
+    }
+  {%- endstyle -%}
+
+  <script>
+    (function () {
+      function each(selector, callback) {
+        document.querySelectorAll(selector).forEach(callback);
+      }
+
+      function toggle(head) {
+        var panel = head.nextElementSibling;
+        if (!panel) return;
+        var open = head.classList.toggle('active');
+        panel.style.display = open ? 'block' : 'none';
+      }
+
+      function quickFilter(value) {
+        var search = String(value).toLowerCase().trim();
+
+        each('.acc-text .grid__item', function (item) {
+          var product = item.dataset.product || '';
+          item.style.display = product.indexOf(search) !== -1 ? '' : 'none';
+        });
+
+        each('.acc-text .grid', function (grid) {
+          var visible = Array.prototype.some.call(grid.querySelectorAll('.grid__item'), function (item) {
+            return item.style.display !== 'none';
+          });
+          grid.classList.toggle('none', !visible);
+          grid.classList.toggle('show', visible);
+        });
+
+        // Open the categories that contain matches, close the rest; reset when the search is cleared
+        each('.down-acc h3.acc-head', function (head) {
+          var hasMatch = !!(head.nextElementSibling && head.nextElementSibling.querySelector('.grid.show'));
+          var shouldOpen = search !== '' && hasMatch;
+          if (head.classList.contains('active') !== shouldOpen) toggle(head);
+        });
+      }
+
+      function init() {
+        each('.down-acc h3.acc-head', function (head) {
+          head.setAttribute('role', 'button');
+          head.setAttribute('tabindex', '0');
+          head.addEventListener('click', function () {
+            toggle(head);
+          });
+          head.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              toggle(head);
+            }
+          });
+        });
+
+        each('.acc-text .grid__item', function (item) {
+          var label = item.querySelector('p');
+          item.dataset.product = label ? label.textContent.toLowerCase() : '';
+        });
+
+        var input = document.getElementById('quickfilter');
+        if (input) {
+          input.addEventListener('input', function (event) {
+            quickFilter(event.target.value);
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Downloads accordion",
+    "class": "shopify-section--page-downloads",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Styles the downloads accordion in the page content. Only shows on pages whose content contains it."
+      },
+      {
+        "type": "color",
+        "id": "inactive_color",
+        "label": "Category background",
+        "default": "#AAAAAA"
+      },
+      {
+        "type": "color",
+        "id": "active_color",
+        "label": "Open category background",
+        "default": "#D4000F"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Downloads accordion"
+      }
+    ]
+  }
+{% endschema %}

@@ -229,24 +229,49 @@
     {%- if pill_blocks.size > 0 -%}
       {%- liquid
         comment
-          A pill whose link matches the current page wins; the "always active" checkbox is only a fallback
+          Only one pill is active: the first one whose link matches the current page.
+          The "always active" checkbox only applies to pills without a link, so a pill never
+          shows as active on a page it doesn't link to (e.g. "All headlamps" on area lights).
         endcomment
-        assign has_url_match = false
+        assign active_pill_id = ''
         for block in pill_blocks
-          if block.settings.link != blank and block.settings.link == request.path
-            assign has_url_match = true
+          if block.settings.link == blank
+            continue
+          endif
+          assign pill_path = block.settings.link | split: '?' | first
+          assign pill_handle = pill_path | split: '/collections/' | last | split: '/' | first
+          if pill_path == request.path or collection and pill_path contains '/collections/' and pill_handle == collection.handle
+            assign active_pill_id = block.id
+            break
           endif
         endfor
+
+        comment
+          On a collection that has no pill of its own (e.g. area lights), show it as the first, active pill
+        endcomment
+        assign show_current_pill = false
+        if active_pill_id == '' and collection and collection.handle != blank
+          assign show_current_pill = true
+          assign active_pill_id = 'current'
+        endif
+
+        if active_pill_id == ''
+          for block in pill_blocks
+            if block.settings.link == blank and block.settings.active
+              assign active_pill_id = block.id
+              break
+            endif
+          endfor
+        endif
       -%}
       <nav class="chh__pills" aria-label="Filter headlamps" data-chh-pills>
+        {%- if show_current_pill -%}
+          <a href="{{ collection.url }}" class="chh__pill is-active" aria-current="page">{{ collection.title }}</a>
+        {%- endif -%}
         {%- for block in pill_blocks -%}
           {%- liquid
             assign is_active = false
-            if has_url_match
-              if block.settings.link != blank and block.settings.link == request.path
-                assign is_active = true
-              endif
-            elsif block.settings.active
+            if block.id == active_pill_id
               assign is_active = true
             endif
           -%}
@@ -287,10 +312,24 @@
           });
           if (exact) setActive(exact);
 
-          pills.forEach((pill) => {
+          // Several pills can share a link: keep the one that was actually clicked
+          const storageKey = 'chh-active-pill';
+          if (!exact) {
+            try {
+              const saved = JSON.parse(sessionStorage.getItem(storageKey) || 'null');
+              const pill = saved && saved.path === window.location.pathname ? pills[saved.index] : null;
+              if (pill && new URL(pill.href, window.location.origin).pathname === saved.path) setActive(pill);
+            } catch (error) {}
+          }
+
+          pills.forEach((pill, index) => {
             pill.addEventListener('click', (event) => {
               if (pill.getAttribute('href') === '#') event.preventDefault();
               setActive(pill);
+              try {
+                const path = new URL(pill.href, window.location.origin).pathname;
+                sessionStorage.setItem(storageKey, JSON.stringify({ path, index }));
+              } catch (error) {}
             });
           });
         })();
@@ -340,7 +379,7 @@
       "settings": [
         { "type": "text", "id": "label", "label": "Label", "default": "Work & jobsite" },
         { "type": "url", "id": "link", "label": "Link" },
-        { "type": "checkbox", "id": "active", "label": "Always show as active (red)", "info": "Buttons also turn red automatically when their link matches the current page", "default": false }
+        { "type": "checkbox", "id": "active", "label": "Always show as active (red)", "info": "Only used for buttons without a link. Buttons with a link turn red automatically on the page they link to", "default": false }
       ]
     }
   ],

@@ -1,0 +1,189 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "live-page-style": {
+      "type": "live-page-style",
+      "settings": {
+        "heading_font": "barlow_n5",
+        "heading_size": 100,
+        "body_font": "karla_n4",
+        "text_size": 100,
+        "text_color": "#333333",
+        "border_width": 2
+      }
+    },
+    "slideshow": {
+      "type": "section-slideshow",
+      "blocks": {
+        "slideshow-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design_44.webp",
+            "image_mobile": "shopify://shop_images/Untitled_design_44.webp",
+            "text_position": "bottom-left",
+            "subheading": "",
+            "title": "<p>RESEARCH AND DEVELOPMENT</p>",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "text": "From the idea to finished product.",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_1_color": "btn--white",
+            "button_1_style": "btn--solid-border",
+            "button_1_size": "btn--large",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_color": "btn--black",
+            "button_2_style": "btn--solid",
+            "button_2_size": "btn--large",
+            "video_text": "",
+            "video_link": "",
+            "heading_size": 120,
+            "overlay_type": "opacity",
+            "text_alignment": "left",
+            "mobile_text_position": "bottom-left",
+            "mobile_text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "slideshow-0"
+      ],
+      "settings": {
+        "slide_height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_slide_height": "two-thirds-height-mobile",
+        "show_nav_dots": false,
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": false,
+        "duration": 4,
+        "transition": "fade",
+        "enable_zoom_animation": true,
+        "color_scheme": "scheme-3",
+        "increase_border_radius": false,
+        "enable_card_scrolling": false
+      }
+    },
+    "cdb3be2a-9d5e-47f0-9431-04f739f3c7cc": {
+      "type": "section-image-with-text",
+      "settings": {
+        "section_height": "six-fifty-height",
+        "layout": "overlay",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Untitled_2048_x_1048_px_6.webp",
+        "section_width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 20,
+        "color_scheme": "scheme-1",
+        "increase_border_radius": false
+      },
+      "blocks": {
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "FLASHES OF GENIUS",
+            "size": 75,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p><strong>TURNING FLASHES INTO LIGHT</strong></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>To turn these flashes into light as reliably as possible, we’ve clearly divided up our tasks: Engineered in Germany, produced in China.</p><p>Our development department in Solingen is our “ideas laboratory” where we exchange ideas and lead passionate discussions. In addition to concentrated expertise, a good portion of “madness” also plays a role here. We look into what it is our users really need, and how we can meet those demands in an intelligent and new way. We then mould the answers into a unique, ergonomic design.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "subheading",
+        "heading",
+        "text"
+      ]
+    },
+    "section_image_with_text_9weF8t": {
+      "type": "section-image-with-text",
+      "settings": {
+        "section_height": "six-fifty-height",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Untitled_design_45_1296x_e1182afa-c75f-4535-8afa-44216885415a.webp",
+        "section_width": "wrapper",
+        "padding_top": 20,
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1",
+        "increase_border_radius": false
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>IDEATION TO PRODUCTION</p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our site in the Chinese city of Yangjiang, on the other hand, is where all our production skills come together. We firmly believe that experience in product quality is important and are constantly further developing our knowledge in that area. All of our products are manufactured and tested, from the prototype stage to mass production, in Yangjiang. To ensure that our products become real and proper tools which can withstand the toughest conditions, we first put them to the acid test. Our quality control checklist is a list with 24 items, which encompass nearly all types of possible stress. Endurance, extreme temperatures, water, salt, blows, pressure – it is all inspected and tested until our engineers are near to tears. But at the end of the day, our customers can look forward to functional and extremely reliable lights.</p><p>We are always working tirelessly to further our technological edge – from superior lenses to smart batteries, we currently own over 100 patents. And we already have our eyes on the next 100.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ]
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": [
+    "live-page-style",
+    "slideshow",
+    "cdb3be2a-9d5e-47f0-9431-04f739f3c7cc",
+    "section_image_with_text_9weF8t",
+    "main"
+  ]
+}

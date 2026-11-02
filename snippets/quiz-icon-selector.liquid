@@ -1,0 +1,46 @@
+<div
+  class="quiz--step-{{ block.settings.step }} step-600 {{ class }} quiz--bg"
+  style="--desktopimg: url({{ block.settings.bg_img | img_url: 'master' }}); --mobileimg: url({{ block.settings.mobile_img | img_url: 'master' }});"
+  data-category="{{ block.settings.category }}"
+  data-type="icon-selector"
+  data-tag-prefix="{{ block.settings.tag_prefix }}"
+  data-condition-tags="{{ block.settings.display_condition_tags }}"
+  data-image="{{ block.settings.bg_img | img_url: 'master' }}"
+>
+  {%- if block.settings.title != blank -%}
+    <h2 class="quiz--step_h2">{{ block.settings.title }}</h2>
+  {%- endif -%}
+
+  <div class="quiz--product_flex quiz--product_main quiz--step1">
+    {%- for i in (1..4) -%}
+      {% capture image_id %}ch_{{ i }}_icon{% endcapture %}
+      {% capture title_id %}ch_{{ i }}_title{% endcapture %}
+
+      {%- if block.settings[image_id] != blank -%}
+        <label
+          class="quiz--product-col quiz--step-option"
+          data-step="{{ block.settings.step }}"
+          data-type="icon-selector"
+        >
+          <input type="radio" name="step-4" value="{{ block.settings[title_id] }}">
+          <span class="step1-img-wrap">
+            <img src="{{ block.settings[image_id] | img_url: "master" }}">
+          </span>
+          <span>{{ block.settings[title_id] }}</span>
+        </label>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <!-- cta -->
+  {%- if block.settings.cta_label != blank -%}
+    <button class="quiz--product-button btn--next" disabled>
+      {{ block.settings.cta_label }}
+    </button>
+  {%- endif -%}
+  <!-- ./cta -->
+
+  {%- if block.settings.is_optional -%}
+    <button class="button--text quiz--product-button btn--skip">I’M NOT SURE, SKIP</button>
+  {%- endif -%}
+</div>

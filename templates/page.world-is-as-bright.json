@@ -1,0 +1,865 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "live_page_style": {
+      "type": "live-page-style",
+      "settings": {
+        "heading_font": "barlow_n5",
+        "heading_size": 100,
+        "body_font": "karla_n4",
+        "text_size": 100,
+        "text_color": "#333333",
+        "border_width": 2
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_banner_image_JcDifc": {
+      "type": "section-banner-image",
+      "blocks": {
+        "heading_zf7VKb": {
+          "type": "heading",
+          "settings": {
+            "text": "<h1>THE WORLD IS AS <strong>BRIGHT</strong> AS YOU MAKE IT</h1>",
+            "size": 255,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_zf7VKb"
+      ],
+      "custom_css": [
+        ".banner-image__image-container {background-color: #f7f7f7;}",
+        ".banner-image__image-inner {display: none;}"
+      ],
+      "settings": {
+        "height": "six-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "original-height-mobile",
+        "overlay_type": "disabled",
+        "transition": "zoom-out",
+        "enable_zoom_animation": true,
+        "enable_card_scrolling": false,
+        "increase_border_radius": false,
+        "content_width": 80,
+        "text_position": "center",
+        "text_alignment": "center",
+        "mobile_text_position": "center",
+        "mobile_text_alignment": "center",
+        "color_scheme": "scheme-1",
+        "show_text_background": false,
+        "bg_color": "",
+        "text_color": "",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_text_HQceTi": {
+      "type": "section-text",
+      "blocks": {
+        "text_M3KUaD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A simple beam of light can empower the world. It allows us to explore worlds, to discover wonders, to feel warmth and inspiration. Light allows us to go further than we ever imagined possible. We each have the power to radiate positivity, to cast inspiration, and to ignite and illuminate meaningful change. The world is as bright as you make it.</p>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "text_M3KUaD"
+      ],
+      "custom_css": [
+        ".section-padding {background-color: black;}"
+      ],
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "left",
+        "color_scheme": "scheme-3",
+        "width": "wrapper--narrow",
+        "padding_top": 90,
+        "padding_bottom": 90
+      }
+    },
+    "section_video_rf9qhW": {
+      "type": "section-video",
+      "settings": {
+        "video_height": "four-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "four-fifty-height-mobile",
+        "text_width": "normal",
+        "text_position": "middle-center",
+        "video_link_bg": "https://cdn.shopify.com/videos/c/o/v/891dd9464ce141528dc74ad7bd3deec5.mp4",
+        "video_link": "",
+        "overlay_type": "text",
+        "title": "",
+        "heading_size": 100,
+        "heading_highlight_type": "italics",
+        "highlight_color": "#d43747",
+        "highlight_text_color": "#000000",
+        "text": "",
+        "text_size": 100,
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_color": "btn--white",
+        "button_1_style": "btn--solid",
+        "button_1_size": "btn--small",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_color": "btn--black",
+        "button_2_style": "btn--solid",
+        "button_2_size": "btn--medium",
+        "color_scheme": "scheme-3",
+        "show_text_background": false,
+        "bg_color": "",
+        "text_color": ""
+      }
+    },
+    "section_list_butttons_WhgzmV": {
+      "type": "section-list-butttons",
+      "blocks": {
+        "button_C6bQEa": {
+          "type": "button",
+          "settings": {
+            "heading": "Watch the film",
+            "button_link": "",
+            "overlay_type": "opacity",
+            "block_text_color": "",
+            "bg_color": "",
+            "border_color": ""
+          }
+        },
+        "button_HeRRBe": {
+          "type": "button",
+          "settings": {
+            "heading": "Explore the stories",
+            "button_link": "",
+            "overlay_type": "opacity",
+            "block_text_color": "",
+            "bg_color": "",
+            "border_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "button_C6bQEa",
+        "button_HeRRBe"
+      ],
+      "custom_css": [
+        ".section-padding {background-color: #333333;}",
+        ".background-size-cover {display: none;}",
+        ".list-collections__item__image {border: none;}",
+        ".button-typography {border-color: white; color: white;}"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": 100,
+        "layout": "grid",
+        "alignment": "center",
+        "collections_per_row": 2,
+        "columns_mobile": "1",
+        "type_style": "button-typography",
+        "button_style": "square",
+        "text_size": 115,
+        "letter_spacing": 75,
+        "show_arrow": false,
+        "bg_color": "#ffffff",
+        "block_text_color": "#ffffff",
+        "border_color": "#ffffff",
+        "color_scheme": "scheme-3",
+        "section_text_color": "",
+        "enable_slider_mobile": true,
+        "animations_enabled": true,
+        "width": "wrapper--full-padded",
+        "padding_top": 90,
+        "padding_bottom": 90
+      }
+    },
+    "section_video_Fqbpcg": {
+      "type": "section-video",
+      "settings": {
+        "video_height": "six-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "four-fifty-height-mobile",
+        "text_width": "normal",
+        "text_position": "middle-center",
+        "video_link_bg": "",
+        "video_link": "https://cdn.shopify.com/videos/c/o/v/bf34fad1bd67458d91c340f0ffb65c82.mp4",
+        "image": "shopify://shop_images/Asset_1_4x_712c2145-619f-4b11-b0d5-962ec749e1aa.png",
+        "overlay_type": "text",
+        "title": "",
+        "heading_size": 100,
+        "heading_highlight_type": "italics",
+        "highlight_color": "#d43747",
+        "highlight_text_color": "#000000",
+        "text": "",
+        "text_size": 100,
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_color": "btn--white",
+        "button_1_style": "btn--solid-border",
+        "button_1_size": "btn--small",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_color": "btn--black",
+        "button_2_style": "btn--solid",
+        "button_2_size": "btn--medium",
+        "color_scheme": "scheme-3",
+        "show_text_background": false,
+        "bg_color": "",
+        "text_color": ""
+      }
+    },
+    "section_text_jnmcnN": {
+      "type": "section-text",
+      "blocks": {
+        "heading_HJ4ig3": {
+          "type": "heading",
+          "settings": {
+            "text": "<h2><strong>SPOTLIGHT STORIES</strong></h2>",
+            "size": 135,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000"
+          }
+        },
+        "text_fXNWtM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Illuminating people and companies whose actions, commitment and inspiring examples continue to make the world a brighter place.</p>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_HJ4ig3",
+        "text_fXNWtM"
+      ],
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-1",
+        "width": "wrapper--narrow",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "section_image_with_text_tiJz4M": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>88 Bikes</p>",
+            "size": 130,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The 88bikes Foundation was founded by Dan Austin in 2007 and is focused on providing a simple and direct way to make a difference for a heroic girl, especially the survivors of human trafficking. They have been endowing bikes to young girls around the world since 2007 and believe if you buy her a bike, she can go anywhere! It is a path to joy.</p><p><a href=\"https://www.88bikes.org/\" title=\"https://www.88bikes.org/\">88Bikes.org</a></p><p><a href=\"https://www.instagram.com/88bikes/?hl=en\" title=\"https://www.instagram.com/88bikes/?hl=en\">88Bikes Instagram</a></p><p><a href=\"https://www.88bikes.org/moment-of-happy\" title=\"https://www.88bikes.org/moment-of-happy\">Moment of Happy</a></p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "custom_css": [
+        ".image-with-text__content {border: 2px solid black; padding: 45px;}"
+      ],
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "three-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/VIETNAM_2010_MEKONG_DELTA_3_girls_ride5_CLASSIC_smiles_telephoto_rt_x2_0ef71364-9359-44c6-9714-9cac8b031d30.jpg",
+        "block_bg_color": "",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_text_XKXfVE": {
+      "type": "section-text",
+      "blocks": {
+        "heading_arhdMh": {
+          "type": "heading",
+          "settings": {
+            "text": "<h4><strong>SINCE 2007 </strong><em><strong>88BIKES</strong></em><strong> HAVE ENDOWED 10,000 BIKES TO HEROIC KIDS IN EIGHTEEN COUNTRIES.</strong></h4>",
+            "size": 100,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000"
+          }
+        },
+        "text_PgWWgp": {
+          "type": "text",
+          "settings": {
+            "text": "<h4>-------------------------------</h4>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_arhdMh",
+        "text_PgWWgp"
+      ],
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-1",
+        "width": "wrapper--narrow",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_grid_rRBfUG": {
+      "type": "section-grid",
+      "blocks": {
+        "image_ewMEQP": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/uganda_heikelein-1_1_of_1.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_BPqy8Q": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/Morocco_1_blue_x2_dcca7dbe-d146-4071-aa99-4828487422c7.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_zwbMrC": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/biking_yellow_better_morocco_x1_485ae575-b4f6-49b7-9863-cfaee732681e.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_HL9qMk": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/10395_india_sm.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_ewMEQP",
+        "image_BPqy8Q",
+        "image_zwbMrC",
+        "image_HL9qMk"
+      ],
+      "settings": {
+        "desktop_height": "three-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "heading_size": 130,
+        "text_size": 100,
+        "button_1_color": "btn--white",
+        "button_1_style": "btn--text",
+        "button_1_size": "btn--small",
+        "button_2_color": "btn--black",
+        "button_2_style": "btn--text",
+        "button_2_size": "btn--small",
+        "color_scheme": "scheme-1",
+        "overlayed_text": "#ffffff",
+        "enable_slider_mobile": true,
+        "columns_mobile": "1",
+        "overlay_text": true,
+        "width": "wrapper",
+        "add_gutter": false,
+        "padding_top": 30,
+        "padding_bottom": 60
+      }
+    },
+    "section_image_with_text_amEcQw": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>BAND OF BUILDERS</p>",
+            "size": 130,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Band of Builders is the National Construction Charity providing support to members of the UK construction industry facing life changing or limiting circumstances. They deliver life enhancing projects, as well as financial and emotional support for tradespeople and their families across the UK who are dealing with life’s most challenging circumstances.</p><p><a href=\"http://www.bandofbuilders.org/\" title=\"http://www.bandofbuilders.org/\">BandofBuilders.org</a></p><p><a href=\"https://www.instagram.com/bandofbuilders_/?hl=en\" title=\"https://www.instagram.com/bandofbuilders_/?hl=en\">BandofBuilders IG</a></p><p><a href=\"https://www.youtube.com/channel/UCAxaFWDymhaP1TwOyiEdqGg\" title=\"https://www.youtube.com/channel/UCAxaFWDymhaP1TwOyiEdqGg\">BandofBuilders YouTube</a></p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "custom_css": [
+        ".image-with-text__content {border: 2px solid black; padding: 45px;}"
+      ],
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "three-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/DSC_0011.jpg",
+        "block_bg_color": "",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_text_Ykp476": {
+      "type": "section-text",
+      "blocks": {
+        "heading_fPhqBF": {
+          "type": "heading",
+          "settings": {
+            "text": "<h4><strong>SINCE 2016, BAND OF BUILDERS HAS COMPLETED PROJECTS WITH #TOGETHERSTRONGER AT ITS CORE.</strong></h4>",
+            "size": 100,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000"
+          }
+        },
+        "text_8tr8H8": {
+          "type": "text",
+          "settings": {
+            "text": "<h4>-------------------------------</h4>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_fPhqBF",
+        "text_8tr8H8"
+      ],
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-1",
+        "width": "wrapper--narrow",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_grid_7q9JTj": {
+      "type": "section-grid",
+      "blocks": {
+        "image_9x8wec": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/PHOTO-2023-06-28-19-38-31_7e80920f-ce26-453d-abe0-4f0e13434c15.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_WwMYHw": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/IMG_2844_f8559580-0336-41fe-bd7c-73679c7b9b93.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_Li7fxL": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/IMG_9514_60a65fea-d9cd-4cbe-abf2-59f81c9b367f.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_WDG8f9": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/IMG_0024_6727db7c-f093-40db-a0ba-b8db09a2f815.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_9x8wec",
+        "image_WwMYHw",
+        "image_Li7fxL",
+        "image_WDG8f9"
+      ],
+      "settings": {
+        "desktop_height": "three-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "heading_size": 130,
+        "text_size": 100,
+        "button_1_color": "btn--white",
+        "button_1_style": "btn--text",
+        "button_1_size": "btn--small",
+        "button_2_color": "btn--black",
+        "button_2_style": "btn--text",
+        "button_2_size": "btn--small",
+        "color_scheme": "scheme-1",
+        "overlayed_text": "#ffffff",
+        "enable_slider_mobile": true,
+        "columns_mobile": "1",
+        "overlay_text": true,
+        "width": "wrapper",
+        "add_gutter": false,
+        "padding_top": 30,
+        "padding_bottom": 60
+      }
+    },
+    "section_image_with_text_nxaDdA": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>well:fair foundation</p>",
+            "size": 130,
+            "text_position": "left",
+            "heading_highlight_type": "circle",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000",
+            "spacing_bottom": 12
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With the 100% WASH project, the well:fair foundation builds wells and sanitary facilities for schools and communities - currently in Ethiopia, Kenya and Tanzania - thereby enabling access to clean water, sanitation and hygiene. In short: WASH. An essential foundation for health, educational opportunities, self-determination and future prospects.</p><p><a href=\"http://www.wellfair.ngo/\" title=\"http://www.wellfair.ngo/\">well:fair.ngo</a></p><p><a href=\"https://www.instagram.com/wellfairfoundation/?hl=en\" title=\"https://www.instagram.com/wellfairfoundation/?hl=en\">well:fair IG</a></p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "custom_css": [
+        ".image-with-text__content {border: 2px solid black; padding: 45px;}"
+      ],
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "three-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/wellfair_foundation_2_bc9fbec7-1d8e-495c-b991-0210ddcfa7d4.jpg",
+        "block_bg_color": "",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_text_dwikiR": {
+      "type": "section-text",
+      "blocks": {
+        "heading_w8Erpf": {
+          "type": "heading",
+          "settings": {
+            "text": "<h4><strong>170,000 PEOPLE HAVE RECEIVED SAFE ACCESS TO CLEAN WATER. GOAL IS TO REACH 300,000 BY 2025.</strong></h4>",
+            "size": 100,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000"
+          }
+        },
+        "text_rd7FQ4": {
+          "type": "text",
+          "settings": {
+            "text": "<h4>-------------------------------</h4>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_w8Erpf",
+        "text_rd7FQ4"
+      ],
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-1",
+        "width": "wrapper--narrow",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_grid_jRkhhW": {
+      "type": "section-grid",
+      "blocks": {
+        "image_yYpgcP": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/wellfair_foundation_3.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_3dfGPX": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/wellfair_foundation_5.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_FQWpci": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/wellfair_foundation_1.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        },
+        "image_NzPm3k": {
+          "type": "image",
+          "settings": {
+            "width": "25",
+            "image": "shopify://shop_images/wellfair_foundation_4.jpg",
+            "overlay_type": "disabled",
+            "text_position": "center",
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_yYpgcP",
+        "image_3dfGPX",
+        "image_FQWpci",
+        "image_NzPm3k"
+      ],
+      "settings": {
+        "desktop_height": "three-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "heading_size": 130,
+        "text_size": 100,
+        "button_1_color": "btn--white",
+        "button_1_style": "btn--text",
+        "button_1_size": "btn--small",
+        "button_2_color": "btn--black",
+        "button_2_style": "btn--text",
+        "button_2_size": "btn--small",
+        "color_scheme": "scheme-1",
+        "overlayed_text": "#ffffff",
+        "enable_slider_mobile": true,
+        "columns_mobile": "1",
+        "overlay_text": true,
+        "width": "wrapper",
+        "add_gutter": false,
+        "padding_top": 30,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "live_page_style",
+    "main",
+    "section_banner_image_JcDifc",
+    "section_text_HQceTi",
+    "section_video_rf9qhW",
+    "section_list_butttons_WhgzmV",
+    "section_video_Fqbpcg",
+    "section_text_jnmcnN",
+    "section_image_with_text_tiJz4M",
+    "section_text_XKXfVE",
+    "section_grid_rRBfUG",
+    "section_image_with_text_amEcQw",
+    "section_text_Ykp476",
+    "section_grid_7q9JTj",
+    "section_image_with_text_nxaDdA",
+    "section_text_dwikiR",
+    "section_grid_jRkhhW"
+  ]
+}

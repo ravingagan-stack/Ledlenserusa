@@ -1,0 +1,490 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ll-page-style": {
+      "type": "ledlenser-page-style",
+      "settings": {
+        "eyebrow_color": "#ff3b4a",
+        "accent_color": "#e30613",
+        "accent_hover_color": "#b8050f",
+        "dark_color": "#0a0a0a",
+        "warm_color": "#f5f0ea"
+      }
+    },
+    "slideshow": {
+      "type": "section-slideshow",
+      "blocks": {
+        "slideshow-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design_40_4c50615f-23e1-4ea6-9468-005cf2441358.png",
+            "image_mobile": "shopify://shop_images/HF6R-Signature-headlamp-outdoors-mobile.png",
+            "overlay_type": "text",
+            "video_link_bg": "",
+            "content_width": 80,
+            "text_position": "bottom-left",
+            "text_alignment": "left",
+            "mobile_text_position": "bottom-left",
+            "mobile_text_alignment": "left",
+            "subheading": "About Ledlenser USA",
+            "title": "<p>The global leader in <em>portable LED lighting.</em></p>",
+            "heading_size": 120,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "text": "German engineered flashlights and headlamps, over 100 patents and a 7-year warranty on every light.",
+            "text_size": 100,
+            "show_text_background": false,
+            "bg_color": "",
+            "text_color": "",
+            "stacked_button": false,
+            "button_1_text": "Shop Flashlights",
+            "button_1_link": "shopify://collections/flashlights",
+            "button_1_color": "btn--primary",
+            "button_1_style": "btn--solid",
+            "button_1_size": "btn--large",
+            "button_2_text": "Shop Headlamps",
+            "button_2_link": "shopify://collections/headlamps",
+            "button_2_color": "btn--white",
+            "button_2_style": "btn--solid",
+            "button_2_size": "btn--large",
+            "video_text": "",
+            "video_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slideshow-0"
+      ],
+      "settings": {
+        "slide_height": "five-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_slide_height": "two-thirds-height-mobile",
+        "show_nav_dots": false,
+        "show_nav_arrows": false,
+        "show_arrow_down": false,
+        "autoplay": false,
+        "duration": 4,
+        "transition": "fade",
+        "enable_zoom_animation": true,
+        "enable_card_scrolling": false,
+        "increase_border_radius": false,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "cdb3be2a-9d5e-47f0-9431-04f739f3c7cc": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "subheading-about": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Ledlenser",
+            "size": 75,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "heading-about": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>About <em>us</em></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text-about": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Light from the sun takes more than eight minutes to reach the earth – with Ledlenser it’s just the press of a button away. We create light. Even in the furthest, darkest corner of the world. </p><p>As one of the world’s market leaders in LED flashlights and headlamps, we are downright obsessed with it. While some believe that we already make the best lights in the world, we think that we’re just getting started – there is always a better idea and that even the best and most excellent can always be improved. </p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "subheading-about",
+        "heading-about",
+        "text-about"
+      ],
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/PowerUp_motive_snow_subscribe.jpg",
+        "block_bg_color": "",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "section_image_with_text_9weF8t": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "subheading-goal": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Ledlenser",
+            "size": 75,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "heading-goal": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>Our <em>goal</em></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text-goal": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We can be found all across the globe, but we want to become the number one worldwide producer of portable light. With quality German Engineered products, we aim to do just that. For us that means setting ourselves the highest standards in terms of innovation materials, technology, workmanship, design and sustainability. And because we believe in the quality of our products, we also offer a seven years warranty with our lighting solutions. </p><p>We are always working tirelessly to further our technological edge – from superior lenses to smart batteries, we currently own over 100 patents. And we already have our eyes on the next 100.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "button-goal": {
+          "type": "button",
+          "settings": {
+            "button_text": "Our 7-Year Warranty",
+            "button_link": "shopify://pages/service-warranty",
+            "button_color": "btn--white",
+            "button_style": "btn--solid",
+            "button_size": "btn--large",
+            "video_link": "",
+            "text_position": "left",
+            "spacing_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "subheading-goal",
+        "heading-goal",
+        "text-goal",
+        "button-goal"
+      ],
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Untitled_2048_x_1048_px_5_b67e2131-7c48-4334-b2f8-deb64f205e00.png",
+        "block_bg_color": "",
+        "color_scheme": "scheme-3",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "ll-warm-innovation": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "subheading-innovation": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Innovation",
+            "size": 75,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "heading-innovation": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>A new era in <em>portable light</em></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text-innovation": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We already have over 100 patents for our innovative ideas. And this is just the beginning. Your enthusiasm is what we value the most and guides us. From our products, quality, to our services, we are dedicated to delivering that “wow” factor to you. </p><p>We achieve this the best when we create an atmosphere in our company that brings us all forward – we are constantly challenging each other and supporting our employees in their development, enabling them to reach their full potential.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "button-innovation": {
+          "type": "button",
+          "settings": {
+            "button_text": "Explore Our Technologies",
+            "button_link": "shopify://pages/technologies",
+            "button_color": "btn--primary",
+            "button_style": "btn--solid",
+            "button_size": "btn--large",
+            "video_link": "",
+            "text_position": "left",
+            "spacing_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "subheading-innovation",
+        "heading-innovation",
+        "text-innovation",
+        "button-innovation"
+      ],
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify://shop_images/unsere-geschichte_teaser_1.webp",
+        "block_bg_color": "",
+        "color_scheme": "scheme-1",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "columns": {
+      "type": "section-columns",
+      "blocks": {
+        "column-0": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/3_f845e75e-d065-466a-9ab6-173a7fd2316f.png",
+            "image_width": 100,
+            "title": "",
+            "heading_size": 120,
+            "text": "",
+            "text_size": 100,
+            "button_text": "SHOP OUTDOOR",
+            "button_link": "shopify://collections/outdoor-activities",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--large",
+            "video_link_popup": ""
+          }
+        },
+        "text_block_XCEeiB": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/2_a4fe7fbb-5401-4e5f-862a-9e29a89d3299.png",
+            "image_width": 100,
+            "title": "",
+            "heading_size": 120,
+            "text": "",
+            "text_size": 100,
+            "button_text": "SHOP WORK",
+            "button_link": "shopify://collections/work-lights",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--large",
+            "video_link_popup": ""
+          }
+        },
+        "text_block_ERVBKG": {
+          "type": "text_block",
+          "settings": {
+            "image": "shopify://shop_images/1_de86be64-06db-46a8-8eae-973a35b419c9.png",
+            "image_width": 100,
+            "title": "",
+            "heading_size": 120,
+            "text": "",
+            "text_size": 100,
+            "button_text": "SHOP HOME & LIFE",
+            "button_link": "shopify://collections/everyday-activities",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--large",
+            "video_link_popup": ""
+          }
+        }
+      },
+      "block_order": [
+        "column-0",
+        "text_block_XCEeiB",
+        "text_block_ERVBKG"
+      ],
+      "settings": {
+        "title": "Shop by activity",
+        "heading_size": 120,
+        "layout_desktop": "grid",
+        "align_text": "text-center",
+        "columns": 3,
+        "show_images": true,
+        "show_borders": false,
+        "layout_mobile": "stacked",
+        "columns_mobile": "1",
+        "equalize_height": true,
+        "desktop_aspect_ratio": 0.8,
+        "mobile_aspect_ratio": 0.8,
+        "color_scheme": "scheme-1",
+        "color_borders": "#000000",
+        "width": "wrapper",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "909772ff-e663-4f4f-9da8-7ede957325bf": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "subheading-people": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Responsibility",
+            "size": 75,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "heading-people": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>People and <em>practice</em></p>",
+            "size": 100,
+            "text_position": "left",
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000",
+            "spacing_bottom": 12
+          }
+        },
+        "text-people": {
+          "type": "text",
+          "settings": {
+            "text": "<p>In everything we do, we act responsibly and reliably. In production we are careful to respect ecologically with sound and sustainable practices – the quality and long battery life of our lights as well as the option to replace faulty parts help protect resources and minimise waste. </p><p>We fulfil our responsibility to people by building company housing and through involvement in social projects. Towards the planet and people, we are committed.</p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        },
+        "button-people": {
+          "type": "button",
+          "settings": {
+            "button_text": "Our History",
+            "button_link": "shopify://pages/our-history",
+            "button_color": "btn--primary",
+            "button_style": "btn--solid",
+            "button_size": "btn--large",
+            "video_link": "",
+            "text_position": "left",
+            "spacing_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "subheading-people",
+        "heading-people",
+        "text-people",
+        "button-people"
+      ],
+      "settings": {
+        "show_accordion_divider": true,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify://shop_images/Untitled_design_43.png",
+        "block_bg_color": "",
+        "color_scheme": "scheme-3",
+        "section_width": "wrapper",
+        "add_gutter": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_video_cKe9pj": {
+      "type": "section-video",
+      "settings": {
+        "video_height": "six-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "six-fifty-height-mobile",
+        "text_width": "normal",
+        "text_position": "middle-center",
+        "video_link_bg": "",
+        "video_link": "https://www.youtube.com/watch?v=bwgMZXMFyO0",
+        "image": "shopify://shop_images/powerup-video-still.jpg",
+        "overlay_type": "opacity",
+        "title": "",
+        "heading_size": 100,
+        "heading_highlight_type": "italics",
+        "highlight_color": "#d43747",
+        "highlight_text_color": "#000000",
+        "text": "",
+        "text_size": 100,
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_color": "btn--white",
+        "button_1_style": "btn--solid-border",
+        "button_1_size": "btn--medium",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_color": "btn--black",
+        "button_2_style": "btn--solid",
+        "button_2_size": "btn--medium",
+        "color_scheme": "scheme-3",
+        "show_text_background": false,
+        "bg_color": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "ll-page-style",
+    "slideshow",
+    "cdb3be2a-9d5e-47f0-9431-04f739f3c7cc",
+    "section_image_with_text_9weF8t",
+    "ll-warm-innovation",
+    "columns",
+    "909772ff-e663-4f4f-9da8-7ede957325bf",
+    "main",
+    "section_video_cKe9pj"
+  ]
+}

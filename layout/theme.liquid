@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
   </head>
 
-  
+
   {%- liquid
     assign selected_color_scheme = settings.color_scheme | strip
     assign scheme_bg_color = settings.color_schemes[selected_color_scheme].settings.section_bg
@@ -39,7 +39,7 @@
     assign body_classes = body_classes | strip_newlines | strip
   -%}
 
-  <body id="{{ page_title | handle }}" class="{{ body_classes }}">
+  <body id="{{ page_title | handle }}" class="{{ body_classes }} temp{{ template | handle }}">
     {%- render 'loading' -%}
 
     <a class="in-page-link skip-link" data-skip-content href="#MainContent">

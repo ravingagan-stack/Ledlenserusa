@@ -77,7 +77,7 @@
           "type": "trust",
           "settings": {
             "icon": "headset",
-            "text": "<strong>Not sure?</strong> <a href=\"/pages/contact\">Ask an expert</a> or <a href=\"/pages/light-finder\">take the Light Finder</a>"
+            "text": "<strong>Not sure?</strong> <a href=\"/pages/contact\">Ask an expert</a> or <a href=\"/pages/product-quiz\" title=\"Product Quiz\">take the Light Finder</a>"
           }
         },
         "pill_mVxBgD": {

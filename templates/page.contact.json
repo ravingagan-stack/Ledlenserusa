@@ -9,128 +9,181 @@
  */
 {
   "sections": {
+    "live-page-style": {
+      "type": "live-page-style",
+      "settings": {
+        "heading_font": "barlow_n5",
+        "heading_size": 100,
+        "body_font": "karla_n4",
+        "text_size": 100,
+        "text_color": "#333333",
+        "border_width": 2
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
       "settings": {
-        "show_page_title": false,
+        "show_page_title": true,
         "padding_top": 60,
-        "padding_bottom": 60
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1"
       }
     },
-    "46135749-756a-47d9-9cd2-5a1a9d750dc1": {
-      "type": "section-text",
+    "59699d9d-c66c-4bd5-a248-64f1b1587cd5": {
+      "type": "section-banner-image",
       "blocks": {
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-0": {
+        "template--18952593998145__59699d9d-c66c-4bd5-a248-64f1b1587cd5-16831285413c69ee80-0": {
           "type": "subheading",
+          "disabled": true,
           "settings": {
-            "text": "<p>Contact us</p>",
-            "size": 100,
-            "margin_bottom": 16
+            "text": "<p>Welcome to</p>",
+            "size": 100
           }
         },
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-1": {
+        "template--18952593998145__59699d9d-c66c-4bd5-a248-64f1b1587cd5-16831285413c69ee80-1": {
           "type": "heading",
           "settings": {
-            "text": "<p>How can we help you?</p>",
-            "size": 150,
-            "heading_highlight_type": "circle",
-            "highlight_color": "#d43747",
+            "text": "<p>Contact Ledlenser USA</p>",
+            "size": 180,
+            "heading_highlight_type": "italics",
+            "highlight_color": "rgba(0,0,0,0)",
             "highlight_text_color": "#000000"
           }
         },
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-2": {
+        "template--18952593998145__59699d9d-c66c-4bd5-a248-64f1b1587cd5-16831285413c69ee80-2": {
           "type": "text",
+          "disabled": true,
           "settings": {
-            "text": "<p>Need to get in touch? Feel free to reach out using the contact form below or for specific inquiries, reach out to the specific email address. We're available to chat Monday - Friday 9a.m - 9p.m PST. </p>",
+            "text": "<p>Share information about your brand, describe a product, share announcements, or welcome customers to your store.</p>",
             "size": 100
+          }
+        },
+        "template--18952593998145__59699d9d-c66c-4bd5-a248-64f1b1587cd5-16831285413c69ee80-3": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_1_text": "Shop All",
+            "button_1_link": "shopify://collections/all",
+            "button_1_color": "btn--white",
+            "button_1_style": "btn--solid-border",
+            "button_1_size": "btn--small",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_color": "btn--black",
+            "button_2_style": "btn--solid",
+            "button_2_size": "btn--small"
           }
         }
       },
       "block_order": [
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-0",
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-1",
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-2"
+        "template--18952593998145__59699d9d-c66c-4bd5-a248-64f1b1587cd5-16831285413c69ee80-0",
+        "template--18952593998145__59699d9d-c66c-4bd5-a248-64f1b1587cd5-16831285413c69ee80-1",
+        "template--18952593998145__59699d9d-c66c-4bd5-a248-64f1b1587cd5-16831285413c69ee80-2",
+        "template--18952593998145__59699d9d-c66c-4bd5-a248-64f1b1587cd5-16831285413c69ee80-3"
+      ],
+      "settings": {
+        "height": "one-third-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "image": "shopify://shop_images/LEARN_MORE_2048_x_550_px_8_8d1aaf1b-d14c-4990-bb08-8ef843cd84c7.png",
+        "image_mobile": "shopify://shop_images/AF-LP-Work-Lights-hero2-mobile.jpg",
+        "transition": "zoom-out",
+        "enable_zoom_animation": true,
+        "text_position": "center",
+        "color_scheme": "scheme-3",
+        "overlay_type": "opacity",
+        "increase_border_radius": false,
+        "width": "wrapper--full"
+      }
+    },
+    "section_text_HP9gGG": {
+      "type": "section-text",
+      "blocks": {
+        "heading_bpQzrM": {
+          "type": "heading",
+          "settings": {
+            "text": "<p><strong>Ledlenser</strong></p>",
+            "size": 100,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000"
+          }
+        },
+        "text_W6qCnM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our Address: <a href=\"https://www.google.com/maps/place/5985+Richard+St+Suite+2,+Jacksonville,+FL+32216,+USA/@30.2617826,-81.612392,17z/data=!3m1!4b1!4m6!3m5!1s0x88e5b603cd3ae4a7:0xd25f081cc4527aa5!8m2!3d30.2617826!4d-81.6098171!16s%2Fg%2F11qz9gwk66?entry=ttu&g_ep=EgoyMDI2MDEyMC4wIKXMDSoASAFQAw%3D%3D\">5985 Richard St, Suite 2, Jacksonville, FL - 32216</a></p><p></p><p>Email Address: <a href=\"mailto:support@ledlenserusa.com\">support@ledlenserusa.com </a></p><p></p><p>HQ Main Line: 904-694-3711</p>",
+            "size": 100
+          }
+        },
+        "button_Ch6VLT": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_text": "Read More",
+            "button_link": "",
+            "button_color": "btn--white",
+            "button_style": "btn--solid-border",
+            "button_size": "btn--small"
+          }
+        }
+      },
+      "block_order": [
+        "heading_bpQzrM",
+        "text_W6qCnM",
+        "button_Ch6VLT"
       ],
       "settings": {
         "text_position": "center",
         "width": "wrapper--narrow",
         "padding_top": 60,
-        "padding_bottom": 60
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1"
       }
     },
-    "75b65038-f658-4895-b63c-8f65c49cd645": {
-      "type": "section-icons-row",
+    "locations": {
+      "type": "section-locations",
       "blocks": {
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-0": {
-          "type": "text",
+        "locations_rzc4VU": {
+          "type": "locations",
           "settings": {
-            "icon_name": "support",
-            "title": "Order Status",
-            "text": "<p>orders@companyname.com</p>"
-          }
-        },
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-1": {
-          "type": "text",
-          "settings": {
-            "icon_name": "mail",
-            "title": "Start a Return",
-            "text": "<p>returns@companyname.com</p>"
-          }
-        },
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-2": {
-          "type": "text",
-          "settings": {
-            "icon_name": "clipboard",
-            "title": "Sizing and Product Info",
-            "text": "<p>products@companyname.com</p>"
+            "title": "80 SE Madison St, Suite 130, Portland, OR 97214",
+            "working_time": "<p>Email Address: <a href=\"mailto:support@ledlenserusa.com\">support@ledlenserusa.com</a></p><ul><li><a href=\"tel:5036881951\">HQ Main Line: 503-688-1951</a></li><li><a href=\"tel:18882452825\">HQ Toll Free: 1-888-245-2825</a></li><li><a href=\"tel:5036881963\">HQ Fax: 503-688-1963</a></li></ul>"
           }
         }
       },
       "block_order": [
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-0",
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-1",
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-2"
+        "locations_rzc4VU"
       ],
+      "disabled": true,
       "settings": {
-        "heading": "",
-        "subheading": "",
-        "alignment": "center",
-        "columns": 3,
-        "icons_width": 30,
-        "show_vertical_borders": true,
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "heading_size": 120,
-        "text_size": 100,
-        "text_color": "#000000",
-        "box_color": "",
-        "color_border": "#333",
-        "button_text": "",
-        "button_link": "",
-        "button_color": "btn--black",
-        "button_style": "btn--secondary btn--small",
-        "button_size": "btn--small",
-        "layout_mobile": "stacked",
-        "width": "wrapper",
-        "padding_top": 20,
-        "padding_bottom": 20
+        "subheading": "Ledlenser",
+        "title": "Location",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "contact-form": {
       "type": "section-contact-form",
       "blocks": {
+        "contact-form-0": {
+          "type": "heading",
+          "settings": {
+            "title": "Contact us"
+          }
+        },
         "contact-form-1": {
           "type": "text",
           "settings": {
-            "title": "What's your name?",
-            "required": true
+            "title": "Name",
+            "required": false
           }
         },
         "contact-form-2": {
           "type": "email",
           "settings": {
-            "title": "What's your email?",
+            "title": "Email",
             "required": true
           }
         },
@@ -143,62 +196,28 @@
         }
       },
       "block_order": [
+        "contact-form-0",
         "contact-form-1",
         "contact-form-2",
         "contact-form-3"
       ],
       "settings": {
-        "button_color": "btn--black",
-        "button_style": "btn--solid",
+        "button_color": "btn--primary",
+        "button_style": "btn--solid-border",
         "button_size": "btn--large",
         "width": "wrapper--narrow",
-        "padding_top": 40,
-        "padding_bottom": 60
-      }
-    },
-    "locations": {
-      "type": "section-locations",
-      "blocks": {
-        "locations-0": {
-          "type": "locations",
-          "settings": {
-            "title": "566 Emerson Street Palo Alto, California",
-            "working_time": "<p>Mon - Fri: 8am - 5pm</p><p>Sat: 10am - 5pm</p><p>Sun: 12pm - 5pm</p>"
-          }
-        },
-        "locations-1": {
-          "type": "locations",
-          "settings": {
-            "title": "100 Sunset Blvd, Los Angeles, California",
-            "working_time": "<p>Mon - Fri: 8am - 5pm</p><p>Sat: Closed</p><p>Sun: Closed</p>"
-          }
-        },
-        "locations-2": {
-          "type": "locations",
-          "settings": {
-            "title": "566 Cross Creek Rd, Malibu, California",
-            "working_time": "<p>Mon - Fri: 9am - 6pm</p><p>Sat: 12pm - 6pm</p><p>Sun: 12pm - 6pm</p>"
-          }
-        }
-      },
-      "block_order": [
-        "locations-0",
-        "locations-1",
-        "locations-2"
-      ],
-      "settings": {
-        "subheading": "Our stores",
-        "title": "Locations & hours",
-        "padding_top": 60,
-        "padding_bottom": 80
+        "padding_top": 20,
+        "padding_bottom": 60,
+        "color_scheme": "scheme-1"
       }
     }
   },
   "order": [
+    "live-page-style",
     "main",
-    "46135749-756a-47d9-9cd2-5a1a9d750dc1",
-    "75b65038-f658-4895-b63c-8f65c49cd645",
-    "contact-form",
-    "locations"
+    "59699d9d-c66c-4bd5-a248-64f1b1587cd5",
+    "section_text_HP9gGG",
+    "locations",
+    "contact-form"
   ]
 }

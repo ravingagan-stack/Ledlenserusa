@@ -14,6 +14,7 @@
           class="pro-team-card"
           {{ block.shopify_attributes }}
         >
+          <div class="pro-tem-iner-card">
           {% if block.settings.eyebrow != blank %}
             <div class="pro-team-eyebrow">
               {{ block.settings.eyebrow | escape }}
@@ -31,7 +32,7 @@
               {{ block.settings.description }}
             </div>
           {% endif %}
-
+        </div>
           {% if block.settings.button_label != blank %}
             <a
               class="pro-team-button"
@@ -72,7 +73,15 @@
   #ProTeam-{{ section.id }} *::after {
     box-sizing: border-box;
   }
+.pro-team-card {
+    justify-content: space-between;
+}
 
+.pro-tem-iner-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
   #ProTeam-{{ section.id }} .pro-team-container {
     width: 100%;
     max-width: 1408px;

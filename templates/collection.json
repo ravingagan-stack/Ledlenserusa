@@ -261,7 +261,7 @@
       "settings": {
         "load_fonts": true,
         "show_breadcrumb": true,
-        "heading": "",
+        "heading": "Flashlights",
         "description": "<p>Rechargeable, focusable lights for the jobsite, the trail and the hunt. Specs are shown in meters and hours so you can compare at a glance.</p>",
         "max_width": 1360,
         "pills_spacing": 68,

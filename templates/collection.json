@@ -92,7 +92,7 @@
           "type": "pill",
           "settings": {
             "label": "Work & jobsite",
-            "link": "shopify://collections/2020-work-series-headlamps",
+            "link": "shopify://collections/flashlights-work-jobsite",
             "active": false
           }
         },
@@ -100,7 +100,7 @@
           "type": "pill",
           "settings": {
             "label": "Hiking & camping",
-            "link": "shopify://collections/hiking-trekking-headlamps",
+            "link": "",
             "active": false
           }
         },

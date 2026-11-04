@@ -83,8 +83,8 @@
         "pill_mVxBgD": {
           "type": "pill",
           "settings": {
-            "label": "All headlamps",
-            "link": "shopify://collections/headlamps",
+            "label": "All flashlights",
+            "link": "shopify://collections/flashlights",
             "active": true
           }
         },

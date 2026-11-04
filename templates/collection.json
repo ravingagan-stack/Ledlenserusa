@@ -100,7 +100,7 @@
           "type": "pill",
           "settings": {
             "label": "Hiking & camping",
-            "link": "",
+            "link": "shopify://collections/tactical-flashlights",
             "active": false
           }
         },

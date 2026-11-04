@@ -150,6 +150,7 @@
         "pill_VKzBX9",
         "pill_XaqMeW"
       ],
+      "disabled": true,
       "name": "Collection hero",
       "settings": {
         "load_fonts": true,

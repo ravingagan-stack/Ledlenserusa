@@ -219,7 +219,7 @@
       "type": "new-launches",
       "name": "New Launched",
       "settings": {
-        "collection": "hf-series-headlamps",
+        "collection": "h-and-hf-series",
         "products_to_show": 4,
         "preorder_text": "",
         "new_text": "",

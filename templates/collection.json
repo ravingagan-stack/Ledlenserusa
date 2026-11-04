@@ -106,6 +106,7 @@
         },
         "pill_KteiW4": {
           "type": "pill",
+          "disabled": true,
           "settings": {
             "label": "Hands-free sensor",
             "link": "shopify://collections/all-items",

@@ -56,113 +56,6 @@
         "padding_bottom": 0
       }
     },
-    "collection_hero_mHAhyy": {
-      "type": "Collection-hero",
-      "blocks": {
-        "trust_iBFEPg": {
-          "type": "trust",
-          "settings": {
-            "icon": "shield",
-            "text": "<strong>7-year warranty,</strong> no questions asked"
-          }
-        },
-        "trust_UCNxBB": {
-          "type": "trust",
-          "settings": {
-            "icon": "truck",
-            "text": "<strong>Ships in 1–2 days</strong> from the US"
-          }
-        },
-        "trust_Df9WKy": {
-          "type": "trust",
-          "settings": {
-            "icon": "headset",
-            "text": "<strong>Not sure?</strong> <a href=\"/pages/contact\">Ask an expert</a> or <a href=\"/pages/product-quiz\" title=\"Product Quiz\">take the Light Finder</a>"
-          }
-        },
-        "pill_mVxBgD": {
-          "type": "pill",
-          "settings": {
-            "label": "All flashlights",
-            "link": "shopify://collections/flashlights",
-            "active": true
-          }
-        },
-        "pill_tfecPy": {
-          "type": "pill",
-          "settings": {
-            "label": "Work & jobsite",
-            "link": "shopify://collections/flashlights-work-jobsite",
-            "active": false
-          }
-        },
-        "pill_JG9FYJ": {
-          "type": "pill",
-          "settings": {
-            "label": "Hiking & camping",
-            "link": "shopify://collections/tactical-flashlights",
-            "active": false
-          }
-        },
-        "pill_KteiW4": {
-          "type": "pill",
-          "disabled": true,
-          "settings": {
-            "label": "Hands-free sensor",
-            "link": "shopify://collections/all-items",
-            "active": false
-          }
-        },
-        "pill_7TrpcL": {
-          "type": "pill",
-          "settings": {
-            "label": "Brightest",
-            "link": "shopify://collections/all-items",
-            "active": false
-          }
-        },
-        "pill_an3r9g": {
-          "type": "pill",
-          "settings": {
-            "label": "Under $100",
-            "link": "shopify://collections/all-items",
-            "active": false
-          }
-        },
-        "pill_yjFap3": {
-          "type": "pill",
-          "settings": {
-            "label": "Kits with powerbank",
-            "link": "shopify://collections/all-items",
-            "active": false
-          }
-        }
-      },
-      "block_order": [
-        "trust_iBFEPg",
-        "trust_UCNxBB",
-        "trust_Df9WKy",
-        "pill_mVxBgD",
-        "pill_tfecPy",
-        "pill_JG9FYJ",
-        "pill_KteiW4",
-        "pill_7TrpcL",
-        "pill_an3r9g",
-        "pill_yjFap3"
-      ],
-      "disabled": true,
-      "name": "Collection hero",
-      "settings": {
-        "load_fonts": true,
-        "show_breadcrumb": true,
-        "heading": "Flashlights",
-        "description": "<p>Rechargeable, focusable flashlights for the jobsite, the trail and the hunt. Specs are shown in meters and hours so you can compare at a glance.</p>",
-        "max_width": 1360,
-        "pills_spacing": 68,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
     "collection_hero_DCjmKL": {
       "type": "Collection-hero",
       "blocks": {
@@ -224,7 +117,7 @@
           "type": "pill",
           "settings": {
             "label": "Brightest",
-            "link": "shopify://collections/all-items",
+            "link": "",
             "active": false
           }
         },
@@ -240,7 +133,7 @@
           "type": "pill",
           "settings": {
             "label": "Kits with powerbank",
-            "link": "shopify://collections/all-items",
+            "link": "shopify://collections/flashlight-bundles",
             "active": false
           }
         }
@@ -257,7 +150,6 @@
         "pill_VKzBX9",
         "pill_XaqMeW"
       ],
-      "disabled": true,
       "name": "Collection hero",
       "settings": {
         "load_fonts": true,
@@ -323,7 +215,6 @@
     "hero",
     "subcollections",
     "section_divider_EMY8RJ",
-    "collection_hero_mHAhyy",
     "collection_hero_DCjmKL",
     "main"
   ]

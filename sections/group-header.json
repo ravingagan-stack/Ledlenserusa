@@ -82,13 +82,13 @@
       "type": "announcementbar",
       "name": "Custom Announcement Bar",
       "settings": {
-        "first_highlight": "15% off",
-        "first_text": "your first light – join the list",
+        "first_highlight": "🎁 FREE GIFT",
+        "first_text": "ON $200+ ORDERS",
         "first_link": "",
-        "second_text": "Free US shipping over $35",
-        "third_text": "Military & First Responders: Save 15% - Contact us for your code",
+        "second_text": "15% OFF FIRST ORDER – SIGN UP",
+        "third_text": "MILITARY & FIRST RESPONDERS: 15% OFF",
         "third_link": "https://www.ledlenserusa.com/pages/contact-ledlenser",
-        "fourth_text": "7-year warranty, no questions asked"
+        "fourth_text": "FREE U.S. SHIPPING $35+"
       }
     },
     "header": {

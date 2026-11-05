@@ -123,6 +123,7 @@
         },
         "pill_VKzBX9": {
           "type": "pill",
+          "disabled": true,
           "settings": {
             "label": "Under $100",
             "link": "shopify://collections/all-items",
@@ -131,6 +132,7 @@
         },
         "pill_XaqMeW": {
           "type": "pill",
+          "disabled": true,
           "settings": {
             "label": "Kits with powerbank",
             "link": "shopify://collections/flashlight-bundles",

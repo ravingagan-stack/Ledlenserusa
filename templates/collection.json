@@ -187,7 +187,7 @@
             "bg_color": "#000000",
             "text_color": "#ffffff",
             "button_text": "Start the Light Finder",
-            "button_link": "",
+            "button_link": "/pages/product-quiz",
             "button_color": "btn--white",
             "button_style": "btn--text",
             "button_size": "btn--small"

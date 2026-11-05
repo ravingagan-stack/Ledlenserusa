@@ -11,13 +11,12 @@
 
 {%- liquid
   assign raw = value | strip
-  assign lower = raw | downcase
 
-  if raw == blank
-    echo raw
-  elsif lower contains 'lm' or lower contains 'lumen'
-    echo raw
-  else
-    echo raw | append: ' lumens'
+  if raw != blank
+    # Normalise any unit spelling ("lm", "lumens", "Lumen") to " lm" and ranges to an en dash.
+    assign num = raw | replace: 'LUMENS', '' | replace: 'Lumens', '' | replace: 'lumens', '' | replace: 'Lumen', '' | replace: 'lumen', ''
+    assign num = num | replace: 'LM', '' | replace: 'Lm', '' | replace: 'lm', '' | strip
+    assign num = num | replace: ' - ', '–' | replace: ' – ', '–' | replace: '-', '–'
+    echo num | append: ' lm'
   endif
 -%}

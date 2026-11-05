@@ -1,0 +1,167 @@
+{%- comment -%}
+  Outputs one formatted spec for product cards / spec chips, with fallbacks so a
+  spec is not left empty just because the primary metafield is blank.
+
+  Units are normalised everywhere this is used:
+  - output  → "25–2,000 lm"
+  - beam    → meters, e.g. "35–320 m" / "305+ m" (feet values are converted)
+  - runtime → "2.5–80 h"
+
+  Lookup order per spec (first non-blank wins):
+  1. technical.Luminosity / technical.LightingRange / technical.BatteryDuration
+     (same source as the previous theme's cards) → shown as a min–max range
+  2. output:     [metafield] → custom.max_lumens → custom.light_output → custom.lumens
+                 → custom.max_output → custom.technical_data
+     beam:       [metafield] → custom.beam_range → custom.beam_distance → custom.technical_data
+     runtime:    [metafield] → custom.runtime_range → custom.runtime → custom.technical_data
+     waterproof: [metafield] → custom.waterproof_value
+
+  Accepts:
+  - product: {Object} Product (required)
+  - spec: {String} output | beam | runtime | waterproof (required)
+  - metafield: {String} Optional 'namespace.key' to try first (e.g. a section setting)
+
+  Usage:
+  {%- capture v -%}{% render 'card-spec-value', product: p, spec: 'output' %}{%- endcapture -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign raw = ''
+  assign tech_done = false
+  assign range_text = ''
+
+  # 1) technical.* metafields first, the same source the previous theme's cards used.
+  #    Values look like "max 2000 lm – min 25 lm"; shown as a min–max range ("25–2,000 lm").
+  assign tech_raw = ''
+  case spec
+    when 'output'
+      assign tech_raw = product.metafields.technical.Luminosity | metafield_text
+      assign tech_unit = ' lm'
+    when 'beam'
+      assign tech_raw = product.metafields.technical.LightingRange | metafield_text
+      assign tech_unit = ' m'
+    when 'runtime'
+      assign tech_raw = product.metafields.technical.BatteryDuration | metafield_text
+      assign tech_unit = ' h'
+  endcase
+
+  if tech_raw != blank
+    assign t = tech_raw | downcase | remove: ',' | remove: 'max' | remove: 'min' | remove: 'lumens' | remove: 'lumen' | remove: 'lm'
+    assign t = t | remove: 'hours' | remove: 'hour' | remove: 'hrs' | remove: 'hr' | remove: 'h'
+    assign t = t | remove: 'meters' | remove: 'meter' | remove: 'm' | remove: '+'
+    assign t = t | replace: '–', ' ' | replace: '—', ' ' | replace: '-', ' ' | replace: ':', ' ' | replace: '|', ' ' | replace: '/', ' '
+    assign t_tokens = t | split: ' '
+
+    # Feet values are rare here; if present, let beam-distance convert the original text.
+    assign is_feet = false
+    if spec == 'beam'
+      assign tech_lower = tech_raw | downcase
+      if tech_lower contains 'ft' or tech_lower contains 'feet'
+        assign is_feet = true
+      endif
+    endif
+
+    assign t_min = -1
+    assign t_max = -1
+    for token in t_tokens
+      assign tk = token | strip
+      if tk == blank
+        continue
+      endif
+      assign tk_digits = tk | remove_first: '.'
+      assign tk_check = tk_digits | times: 1 | append: ''
+      if tk_check == tk_digits
+        assign n = tk | times: 1
+        if t_max < 0 or n > t_max
+          assign t_max = n
+        endif
+        if t_min < 0 or n < t_min
+          assign t_min = n
+        endif
+      endif
+    endfor
+
+    if is_feet
+      assign raw = tech_raw
+    elsif t_max > 0
+      assign range_text = ''
+      assign range_nums = t_min | append: '|' | append: t_max | split: '|'
+      if t_min == t_max
+        assign range_nums = t_max | append: '' | split: '|'
+      endif
+      for rn in range_nums
+        assign num = rn | times: 1
+        assign whole = num | floor
+        assign num_text = num
+        if whole == num
+          assign num_text = whole
+          if whole >= 1000
+            assign rest = whole | modulo: 1000 | prepend: '00' | slice: -3, 3
+            assign num_text = whole | divided_by: 1000 | floor | append: ',' | append: rest
+          endif
+        endif
+        unless forloop.first
+          assign range_text = range_text | append: '–'
+        endunless
+        assign range_text = range_text | append: num_text
+      endfor
+      assign tech_done = true
+    endif
+  endif
+
+
+  if tech_done
+    echo range_text | append: tech_unit
+  else
+    # 2) Otherwise the section's metafield, then custom.* metafields, then technical_data.
+    if raw == blank and metafield != blank
+      assign mf_parts = metafield | split: '.'
+      assign raw = product.metafields[mf_parts[0]][mf_parts[1]] | metafield_text
+    endif
+
+    case spec
+      when 'output'
+        assign fallback_keys = 'max_lumens|light_output|lumens|max_output' | split: '|'
+      when 'beam'
+        assign fallback_keys = 'beam_range|beam_distance' | split: '|'
+      when 'runtime'
+        assign fallback_keys = 'runtime_range|runtime' | split: '|'
+      when 'waterproof'
+        assign fallback_keys = 'waterproof_value' | split: '|'
+      else
+        assign fallback_keys = ''
+    endcase
+
+    for fk in fallback_keys
+      if raw != blank
+        break
+      endif
+      assign raw = product.metafields.custom[fk] | metafield_text
+    endfor
+
+    if raw == blank
+      if spec == 'output' or spec == 'beam' or spec == 'runtime'
+        capture raw
+          render 'tier-spec-value', product: product, source: spec
+        endcapture
+      endif
+    endif
+
+    assign raw = raw | strip
+
+    if raw != blank
+      case spec
+        when 'output'
+          render 'spec-lumens', value: raw
+        when 'beam'
+          render 'beam-distance', value: raw, format: 'm'
+        when 'runtime'
+          assign r = raw | replace: ' hours', ' h' | replace: ' hour', ' h' | replace: ' hrs', ' h' | replace: ' hr', ' h' | replace: 'hrs', ' h' | replace: 'hr', ' h'
+          assign r = r | replace: ' - ', '–' | replace: '-', '–'
+          echo r
+        else
+          echo raw
+      endcase
+    endif
+  endif
+-%}

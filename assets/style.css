@@ -2471,3 +2471,126 @@ a.navlink.navlink--toplevel.navlink--dot.caps {
 .temppage-world-is-as-bright collapsible-elements.image-with-text__content.aos-animate {
     padding-left: 45px !important;
 }
+.product__form .product__submit__buttons {
+    gap: 0 !important;
+}
+.product__submit__item {
+    margin-bottom: 10px;
+}
+
+
+
+
+@media only screen and (min-width: 1478px){
+.hulkapps-volumes {
+    margin-left: -142px;
+    width: 131% !important;
+}
+
+.offer-options-title {
+    margin: 0 !important;
+}
+
+.offer-options-list [type=radio]+label:after, .offer-options-list [type=radio]+label:before {
+    border-radius: 0 !important;
+}
+
+button.offer-option-btn {
+    border-radius: 0 !important;
+    background-color: #e30613 !important;
+        font-family: Barlow Condensed !important;
+    font-size:19px !important;
+    height: 54px !important;
+}
+
+.offer-options-list .offer-option_txt {
+    align-items: center !important;
+}
+}
+
+.offer-options-title {
+    margin: 0 !important;
+}
+
+.offer-options-list [type=radio]+label:after, .offer-options-list [type=radio]+label:before {
+    border-radius: 0 !important;
+}
+
+button.offer-option-btn {
+    border-radius: 0 !important;
+    background-color: #e30613 !important;
+        font-family: Barlow Condensed !important;
+    font-size:19px !important;
+    height: 54px !important;
+}
+
+.offer-options-list .offer-option_txt {
+    align-items: center !important;
+}
+
+/* ==========================================================
+   PDP fixes: qty / Add to Cart alignment + Shop Promise overlap
+   ========================================================== */
+.product-single .product__form {
+    --pdp-buy-h: 56px;
+    align-items: flex-start;
+}
+
+/* Qty box and ATC share one exact height and top edge */
+.product-single .product__form .selector-wrapper--qty,
+.product-single .product__form .selector-wrapper--qty .select__fieldset,
+.product-single .product__form .quantity-selector {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+.product-single .product__form .quantity-selector {
+    height: var(--pdp-buy-h);
+}
+.product-single .product__form .quantity__selector {
+    box-sizing: border-box;
+    height: var(--pdp-buy-h) !important;
+    margin: 0;
+}
+.product-single .product__form .shopify-product-form,
+.product-single .product__form .product__submit__holder {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+.product-single .product__form .product__submit__holder--spb .product__submit__add {
+    box-sizing: border-box;
+    height: var(--pdp-buy-h);
+    min-height: var(--pdp-buy-h) !important;
+    margin: 0;
+}
+
+/* Buy with Shop: let Shopify's Shop Promise / delivery line take its own space
+   instead of overflowing onto the stock + shipping rows below */
+.product-single .shopify-payment-button,
+.product-single .product__form .product__submit__item.btn--white.btn--solid-border.btn--medium.btn--advanced,
+.product-single .product__form .product__submit__item.btn--white.btn--solid-border.btn--medium.btn--advanced.aos-animate {
+    height: auto !important;
+    min-height: 54px;
+}
+.product-single .product__form .product__submit__item {
+    overflow: visible;
+}
+
+@media only screen and (max-width: 749px) {
+    .product-single .product__form {
+        --pdp-buy-h: 44px;
+    }
+}
+.temppage-warranty-claim-form .banner-image__text-wrapper {
+    max-width: 1400px;
+    padding: 0 20px;
+        font-family: Barlow Condensed, sans-serif;
+}
+.temppage-warranty-claim-form .banner-image__text-wrapper span{
+        font-family: Barlow Condensed, sans-serif;
+}
+/* Announcement bar links to /#finder: keep the Light Finder + email section clear of the sticky header */
+#finder,
+#join {
+    scroll-margin-top: calc(var(--header-sticky-height, 80px) + 24px);
+}

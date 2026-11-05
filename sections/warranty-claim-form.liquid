@@ -1,0 +1,317 @@
+{%- comment -%}
+  Warranty claim form. Submits through Shopify's contact form, so claims arrive
+  in the store's contact email with the same field names as the previous theme.
+{%- endcomment -%}
+
+{%- liquid
+  assign us_states = 'Alabama (AL)|Alaska (AK)|American Samoa (AS)|Arizona (AZ)|Arkansas (AR)|California (CA)|Colorado (CO)|Connecticut (CT)|Delaware (DE)|District Of Columbia (DC)|Federated States Of Micronesia (FM)|Florida (FL)|Georgia (GA)|Guam (GU)|Hawaii (HI)|Idaho (ID)|Illinois (IL)|Indiana (IN)|Iowa (IA)|Kansas (KS)|Kentucky (KY)|Louisiana (LA)|Maine (ME)|Marshall Islands (MH)|Maryland (MD)|Massachusetts (MA)|Michigan (MI)|Minnesota (MN)|Mississippi (MS)|Missouri (MO)|Montana (MT)|Nebraska (NE)|Nevada (NV)|New Hampshire (NH)|New Jersey (NJ)|New Mexico (NM)|New York (NY)|North Carolina (NC)|North Dakota (ND)|Northern Mariana Islands (MP)|Ohio (OH)|Oklahoma (OK)|Oregon (OR)|Palau (PW)|Pennsylvania (PA)|Puerto Rico (PR)|Rhode Island (RI)|South Carolina (SC)|South Dakota (SD)|Tennessee (TN)|Texas (TX)|Utah (UT)|Vermont (VT)|Virgin Islands (VI)|Virginia (VA)|Washington (WA)|West Virginia (WV)|Wisconsin (WI)|Wyoming (WY)' | split: '|'
+  assign repair_options = 'Repair or Return Only. It has sentimental value and I want it back|If it cannot be repaired, send a comparable model|OK to substitute with a different model' | split: '|'
+  assign policy_url = section.settings.policy_link | default: shop.refund_policy.url
+-%}
+
+<style>
+  #wcf-{{ section.id }} {
+    --wcf-border: #DADADA;
+    --wcf-text: #0A0A0A;
+    --wcf-muted: #4A4A4A;
+    --wcf-accent: #E30613;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    color: var(--wcf-text);
+  }
+  #wcf-{{ section.id }} .wcf__inner { max-width: 880px; margin: 0 auto; }
+  #wcf-{{ section.id }} .wcf__intro { font-family: Barlow, sans-serif; font-size: 16px; line-height: 1.5; color: var(--wcf-muted); margin: 0 0 28px; }
+  #wcf-{{ section.id }} .wcf__heading {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase;
+    font-size: 22px; letter-spacing: .02em; margin: 32px 0 16px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--wcf-text);
+  }
+  #wcf-{{ section.id }} .wcf__heading:first-of-type { margin-top: 0; }
+  #wcf-{{ section.id }} .wcf__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 20px; }
+  #wcf-{{ section.id }} .wcf__field { grid-column: span 4; display: flex; flex-direction: column; gap: 6px; }
+  #wcf-{{ section.id }} .wcf__field--half { grid-column: span 2; }
+  #wcf-{{ section.id }} .wcf__field--quarter { grid-column: span 1; }
+  #wcf-{{ section.id }} label,
+  #wcf-{{ section.id }} legend {
+    font-family: Barlow, sans-serif; font-weight: 600; font-size: 14px; line-height: 1.4; padding: 0;
+  }
+  #wcf-{{ section.id }} .wcf__req { color: var(--wcf-accent); }
+  #wcf-{{ section.id }} input[type="text"],
+  #wcf-{{ section.id }} input[type="email"],
+  #wcf-{{ section.id }} input[type="tel"],
+  #wcf-{{ section.id }} select,
+  #wcf-{{ section.id }} textarea {
+    width: 100%; box-sizing: border-box; min-height: 48px; padding: 12px 14px; margin: 0;
+    font-family: Barlow, sans-serif; font-size: 16px; color: var(--wcf-text);
+    background: #fff; border: 1px solid var(--wcf-border); border-radius: 0;
+  }
+  #wcf-{{ section.id }} select {
+    appearance: none; -webkit-appearance: none; padding-right: 40px;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230A0A0A' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;
+  }
+  #wcf-{{ section.id }} textarea { min-height: 120px; resize: vertical; }
+  #wcf-{{ section.id }} input:focus,
+  #wcf-{{ section.id }} select:focus,
+  #wcf-{{ section.id }} textarea:focus { outline: none; border-color: var(--wcf-text); box-shadow: 0 0 0 1px var(--wcf-text); }
+  #wcf-{{ section.id }} .wcf__submitted input:invalid,
+  #wcf-{{ section.id }} .wcf__submitted select:invalid,
+  #wcf-{{ section.id }} .wcf__submitted textarea:invalid { border-color: var(--wcf-accent); }
+  #wcf-{{ section.id }} .wcf__hint { font-family: Barlow, sans-serif; font-weight: 400; font-size: 14px; color: var(--wcf-muted); }
+  #wcf-{{ section.id }} fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  #wcf-{{ section.id }} .wcf__choices { display: grid; gap: 10px; margin-top: 8px; }
+  #wcf-{{ section.id }} .wcf__choice {
+    display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
+    font-weight: 400; font-size: 15px;
+  }
+  #wcf-{{ section.id }} .wcf__choice input {
+    flex: 0 0 auto; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--wcf-accent);
+    position: static; opacity: 1; appearance: auto; -webkit-appearance: auto;
+  }
+  #wcf-{{ section.id }} .wcf__choice a { color: inherit; text-decoration: underline; }
+  #wcf-{{ section.id }} .wcf__submit {
+    margin-top: 28px; min-height: 56px; padding: 0 48px; border: 0; border-radius: 0; cursor: pointer;
+    background: var(--wcf-accent); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 21px; letter-spacing: .84px; text-transform: uppercase;
+  }
+  #wcf-{{ section.id }} .wcf__submit:hover { background: #0A0A0A; }
+  #wcf-{{ section.id }} .wcf__notice { padding: 14px 16px; margin-bottom: 24px; font-family: Barlow, sans-serif; font-size: 15px; border: 1px solid; }
+  #wcf-{{ section.id }} .wcf__notice--success { border-color: #1E7B34; color: #1E7B34; background: #F0F8F2; }
+  #wcf-{{ section.id }} .wcf__notice--error { border-color: var(--wcf-accent); color: var(--wcf-accent); background: #FDF0F1; }
+  #wcf-{{ section.id }} .wcf__notice ul { margin: 6px 0 0; padding-left: 18px; }
+
+  @media only screen and (max-width: 749px) {
+    #wcf-{{ section.id }} .wcf__grid { grid-template-columns: minmax(0, 1fr); }
+    #wcf-{{ section.id }} .wcf__field,
+    #wcf-{{ section.id }} .wcf__field--half,
+    #wcf-{{ section.id }} .wcf__field--quarter { grid-column: span 1; }
+    #wcf-{{ section.id }} .wcf__submit { width: 100%; }
+  }
+</style>
+
+<section id="wcf-{{ section.id }}" class="wcf">
+  <div class="{{ section.settings.width }}">
+    <div class="wcf__inner">
+      {%- if section.settings.intro != blank -%}
+        <div class="wcf__intro">{{ section.settings.intro }}</div>
+      {%- endif -%}
+
+      {%- form 'contact', id: 'warrantyClaimForm', class: 'wcf__form', novalidate: 'novalidate' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="wcf__notice wcf__notice--success" role="status" tabindex="-1" autofocus>
+            {{ section.settings.success_message }}
+          </div>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <div class="wcf__notice wcf__notice--error" role="alert">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <input type="hidden" name="contact[Form]" value="Warranty Claim">
+
+        <h2 class="wcf__heading">Your details</h2>
+        <div class="wcf__grid">
+          <div class="wcf__field wcf__field--half">
+            <label for="wcf-first-name">First Name <span class="wcf__req">*</span></label>
+            <input type="text" id="wcf-first-name" name="contact[FirstName]" autocomplete="given-name" required>
+          </div>
+          <div class="wcf__field wcf__field--half">
+            <label for="wcf-last-name">Last Name <span class="wcf__req">*</span></label>
+            <input type="text" id="wcf-last-name" name="contact[LastName]" autocomplete="family-name" required>
+          </div>
+
+          <div class="wcf__field">
+            <label for="wcf-address1">Address 1 <span class="wcf__req">*</span></label>
+            <input type="text" id="wcf-address1" name="contact[Address1]" autocomplete="address-line1" required>
+          </div>
+          <div class="wcf__field wcf__field--half">
+            <label for="wcf-address2">Address 2</label>
+            <input type="text" id="wcf-address2" name="contact[Address2]" autocomplete="address-line2">
+          </div>
+          <div class="wcf__field wcf__field--half">
+            <label for="wcf-address3">Address 3</label>
+            <input type="text" id="wcf-address3" name="contact[Address3]" autocomplete="address-line3">
+          </div>
+
+          <div class="wcf__field wcf__field--half">
+            <label for="wcf-city">City <span class="wcf__req">*</span></label>
+            <input type="text" id="wcf-city" name="contact[City]" autocomplete="address-level2" required>
+          </div>
+          <div class="wcf__field wcf__field--quarter">
+            <label for="wcf-state">State <span class="wcf__req">*</span></label>
+            <select id="wcf-state" name="contact[State]" autocomplete="address-level1" required>
+              <option value="">Select state</option>
+              {%- for state in us_states -%}
+                <option value="{{ state }}">{{ state | split: ' (' | first }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+          <div class="wcf__field wcf__field--quarter">
+            <label for="wcf-zip">Zip Code <span class="wcf__req">*</span></label>
+            <input type="text" id="wcf-zip" name="contact[ZipCode]" autocomplete="postal-code" inputmode="numeric" required>
+          </div>
+
+          <div class="wcf__field wcf__field--half">
+            <label for="wcf-email">Email <span class="wcf__req">*</span></label>
+            <input type="email" id="wcf-email" name="contact[email]" autocomplete="email" autocapitalize="off" spellcheck="false" required>
+          </div>
+          <div class="wcf__field wcf__field--half">
+            <label for="wcf-phone">Phone <span class="wcf__req">*</span></label>
+            <input type="tel" id="wcf-phone" name="contact[Phone]" autocomplete="tel" required>
+          </div>
+
+          <div class="wcf__field">
+            <label class="wcf__choice" for="wcf-subscribe">
+              <input type="checkbox" id="wcf-subscribe" name="contact[ContactFormNewsletter]" value="Yes" checked>
+              <span>Opt in to our email list</span>
+            </label>
+          </div>
+        </div>
+
+        <h2 class="wcf__heading">Your claim</h2>
+        <div class="wcf__grid">
+          <div class="wcf__field wcf__field--quarter">
+            <label for="wcf-item-count">Item Count <span class="wcf__req">*</span></label>
+            <select id="wcf-item-count" name="contact[ItemCount]" required>
+              {%- for i in (1..10) -%}
+                <option value="{{ i }}">{{ i }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+          <div class="wcf__field" style="grid-column: span 3;">
+            <label for="wcf-item-name">Item Name <span class="wcf__req">*</span></label>
+            <input type="text" id="wcf-item-name" name="contact[ItemName]" placeholder="List of products being returned" required>
+          </div>
+
+          <fieldset class="wcf__field">
+            <legend>Repair / Replace <span class="wcf__req">*</span></legend>
+            <div class="wcf__choices">
+              {%- for option in repair_options -%}
+                <label class="wcf__choice" for="wcf-rr-{{ forloop.index }}">
+                  <input type="radio" id="wcf-rr-{{ forloop.index }}" name="contact[RepairOrReplace]" value="{{ option }}" required>
+                  <span>{{ option }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+          </fieldset>
+
+          <div class="wcf__field">
+            <label for="wcf-problem">Problem Description <span class="wcf__req">*</span></label>
+            <textarea id="wcf-problem" name="contact[ProblemDescription]" rows="4" placeholder="What is wrong with the item?" required></textarea>
+          </div>
+
+          <div class="wcf__field">
+            <label for="wcf-suggestions">
+              What were you doing with the product when it broke?
+              <span class="wcf__hint">This helps our engineering team keep improving our products.</span>
+            </label>
+            <textarea id="wcf-suggestions" name="contact[CommentsSuggestions]" rows="4" placeholder="Comments and suggestions"></textarea>
+          </div>
+
+          <div class="wcf__field">
+            <label class="wcf__choice" for="wcf-policy">
+              <input type="checkbox" id="wcf-policy" name="contact[ReturnPolicy]" value="Accepted" required>
+              <span>
+                I accept the
+                {% if policy_url != blank %}<a href="{{ policy_url }}" target="_blank" rel="noopener">return policy</a>{% else %}return policy{% endif %}
+                <span class="wcf__req">*</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="wcf__submit">{{ section.settings.button_label }}</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var form = document.querySelector('#wcf-{{ section.id }} form');
+    if (!form) return;
+    form.addEventListener('submit', function (event) {
+      form.classList.add('wcf__submitted');
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        var firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) {
+          firstInvalid.focus();
+          if (firstInvalid.reportValidity) firstInvalid.reportValidity();
+        }
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Warranty claim form",
+  "tag": "div",
+  "class": "section-warranty-claim-form",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro text"
+    },
+    {
+      "type": "url",
+      "id": "policy_link",
+      "label": "Return policy link",
+      "info": "Defaults to the store's refund policy"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Submit claim"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks! Your warranty claim was submitted. Our team will contact you within 1–2 business days."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper",
+      "options": [
+        { "value": "wrapper--full-padded", "label": "Full width padded" },
+        { "value": "wrapper", "label": "Normal" },
+        { "value": "wrapper--narrow", "label": "Narrow" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warranty claim form"
+    }
+  ]
+}
+{% endschema %}

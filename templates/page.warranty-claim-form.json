@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "live-page-style": {
+      "type": "live-page-style",
+      "settings": {
+        "heading_font": "barlow_n5",
+        "heading_size": 100,
+        "body_font": "karla_n4",
+        "text_size": 100,
+        "text_color": "#333333",
+        "border_width": 2
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "banner": {
+      "type": "section-banner-image",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Warranty Claim Form</p>",
+            "size": 180,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#d43747",
+            "highlight_text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "settings": {
+        "height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "image": "shopify://shop_images/kontakt-buehne-02.jpg",
+        "overlay_type": "opacity",
+        "transition": "zoom-out",
+        "enable_zoom_animation": true,
+        "enable_card_scrolling": false,
+        "increase_border_radius": true,
+        "content_width": 80,
+        "text_position": "center",
+        "text_alignment": "left",
+        "mobile_text_position": "left",
+        "mobile_text_alignment": "left",
+        "color_scheme": "scheme-1",
+        "show_text_background": false,
+        "bg_color": "",
+        "text_color": "#ffffff",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "form": {
+      "type": "warranty-claim-form",
+      "settings": {
+        "intro": "<p>Every Ledlenser light is covered by our 7-year warranty. Fill out the form below and our US-based team will get back to you within 1–2 business days.</p>",
+        "policy_link": "",
+        "button_label": "Submit claim",
+        "success_message": "Thanks! Your warranty claim was submitted. Our team will contact you within 1–2 business days.",
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "live-page-style",
+    "main",
+    "banner",
+    "form"
+  ]
+}

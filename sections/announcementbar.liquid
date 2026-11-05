@@ -6,7 +6,11 @@
 
   <span class="separator" aria-hidden="true">|</span>
 
-  <span>{{ section.settings.second_text }}</span>
+  {%- if section.settings.second_link != blank -%}
+    <a href="{{ section.settings.second_link }}">{{ section.settings.second_text }}</a>
+  {%- else -%}
+    <span>{{ section.settings.second_text }}</span>
+  {%- endif -%}
 
   <span class="separator" aria-hidden="true">|</span>
 
@@ -45,6 +49,11 @@
       "id": "second_text",
       "label": "Second Announcement Text",
       "default": "Free US shipping over $35"
+    },
+    {
+      "type": "url",
+      "id": "second_link",
+      "label": "Second Announcement Link"
     },
     {
       "type": "text",

@@ -60,14 +60,23 @@
 
   # Specs
   assign spec_labels = 'Output|Distance|Runtime' | split: '|'
-  assign spec_keys = 'max_lumens|beam_range|runtime_range' | split: '|'
+  assign spec_types = 'output|beam|runtime' | split: '|'
+  assign spec_values = ''
   assign has_specs = false
-  for spec_key in spec_keys
-    assign spec_check = p.metafields.custom[spec_key] | metafield_text
+  for spec_type in spec_types
+    capture spec_check
+      render 'card-spec-value', product: p, spec: spec_type
+    endcapture
+    assign spec_check = spec_check | strip
     if spec_check != blank
       assign has_specs = true
     endif
+    unless forloop.first
+      assign spec_values = spec_values | append: '~~'
+    endunless
+    assign spec_values = spec_values | append: spec_check
   endfor
+  assign spec_values = spec_values | split: '~~'
 -%}
 
 <div class="bs-collection-item grid__item {{ size_desktop }} {{ size_mobile }}" data-product-block>
@@ -117,13 +126,8 @@
 
       {%- if has_specs -%}
         <div class="bs-card__specs">
-          {%- for spec_key in spec_keys -%}
-            {%- assign spec_value = p.metafields.custom[spec_key] | metafield_text -%}
-            {%- if spec_key == 'beam_range' and spec_value != blank -%}
-              {%- capture spec_value -%}{%- render 'beam-distance', value: spec_value, format: 'm' -%}{%- endcapture -%}
-            {%- elsif spec_key == 'max_lumens' and spec_value != blank -%}
-              {%- capture spec_value -%}{%- render 'spec-lumens', value: spec_value -%}{%- endcapture -%}
-            {%- endif -%}
+          {%- for spec_type in spec_types -%}
+            {%- assign spec_value = spec_values[forloop.index0] | strip -%}
             {%- if spec_value != blank -%}
               <div class="bs-card__spec">
                 <div class="bs-card__spec-label">{{ spec_labels[forloop.index0] }}</div>

@@ -216,17 +216,14 @@
 
           {%- comment -%} --- Spec line logic --- {%- endcomment -%}
             {%- assign spec_text = '' -%}
+            {%- capture spec_key_1 -%}{%- render 'card-spec-value', product: product, spec: 'output' -%}{%- endcapture -%}
+            {%- capture spec_key_2 -%}{%- render 'card-spec-value', product: product, spec: 'beam' -%}{%- endcapture -%}
+            {%- capture spec_key_3 -%}{%- render 'card-spec-value', product: product, spec: 'runtime' -%}{%- endcapture -%}
             {%- liquid
-            assign spec_key_1 = product.metafields.custom.max_lumens | metafield_text
-            assign spec_key_2 = product.metafields.custom.beam_range | metafield_text
-            assign spec_key_3 = product.metafields.custom.runtime_range.value
+              assign spec_key_1 = spec_key_1 | strip
+              assign spec_key_2 = spec_key_2 | strip
+              assign spec_key_3 = spec_key_3 | strip
             -%}
-            {%- if spec_key_1 != blank -%}
-              {%- capture spec_key_1 -%}{%- render 'spec-lumens', value: spec_key_1 -%}{%- endcapture -%}
-            {%- endif -%}
-            {%- if spec_key_2 != blank -%}
-              {%- capture spec_key_2 -%}{%- render 'beam-distance', value: spec_key_2, format: 'm' -%}{%- endcapture -%}
-            {%- endif -%}
 
             {%- if spec_key_1 != blank -%}
             {%- assign spec_text = spec_text | append: spec_key_1 -%}

@@ -86,8 +86,9 @@
         "first_text": "ON $200+ ORDERS",
         "first_link": "",
         "second_text": "15% OFF FIRST ORDER – SIGN UP",
+        "second_link": "/#finder",
         "third_text": "MILITARY & FIRST RESPONDERS: 15% OFF",
-        "third_link": "https://www.ledlenserusa.com/pages/contact-ledlenser",
+        "third_link": "/#finder",
         "fourth_text": "FREE U.S. SHIPPING $35+"
       }
     },
@@ -117,7 +118,7 @@
       ],
       "settings": {
         "width": "wrapper--full-padded",
-        "sticky_header": false,
+        "sticky_header": true,
         "link_hover_effect": "dot",
         "highlight_color": "#fff7f2",
         "cont_link": "tel:904-694-3711",

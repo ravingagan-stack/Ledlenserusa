@@ -1311,13 +1311,11 @@
               {%- when 'spectifications' -%}
               <div class="product__specs">
                 {%- assign spec_labels = 'Max output|Beam distance|Longest runtime|Waterproof' | split: '|' -%}
-                {%- assign spec_keys = 'max_lumens|beam_range|runtime_range|waterproof_value' | split: '|' -%}
+                {%- assign spec_types = 'output|beam|runtime|waterproof' | split: '|' -%}
 
-                {%- for spec_key in spec_keys -%}
-                  {%- assign spec_value = product.metafields.custom[spec_key].value -%}
-                  {%- if spec_key == 'beam_range' and spec_value != blank -%}
-                    {%- capture spec_value -%}{%- render 'beam-distance', value: spec_value, format: 'm' -%}{%- endcapture -%}
-                  {%- endif -%}
+                {%- for spec_type in spec_types -%}
+                  {%- capture spec_value -%}{%- render 'card-spec-value', product: product, spec: spec_type -%}{%- endcapture -%}
+                  {%- assign spec_value = spec_value | strip -%}
 
                   {%- if spec_value != blank -%}
                     <div class="bs-card__spec">

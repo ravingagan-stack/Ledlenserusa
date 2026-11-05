@@ -18,7 +18,12 @@
   assign raw = value | strip
   assign lower = raw | downcase
 
-  assign s = lower | remove: ',' | replace: '(', ' ' | replace: ')', ' '
+  assign has_plus = false
+  if lower contains '+'
+    assign has_plus = true
+  endif
+
+  assign s = lower | remove: ',' | remove: '+' | replace: '(', ' ' | replace: ')', ' '
   assign s = s | replace: '–', ' – ' | replace: '—', ' – ' | replace: '-', ' – '
   assign s = s | replace: 'metres', ' m ' | replace: 'meters', ' m ' | replace: 'metre', ' m ' | replace: 'meter', ' m '
   assign s = s | replace: 'feet', ' ft ' | replace: 'foot', ' ft ' | replace: 'ft', ' ft '
@@ -108,6 +113,12 @@
   assign prefix = ''
   if lower contains 'up to'
     assign prefix = 'Up to '
+  endif
+
+  # Keep a trailing "+" (e.g. "1000+ ft" → "305+ m").
+  if has_plus
+    assign m_text = m_text | append: '+'
+    assign ft_text = ft_text | append: '+'
   endif
 
   if meters.size == 0

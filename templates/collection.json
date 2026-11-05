@@ -56,71 +56,72 @@
         "padding_bottom": 0
       }
     },
-    "collection_hero_mHAhyy": {
+    "collection_hero_DCjmKL": {
       "type": "Collection-hero",
       "blocks": {
-        "trust_iBFEPg": {
+        "trust_hPG6aC": {
           "type": "trust",
           "settings": {
             "icon": "shield",
             "text": "<strong>7-year warranty,</strong> no questions asked"
           }
         },
-        "trust_UCNxBB": {
+        "trust_mtEctN": {
           "type": "trust",
           "settings": {
             "icon": "truck",
             "text": "<strong>Ships in 1–2 days</strong> from the US"
           }
         },
-        "trust_Df9WKy": {
+        "trust_rB8RWT": {
           "type": "trust",
           "settings": {
             "icon": "headset",
             "text": "<strong>Not sure?</strong> <a href=\"/pages/contact\">Ask an expert</a> or <a href=\"/pages/product-quiz\" title=\"Product Quiz\">take the Light Finder</a>"
           }
         },
-        "pill_mVxBgD": {
+        "pill_FcHytt": {
           "type": "pill",
           "settings": {
-            "label": "All headlamps",
-            "link": "shopify://collections/headlamps",
+            "label": "All flashlights",
+            "link": "shopify://collections/flashlights",
             "active": true
           }
         },
-        "pill_tfecPy": {
+        "pill_atjTxd": {
           "type": "pill",
           "settings": {
             "label": "Work & jobsite",
-            "link": "shopify://collections/2020-work-series-headlamps",
+            "link": "shopify://collections/flashlights-work-jobsite",
             "active": false
           }
         },
-        "pill_JG9FYJ": {
+        "pill_NJMk6N": {
           "type": "pill",
           "settings": {
             "label": "Hiking & camping",
-            "link": "shopify://collections/hiking-trekking-headlamps",
+            "link": "shopify://collections/tactical-flashlights",
             "active": false
           }
         },
-        "pill_KteiW4": {
+        "pill_TKJFLY": {
           "type": "pill",
+          "disabled": true,
           "settings": {
             "label": "Hands-free sensor",
             "link": "shopify://collections/all-items",
             "active": false
           }
         },
-        "pill_7TrpcL": {
+        "pill_nBwGFK": {
           "type": "pill",
           "settings": {
             "label": "Brightest",
-            "link": "shopify://collections/all-items",
+            "link": "",
             "active": false
           }
         },
-        "pill_an3r9g": {
+        "pill_VKzBX9": {
           "type": "pill",
           "settings": {
             "label": "Under $100",
@@ -128,33 +129,34 @@
             "active": false
           }
         },
-        "pill_yjFap3": {
+        "pill_XaqMeW": {
           "type": "pill",
           "settings": {
             "label": "Kits with powerbank",
-            "link": "shopify://collections/all-items",
+            "link": "shopify://collections/flashlight-bundles",
             "active": false
           }
         }
       },
       "block_order": [
-        "trust_iBFEPg",
-        "trust_UCNxBB",
-        "trust_Df9WKy",
-        "pill_mVxBgD",
-        "pill_tfecPy",
-        "pill_JG9FYJ",
-        "pill_KteiW4",
-        "pill_7TrpcL",
-        "pill_an3r9g",
-        "pill_yjFap3"
+        "trust_hPG6aC",
+        "trust_mtEctN",
+        "trust_rB8RWT",
+        "pill_FcHytt",
+        "pill_atjTxd",
+        "pill_NJMk6N",
+        "pill_TKJFLY",
+        "pill_nBwGFK",
+        "pill_VKzBX9",
+        "pill_XaqMeW"
       ],
+      "disabled": true,
       "name": "Collection hero",
       "settings": {
         "load_fonts": true,
         "show_breadcrumb": true,
-        "heading": "Headlamps",
-        "description": "<p>Rechargeable, focusable headlamps for the jobsite, the trail and the hunt. Specs are shown in meters and hours so you can compare at a glance.</p>",
+        "heading": "Flashlights",
+        "description": "<p>Rechargeable, focusable lights for the jobsite, the trail and the hunt. Specs are shown in meters and hours so you can compare at a glance.</p>",
         "max_width": 1360,
         "pills_spacing": 68,
         "padding_top": 40,
@@ -185,7 +187,7 @@
             "bg_color": "#000000",
             "text_color": "#ffffff",
             "button_text": "Start the Light Finder",
-            "button_link": "",
+            "button_link": "/pages/product-quiz",
             "button_color": "btn--white",
             "button_style": "btn--text",
             "button_size": "btn--small"
@@ -214,7 +216,7 @@
     "hero",
     "subcollections",
     "section_divider_EMY8RJ",
-    "collection_hero_mHAhyy",
+    "collection_hero_DCjmKL",
     "main"
   ]
 }

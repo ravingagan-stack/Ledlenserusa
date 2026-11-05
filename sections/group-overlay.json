@@ -16,17 +16,25 @@
       "blocks": {
         "cart-message-0": {
           "type": "cart-message",
-          "settings": {}
+          "disabled": true,
+          "settings": {
+            "cart_custom_message_text": "<p>New customers save 10% with code <strong>WELCOME10 </strong>on regular-priced items only</p>",
+            "show_border_bottom": false
+          }
         },
         "title-0": {
           "type": "title",
           "settings": {
+            "title_text": "Cart",
+            "type_style": "font-heading",
+            "text_size": 100,
             "show_border_bottom": true
           }
         },
         "free-shipping-message-0": {
           "type": "free-shipping-message",
           "settings": {
+            "message": "Spend ||amount|| more for FREE shipping.",
             "show_border_bottom": true
           }
         },
@@ -38,15 +46,22 @@
         },
         "upsell-0": {
           "type": "upsell",
-          "settings": {}
+          "settings": {
+            "show_border_bottom": false
+          }
         },
         "discount-code-0": {
           "type": "discount-code",
-          "settings": {}
+          "settings": {
+            "show_border_bottom": false
+          }
         },
         "checkout-buttons-0": {
           "type": "checkout-buttons",
-          "settings": {}
+          "settings": {
+            "enable_additional_buttons": false,
+            "pin_to_bottom": true
+          }
         }
       },
       "block_order": [
@@ -58,7 +73,11 @@
         "discount-code-0",
         "checkout-buttons-0"
       ],
-      "settings": {}
+      "settings": {
+        "cart_button_color": "btn--primary",
+        "cart_button_style": "btn--solid-border",
+        "cart_button_size": "btn--medium"
+      }
     },
     "popup": {
       "type": "popup",
@@ -66,7 +85,23 @@
         "popup-0": {
           "type": "popup-with-image",
           "disabled": true,
-          "settings": {}
+          "settings": {
+            "position": "center-center",
+            "height": "four-fifty-height",
+            "title": "Sign up for 10% off",
+            "text": "<p>Let’s keep in touch. We promise we won’t bug you too much - just promotions and new releases.</p>",
+            "show_newsletter_form": true,
+            "extra_fields": "",
+            "button_text": "",
+            "trigger": "delayed_10",
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": false,
+            "target_device": "mobile",
+            "bg_color": "#ffffff"
+          }
         }
       },
       "block_order": [

@@ -1438,7 +1438,6 @@ shopify-payment-terms::part(installments-content) span{
     display: none;
 }
 .product__form .product__submit__item.btn--white.btn--solid-border.btn--medium.btn--advanced.aos-animate {
-    width: 133.2%;
     margin-left: -142px;
         height: 54px;
 }
@@ -1858,7 +1857,6 @@ text-decoration-skip-ink: auto;
 
 .product__form .product__submit__item.btn--white.btn--solid-border.btn--medium.btn--advanced.aos-animate {
     margin-left: -111px;
-    width: 150%;
 }
 .product__icon__row {
     gap: 5px;
@@ -1971,7 +1969,7 @@ html .breadcrumb.page-width {
 }
 
 .product__form .product__submit__item.btn--white.btn--solid-border.btn--medium.btn--advanced.aos-animate {
-    width: 151%;
+
     margin-left: -110px;
     height: 54px;
 }

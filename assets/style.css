@@ -2594,3 +2594,14 @@ button.offer-option-btn {
 #join {
     scroll-margin-top: calc(var(--header-sticky-height, 80px) + 24px);
 }
+.description-panel.rte {
+    font-family: Barlow;
+}
+
+.pdp-tabs__tab {
+    font-family: Barlow Condensed;
+    font-size: 18px;
+}
+.pdp-accordions{
+    font-family: Barlow;
+}

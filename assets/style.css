@@ -2473,3 +2473,12 @@ a.navlink.navlink--toplevel.navlink--dot.caps {
 .temppage-world-is-as-bright collapsible-elements.image-with-text__content.aos-animate {
     padding-left: 45px !important;
 }
+
+
+
+.product__form .product__submit__buttons {
+    gap: 0 !important;
+}
+.product__submit__item {
+    margin-bottom: 10px;
+}

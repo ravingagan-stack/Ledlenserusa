@@ -83,8 +83,8 @@
         "pill_FcHytt": {
           "type": "pill",
           "settings": {
-            "label": "All flashlights",
-            "link": "shopify://collections/flashlights",
+            "label": "All headlamps",
+            "link": "shopify://collections/headlamps",
             "active": true
           }
         },

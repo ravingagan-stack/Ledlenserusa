@@ -111,8 +111,8 @@
     top: 12px;
     left: 12px;
     z-index: 1;
-    background: {{ section.settings.color_badge_bg }};
-    color: {{ section.settings.color_badge_text }};
+    background: var(--COLOR-CUSTOM-BG, {{ section.settings.color_badge_bg }});
+    color: var(--COLOR-CUSTOM-TEXT, {{ section.settings.color_badge_text }});
     font-size: 12px;
     font-weight: 700;
         font-family: Barlow, Helvetica Neue, sans-serif;
@@ -451,10 +451,14 @@ span.bs-card__price {
           endcapture
           assign compare_text = compare_text | strip
 
-          # Badge: metafield > sale badge > default badge
+          # Badge: theme.badge (Palo Alto's custom badge, e.g. "New") > section metafield
+          # (default custom.badge) > sale badge > default badge
           # (the savings badge replaces the plain sale badge)
-          assign badge_parts = section.settings.badge_metafield | split: '.'
-          assign badge_text = p.metafields[badge_parts[0]][badge_parts[1]] | metafield_text
+          assign badge_text = p.metafields.theme.badge | metafield_text | strip
+          if badge_text == blank
+            assign badge_parts = section.settings.badge_metafield | split: '.'
+            assign badge_text = p.metafields[badge_parts[0]][badge_parts[1]] | metafield_text | strip
+          endif
           if badge_text == blank
             if save_text != blank
               assign badge_text = ''
@@ -857,7 +861,8 @@ span.bs-card__price {
     {
       "type": "color",
       "id": "color_badge_bg",
-      "label": "Badge background",
+      "label": "Badge background (fallback)",
+      "info": "Badges use Theme settings > Badges > Custom badge colors. This is only used if those are empty.",
       "default": "#0A0A0A"
     },
     {

@@ -439,12 +439,26 @@ span.bs-card__price {
         {%- liquid
           assign variant = p.selected_or_first_available_variant
           assign product_title = p.title | escape
+          assign card_form_id = 'BestSellersForm-' | append: section.id | append: '-' | append: p.id
+
+          # Savings: "Save 22%" badge + struck-through compare-at price
+          capture save_text
+            render 'sale-savings', product: p
+          endcapture
+          assign save_text = save_text | strip
+          capture compare_text
+            render 'sale-savings', product: p, part: 'compare'
+          endcapture
+          assign compare_text = compare_text | strip
 
           # Badge: metafield > sale badge > default badge
+          # (the savings badge replaces the plain sale badge)
           assign badge_parts = section.settings.badge_metafield | split: '.'
           assign badge_text = p.metafields[badge_parts[0]][badge_parts[1]] | metafield_text
           if badge_text == blank
-            if p.compare_at_price > p.price and section.settings.sale_badge != blank
+            if save_text != blank
+              assign badge_text = ''
+            elsif p.compare_at_price > p.price and section.settings.sale_badge != blank
               assign badge_text = section.settings.sale_badge
             else
               assign badge_text = section.settings.default_badge
@@ -518,6 +532,9 @@ span.bs-card__price {
             {%- if badge_text != blank -%}
               <span class="bs-card__badge">{{ badge_text }}</span>
             {%- endif -%}
+            {%- if save_text != blank -%}
+              <span class="bs-card__badge bs-card__badge--save{% if badge_text != blank %} bs-card__badge--stacked{% endif %}">{{ save_text }}</span>
+            {%- endif -%}
 
             {%- if p.featured_media != blank -%}
               {%- assign image_alt = p.featured_media.alt | default: p.title | escape -%}
@@ -579,9 +596,14 @@ span.bs-card__price {
             {%- endif -%}
 
             <product-form class="bs-card__bottom" data-product-form>
-              <span class="bs-card__price">{{ price_text }}</span>
+              <span class="bs-card__price-wrap">
+                <span class="bs-card__price{% if compare_text != blank %} bs-card__price--sale{% endif %}">{{ price_text }}</span>
+                {%- if compare_text != blank -%}
+                  <s class="bs-card__compare"><span class="visually-hidden">Regular price </span>{{ compare_text }}</s>
+                {%- endif -%}
+              </span>
 
-              {%- form 'product', p, id: 'BestSellersForm-{{ section.id }}-{{ p.id }}', class: 'bs-card__form', novalidate: 'novalidate' -%}
+              {%- form 'product', p, id: card_form_id, class: 'bs-card__form', novalidate: 'novalidate' -%}
                 <input type="hidden" name="id" value="{{ variant.id }}">
                 <input type="hidden" name="quantity" value="1">
                 <button

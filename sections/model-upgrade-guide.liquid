@@ -192,6 +192,8 @@ color: #4a4a4a;
               {{- m_variant.price | money -}}
               {%- if m_variant.compare_at_price > m_variant.price %}
                 <s>{{ m_variant.compare_at_price | money }}</s>
+                {%- capture save_text -%}{%- render 'sale-savings', product: model -%}{%- endcapture -%}{%- assign save_text = save_text | strip -%}
+                {%- if save_text != blank %} <span class="ll-save-tag">{{ save_text | strip }}</span>{%- endif -%}
               {%- endif -%}
             </span>
             {%- if delta != blank -%}

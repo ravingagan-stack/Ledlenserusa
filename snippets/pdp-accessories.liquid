@@ -20,10 +20,15 @@
           {%- endif -%}
         </span>
         <span class="pdp-acc-item__name">{{ acc.title }}</span>
+        {%- capture acc_compare -%}{%- render 'sale-savings', product: acc, part: 'compare' -%}{%- endcapture -%}{%- assign acc_compare = acc_compare | strip -%}
+        {%- capture acc_save -%}{%- render 'sale-savings', product: acc -%}{%- endcapture -%}{%- assign acc_save = acc_save | strip -%}
         <span class="pdp-acc-item__price">
-          {%- if acc.compare_at_price > acc.price -%}<s>{{ acc.compare_at_price | money }}</s> {% endif -%}
+          {%- if acc_compare != blank -%}<s>{{ acc_compare | strip }}</s> {% endif -%}
           {{ acc.price | money }}
         </span>
+        {%- if acc_save != blank -%}
+          <span class="ll-save-tag">{{ acc_save | strip }}</span>
+        {%- endif -%}
       </a>
     {%- endfor -%}
   </div>

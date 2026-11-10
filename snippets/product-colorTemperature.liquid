@@ -1,0 +1,77 @@
+{%- comment -%}
+  Colour temperature bar for the "All about the light beam" product tab:
+  a warm → cool gradient with a red marker at the light's Kelvin value.
+  Rendered from the tab's custom code:
+    {% render "product-colorTemperature", temperature: product.metafields.technical.ColourTemperature %}
+
+  Accepts:
+  - temperature: {String|Metafield} e.g. "6000K", "6000 K" or "4000-6000K"
+                 (the first number is used for the marker)
+
+  Marker position: piecewise-linear through the reference theme's positions
+  (4000K → 139.0, 5200K → 197.2, 6000K → 233.4), extended beyond the ends
+  with the nearest segment's slope and clamped to the bar.
+  Renders nothing when there is no usable value.
+{%- endcomment -%}
+
+{%- liquid
+  capture ct_raw
+    echo temperature
+  endcapture
+  assign ct_raw = ct_raw | strip
+
+  # First number in the value ("4000-6000K" -> 4000, "6,000 K" -> 6000)
+  assign ct_clean = ct_raw | replace: ',', '' | replace: '–', '-' | replace: '—', '-' | replace: ' ', ''
+  assign ct_first = ct_clean | split: '-' | first
+  assign ct_digits = ''
+  assign ct_chars = ct_first | split: ''
+  for c in ct_chars
+    if '0123456789' contains c
+      assign ct_digits = ct_digits | append: c
+    elsif ct_digits != ''
+      break
+    endif
+  endfor
+  assign kelvin = ct_digits | plus: 0
+
+  if kelvin > 0
+    if kelvin <= 5200
+      # 4000K..5200K segment: 58.2 units per 1200K
+      assign marker_x = kelvin | minus: 4000 | times: 58.2 | divided_by: 1200.0 | plus: 139.0
+    else
+      # 5200K..6000K segment: 36.2 units per 800K
+      assign marker_x = kelvin | minus: 5200 | times: 36.2 | divided_by: 800.0 | plus: 197.2
+    endif
+    if marker_x < 1
+      assign marker_x = 1
+    endif
+    if marker_x > 566.7
+      assign marker_x = 566.7
+    endif
+    assign marker_x = marker_x | round: 1
+
+    if ct_raw contains 'K' or ct_raw contains 'k'
+      assign ct_label = ct_raw
+    else
+      assign ct_label = ct_raw | append: 'K'
+    endif
+  endif
+-%}
+
+{%- if kelvin > 0 -%}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 1 568.3 40.2" role="img" aria-label="Color temperature {{ ct_label | escape }}" style="display:block;width:100%;height:auto;">
+    <defs>
+      <linearGradient id="llColorTempGradient" x1="4.3" x2="572.7" y1="6.8" y2="6.8" gradientTransform="matrix(1 0 0 -1 -3.4 26.6)" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#d40000"/>
+        <stop offset=".1" stop-color="#ff0"/>
+        <stop offset=".3" stop-color="#fff"/>
+        <stop offset=".5" stop-color="#fff"/>
+        <stop offset=".9" stop-color="#a5ecff"/>
+        <stop offset="1" stop-color="#5d97cf"/>
+      </linearGradient>
+    </defs>
+    <path fill="url(#llColorTempGradient)" d="M1 1h568.3v37.7H1z"/>
+    <path fill="red" d="M {{ marker_x }} 1h2.6v40.2h-2.6z"/>
+  </svg>
+  <p>{{ ct_label | escape }}</p>
+{%- endif -%}

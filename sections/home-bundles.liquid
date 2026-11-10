@@ -248,9 +248,10 @@ span.ll-bundles__price-now {
               </div>
 
               <div class="ll-bundles__info">
-                {%- if product.compare_at_price > product.price -%}
-                  {%- assign pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
-                  <span class="ll-bundles__badge">Save {{ pct }}%</span>
+                {%- capture save_text -%}{%- render 'sale-savings', product: product -%}{%- endcapture -%}{%- assign save_text = save_text | strip -%}
+                {%- capture compare_text -%}{%- render 'sale-savings', product: product, part: 'compare' -%}{%- endcapture -%}{%- assign compare_text = compare_text | strip -%}
+                {%- if save_text != blank -%}
+                  <span class="ll-bundles__badge">{{ save_text | strip }}</span>
                 {%- elsif section.settings.default_badge != blank -%}
                   <span class="ll-bundles__badge">{{ section.settings.default_badge }}</span>
                 {%- endif -%}
@@ -259,8 +260,8 @@ span.ll-bundles__price-now {
 
                 <div class="ll-bundles__price">
                   <span class="ll-bundles__price-now">{{ product.price | money }}</span>
-                  {% if product.compare_at_price > product.price %}
-                    <s class="ll-bundles__price-was">{{ product.compare_at_price | money }}</s>
+                  {% if compare_text != blank %}
+                    <s class="ll-bundles__price-was">{{ compare_text | strip }}</s>
                   {% endif %}
                 </div>
               </div>
@@ -305,9 +306,10 @@ span.ll-bundles__price-now {
               </div>
 
               <div class="ll-bundles__info">
-                {%- if product.compare_at_price > product.price -%}
-                  {%- assign pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
-                  <span class="ll-bundles__badge">Save {{ pct }}%</span>
+                {%- capture save_text -%}{%- render 'sale-savings', product: product -%}{%- endcapture -%}{%- assign save_text = save_text | strip -%}
+                {%- capture compare_text -%}{%- render 'sale-savings', product: product, part: 'compare' -%}{%- endcapture -%}{%- assign compare_text = compare_text | strip -%}
+                {%- if save_text != blank -%}
+                  <span class="ll-bundles__badge">{{ save_text | strip }}</span>
                 {%- elsif section.settings.default_badge != blank -%}
                   <span class="ll-bundles__badge">{{ section.settings.default_badge }}</span>
                 {%- endif -%}
@@ -316,8 +318,8 @@ span.ll-bundles__price-now {
 
                 <div class="ll-bundles__price">
                   <span class="ll-bundles__price-now">{{ product.price | money }}</span>
-                  {% if product.compare_at_price > product.price %}
-                    <s class="ll-bundles__price-was">{{ product.compare_at_price | money }}</s>
+                  {% if compare_text != blank %}
+                    <s class="ll-bundles__price-was">{{ compare_text | strip }}</s>
                   {% endif %}
                 </div>
               </div>

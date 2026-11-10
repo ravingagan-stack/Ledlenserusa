@@ -26,6 +26,7 @@
     assign upsell_variant = upsell_product.selected_or_first_available_variant
     assign upsell_variant_image = upsell_variant.featured_media | default: upsell_product.media[0]
 
+    assign upsell_error = false
     if upsell_product.title == '' or upsell_variant == null
       assign upsell_error = true
     endif
@@ -51,10 +52,23 @@
   -%}
 
   {%- unless upsell_error -%}
+    {%- liquid
+      assign price_in_button = false
+      if settings.cart_upsell_price_in_button and upsell_product.variants.size == 1
+        assign price_in_button = true
+      endif
+
+      assign upsell_on_sale = false
+      if upsell_variant.compare_at_price > upsell_variant.price
+        assign upsell_on_sale = true
+      endif
+    -%}
     {%- capture product_info_price -%}
-      <p class="product-upsell__price">
-        {%- render 'product-price', product: upsell_product, namespace: 'product-upsell' -%}
-      </p>
+      {%- unless price_in_button and upsell_on_sale == false -%}
+        <p class="product-upsell__price">
+          {%- render 'product-price', product: upsell_product, namespace: 'product-upsell' -%}
+        </p>
+      {%- endunless -%}
     {%- endcapture -%}
     <div class="product-upsell__holder product-upsell__holder--cart" data-upsell-holder>
       <div class="product-upsell">
@@ -128,10 +142,22 @@
                   <span class="product-upsell__btn-text">
                     {%- if is_preorder -%}
                       {{- 'products.product.preorder' | t -}}
+                    {%- elsif price_in_button -%}
+                      {{- 'general.upsell.add_to_cart' | t -}}
                     {%- else -%}
                       {{- 'general.upsell.quick_view' | t -}}
                     {%- endif -%}
                   </span>
+
+                  {%- if price_in_button -%}
+                    <span class="product-upsell__btn-price">&nbsp;-&nbsp;
+                      {%- if settings.currency_code_enable -%}
+                        {{- upsell_variant.price | money_with_currency -}}
+                      {%- else -%}
+                        {{- upsell_variant.price | money -}}
+                      {%- endif -%}
+                    </span>
+                  {%- endif -%}
 
                   <span class="product-upsell__btn-progress">
                     <svg height="18" width="18" class="svg-loader">

@@ -1,0 +1,59 @@
+{%- comment -%}
+  "Battery and Casing" spec list for the "All about the power" product tab.
+  Rendered from the tab's custom code (templates/product.json > custom-tabs >
+  "All about the power" panel): {% render 'product-technical-data' %}
+
+  Data: product.metafields.technical.*
+    Battery, BatteryCapacity, WaterResistance, Rechargeable
+  Rows without a value are skipped; nothing renders when all are empty.
+  Markup/classes match the other "All about…" tabs (styled in assets/pdp-tabs.css).
+  Uses the page's global `product` object.
+{%- endcomment -%}
+
+{%- liquid
+  assign tech = product.metafields.technical
+
+  capture t_battery
+    echo tech.Battery
+  endcapture
+  capture t_capacity
+    echo tech.BatteryCapacity
+  endcapture
+  capture t_water
+    echo tech.WaterResistance
+  endcapture
+  capture t_recharge
+    echo tech.Rechargeable
+  endcapture
+
+  assign t_battery = t_battery | strip
+  assign t_capacity = t_capacity | strip
+  assign t_water = t_water | strip
+  assign t_recharge = t_recharge | strip
+-%}
+
+{%- if t_battery != blank or t_capacity != blank or t_water != blank or t_recharge != blank -%}
+  <div class="technical">
+    <div class="product-data">
+      <div class="technical-data-sections">
+        <div class="technical-data">
+          <h3 class="battery title with-icon">Battery and Casing</h3>
+          <ul class="list">
+            {%- if t_battery != blank -%}
+              <li class="item2"><span class="name">Battery</span> <span class="value">{{ t_battery }}</span></li>
+            {%- endif -%}
+            {%- if t_capacity != blank -%}
+              <li class="item2"><span class="name">Battery Capacity<sup>2</sup></span> <span class="value">{{ t_capacity }}</span></li>
+            {%- endif -%}
+            {%- if t_water != blank -%}
+              <li class="item2"><span class="name">Water Resistance</span> <span class="value">{{ t_water }}</span></li>
+            {%- endif -%}
+            {%- if t_recharge != blank -%}
+              <li class="item2"><span class="name">Rechargeable</span> <span class="value">{{ t_recharge }}</span></li>
+            {%- endif -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

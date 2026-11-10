@@ -269,7 +269,17 @@
               <div class="ll-launch__spec">{{ spec_text }}</div>
             {% endif %}
 
-            <div class="ll-launch__price">{{ product.price | money }}</div>
+            {%- capture save_text -%}{%- render 'sale-savings', product: product -%}{%- endcapture -%}{%- assign save_text = save_text | strip -%}
+            {%- capture compare_text -%}{%- render 'sale-savings', product: product, part: 'compare' -%}{%- endcapture -%}{%- assign compare_text = compare_text | strip -%}
+            <div class="ll-launch__price">
+              <span{% if compare_text != blank %} class="ll-launch__price-sale"{% endif %}>{{ product.price | money }}</span>
+              {%- if compare_text != blank -%}
+                <s class="ll-launch__compare"><span class="visually-hidden">Regular price </span>{{ compare_text | strip }}</s>
+              {%- endif -%}
+              {%- if save_text != blank -%}
+                <span class="ll-launch__save">{{ save_text | strip }}</span>
+              {%- endif -%}
+            </div>
           </a>
         {%- endfor -%}
       {%- else -%}

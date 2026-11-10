@@ -1,0 +1,76 @@
+{%- comment -%}
+  Sale savings helper for custom product cards, so every card shows the same
+  "Save X%" as the native Palo Alto saving badge (snippets/product-badge.liquid).
+
+  Accepts:
+  - product: {Object} Product (required)
+  - part: {String} 'badge' (default) or 'compare'
+    - badge:   prints "Save 22%" / "Save up to 22%" (nothing when not on sale)
+    - compare: prints the compare-at price that belongs to the price shown on
+               the card (product.price, i.e. the lowest price), formatted with money.
+               Prints nothing when that price isn't marked down.
+
+  Percentages are floored, so a discount is never overstated.
+
+  Usage:
+  {%- capture save_text -%}{%- render 'sale-savings', product: product -%}{%- endcapture -%}
+  {%- render 'sale-savings', product: product, part: 'compare' -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign part = part | default: 'badge'
+
+  if part == 'compare'
+    assign compare_value = 0
+    for v in product.variants
+      if v.price == product.price and v.compare_at_price > v.price
+        if v.compare_at_price > compare_value
+          assign compare_value = v.compare_at_price
+        endif
+      endif
+    endfor
+
+    if compare_value > 0
+      if settings.currency_code_enable
+        echo compare_value | money_with_currency
+      else
+        echo compare_value | money
+      endif
+    endif
+  else
+    # Prefer available variants, like the native badge. Fall back to all
+    # variants when the product is sold out.
+    assign check_variants = product.variants | where: 'available', true
+    if check_variants.size == 0
+      assign check_variants = product.variants
+    endif
+
+    assign best_pct = 0
+    assign min_pct = 100
+    assign sale_count = 0
+
+    for v in check_variants
+      if v.compare_at_price > v.price
+        assign pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | floor
+        if pct > 0
+          assign sale_count = sale_count | plus: 1
+          if pct > best_pct
+            assign best_pct = pct
+          endif
+          if pct < min_pct
+            assign min_pct = pct
+          endif
+        endif
+      endif
+    endfor
+
+    if best_pct > 0
+      assign discount = best_pct | append: '%'
+      if sale_count < check_variants.size or min_pct != best_pct
+        echo 'products.product.save_badge_up_to_html' | t: discount: discount
+      else
+        echo 'products.product.save_badge_html' | t: discount: discount
+      endif
+    endif
+  endif
+-%}

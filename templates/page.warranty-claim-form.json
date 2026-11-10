@@ -76,7 +76,7 @@
       "settings": {
         "intro": "<p>Every Ledlenser light is covered by our 7-year warranty. Fill out the form below and our US-based team will get back to you within 1–2 business days.</p>",
         "policy_link": "",
-        "button_label": "Submit claim",
+        "button_label": "Submit",
         "success_message": "Thanks! Your warranty claim was submitted. Our team will contact you within 1–2 business days.",
         "width": "wrapper",
         "padding_top": 60,

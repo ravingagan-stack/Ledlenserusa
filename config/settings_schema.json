@@ -1470,6 +1470,32 @@
           { "label": "Medium", "value": "btn--medium" },
           { "label": "Large", "value": "btn--large" }
         ]
+      },
+      {
+        "type": "header",
+        "content": "Cart \"Complete your kit\""
+      },
+      {
+        "type": "paragraph",
+        "content": "Shown in the cart drawer and cart page when the cart has items. Product upsells from the 'theme.upsell_list' metafield show first, then the products below. Products already in the cart or sold out are hidden."
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_heading",
+        "label": "Heading",
+        "default": "Complete your kit"
+      },
+      {
+        "type": "product_list",
+        "id": "cart_upsell_products",
+        "label": "Products",
+        "limit": 10
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_upsell_price_in_button",
+        "label": "Show price in button",
+        "default": true
       }
     ]
   },

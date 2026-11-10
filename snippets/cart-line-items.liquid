@@ -289,6 +289,35 @@
       endunless
     endif
   endfor
+
+  comment
+    "Complete your kit" products from Theme settings > Upsells.
+    Uses comma-wrapped handle lists so one handle can't partially match another.
+  endcomment
+  if cart.item_count > 0 and settings.cart_upsell_products != blank
+    assign cart_handles = ','
+    for line_item in cart.items
+      assign cart_handles = cart_handles | append: line_item.product.handle | append: ','
+    endfor
+
+    assign upsell_handles_check = ',' | append: upsell_products
+    assign upsell_count = upsell_products | split: ',' | size
+
+    for kit_product in settings.cart_upsell_products
+      if upsell_count >= 10
+        break
+      endif
+
+      assign kit_handle_key = ',' | append: kit_product.handle | append: ','
+      if kit_product.available == false or cart_handles contains kit_handle_key or upsell_handles_check contains kit_handle_key
+        continue
+      endif
+
+      assign upsell_products = upsell_products | append: kit_product.handle | append: ','
+      assign upsell_handles_check = upsell_handles_check | append: kit_product.handle | append: ','
+      assign upsell_count = upsell_count | plus: 1
+    endfor
+  endif
 -%}
 
 {%- case part -%}
@@ -297,6 +326,9 @@
 
   {%- when 'upsell-items' -%}
     {%- if upsell_products != '' -%}
+      {%- if settings.cart_upsell_heading != blank -%}
+        <p class="cart__pair-title">{{ settings.cart_upsell_heading | escape }}</p>
+      {%- endif -%}
       <div data-pair-products {% render 'upsells-fallback-styles' %}>
         {% render 'upsell-products' with upsell_products as upsell_products %}
       </div>

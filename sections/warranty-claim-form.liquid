@@ -5,85 +5,99 @@
 
 {%- liquid
   assign us_states = 'Alabama (AL)|Alaska (AK)|American Samoa (AS)|Arizona (AZ)|Arkansas (AR)|California (CA)|Colorado (CO)|Connecticut (CT)|Delaware (DE)|District Of Columbia (DC)|Federated States Of Micronesia (FM)|Florida (FL)|Georgia (GA)|Guam (GU)|Hawaii (HI)|Idaho (ID)|Illinois (IL)|Indiana (IN)|Iowa (IA)|Kansas (KS)|Kentucky (KY)|Louisiana (LA)|Maine (ME)|Marshall Islands (MH)|Maryland (MD)|Massachusetts (MA)|Michigan (MI)|Minnesota (MN)|Mississippi (MS)|Missouri (MO)|Montana (MT)|Nebraska (NE)|Nevada (NV)|New Hampshire (NH)|New Jersey (NJ)|New Mexico (NM)|New York (NY)|North Carolina (NC)|North Dakota (ND)|Northern Mariana Islands (MP)|Ohio (OH)|Oklahoma (OK)|Oregon (OR)|Palau (PW)|Pennsylvania (PA)|Puerto Rico (PR)|Rhode Island (RI)|South Carolina (SC)|South Dakota (SD)|Tennessee (TN)|Texas (TX)|Utah (UT)|Vermont (VT)|Virgin Islands (VI)|Virginia (VA)|Washington (WA)|West Virginia (WV)|Wisconsin (WI)|Wyoming (WY)' | split: '|'
-  assign repair_options = 'Repair or Return Only. It has sentimental value and I want it back|If it cannot be repaired, send a comparable model|OK to substitute with a different model' | split: '|'
+  # Replacement only, we do not offer repairs
+  assign repair_options = 'If it cannot be repaired, send a comparable model|OK to substitute with a different model' | split: '|'
   assign policy_url = section.settings.policy_link | default: shop.refund_policy.url
 -%}
 
 <style>
+  /* Matches the warranty form in the LEDLENSER_2026_RCD theme: light labels in the
+     page's body font (Karla), placeholder in every field, pairs side by side on
+     desktop and everything stacked on mobile. */
   #wcf-{{ section.id }} {
-    --wcf-border: #DADADA;
-    --wcf-text: #0A0A0A;
-    --wcf-muted: #4A4A4A;
-    --wcf-accent: #E30613;
+    --wcf-border: #D9D9D9;
+    --wcf-text: #333333;
+    --wcf-dark: #1B1B1B;
+    --wcf-error: #E30613;
     padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
     color: var(--wcf-text);
+    font-family: var(--FONT-STACK-BODY, Karla, sans-serif);
+    font-size: 15px;
+    line-height: 1.5;
   }
-  #wcf-{{ section.id }} .wcf__inner { max-width: 880px; margin: 0 auto; }
-  #wcf-{{ section.id }} .wcf__intro { font-family: Barlow, sans-serif; font-size: 16px; line-height: 1.5; color: var(--wcf-muted); margin: 0 0 28px; }
-  #wcf-{{ section.id }} .wcf__heading {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase;
-    font-size: 22px; letter-spacing: .02em; margin: 32px 0 16px; padding-bottom: 8px;
-    border-bottom: 2px solid var(--wcf-text);
-  }
-  #wcf-{{ section.id }} .wcf__heading:first-of-type { margin-top: 0; }
-  #wcf-{{ section.id }} .wcf__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 20px; }
-  #wcf-{{ section.id }} .wcf__field { grid-column: span 4; display: flex; flex-direction: column; gap: 6px; }
-  #wcf-{{ section.id }} .wcf__field--half { grid-column: span 2; }
-  #wcf-{{ section.id }} .wcf__field--quarter { grid-column: span 1; }
-  #wcf-{{ section.id }} label,
+  #wcf-{{ section.id }} .wcf__intro { font-size: 16px; line-height: 1.6; margin: 0 0 28px; }
+  #wcf-{{ section.id }} .wcf__intro p { margin: 0; }
+
+  #wcf-{{ section.id }} .wcf__row { display: flex; gap: 20px; margin-bottom: 10px; }
+  #wcf-{{ section.id }} .wcf__col { flex: 2 1 0; min-width: 0; }
+  #wcf-{{ section.id }} .wcf__col--quarter { flex: 1 1 0; }
+  #wcf-{{ section.id }} .wcf__group { margin-bottom: 10px; }
+  #wcf-{{ section.id }} .wcf__row .wcf__group { margin-bottom: 0; }
+
+  #wcf-{{ section.id }} .wcf__label,
   #wcf-{{ section.id }} legend {
-    font-family: Barlow, sans-serif; font-weight: 600; font-size: 14px; line-height: 1.4; padding: 0;
+    display: block; margin: 0 0 4px; padding: 0;
+    font-family: inherit; font-size: 15px; font-weight: 400; line-height: 1.45;
+    color: var(--wcf-text); letter-spacing: 0; text-transform: none;
   }
-  #wcf-{{ section.id }} .wcf__req { color: var(--wcf-accent); }
+
   #wcf-{{ section.id }} input[type="text"],
   #wcf-{{ section.id }} input[type="email"],
   #wcf-{{ section.id }} input[type="tel"],
   #wcf-{{ section.id }} select,
   #wcf-{{ section.id }} textarea {
-    width: 100%; box-sizing: border-box; min-height: 48px; padding: 12px 14px; margin: 0;
-    font-family: Barlow, sans-serif; font-size: 16px; color: var(--wcf-text);
-    background: #fff; border: 1px solid var(--wcf-border); border-radius: 0;
+    display: block; width: 100%; box-sizing: border-box; margin: 0;
+    height: 56px; padding: 0 20px;
+    font-family: inherit; font-size: 15px; line-height: 1.4; color: var(--wcf-text);
+    background: #fff; border: 2px solid var(--wcf-border); border-radius: 0; box-shadow: none;
   }
+  #wcf-{{ section.id }} ::placeholder { color: var(--wcf-text); opacity: .9; }
   #wcf-{{ section.id }} select {
-    appearance: none; -webkit-appearance: none; padding-right: 40px;
-    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230A0A0A' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;
+    appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23333333' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 18px center;
   }
-  #wcf-{{ section.id }} textarea { min-height: 120px; resize: vertical; }
+  #wcf-{{ section.id }} textarea { height: auto; min-height: 130px; padding: 16px 20px; resize: vertical; }
   #wcf-{{ section.id }} input:focus,
   #wcf-{{ section.id }} select:focus,
-  #wcf-{{ section.id }} textarea:focus { outline: none; border-color: var(--wcf-text); box-shadow: 0 0 0 1px var(--wcf-text); }
+  #wcf-{{ section.id }} textarea:focus { outline: none; border-color: var(--wcf-text); }
   #wcf-{{ section.id }} .wcf__submitted input:invalid,
   #wcf-{{ section.id }} .wcf__submitted select:invalid,
-  #wcf-{{ section.id }} .wcf__submitted textarea:invalid { border-color: var(--wcf-accent); }
-  #wcf-{{ section.id }} .wcf__hint { font-family: Barlow, sans-serif; font-weight: 400; font-size: 14px; color: var(--wcf-muted); }
-  #wcf-{{ section.id }} fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
-  #wcf-{{ section.id }} .wcf__choices { display: grid; gap: 10px; margin-top: 8px; }
-  #wcf-{{ section.id }} .wcf__choice {
-    display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
-    font-weight: 400; font-size: 15px;
+  #wcf-{{ section.id }} .wcf__submitted textarea:invalid { border-color: var(--wcf-error); }
+
+  /* Checkboxes and radios: native controls, label text beside them */
+  #wcf-{{ section.id }} fieldset { border: 0; margin: 0 0 10px; padding: 0; min-width: 0; }
+  #wcf-{{ section.id }} .wcf__option {
+    display: flex; align-items: flex-start; gap: 6px; margin: 0; cursor: pointer;
+    font-size: 15px; font-weight: 400; line-height: 1.65; color: var(--wcf-text);
   }
-  #wcf-{{ section.id }} .wcf__choice input {
-    flex: 0 0 auto; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--wcf-accent);
-    position: static; opacity: 1; appearance: auto; -webkit-appearance: auto;
+  #wcf-{{ section.id }} .wcf__check { margin: 14px 0 16px; }
+  #wcf-{{ section.id }} .wcf__check .wcf__option { align-items: center; gap: 8px; line-height: 1.4; }
+  #wcf-{{ section.id }} .wcf__option input {
+    flex: 0 0 auto; margin: .3em 0 0; accent-color: var(--wcf-dark);
+    position: static; opacity: 1; visibility: visible; appearance: auto; -webkit-appearance: auto;
   }
-  #wcf-{{ section.id }} .wcf__choice a { color: inherit; text-decoration: underline; }
+  #wcf-{{ section.id }} .wcf__option input[type="radio"] { width: 14px; height: 14px; }
+  #wcf-{{ section.id }} .wcf__check .wcf__option input { width: 18px; height: 18px; margin: 0; }
+  #wcf-{{ section.id }} .wcf__submitted .wcf__check input:invalid { outline: 2px solid var(--wcf-error); outline-offset: 1px; }
+  #wcf-{{ section.id }} .wcf__option a { color: inherit; text-decoration: underline; }
+
   #wcf-{{ section.id }} .wcf__submit {
-    margin-top: 28px; min-height: 56px; padding: 0 48px; border: 0; border-radius: 0; cursor: pointer;
-    background: var(--wcf-accent); color: #fff;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 21px; letter-spacing: .84px; text-transform: uppercase;
+    display: block; width: 100%; min-height: 56px; margin-top: 20px; padding: 0 24px;
+    border: 0; border-radius: 0; cursor: pointer;
+    background: var(--wcf-dark); color: #fff;
+    font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    transition: background .2s;
   }
-  #wcf-{{ section.id }} .wcf__submit:hover { background: #0A0A0A; }
-  #wcf-{{ section.id }} .wcf__notice { padding: 14px 16px; margin-bottom: 24px; font-family: Barlow, sans-serif; font-size: 15px; border: 1px solid; }
+  #wcf-{{ section.id }} .wcf__submit:hover { background: var(--wcf-error); }
+
+  #wcf-{{ section.id }} .wcf__notice { padding: 14px 16px; margin-bottom: 24px; font-size: 15px; border: 1px solid; }
   #wcf-{{ section.id }} .wcf__notice--success { border-color: #1E7B34; color: #1E7B34; background: #F0F8F2; }
-  #wcf-{{ section.id }} .wcf__notice--error { border-color: var(--wcf-accent); color: var(--wcf-accent); background: #FDF0F1; }
+  #wcf-{{ section.id }} .wcf__notice--error { border-color: var(--wcf-error); color: var(--wcf-error); background: #FDF0F1; }
   #wcf-{{ section.id }} .wcf__notice ul { margin: 6px 0 0; padding-left: 18px; }
 
-  @media only screen and (max-width: 749px) {
-    #wcf-{{ section.id }} .wcf__grid { grid-template-columns: minmax(0, 1fr); }
-    #wcf-{{ section.id }} .wcf__field,
-    #wcf-{{ section.id }} .wcf__field--half,
-    #wcf-{{ section.id }} .wcf__field--quarter { grid-column: span 1; }
-    #wcf-{{ section.id }} .wcf__submit { width: 100%; }
+  @media only screen and (max-width: 767px) {
+    #wcf-{{ section.id }} .wcf__row { display: block; margin-bottom: 0; }
+    #wcf-{{ section.id }} .wcf__row .wcf__group { margin-bottom: 10px; }
   }
 </style>
 
@@ -108,118 +122,121 @@
 
         <input type="hidden" name="contact[Form]" value="Warranty Claim">
 
-        <h2 class="wcf__heading">Your details</h2>
-        <div class="wcf__grid">
-          <div class="wcf__field wcf__field--half">
-            <label for="wcf-first-name">First Name <span class="wcf__req">*</span></label>
-            <input type="text" id="wcf-first-name" name="contact[FirstName]" autocomplete="given-name" required>
+        {%- comment -%} Your details {%- endcomment -%}
+        <div class="wcf__row">
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-first-name">First Name *</label>
+            <input type="text" id="wcf-first-name" name="contact[FirstName]" placeholder="Firstname" autocomplete="given-name" required>
           </div>
-          <div class="wcf__field wcf__field--half">
-            <label for="wcf-last-name">Last Name <span class="wcf__req">*</span></label>
-            <input type="text" id="wcf-last-name" name="contact[LastName]" autocomplete="family-name" required>
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-last-name">Last Name *</label>
+            <input type="text" id="wcf-last-name" name="contact[LastName]" placeholder="Lastname" autocomplete="family-name" required>
           </div>
+        </div>
 
-          <div class="wcf__field">
-            <label for="wcf-address1">Address 1 <span class="wcf__req">*</span></label>
-            <input type="text" id="wcf-address1" name="contact[Address1]" autocomplete="address-line1" required>
-          </div>
-          <div class="wcf__field wcf__field--half">
-            <label for="wcf-address2">Address 2</label>
-            <input type="text" id="wcf-address2" name="contact[Address2]" autocomplete="address-line2">
-          </div>
-          <div class="wcf__field wcf__field--half">
-            <label for="wcf-address3">Address 3</label>
-            <input type="text" id="wcf-address3" name="contact[Address3]" autocomplete="address-line3">
-          </div>
+        <div class="wcf__group">
+          <label class="wcf__label" for="wcf-address1">Address 1 *</label>
+          <input type="text" id="wcf-address1" name="contact[Address1]" placeholder="Address 1" autocomplete="address-line1" required>
+        </div>
 
-          <div class="wcf__field wcf__field--half">
-            <label for="wcf-city">City <span class="wcf__req">*</span></label>
-            <input type="text" id="wcf-city" name="contact[City]" autocomplete="address-level2" required>
+        <div class="wcf__row">
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-address2">Address 2</label>
+            <input type="text" id="wcf-address2" name="contact[Address2]" placeholder="Address 2" autocomplete="address-line2">
           </div>
-          <div class="wcf__field wcf__field--quarter">
-            <label for="wcf-state">State <span class="wcf__req">*</span></label>
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-address3">Address 3</label>
+            <input type="text" id="wcf-address3" name="contact[Address3]" placeholder="Address 3" autocomplete="address-line3">
+          </div>
+        </div>
+
+        <div class="wcf__row">
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-city">City *</label>
+            <input type="text" id="wcf-city" name="contact[City]" placeholder="City" autocomplete="address-level2" required>
+          </div>
+          <div class="wcf__col wcf__col--quarter wcf__group">
+            <label class="wcf__label" for="wcf-state">State / Province *</label>
             <select id="wcf-state" name="contact[State]" autocomplete="address-level1" required>
-              <option value="">Select state</option>
+              <option value="">Select state / province</option>
               {%- for state in us_states -%}
                 <option value="{{ state }}">{{ state | split: ' (' | first }}</option>
               {%- endfor -%}
             </select>
           </div>
-          <div class="wcf__field wcf__field--quarter">
-            <label for="wcf-zip">Zip Code <span class="wcf__req">*</span></label>
-            <input type="text" id="wcf-zip" name="contact[ZipCode]" autocomplete="postal-code" inputmode="numeric" required>
-          </div>
-
-          <div class="wcf__field wcf__field--half">
-            <label for="wcf-email">Email <span class="wcf__req">*</span></label>
-            <input type="email" id="wcf-email" name="contact[email]" autocomplete="email" autocapitalize="off" spellcheck="false" required>
-          </div>
-          <div class="wcf__field wcf__field--half">
-            <label for="wcf-phone">Phone <span class="wcf__req">*</span></label>
-            <input type="tel" id="wcf-phone" name="contact[Phone]" autocomplete="tel" required>
-          </div>
-
-          <div class="wcf__field">
-            <label class="wcf__choice" for="wcf-subscribe">
-              <input type="checkbox" id="wcf-subscribe" name="contact[ContactFormNewsletter]" value="Yes" checked>
-              <span>Opt in to our email list</span>
-            </label>
+          <div class="wcf__col wcf__col--quarter wcf__group">
+            <label class="wcf__label" for="wcf-zip">Zip Code *</label>
+            <input type="text" id="wcf-zip" name="contact[ZipCode]" placeholder="Zip Code" autocomplete="postal-code" inputmode="numeric" required>
           </div>
         </div>
 
-        <h2 class="wcf__heading">Your claim</h2>
-        <div class="wcf__grid">
-          <div class="wcf__field wcf__field--quarter">
-            <label for="wcf-item-count">Item Count <span class="wcf__req">*</span></label>
+        <div class="wcf__row">
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-email">Email *</label>
+            <input type="email" id="wcf-email" name="contact[email]" placeholder="Email address" autocomplete="email" autocapitalize="off" spellcheck="false" required>
+          </div>
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-phone">Phone *</label>
+            <input type="tel" id="wcf-phone" name="contact[Phone]" placeholder="Phone" autocomplete="tel" required>
+          </div>
+        </div>
+
+        <div class="wcf__check">
+          <label class="wcf__option" for="wcf-subscribe">
+            <input type="checkbox" id="wcf-subscribe" name="contact[ContactFormNewsletter]" value="Yes" checked>
+            <span>Opt-in for our email list</span>
+          </label>
+        </div>
+
+        {%- comment -%} Your claim {%- endcomment -%}
+        <div class="wcf__row">
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-item-count">Item Count *</label>
             <select id="wcf-item-count" name="contact[ItemCount]" required>
               {%- for i in (1..10) -%}
                 <option value="{{ i }}">{{ i }}</option>
               {%- endfor -%}
             </select>
           </div>
-          <div class="wcf__field" style="grid-column: span 3;">
-            <label for="wcf-item-name">Item Name <span class="wcf__req">*</span></label>
+          <div class="wcf__col wcf__group">
+            <label class="wcf__label" for="wcf-item-name">Item Name *</label>
             <input type="text" id="wcf-item-name" name="contact[ItemName]" placeholder="List of products being returned" required>
-          </div>
-
-          <fieldset class="wcf__field">
-            <legend>Repair / Replace <span class="wcf__req">*</span></legend>
-            <div class="wcf__choices">
-              {%- for option in repair_options -%}
-                <label class="wcf__choice" for="wcf-rr-{{ forloop.index }}">
-                  <input type="radio" id="wcf-rr-{{ forloop.index }}" name="contact[RepairOrReplace]" value="{{ option }}" required>
-                  <span>{{ option }}</span>
-                </label>
-              {%- endfor -%}
-            </div>
-          </fieldset>
-
-          <div class="wcf__field">
-            <label for="wcf-problem">Problem Description <span class="wcf__req">*</span></label>
-            <textarea id="wcf-problem" name="contact[ProblemDescription]" rows="4" placeholder="What is wrong with the item?" required></textarea>
-          </div>
-
-          <div class="wcf__field">
-            <label for="wcf-suggestions">
-              What were you doing with the product when it broke?
-              <span class="wcf__hint">This helps our engineering team keep improving our products.</span>
-            </label>
-            <textarea id="wcf-suggestions" name="contact[CommentsSuggestions]" rows="4" placeholder="Comments and suggestions"></textarea>
-          </div>
-
-          <div class="wcf__field">
-            <label class="wcf__choice" for="wcf-policy">
-              <input type="checkbox" id="wcf-policy" name="contact[ReturnPolicy]" value="Accepted" required>
-              <span>
-                I accept the
-                {% if policy_url != blank %}<a href="{{ policy_url }}" target="_blank" rel="noopener">return policy</a>{% else %}return policy{% endif %}
-                <span class="wcf__req">*</span>
-              </span>
-            </label>
           </div>
         </div>
 
-        <button type="submit" class="wcf__submit">{{ section.settings.button_label }}</button>
+        <fieldset>
+          <legend>Replace *</legend>
+          {%- for option in repair_options -%}
+            <label class="wcf__option" for="wcf-rr-{{ forloop.index }}">
+              <input type="radio" id="wcf-rr-{{ forloop.index }}" name="contact[RepairOrReplace]" value="{{ option }}" required>
+              <span>{{ option }}</span>
+            </label>
+          {%- endfor -%}
+        </fieldset>
+
+        <div class="wcf__group">
+          <label class="wcf__label" for="wcf-problem">Problem Description *</label>
+          <textarea id="wcf-problem" name="contact[ProblemDescription]" rows="4" placeholder="Problem with the item" required></textarea>
+        </div>
+
+        <div class="wcf__group">
+          <label class="wcf__label" for="wcf-suggestions">
+            To continuously improve our products, it helps us to know what you were doing with the product when it broke.
+            This information will be used by our engineering team to make improvements.
+          </label>
+          <textarea id="wcf-suggestions" name="contact[CommentsSuggestions]" rows="4" placeholder="Comments and suggestions"></textarea>
+        </div>
+
+        <div class="wcf__check">
+          <label class="wcf__option" for="wcf-policy">
+            <input type="checkbox" id="wcf-policy" name="contact[ReturnPolicy]" value="Accepted" required>
+            <span>
+              Accept {% if policy_url != blank %}<a href="{{ policy_url }}" target="_blank" rel="noopener">return policy</a>{% else %}return policy{% endif %} *
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" class="wcf__submit">{{ section.settings.button_label | default: 'Submit' }}</button>
       {%- endform -%}
     </div>
   </div>
@@ -264,7 +281,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Submit claim"
+      "default": "Submit"
     },
     {
       "type": "text",

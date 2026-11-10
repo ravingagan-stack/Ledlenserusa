@@ -14228,7 +14228,7 @@ body:not(.no-outline) .deferred-media__poster.focus-visible {
   vertical-align: baseline;
 }
 .product-single__thumbnail:first-child {
-  padding-left: var(--gutter-mobile);
+  padding-left: 0;
 }
 .product-single__thumbnail:last-child {
   padding-right: var(--gutter-mobile);

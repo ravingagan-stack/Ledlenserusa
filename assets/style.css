@@ -2594,3 +2594,8 @@ button.offer-option-btn {
 #join {
     scroll-margin-top: calc(var(--header-sticky-height, 80px) + 24px);
 }
+span.bs-card__price-wrap {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}

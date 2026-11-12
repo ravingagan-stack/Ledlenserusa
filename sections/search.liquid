@@ -292,6 +292,7 @@
 
 {%- render 'stylesheet', name: 'template-collection.css', async: true -%}
 {%- render 'stylesheet', name: 'template-search.css' -%}
+{{ 'component-bs-card.css' | asset_url | stylesheet_tag }}
 
 {%- if enable_infinity_scroll -%}
   <script src="{{ 'ajaxinate.js' | asset_url }}" defer="defer"></script>
@@ -532,7 +533,7 @@
                                 endif
 
                                 if item.object_type == 'product'
-                                  render 'product-grid-item', product: item, animation_delay: animation_delay, intersection_ratio: intersection_ratio
+                                  render 'product-card-bs', product: item, columns: columns, columns_mobile: products_per_row_on_mobile
                                 endif
 
                                 if item.object_type == 'article'
@@ -648,7 +649,7 @@
                                   for item in search.results
                                     assign animation_delay = forloop.index0 | modulo: columns | times: 1
                                     if item.object_type == 'product'
-                                      render 'product-grid-item', product: item, animation_delay: animation_delay
+                                      render 'product-card-bs', product: item, columns: columns, columns_mobile: products_per_row_on_mobile
                                     endif
                                   endfor
                                 -%}

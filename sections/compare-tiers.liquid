@@ -293,6 +293,20 @@ span.ct__name {
           assign tag_key = 'tier_' | append: i | append: '_tag'
           assign name_key = 'tier_' | append: i | append: '_name'
           assign price_key = 'tier_' | append: i | append: '_price'
+          assign tier_price = section.settings[price_key]
+          if tier_price == blank
+            case i
+              when 1
+                assign tier_product = tp1
+              when 2
+                assign tier_product = tp2
+              when 3
+                assign tier_product = tp3
+            endcase
+            if tier_product != blank
+              assign tier_price = tier_product.selected_or_first_available_variant.price | money
+            endif
+          endif
         -%}
         <button
           type="button"
@@ -302,126 +316,129 @@ span.ct__name {
         >
           <span class="ct__tag">{{ section.settings[tag_key] }}</span>
           <span class="ct__name">{{ section.settings[name_key] }}</span>
-          <span class="ct__price">{{ section.settings[price_key] }}</span>
+          <span class="ct__price">{{ tier_price }}</span>
         </button>
       {%- endfor -%}
 
-      {%- for block in section.blocks -%}
+      {%- if section.settings.rows_source == 'specs' -%}
         {%- liquid
           comment
-            Highlight rows where a number changes between tiers; "Highest" marks the top value
-            for specs where more is better (output, distance, runtime, battery).
+            Same rows as the product page "Model comparison table": every "Label: Value" line in
+            the tier products' custom.compare_specs metafield, matched across tiers by label.
           endcomment
-          assign label_lower = block.settings.label | downcase
-
-          comment
-            Cell values: from each tier product's Specifications data when the row has a
-            data source, falling back to the typed value when the product has none.
-          endcomment
-          assign c1 = block.settings.value_1
-          assign c2 = block.settings.value_2
-          assign c3 = block.settings.value_3
-          assign spec_source = block.settings.source | default: 'manual'
-          if spec_source != 'manual'
-            if tp1 != blank
-              capture spec_value
-                render 'tier-spec-value', product: tp1, source: spec_source
-              endcapture
-              if spec_value != blank
-                assign c1 = spec_value
-              endif
-            endif
-            if tp2 != blank
-              capture spec_value
-                render 'tier-spec-value', product: tp2, source: spec_source
-              endcapture
-              if spec_value != blank
-                assign c2 = spec_value
-              endif
-            endif
-            if tp3 != blank
-              capture spec_value
-                render 'tier-spec-value', product: tp3, source: spec_source
-              endcapture
-              if spec_value != blank
-                assign c3 = spec_value
-              endif
-            endif
-          endif
-
-          capture n1
-            render 'spec-number', value: c1
-          endcapture
-          capture n2
-            render 'spec-number', value: c2
-          endcapture
-          capture n3
-            render 'spec-number', value: c3
-          endcapture
-
-          assign is_varies = false
-          assign mark_top = false
-          assign top_num = -1
-          if n1 != blank and n2 != blank and n3 != blank
-            assign v1 = n1 | times: 1
-            assign v2 = n2 | times: 1
-            assign v3 = n3 | times: 1
-            if v1 != v2 or v1 != v3
-              assign is_varies = true
-            endif
-            assign top_num = v1
-            if v2 > top_num
-              assign top_num = v2
-            endif
-            if v3 > top_num
-              assign top_num = v3
-            endif
-          endif
-
-          if is_varies
-            if label_lower contains 'lumen' or label_lower contains 'output' or label_lower contains 'beam' or label_lower contains 'distance' or label_lower contains 'range' or label_lower contains 'runtime' or label_lower contains 'run time' or label_lower contains 'battery' or label_lower contains 'capacity'
-              assign mark_top = true
-            endif
-          endif
-        -%}
-        <div class="ct__label{% if is_varies %} is-varies{% endif %}" {{ block.shopify_attributes }}>
-          {{- block.settings.label -}}
-          {%- if is_varies %} <span class="ct__badge">Varies</span>{% endif -%}
-        </div>
-        {%- for i in (1..3) -%}
-          {%- liquid
+          assign empty_value = section.settings.empty_value
+          assign labels_str = '|'
+          for i in (1..3)
             case i
               when 1
-                assign cell_value = c1
+                assign tier_product = tp1
               when 2
-                assign cell_value = c2
+                assign tier_product = tp2
               when 3
-                assign cell_value = c3
+                assign tier_product = tp3
             endcase
-            assign is_top = false
-            if mark_top
+            if tier_product == blank
+              continue
+            endif
+            for spec in tier_product.metafields.custom.compare_specs.value
+              assign raw_label = spec | split: ':' | first
+              assign label = raw_label | strip
+              assign label_key = '|' | append: label | append: '|'
+              if label != blank
+                unless labels_str contains label_key
+                  assign labels_str = labels_str | append: label | append: '|'
+                endunless
+              endif
+            endfor
+          endfor
+          assign labels = labels_str | remove_first: '|' | split: '|'
+        -%}
+        {%- for label in labels -%}
+          {%- liquid
+            assign label_lower = label | downcase
+            assign c1 = empty_value
+            assign c2 = empty_value
+            assign c3 = empty_value
+            for i in (1..3)
               case i
                 when 1
-                  if v1 == top_num
-                    assign is_top = true
-                  endif
+                  assign tier_product = tp1
                 when 2
-                  if v2 == top_num
-                    assign is_top = true
-                  endif
+                  assign tier_product = tp2
                 when 3
-                  if v3 == top_num
-                    assign is_top = true
-                  endif
+                  assign tier_product = tp3
               endcase
+              if tier_product == blank
+                continue
+              endif
+              assign val = empty_value
+              for spec in tier_product.metafields.custom.compare_specs.value
+                assign raw_label = spec | split: ':' | first
+                assign spec_label = raw_label | strip
+                if spec_label == label
+                  assign val = spec | remove_first: raw_label | remove_first: ':' | strip
+                  if label_lower contains 'beam'
+                    capture val
+                      render 'beam-distance', value: val, format: 'table'
+                    endcapture
+                  endif
+                  break
+                endif
+              endfor
+              case i
+                when 1
+                  assign c1 = val | escape
+                when 2
+                  assign c2 = val | escape
+                when 3
+                  assign c3 = val | escape
+              endcase
+            endfor
+            assign label_escaped = label | escape
+          -%}
+          {%- render 'compare-tiers-row', label: label_escaped, c1: c1, c2: c2, c3: c3, varies_by: 'text' -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            comment
+              Cell values: the typed Tier value always wins. When a Tier value is left empty
+              and the row has a data source, it is filled from that tier product's Specifications.
+            endcomment
+            assign c1 = block.settings.value_1
+            assign c2 = block.settings.value_2
+            assign c3 = block.settings.value_3
+            assign spec_source = block.settings.source | default: 'manual'
+            if spec_source != 'manual'
+              if tp1 != blank and c1 == blank
+                capture spec_value
+                  render 'tier-spec-value', product: tp1, source: spec_source
+                endcapture
+                if spec_value != blank
+                  assign c1 = spec_value
+                endif
+              endif
+              if tp2 != blank and c2 == blank
+                capture spec_value
+                  render 'tier-spec-value', product: tp2, source: spec_source
+                endcapture
+                if spec_value != blank
+                  assign c2 = spec_value
+                endif
+              endif
+              if tp3 != blank and c3 == blank
+                capture spec_value
+                  render 'tier-spec-value', product: tp3, source: spec_source
+                endcapture
+                if spec_value != blank
+                  assign c3 = spec_value
+                endif
+              endif
             endif
           -%}
-          <div class="ct__cell{% if is_varies %} is-varies{% endif %}{% if is_top %} is-top{% endif %}" data-col="{{ i | minus: 1 }}">
-            {{- cell_value -}}
-            {%- if is_top %} <span class="ct__badge ct__badge--top">Highest</span>{% endif -%}
-          </div>
+          {%- render 'compare-tiers-row', label: block.settings.label, c1: c1, c2: c2, c3: c3, varies_by: 'number', attrs: block.shopify_attributes -%}
         {%- endfor -%}
-      {%- endfor -%}
+      {%- endif -%}
 
       <div class="ct__foot-spacer"></div>
 
@@ -512,7 +529,7 @@ span.ct__name {
       "type": "text",
       "id": "tier_1_price",
       "label": "Price",
-      "default": "$139.95"
+      "info": "Leave empty to show the product's current price."
     },
     {
       "type": "url",
@@ -544,7 +561,7 @@ span.ct__name {
       "type": "text",
       "id": "tier_2_price",
       "label": "Price",
-      "default": "$159.95"
+      "info": "Leave empty to show the product's current price."
     },
     {
       "type": "url",
@@ -577,7 +594,7 @@ span.ct__name {
       "type": "text",
       "id": "tier_3_price",
       "label": "Price",
-      "default": "$200.00"
+      "info": "Leave empty to show the product's current price."
     },
     {
       "type": "url",
@@ -593,6 +610,23 @@ span.ct__name {
     {
       "type": "header",
       "content": "Table"
+    },
+    {
+      "type": "select",
+      "id": "rows_source",
+      "label": "Rows",
+      "options": [
+        { "value": "manual", "label": "Rows added below" },
+        { "value": "specs", "label": "Same specs as product page" }
+      ],
+      "default": "manual",
+      "info": "Same specs as product page: shows each tier product's Compare specs metafield (custom.compare_specs), exactly like the product page comparison table. Tier products come from the Product setting or the Button link."
+    },
+    {
+      "type": "text",
+      "id": "empty_value",
+      "label": "Value when a tier has no data",
+      "default": "—"
     },
     {
       "type": "select",
@@ -691,7 +725,7 @@ span.ct__name {
           "type": "select",
           "id": "source",
           "label": "Data source",
-          "info": "Read each tier's value from its product Specifications (same data as the PDP Specifications tab). The tier values below are used when a product has no data.",
+          "info": "Fills an empty tier value below from that tier product's Specifications (same data as the PDP Specifications tab). A typed tier value always takes priority.",
           "default": "manual",
           "options": [
             { "value": "manual", "label": "Manual (tier values below)" },

@@ -354,49 +354,6 @@
         "padding_bottom": 100
       }
     },
-    "compatible_products_Cp7Fx2": {
-      "type": "compatible-products",
-      "blocks": {
-        "group_flex_powerbanks": {
-          "type": "group",
-          "settings": {
-            "products": [
-              "flex5-powerbank",
-              "flex10-powerbank"
-            ],
-            "compatible": [
-              "h7r-headlamp",
-              "h7r-core",
-              "h7r-pro-headlamp",
-              "h7r-signature",
-              "h7r-work",
-              "h9r-headlamp",
-              "h9r-pro-headlamp",
-              "p7r-flashlight",
-              "p7r-signature-flashlight",
-              "p9r-core-lep-in-box",
-              "af2r-work"
-            ],
-            "heading": "",
-            "subheading": ""
-          }
-        }
-      },
-      "block_order": [
-        "group_flex_powerbanks"
-      ],
-      "settings": {
-        "metafield": "custom.compatible_products",
-        "heading": "Compatible products",
-        "subheading": "Products that work with the [product]",
-        "limit": 16,
-        "hide_sold_out": false,
-        "color_bg": "#ffffff",
-        "color_text": "#0a0a0a",
-        "padding_top": 56,
-        "padding_bottom": 56
-      }
-    },
     "custom_tabs_DATTdN": {
       "type": "custom-tabs",
       "blocks": {
@@ -1137,6 +1094,19 @@
         "padding_bottom": 0
       }
     },
+    "compatible_products_Cp7Fx2": {
+      "type": "compatible-products",
+      "settings": {
+        "heading": "Compatible products",
+        "subheading": "Products that work with the [product]",
+        "limit": 16,
+        "hide_sold_out": false,
+        "color_bg": "#ffffff",
+        "color_text": "#0a0a0a",
+        "padding_top": 56,
+        "padding_bottom": 0
+      }
+    },
     "section_accordions_with_images_yi8jVm": {
       "type": "section-accordions-with-images",
       "blocks": {
@@ -1208,7 +1178,6 @@
     "custom_breadcrumb_fYj9nF",
     "main",
     "custom_tabs_DATTdN",
-    "compatible_products_Cp7Fx2",
     "why_ledlenser_mHenhq",
     "video_specification_4VfGr7",
     "model_upgrade_guide_kA3QfP",
@@ -1222,6 +1191,7 @@
     "compare_tiers_gj8VNf",
     "product_specifications_6fgG6f",
     "1792656446d9a3100d",
+    "compatible_products_Cp7Fx2",
     "section_accordions_with_images_yi8jVm"
   ]
 }

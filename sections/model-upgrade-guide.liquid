@@ -8,7 +8,7 @@
 
   Per-model metafields (on each model product):
     custom.model_name      Single line text (falls back to product title)
-    custom.best_for        Single line text
+    custom.best_for        Single line text, without "Best for" (e.g. "hiking, boating and photography")
     custom.upgrade_label   Single line text, e.g. "The best value" (empty = auto "+$50.00 vs P7R")
     custom.upgrade_points  Single line text (List). Start each line with "+" (gain), "=" (same) or "-" (trade-off)
 {%- endcomment -%}
@@ -25,9 +25,12 @@
     assign description = section.settings.description
   endif
 
-  assign base_model = models.first
-  assign base_price = base_model.selected_or_first_available_variant.price
-  assign base_name = base_model.metafields.custom.model_name.value | default: base_model.title
+  assign base_price = 0
+  assign base_name = ''
+  for base_model in models limit: 1
+    assign base_price = base_model.selected_or_first_available_variant.price
+    assign base_name = base_model.metafields.custom.model_name.value | default: base_model.title
+  endfor
 -%}
 
 {%- if models != blank and models.size > 1 -%}
@@ -200,7 +203,17 @@ color: #4a4a4a;
               <span class="up__delta">{{ delta }}</span>
             {%- endif -%}
             {%- if m_mf.best_for != blank -%}
-              <span class="up__for">Best for {{ m_mf.best_for.value | downcase }}</span>
+              {%- liquid
+                assign best_for = m_mf.best_for.value | strip
+                assign best_for_lower = best_for | downcase
+                if best_for_lower contains 'best for'
+                  assign best_for_start = best_for_lower | slice: 0, 8
+                  if best_for_start == 'best for'
+                    assign best_for = best_for | slice: 8, 500 | strip
+                  endif
+                endif
+              -%}
+              <span class="up__for">Best for {{ best_for | downcase }}</span>
             {%- endif -%}
 
             {%- assign points = m_mf.upgrade_points.value -%}

@@ -1,0 +1,90 @@
+{%- comment -%}
+  One row of the Compare tiers grid: label cell + 3 tier cells, with "Varies" / "Highest" badges.
+
+  Accepts:
+  - label: {String} Row label
+  - c1, c2, c3: {String} Tier values
+  - varies_by: {String} 'number' (numbers differ) or 'text' (values differ and every tier has a number,
+    same rule as the product page Model comparison table)
+  - attrs: {String} Optional block.shopify_attributes for the label cell
+
+  Usage:
+  {% render 'compare-tiers-row', label: label, c1: c1, c2: c2, c3: c3, varies_by: 'text' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign label_lower = label | downcase
+
+  capture n1
+    render 'spec-number', value: c1
+  endcapture
+  capture n2
+    render 'spec-number', value: c2
+  endcapture
+  capture n3
+    render 'spec-number', value: c3
+  endcapture
+
+  assign is_varies = false
+  assign mark_top = false
+  assign all_nums = false
+  if n1 != blank and n2 != blank and n3 != blank
+    assign all_nums = true
+    assign v1 = n1 | times: 1
+    assign v2 = n2 | times: 1
+    assign v3 = n3 | times: 1
+    assign top_num = v1
+    if v2 > top_num
+      assign top_num = v2
+    endif
+    if v3 > top_num
+      assign top_num = v3
+    endif
+  endif
+
+  if all_nums
+    if varies_by == 'text'
+      if c1 != c2 or c1 != c3
+        assign is_varies = true
+      endif
+    elsif v1 != v2 or v1 != v3
+      assign is_varies = true
+    endif
+  endif
+
+  if is_varies
+    if label_lower contains 'lumen' or label_lower contains 'output' or label_lower contains 'beam' or label_lower contains 'distance' or label_lower contains 'range' or label_lower contains 'runtime' or label_lower contains 'run time' or label_lower contains 'battery' or label_lower contains 'capacity'
+      assign mark_top = true
+    endif
+    if v1 == v2 and v1 == v3
+      assign mark_top = false
+    endif
+  endif
+-%}
+<div class="ct__label{% if is_varies %} is-varies{% endif %}" {{ attrs }}>
+  {{- label -}}
+  {%- if is_varies %} <span class="ct__badge">Varies</span>{% endif -%}
+</div>
+{%- for i in (1..3) -%}
+  {%- liquid
+    case i
+      when 1
+        assign cell_value = c1
+        assign cell_num = v1
+      when 2
+        assign cell_value = c2
+        assign cell_num = v2
+      when 3
+        assign cell_value = c3
+        assign cell_num = v3
+    endcase
+    assign is_top = false
+    if mark_top and cell_num == top_num
+      assign is_top = true
+    endif
+  -%}
+  <div class="ct__cell{% if is_varies %} is-varies{% endif %}{% if is_top %} is-top{% endif %}" data-col="{{ i | minus: 1 }}">
+    {{- cell_value -}}
+    {%- if is_top %} <span class="ct__badge ct__badge--top">Highest</span>{% endif -%}
+  </div>
+{%- endfor -%}

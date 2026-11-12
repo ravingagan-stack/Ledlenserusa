@@ -2832,6 +2832,20 @@ button.offer-option-btn {
     display: none;
 }
 
+.compat--few .compat__head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.compat--few .compat__track .bs-collection-item:first-child {
+    margin-left: auto !important;
+}
+
+.compat--few .compat__track .bs-collection-item:last-child {
+    margin-right: auto !important;
+}
+
 .compat__track {
     --compat-gap: 16px;
     --compat-per-view: 4;
@@ -2847,6 +2861,28 @@ button.offer-option-btn {
 
 .compat__track::-webkit-scrollbar {
     display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .compat__track {
+        cursor: grab;
+    }
+}
+
+.compat__track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    user-select: none;
+}
+
+.compat__track.is-dragging a,
+.compat__track.is-dragging img {
+    pointer-events: none;
+}
+
+.compat__track img {
+    -webkit-user-drag: none;
 }
 
 .compat__track:focus-visible {

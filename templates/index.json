@@ -794,6 +794,54 @@
       "type": "Best-sellers",
       "name": "Best sellers",
       "settings": {
+        "heading": "Black Friday Sale",
+        "subheading": "Save up to 50% OFF select Ledlenser flashlights, headlamps, and more.",
+        "link_label": "Shop Black Friday Sale →",
+        "link_url": "",
+        "collection": "black-friday-sale",
+        "product_list": [
+          "p7r-flashlight",
+          "mh11",
+          "mh8",
+          "p5r-pro"
+        ],
+        "products_limit": 4,
+        "badge_metafield": "custom.badge",
+        "sale_badge": "Sale",
+        "default_badge": "",
+        "show_rating": true,
+        "reviews_label": "reviews",
+        "use_metafield": "custom.use_case",
+        "spec_1_label": "Output",
+        "spec_1_metafield": "custom.max_lumens",
+        "spec_2_label": "Distance",
+        "spec_2_metafield": "custom.beam_range",
+        "spec_3_label": "Runtime",
+        "spec_3_metafield": "custom.runtime_range",
+        "chip_metafield": "custom.chip",
+        "button_label": "Quick add",
+        "sold_out_label": "Sold out",
+        "details_label": "View details",
+        "color_button_bg": "#e30613",
+        "color_button_text": "#ffffff",
+        "color_badge_bg": "#0a0a0a",
+        "color_badge_text": "#ffffff",
+        "color_chip": "#0a0a0a",
+        "color_muted": "#4a4a4a",
+        "color_placeholder_text": "#6a6a6a",
+        "color_border": "#dadada",
+        "color_card_bg": "#ffffff",
+        "color_media_bg": "#ffffff",
+        "color_spec_bg": "#f2f2f2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "best_sellers_8PjjLz": {
+      "type": "Best-sellers",
+      "disabled": true,
+      "name": "Best sellers",
+      "settings": {
         "heading": "Best sellers",
         "subheading": "Ranked by verified reviews. In stock and ready to ship.",
         "link_label": "Shop all best sellers →",
@@ -855,6 +903,7 @@
     "light_finder_newsletter_dcwCqR",
     "warranty_buy_direct_njaFgm",
     "pro_team_mTiVaN",
-    "best_sellers_iHcG7x"
+    "best_sellers_iHcG7x",
+    "best_sellers_8PjjLz"
   ]
 }

@@ -3,10 +3,31 @@
 
   Accepts:
   - block_settings: {Object} Block settings object (required)
+  - product: {Object} Product, used for the warranty override (optional)
 
   Usage:
   {% render 'icon-row' %}
 {%- endcomment -%}
+{%- liquid
+  comment
+    Warranty override: a product shows a different warranty (e.g. "2-year warranty") when the
+    metafield custom.warranty_text is set on the product itself, or on one of its collections
+    (e.g. Accessories, Batteries). It replaces any icon heading that mentions "7-year".
+  endcomment
+  assign warranty_text = blank
+  if product
+    assign warranty_text = product.metafields.custom.warranty_text.value
+    if warranty_text == blank
+      for product_collection in product.collections
+        assign collection_warranty = product_collection.metafields.custom.warranty_text.value
+        if collection_warranty != blank
+          assign warranty_text = collection_warranty
+          break
+        endif
+      endfor
+    endif
+  endif
+-%}
 {%- assign has_text = false -%}
 {%- for i in (1..4) -%}
   {%- assign icon_text = 'icon_text_' | append: forloop.index -%}
@@ -29,6 +50,12 @@
   {%- assign icon_text = block_settings[icon_text] -%}
   {%- assign icon_richtext ='icon_richtext_' | append: forloop.index -%}
   {%- assign icon_richtext = block_settings[icon_richtext] -%}
+  {%- if warranty_text != blank -%}
+    {%- assign icon_text_lower = icon_text | downcase -%}
+    {%- if icon_text_lower contains '7-year' -%}
+      {%- assign icon_text = warranty_text -%}
+    {%- endif -%}
+  {%- endif -%}
 
   {%- if icon_image != blank -%}
     {%- assign retina_size = icon_width | times: 2 -%}

@@ -218,15 +218,87 @@
                 {%- when 'headset' -%}
                   <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.33337 10C3.33337 8.23193 4.03575 6.53624 5.286 5.286C6.53624 4.03575 8.23193 3.33337 10 3.33337C11.7682 3.33337 13.4638 4.03575 14.7141 5.286C15.9643 6.53624 16.6667 8.23193 16.6667 10V10.8334M16.6667 10.8334V14.1667C16.6667 14.6087 16.4911 15.0327 16.1786 15.3452C15.866 15.6578 15.4421 15.8334 15 15.8334H13.3334V10.8334H16.6667ZM3.33337 10.8334H6.66671V15.8334H5.00004C4.55801 15.8334 4.13409 15.6578 3.82153 15.3452C3.50897 15.0327 3.33337 14.6087 3.33337 14.1667V10.8334Z" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" stroke="#FF3B4A"/></svg>
               {%- endcase -%}
-              <span>{{ block.settings.text }}</span>
+              {%- liquid
+                comment
+                  Collections with the metafield custom.warranty_text (e.g. "2-year warranty")
+                  show it instead of the 7-year warranty text.
+                endcomment
+                assign trust_text = block.settings.text
+                if collection and block.settings.icon == 'shield'
+                  assign warranty_text = collection.metafields.custom.warranty_text.value
+                  if warranty_text != blank
+                    assign trust_text = '<strong>' | append: warranty_text | append: ',</strong> no questions asked'
+                  endif
+                endif
+              -%}
+              <span>{{ trust_text }}</span>
             </li>
           {%- endfor -%}
         </ul>
       {%- endif -%}
     </div>
 
-    {%- assign pill_blocks = section.blocks | where: 'type', 'pill' -%}
-    {%- if pill_blocks.size > 0 -%}
+    {%- liquid
+      comment
+        Filter buttons come from the collection metafield custom.hero_pills (list of collections)
+        when it is filled in, so each light type (headlamps, flashlights, area lights) shows only
+        its own collections. The button label is the linked collection's custom.hero_pill_label
+        metafield, or its title. Without the metafield, the "Filter button" blocks are used.
+      endcomment
+      assign pill_blocks = section.blocks | where: 'type', 'pill'
+
+      assign meta_pills = blank
+      if collection
+        assign meta_pills = collection.metafields.custom.hero_pills.value
+      endif
+
+      assign use_meta_pills = false
+      if meta_pills != blank and meta_pills.size > 0
+        assign use_meta_pills = true
+      endif
+
+      assign use_block_pills = false
+      if use_meta_pills == false and pill_blocks.size > 0
+        assign use_block_pills = true
+        if collection and section.settings.metafield_pills_only
+          assign use_block_pills = false
+        endif
+      endif
+
+      assign pills_label = heading | strip_html | default: 'Collection' | append: ' collections'
+    -%}
+
+    {%- if use_meta_pills -%}
+      {%- liquid
+        assign current_in_list = false
+        for pill_collection in meta_pills
+          if pill_collection.handle == collection.handle
+            assign current_in_list = true
+            break
+          endif
+        endfor
+      -%}
+      <nav class="chh__pills" aria-label="{{ pills_label | escape }}" data-chh-pills>
+        {%- unless current_in_list -%}
+          <a href="{{ collection.url }}" class="chh__pill is-active" aria-current="page">
+            {{- collection.metafields.custom.hero_pill_label.value | default: collection.title -}}
+          </a>
+        {%- endunless -%}
+        {%- for pill_collection in meta_pills -%}
+          {%- assign is_active = false -%}
+          {%- if pill_collection.handle == collection.handle -%}
+            {%- assign is_active = true -%}
+          {%- endif -%}
+          <a
+            href="{{ pill_collection.url }}"
+            class="chh__pill{% if is_active %} is-active{% endif %}"
+            {% if is_active %}aria-current="page"{% endif %}
+          >
+            {{- pill_collection.metafields.custom.hero_pill_label.value | default: pill_collection.title -}}
+          </a>
+        {%- endfor -%}
+      </nav>
+    {%- elsif use_block_pills -%}
       {%- liquid
         comment
           Only one pill is active: the first one whose link matches the current page.
@@ -264,7 +336,7 @@
           endfor
         endif
       -%}
-      <nav class="chh__pills" aria-label="Filter headlamps" data-chh-pills>
+      <nav class="chh__pills" aria-label="{{ pills_label | escape }}" data-chh-pills>
         {%- if show_current_pill -%}
           <a href="{{ collection.url }}" class="chh__pill is-active" aria-current="page">{{ collection.title }}</a>
         {%- endif -%}
@@ -283,7 +355,9 @@
           >{{ block.settings.label }}</a>
         {%- endfor -%}
       </nav>
+    {%- endif -%}
 
+    {%- if use_meta_pills or use_block_pills -%}
       <script>
         (() => {
           const nav = document.currentScript.previousElementSibling;
@@ -349,6 +423,7 @@
     { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the collection title", "default": "Headlamps" },
     { "type": "richtext", "id": "description", "label": "Description", "info": "Leave empty to use the collection description", "default": "<p>Rechargeable, focusable headlamps for the jobsite, the trail and the hunt. Specs are shown in meters and hours so you can compare at a glance.</p>" },
     { "type": "range", "id": "max_width", "label": "Content max width", "min": 960, "max": 1600, "step": 8, "unit": "px", "default": 1096 },
+    { "type": "checkbox", "id": "metafield_pills_only", "label": "Only use metafield filter buttons on collection pages", "info": "Uses the collection metafield custom.hero_pills (list of collections). When on, collections without it show no filter buttons instead of the buttons below.", "default": true },
     { "type": "range", "id": "pills_spacing", "label": "Space above filter buttons", "min": 16, "max": 120, "step": 4, "unit": "px", "default": 76 },
     { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 },
     { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 }

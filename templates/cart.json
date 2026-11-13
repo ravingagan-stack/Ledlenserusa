@@ -44,6 +44,7 @@
         },
         "cart-message-0": {
           "type": "cart-message",
+          "disabled": true,
           "settings": {}
         },
         "checkout-buttons-0": {

@@ -2990,7 +2990,7 @@ input#email_01M7A60X7TSF6T8J9GST4ETVB7::placeholder {
     letter-spacing: 0 !important;
 }
 
-button.needsclick.go3132681086.go4033861592.klaviyo-form-button.kl-private-reset-css-Xuajs1 {
+.go1682335254.go1682335254.go1682335254{
     background: #e30613 !important;
     color: #ffffff !important;
     border: 0 !important;
@@ -3025,10 +3025,10 @@ button.needsclick.go1682335254.go4033861592.klaviyo-form-button.kl-private-reset
 }
 
 .needsclick.go1419121297.kl-private-reset-css-Xuajs1 {
-    padding-top: 0;
+    padding-top: 0 !important;
 }
 
 .needsclick.go3710615610.kl-private-reset-css-Xuajs1 {
-    padding-right: 0;
+    padding-right: 0 !important;
 }
 }

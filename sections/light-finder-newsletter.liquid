@@ -182,42 +182,7 @@ a.fn__finder-btn {
     </div>
 
     <div id="join" class="fn__join">
-      {%- if section.settings.join_heading != blank -%}
-        <div class="fn__join-title">{{ section.settings.join_heading }}</div>
-      {%- endif -%}
-      {%- if section.settings.join_text != blank -%}
-        <p class="fn__join-text">{{ section.settings.join_text }}</p>
-      {%- endif -%}
-
-      {%- form 'customer', id: 'NewsletterForm-{{ section.id }}', class: 'fn__form' -%}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-
-        {%- if form.posted_successfully? -%}
-          <p class="fn__message fn__message--success" role="status">{{ section.settings.success_message }}</p>
-        {%- else -%}
-          <label for="NewsletterEmail-{{ section.id }}" class="fn__label">{{ section.settings.email_label }}</label>
-          <div class="fn__row">
-            <input
-              id="NewsletterEmail-{{ section.id }}"
-              type="email"
-              name="contact[email]"
-              class="fn__input"
-              value="{{ form.email }}"
-              placeholder="{{ section.settings.email_placeholder }}"
-              autocomplete="email"
-              autocapitalize="off"
-              spellcheck="false"
-              required
-              {% if form.errors %}aria-invalid="true" aria-describedby="NewsletterError-{{ section.id }}"{% endif %}
-            >
-            <button type="submit" class="fn__submit">{{ section.settings.submit_label }}</button>
-          </div>
-
-          {%- if form.errors -%}
-            <p id="NewsletterError-{{ section.id }}" class="fn__message fn__message--error" role="alert">{{ section.settings.error_message }}</p>
-          {%- endif -%}
-        {%- endif -%}
-      {%- endform -%}
+      <div class="klaviyo-form-Td5iNh"></div>
     </div>
   </div>
 </section>

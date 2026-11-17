@@ -208,30 +208,38 @@ a.fn__finder-btn {
     var FORM_ID = 'Td5iNh';
     var KEY = 'sonya_join_signed_up';
     var box = document.getElementById('join-thanks');
-    var holder = document.querySelector('.klaviyo-form-' + FORM_ID);
-    if (!box || !holder) return;
+    if (!box) return;
 
     function show() { box.hidden = false; }
 
-    // signed up on this browser before
-    try { if (localStorage.getItem(KEY)) show(); } catch (e) {}
+    // 1) after a reload: if they signed up before, show the message
+    try {
+      if (localStorage.getItem(KEY)) show();
+    } catch (e) {}
 
-    // signs up right now
+    // 2) when they submit the Klaviyo form: only remember it (no message yet)
     window.addEventListener('klaviyoForms', function (e) {
       if (e.detail && e.detail.type === 'submit' &&
           (!e.detail.formId || e.detail.formId === FORM_ID)) {
         try { localStorage.setItem(KEY, '1'); } catch (err) {}
-        show();
       }
     });
 
-    // Klaviyo hides the form for people who already subscribed,
-    // which leaves the holder empty: show the message in its place
-    setTimeout(function () {
-      if (holder.children.length === 0) show();
-    }, 5000);
+    // 3) also covers people who signed up before this code existed:
+    // Klaviyo knows this browser's visitor, so show the message for them too
+    window.addEventListener('load', function () {
+      try {
+        if (window.klaviyo && typeof window.klaviyo.isIdentified === 'function') {
+          window.klaviyo.isIdentified().then(function (yes) {
+            if (yes) show();
+          });
+        }
+      } catch (e) {}
+    });
   })();
 </script>
+
+
     </div>
   </div>
 </section>

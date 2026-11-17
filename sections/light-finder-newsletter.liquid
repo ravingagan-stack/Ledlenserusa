@@ -208,21 +208,28 @@ a.fn__finder-btn {
     var FORM_ID = 'Td5iNh';
     var KEY = 'sonya_join_signed_up';
     var box = document.getElementById('join-thanks');
-    if (!box) return;
+    var holder = document.querySelector('.klaviyo-form-' + FORM_ID);
+    if (!box || !holder) return;
 
-    // visitor who already signed up: show the message instead of an empty space
-    try {
-      if (localStorage.getItem(KEY)) box.hidden = false;
-    } catch (e) {}
+    function show() { box.hidden = false; }
 
-    // when they submit the Klaviyo form: remember it and show the message
+    // signed up on this browser before
+    try { if (localStorage.getItem(KEY)) show(); } catch (e) {}
+
+    // signs up right now
     window.addEventListener('klaviyoForms', function (e) {
       if (e.detail && e.detail.type === 'submit' &&
           (!e.detail.formId || e.detail.formId === FORM_ID)) {
         try { localStorage.setItem(KEY, '1'); } catch (err) {}
-        box.hidden = false;
+        show();
       }
     });
+
+    // Klaviyo hides the form for people who already subscribed,
+    // which leaves the holder empty: show the message in its place
+    setTimeout(function () {
+      if (holder.children.length === 0) show();
+    }, 5000);
   })();
 </script>
     </div>

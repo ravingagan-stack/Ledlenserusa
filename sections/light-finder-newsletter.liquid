@@ -165,6 +165,22 @@ a.fn__finder-btn {
     padding: 20px;
 }
     }
+    .join-thanks {
+  padding: 20px;
+  text-align: left;
+}
+.join-thanks__title {
+  margin: 0 0 8px;
+  font-family: Barlow, Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #0a0a0a;
+}
+.join-thanks__text {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
 {%- endstyle -%}
 
 <section id="{{ section_uid }}" class="fn">
@@ -183,6 +199,32 @@ a.fn__finder-btn {
 
     <div id="join" class="fn__join">
       <div class="klaviyo-form-Td5iNh"></div>
+      <div id="join-thanks" class="join-thanks" hidden>
+  <p class="join-thanks__title">Thank you for signing up</p>
+</div>
+
+<script>
+  (function () {
+    var FORM_ID = 'Td5iNh';
+    var KEY = 'sonya_join_signed_up';
+    var box = document.getElementById('join-thanks');
+    if (!box) return;
+
+    // visitor who already signed up: show the message instead of an empty space
+    try {
+      if (localStorage.getItem(KEY)) box.hidden = false;
+    } catch (e) {}
+
+    // when they submit the Klaviyo form: remember it and show the message
+    window.addEventListener('klaviyoForms', function (e) {
+      if (e.detail && e.detail.type === 'submit' &&
+          (!e.detail.formId || e.detail.formId === FORM_ID)) {
+        try { localStorage.setItem(KEY, '1'); } catch (err) {}
+        box.hidden = false;
+      }
+    });
+  })();
+</script>
     </div>
   </div>
 </section>

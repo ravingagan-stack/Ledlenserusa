@@ -3032,3 +3032,33 @@ button.needsclick.go1682335254.go4033861592.klaviyo-form-button.kl-private-reset
     padding-right: 0 !important;
 }
 }
+
+.cart-bar__submit.product__submit__item {
+    margin-bottom: 0;
+}
+@media screen and (max-width: 989px) {
+.product__submit__buttons .hulkapps-volumes {
+    margin-left: -111px;
+    width: calc(100% + 111px);
+}
+.product__submit__buttons .offer-options-list .offer-option {
+    width: 100% !important;
+}
+.product__submit__buttons .offer-options-list .option-total-price {
+    margin: 0;
+}
+}
+@media screen and (min-width: 990px) and (max-width: 1477px) {
+.hulkapps-volumes {
+    margin-left: -142px !important;
+    width: calc(100% + 142px) !important;
+}
+
+.product__form .product__submit__holder--spb .product__submit__add span {
+    font-size: 16px;
+}
+
+.product__form s.product__price--compare {
+    font-size: 16px;
+}
+}

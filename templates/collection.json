@@ -157,7 +157,7 @@
         "load_fonts": true,
         "show_breadcrumb": true,
         "heading": "{{ collection.title }}",
-        "description": "<p>Rechargeable, focusable lights for the jobsite, the trail and the hunt. Specs are shown in meters and hours so you can compare at a glance.&nbsp;</p>",
+        "description": "<p>Rechargeable, focusable lights for the jobsite, the trail and the hunt. Specs are shown in meters and hours so you can compare at a glance.&nbsp;</p><p>This offer is not eligible to be combined with other discounts.</p>",
         "max_width": 1360,
         "metafield_pills_only": true,
         "pills_spacing": 68,

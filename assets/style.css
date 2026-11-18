@@ -3073,3 +3073,10 @@ html .cart-bar__submit.product__submit__item .product__submit__add:hover span{
     margin: 0 !important;
     align-items: center;
 }
+
+@media only screen and (min-width: 749px) and (max-width: 1439px) {
+    .cart-bar__form {
+        justify-content: space-between;
+        max-width: 50%;
+    }
+}

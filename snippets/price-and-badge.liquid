@@ -305,15 +305,12 @@
     {% endif %}
   >
     
-{%- form 'product',
-  product,
-  data-product-form: '',
-  id: product_form_id,
-  data-recipient-errors: gift_card_recipient_feature_active,
-  data-max-inventory-reached: max_inventory_reached,
-  data-error-message-position: error_message_position,
-  data-variant-title: current_variant_title
--%}
+{%- comment -%}
+  Form exists only to host Shop Pay payment terms. Do NOT add data-product-form here:
+  cart-bar.js and product-info.js grab the first [data-product-form] in <product-info>,
+  and this block renders before the real buy-buttons form.
+{%- endcomment -%}
+{%- form 'product', product, class: 'payment-terms-form' -%}
     {{ form | payment_terms }}
 {% endform %}
   </div>

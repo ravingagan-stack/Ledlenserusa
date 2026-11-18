@@ -3065,3 +3065,11 @@ button.needsclick.go1682335254.go4033861592.klaviyo-form-button.kl-private-reset
 html .cart-bar__submit.product__submit__item .product__submit__add:hover span{
     color: #fff !important;
 }
+span.product__price--off {
+    padding-left: 10px;
+    margin-top: 2px;
+}
+.product-single .product__price-and-badge .product__price {
+    margin: 0 !important;
+    align-items: center;
+}

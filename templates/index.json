@@ -71,6 +71,7 @@
     },
     "shipping_progress_hNFBeY": {
       "type": "shipping-progress",
+      "disabled": true,
       "name": "Shipping Progress Bar",
       "settings": {
         "ship_msg": "Free US shipping on orders over $35.",

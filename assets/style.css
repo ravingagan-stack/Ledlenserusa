@@ -3062,3 +3062,6 @@ button.needsclick.go1682335254.go4033861592.klaviyo-form-button.kl-private-reset
     font-size: 16px;
 }
 }
+html .cart-bar__submit.product__submit__item .product__submit__add:hover span{
+    color: #fff !important;
+}

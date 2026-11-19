@@ -17,12 +17,8 @@
 
   assign description = section.settings.description
 
-  if collection and collection.description != blank
-    if description != blank
-      assign description = description | append: collection.description
-    else
-      assign description = collection.description
-    endif
+  if collection.handle == 'black-friday-sale' and collection.description != blank
+    assign description = description | append: collection.description
   endif
 -%}
 

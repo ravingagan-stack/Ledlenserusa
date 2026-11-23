@@ -331,9 +331,9 @@
         data-nav-icons
         data-takes-space
       >
-      <a class="contact-text" data-dc-tpl="27" href="{{ section.settings.cont_link }}" style="text-decoration: none; font-size: 13px; line-height: 1.3; display: flex; align-items: center; gap: 8px;">
-        <svg data-dc-tpl="28" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E30613" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path data-dc-tpl="29" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
-        <span data-dc-tpl="30"><b data-dc-tpl="31">{{ section.settings.upr_text }}</b><br data-dc-tpl="32">{{ section.settings.bottom_text }}</span></a>
+      <a class="contact-text" data-dc-tpl="27" href="{{ section.settings.cont_link | default: '/pages/contact-us' }}" data-open-edesk-chat aria-label="Open live chat with our US experts" style="text-decoration: none; font-size: 13px; line-height: 1.3; display: flex; align-items: center; gap: 8px;">
+        <svg data-dc-tpl="28" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E30613" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path data-dc-tpl="29" d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        <span data-dc-tpl="30"><b data-dc-tpl="31">{{ section.settings.upr_text }}</b><br data-dc-tpl="32">{{ section.settings.bottom_text }}</span></a><script>document.addEventListener('click',function(e){var a=e.target.closest('[data-open-edesk-chat]');if(!a)return;var vis=function(t){return [].slice.call(document.querySelectorAll('iframe[title="'+t+'"]')).filter(function(x){return x.offsetWidth>0})[0]};var f=vis('Start chat button')||vis('Resume chat button');if(f){try{(f.contentDocument.querySelector('button')||f.contentDocument.body).click();e.preventDefault();}catch(err){}}else if(vis('Chat intro')||vis('Main chat widget')){e.preventDefault();}});</script>
 
         {%- if secondary_menu != blank -%}
           <div class="menu__items menu__items--secondary">

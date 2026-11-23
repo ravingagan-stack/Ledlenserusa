@@ -231,6 +231,13 @@
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
+      },
+      "17518349512066562465": {
+        "type": "shopify://apps/edesk-all-in-one-helpdesk/blocks/app-embed/350f87d4-ab0c-426b-a37e-0c9ceac250b1",
+        "disabled": false,
+        "settings": {
+          "widgetId": "bnh9451ba"
+        }
       }
     },
     "color_schemes": {

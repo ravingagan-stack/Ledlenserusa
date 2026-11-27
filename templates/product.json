@@ -180,6 +180,7 @@
         },
         "icon_fTycQw": {
           "type": "icon",
+          "disabled": true,
           "settings": {
             "icon_name": "truck",
             "icon_color": "",
@@ -1033,6 +1034,8 @@
         "tier_3_price": "$189.99",
         "tier_3_url": "shopify://products/p7r-signature-flashlight",
         "tier_3_product": "",
+        "rows_source": "manual",
+        "empty_value": "—",
         "highlighted_tier": "1",
         "button_prefix": "Shop",
         "color_accent": "#e30613",

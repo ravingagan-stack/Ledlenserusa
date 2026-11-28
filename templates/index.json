@@ -115,7 +115,7 @@
           "mh8",
           "p5r-pro"
         ],
-        "products_limit": 4,
+        "products_limit": 12,
         "badge_metafield": "custom.badge",
         "sale_badge": "Sale",
         "default_badge": "",

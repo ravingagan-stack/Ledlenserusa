@@ -68,6 +68,7 @@
     "show_payment_button": false,
     "product_bold_price": true,
     "max_inventory": 5,
+    "free_shipping_limit": "35",
     "empty_cart_title": "Find your new wardrobe",
     "empty_cart_collection_list": [
       "new-arrivals",
